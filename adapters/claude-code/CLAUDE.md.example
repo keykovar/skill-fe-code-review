@@ -1,0 +1,7 @@
+@AGENTS.md
+
+## Claude Code
+
+- Use `/fe-code-review` for frontend and hybrid app code review tasks.
+- Keep review tasks read-only unless the user explicitly asks for fixes.
+- Prefer the shared `fe-code-review` skill over duplicating review instructions in this file.

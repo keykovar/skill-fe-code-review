@@ -1,0 +1,16 @@
+{
+  "name": "skill-fe-code-review",
+  "version": "0.1.0",
+  "description": "Reusable frontend and hybrid app code review skill for coding agents.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.7.0",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.6"
+  }
+}

@@ -1,0 +1,8 @@
+---
+description: Use for frontend or hybrid app code review, including Quick, Deep, and Fix Review.
+alwaysApply: false
+---
+
+When the user asks to review frontend code, current diff, staged changes, uncommitted changes, a commit, branch range, PR, previous review fixes, naming, structure, simplification, regression risk, or release risk, use the `fe-code-review` skill if available.
+
+Default to read-only review. Do not edit files, format, commit, push, install dependencies, reset, or change branches unless explicitly asked.

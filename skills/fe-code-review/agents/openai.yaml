@@ -1,0 +1,4 @@
+interface:
+  display_name: "FE Code Review"
+  short_description: "Review frontend changes with Quick, Deep, or Fix mode"
+  default_prompt: "Use $fe-code-review to Quick Review the current frontend diff in read-only mode."
