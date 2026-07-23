@@ -6,12 +6,14 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-07-23
+
 ### Added
 
-- Stable `v0.1.0` installation instructions for Codex, Claude Code, and Cursor.
+- Stable, tag-pinned installation instructions for Codex, Claude Code, and Cursor.
 - Simplified Chinese README.
 - Public review-output contract, severity semantics, and direct output-example links in both READMEs.
-- Compatibility evidence levels and v0.1.0 evaluation results.
+- Compatibility evidence levels and v0.1.1 delta evaluation results.
 - Versioning policy, roadmap, and GitHub issue forms.
 
 ## [0.1.0] - 2026-07-23
@@ -26,5 +28,6 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 - Chinese output templates and example outputs.
 - Vitest contract tests, skill validation, and GitHub Actions CI.
 
-[Unreleased]: https://github.com/keykovar/skill-fe-code-review/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/keykovar/skill-fe-code-review/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/keykovar/skill-fe-code-review/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.1.0

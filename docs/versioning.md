@@ -54,5 +54,5 @@ Before `1.0.0`, minor releases may still evolve the contract. Breaking behavior 
 
 ## Current Version
 
-- Stable: `v0.1.0`
+- Stable: `v0.1.1`
 - Development: `Unreleased`

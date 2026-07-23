@@ -40,10 +40,10 @@ tests/                       Vitest structure and contract checks
 
 ## Install a Stable Release
 
-The current stable release is `v0.1.0`. Pin the tag instead of installing from `main` when reproducibility matters.
+The current stable release is `v0.1.1`. Pin the tag instead of installing from `main` when reproducibility matters.
 
 ```bash
-git clone --depth 1 --branch v0.1.0 \
+git clone --depth 1 --branch v0.1.1 \
   https://github.com/keykovar/skill-fe-code-review.git
 cd skill-fe-code-review
 ```
@@ -111,13 +111,13 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 ## Compatibility
 
-| Client | v0.1.0 evidence | Status |
+| Client | v0.1.1 evidence | Status |
 | --- | --- | --- |
 | Codex | Quick smoke test plus manual Quick, Deep, and Fix runs | Runtime verified |
 | Cursor 3.12.17 | Project-local skill and Quick smoke test | Runtime verified |
 | Claude Code 2.1.206 | Skill layout and adapter validation | Structural pass; runtime not verified |
 
-Claude Code runtime verification is currently marked `Cannot Verify` because the available account subscription expired. This is not reported as a runtime pass. See [Compatibility](docs/compatibility.md) and [v0.1.0 Evaluation Results](docs/evaluation-results/v0.1.0.md) for evidence and limitations.
+Claude Code runtime verification is currently marked `Cannot Verify` because the available account subscription expired. This is not reported as a runtime pass. The v0.1.1 core Skill tree is identical to v0.1.0, so existing runtime evidence is carried forward without claiming a new model run. See [Compatibility](docs/compatibility.md) and [v0.1.1 Evaluation Results](docs/evaluation-results/v0.1.1.md) for evidence and limitations.
 
 ## Usage
 
@@ -205,7 +205,7 @@ Vitest checks the repository structure, adapters, references, and required revie
 - [Changelog](CHANGELOG.md)
 - [Compatibility](docs/compatibility.md)
 - [Evaluation Protocol](docs/evaluation.md)
-- [v0.1.0 Evaluation Results](docs/evaluation-results/v0.1.0.md)
+- [v0.1.1 Evaluation Results](docs/evaluation-results/v0.1.1.md)
 - [Versioning and Release Policy](docs/versioning.md)
 - [Roadmap](docs/roadmap.md)
 

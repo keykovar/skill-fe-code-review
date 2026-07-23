@@ -40,10 +40,10 @@ tests/                       Vitest 结构和契约检查
 
 ## 安装稳定版本
 
-当前稳定版本为 `v0.1.0`。需要可复现安装时，应固定 Release tag，不要直接安装 `main`。
+当前稳定版本为 `v0.1.1`。需要可复现安装时，应固定 Release tag，不要直接安装 `main`。
 
 ```bash
-git clone --depth 1 --branch v0.1.0 \
+git clone --depth 1 --branch v0.1.1 \
   https://github.com/keykovar/skill-fe-code-review.git
 cd skill-fe-code-review
 ```
@@ -111,13 +111,13 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 ## 兼容性
 
-| 客户端 | v0.1.0 验证证据 | 状态 |
+| 客户端 | v0.1.1 验证证据 | 状态 |
 | --- | --- | --- |
 | Codex | Quick 冒烟测试，以及 Quick、Deep、Fix 人工实测 | 运行时已验证 |
 | Cursor 3.12.17 | 项目级 Skill 安装与 Quick 冒烟测试 | 运行时已验证 |
 | Claude Code 2.1.206 | Skill 结构与适配器验证 | 结构通过，运行时未验证 |
 
-由于当前可用 Claude 账号订阅已到期，Claude Code 运行时明确记录为 `Cannot Verify：无法验证`，不会被描述为运行通过。详细证据和限制见[兼容性说明](docs/compatibility.md)与 [v0.1.0 评测结果](docs/evaluation-results/v0.1.0.md)。
+由于当前可用 Claude 账号订阅已到期，Claude Code 运行时明确记录为 `Cannot Verify：无法验证`，不会被描述为运行通过。v0.1.1 核心 Skill tree 与 v0.1.0 完全一致，因此只继承既有运行时证据，不会声称重新执行了模型测试。详细证据和限制见[兼容性说明](docs/compatibility.md)与 [v0.1.1 评测结果](docs/evaluation-results/v0.1.1.md)。
 
 ## 使用方式
 
@@ -205,7 +205,7 @@ Vitest 负责验证仓库结构、适配器、引用文件和必需审查契约�
 - [更新日志](CHANGELOG.md)
 - [兼容性说明](docs/compatibility.md)
 - [评测协议](docs/evaluation.md)
-- [v0.1.0 评测结果](docs/evaluation-results/v0.1.0.md)
+- [v0.1.1 评测结果](docs/evaluation-results/v0.1.1.md)
 - [版本与发布规则](docs/versioning.md)
 - [路线图](docs/roadmap.md)
 
