@@ -1,0 +1,74 @@
+name: Bug report
+description: Report incorrect review behavior, installation problems, or adapter failures.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Remove private source code, credentials, repository URLs, and customer data before submitting evidence.
+  - type: input
+    id: skill_version
+    attributes:
+      label: Skill version
+      description: Use a tag or commit, for example v0.1.0.
+      placeholder: v0.1.0
+    validations:
+      required: true
+  - type: dropdown
+    id: client
+    attributes:
+      label: Client
+      options:
+        - Codex
+        - Cursor
+        - Claude Code
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: client_version
+    attributes:
+      label: Client and model version
+      description: Include both when available.
+      placeholder: Cursor 3.12.17, model name
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Review mode
+      options:
+        - Quick Review
+        - Deep Review
+        - Fix Review
+        - Installation or discovery
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Review scope and prompt
+      description: Describe the selected diff or range and include a sanitized prompt.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior and evidence
+      description: Include sanitized output, relevant Git status, and commands that actually ran.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed secrets, private code, customer data, and private repository links.
+          required: true
+        - label: I distinguished static inspection from runtime validation.
+          required: true

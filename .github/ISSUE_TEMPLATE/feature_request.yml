@@ -1,0 +1,60 @@
+name: Feature request
+description: Propose a review capability based on a concrete repeated use case.
+title: "[Feature]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Prefer the smallest reusable workflow change. Model-specific duplication and automatic write operations need strong evidence.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the repeated review failure or missing capability.
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Affected mode
+      options:
+        - Quick Review
+        - Deep Review
+        - Fix Review
+        - Shared workflow
+        - Client adapter
+    validations:
+      required: true
+  - type: dropdown
+    id: client
+    attributes:
+      label: Affected client
+      options:
+        - All clients
+        - Codex
+        - Cursor
+        - Claude Code
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Sanitized example
+      description: Show the input, expected review behavior, and current behavior without private code.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed contract change
+      description: State new inputs, workflow steps, outputs, and compatibility impact.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Explain how the change can be validated with deterministic checks and real review runs.
+    validations:
+      required: true
