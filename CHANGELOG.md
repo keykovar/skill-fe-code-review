@@ -10,6 +10,7 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 
 - Stable `v0.1.0` installation instructions for Codex, Claude Code, and Cursor.
 - Simplified Chinese README.
+- Public review-output contract, severity semantics, and direct output-example links in both READMEs.
 - Compatibility evidence levels and v0.1.0 evaluation results.
 - Versioning policy, roadmap, and GitHub issue forms.
 

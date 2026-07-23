@@ -147,6 +147,40 @@ Use fe-code-review to review naming, readability, file placement, and module bou
 
 More examples are available in [Prompt Examples](examples/prompts.md).
 
+## Review Output
+
+The result is a decision-oriented review report, not only a list of comments.
+
+| Mode | Required result |
+| --- | --- |
+| Quick Review | Overall conclusion, exact review scope, prioritized findings, engineering-quality checks, test gaps, evidence, and final recommendation |
+| Deep Review | Quick Review coverage plus change understanding, change map, requirement gaps, cross-module impact, and release risks |
+| Fix Review | Review conclusion, previous-finding status, new regressions, behavior delta, remaining test gaps, and closure recommendation |
+
+Every review report should provide:
+
+- A submit or next-step recommendation. Chinese Quick Review uses `可以提交`, `修改后提交`, or `不建议提交`; Deep Review uses the equivalent next-step wording.
+- The comparison baseline and requested scope, including modified, staged, unstaged, and untracked files.
+- Findings grouped as `Blocking`, `Risk`, and `Improve`.
+- For each material finding: file and line, trigger condition, impact, root cause, suggested fix, and verification method.
+- Separate checks for design and simplification, naming and readability, and file placement and module boundaries.
+- Test gaps, local evidence, commands that actually ran, skipped validation, and runtime paths that remain unverified.
+- A final recommendation that reflects unresolved blockers and verification limits.
+
+Severity has stable meaning:
+
+- `Blocking`: can break clean checkout, CI, build, runtime, a critical flow, or data integrity. Referenced untracked files are submit-blocking.
+- `Risk`: can cause edge-case failures, races, state inconsistency, weak error handling, performance regressions, or unsafe coupling.
+- `Improve`: optional maintainability, naming, type-expression, or placement improvement.
+
+Fix Review preserves the original severity and assigns exactly one status to every previous finding: `Resolved`, `Partially Resolved`, `Unresolved`, or `Cannot Verify`. New defects introduced by the fix are reported separately as `New Regression`.
+
+Full output examples:
+
+- [Quick Review, Simplified Chinese](examples/outputs/quick-review.zh-CN.md)
+- [Deep Review](examples/outputs/deep-review.md)
+- [Fix Review, Simplified Chinese](examples/outputs/fix-review.zh-CN.md)
+
 ## Local Validation
 
 Validate the skill shape:

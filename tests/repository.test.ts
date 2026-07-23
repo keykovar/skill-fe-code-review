@@ -49,6 +49,23 @@ describe('repository release support', () => {
     expect(compatibility).toContain('Cannot Verify');
   });
 
+  test('documents the public review output contract and examples', () => {
+    const readme = readText('README.md');
+    const chineseReadme = readText('README.zh-CN.md');
+
+    expect(readme).toContain('## Review Output');
+    expect(readme).toContain('trigger condition, impact, root cause, suggested fix');
+    expect(readme).toContain('Resolved`, `Partially Resolved`, `Unresolved`, or `Cannot Verify`');
+    expect(readme).toContain('examples/outputs/quick-review.zh-CN.md');
+    expect(readme).toContain('examples/outputs/deep-review.md');
+    expect(readme).toContain('examples/outputs/fix-review.zh-CN.md');
+
+    expect(chineseReadme).toContain('## 输出结果说明');
+    expect(chineseReadme).toContain('可以提交`、`修改后提交`、`不建议提交');
+    expect(chineseReadme).toContain('Blocking：必须修改');
+    expect(chineseReadme).toContain('Cannot Verify：无法验证');
+  });
+
   test('records release history and semantic version rules', () => {
     const changelog = readText('CHANGELOG.md');
     const versioning = readText('docs/versioning.md');

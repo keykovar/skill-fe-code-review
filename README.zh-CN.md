@@ -147,6 +147,40 @@ Fix Review：
 
 更多示例见[指令示例](examples/prompts.md)。
 
+## 输出结果说明
+
+审查结果是一份面向决策的报告，不只是零散的问题列表。
+
+| 模式 | 必需输出 |
+| --- | --- |
+| Quick Review | 总体结论、准确审查范围、按优先级排列的问题、工程质量检查、测试缺口、证据和最终建议 |
+| Deep Review | Quick Review 内容，加上变更理解、变更地图、需求缺口、跨模块影响和上线风险 |
+| Fix Review | 回审结论、历史问题状态、新增回归、行为差异、剩余测试缺口和关闭建议 |
+
+每份审查报告应提供：
+
+- 提交或下一步建议。Quick Review 使用 `可以提交`、`修改后提交`、`不建议提交`；Deep Review 使用对应的“进入下一步”表述。
+- 比较基线和请求范围，包括已修改、已暂存、未暂存、未跟踪文件。
+- 按 `Blocking：必须修改`、`Risk：建议修改`、`Improve：可优化` 分类的问题。
+- 每个重要问题的文件与行号、触发条件、影响、根因、建议方案和验证方式。
+- 独立的设计与简化、命名与可读性、文件存放与模块边界检查。
+- 测试缺口、本地证据、实际执行的命令、跳过的验证和仍未验证的运行时路径。
+- 与未解决 Blocking 和验证边界一致的最终建议。
+
+严重级别具有稳定含义：
+
+- `Blocking：必须修改`：可能破坏 clean checkout、CI、构建、运行时、关键流程或数据完整性。被 tracked 代码引用的未跟踪文件属于 Blocking。
+- `Risk：建议修改`：可能造成边界场景故障、竞态、状态不一致、错误处理不足、性能回归或不安全耦合。
+- `Improve：可优化`：可选的可维护性、命名、类型表达或文件存放优化。
+
+Fix Review 保留问题的原严重级别，并为每个历史问题分配且只分配一种状态：`Resolved：已解决`、`Partially Resolved：部分解决`、`Unresolved：未解决`、`Cannot Verify：无法验证`。修复引入的新问题单独归入 `New Regression：新增回归`。
+
+完整输出示例：
+
+- [Quick Review 中文示例](examples/outputs/quick-review.zh-CN.md)
+- [Deep Review 示例](examples/outputs/deep-review.md)
+- [Fix Review 中文示例](examples/outputs/fix-review.zh-CN.md)
+
 ## 本地验证
 
 验证 Skill 结构：
