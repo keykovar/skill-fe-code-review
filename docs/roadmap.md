@@ -2,16 +2,16 @@
 
 The roadmap is evidence-driven. Items move into a release only when real review runs show that they solve a repeated problem.
 
-## v0.1.x Maintenance
+## Historical v0.1.x Maintenance
 
 - Correct installation and adapter documentation as clients evolve.
 - Expand compatibility evidence without changing the required output contract.
 - Tune false positives and ambiguous severity guidance using sanitized examples.
 - Keep validators and repository tests aligned with public documentation.
 
-## v0.2.0 Release Candidate
+## v0.2.0
 
-The current candidate includes:
+The release includes:
 
 1. Evidence-backed minimal sufficient design decisions for Quick and Deep Review.
 2. A documentation-tool contract that prohibits direct or indirect Context7 use during code review.
@@ -26,10 +26,9 @@ The current candidate includes:
 - A Cursor Agent-mode negative run exposed an unauthorized report write; the shared Skill and Cursor rule now require chat-only review output, and post-fix Quick, Deep, and Fix runs made no file writes.
 - Offline lockfile installation, `41/41` Vitest tests, both Skill validators, and `git diff --check` passed. The post-hardening final Deep Review passed against the committed candidate with no findings.
 
-## Remaining v0.2.0 Promotion Gates
+## v0.2.0 Release Boundaries
 
 - Keep Claude Code as `Cannot Verify` while valid runtime credentials are unavailable.
-- Replace candidate changelog links and stable install references only when the `v0.2.0` tag is ready to be created and pushed.
 
 ## Post-v0.2.0 Candidates
 

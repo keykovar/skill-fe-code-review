@@ -55,6 +55,6 @@ Before `1.0.0`, minor releases may still evolve the contract. Breaking behavior 
 
 ## Current Version
 
-- Stable: `v0.1.1`
-- Release candidate: `v0.2.0`
-- Candidate status: local validation passed; cross-client promotion gates remain open
+- Stable: `v0.2.0`
+- Previous stable: `v0.1.1`
+- v0.2.0 status: deterministic validation and recorded Codex/Cursor runtime checks passed; Claude Code remains `Cannot Verify`

@@ -40,10 +40,10 @@ tests/                       Vitest structure and contract checks
 
 ## Install a Stable Release
 
-The current stable release is `v0.1.1`. Pin the tag instead of installing from `main` when reproducibility matters.
+The current stable release is `v0.2.0`. Pin the tag instead of installing from `main` when reproducibility matters.
 
 ```bash
-git clone --depth 1 --branch v0.1.1 \
+git clone --depth 1 --branch v0.2.0 \
   https://github.com/keykovar/skill-fe-code-review.git
 cd skill-fe-code-review
 ```
@@ -111,25 +111,15 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 ## Compatibility
 
-### Stable v0.1.1
+### Stable v0.2.0
 
-| Client | v0.1.1 evidence | Status |
+| Client | v0.2.0 evidence | Status |
 | --- | --- | --- |
-| Codex | Quick smoke test plus manual Quick, Deep, and Fix runs | Runtime verified |
-| Cursor 3.12.17 | Project-local skill and Quick smoke test | Runtime verified |
-| Claude Code 2.1.206 | Skill layout and adapter validation | Structural pass; runtime not verified |
-
-Claude Code runtime verification is currently marked `Cannot Verify` because the available account subscription expired. This is not reported as a runtime pass. The v0.1.1 core Skill tree is identical to v0.1.0, so existing runtime evidence is carried forward without claiming a new model run. See [Compatibility](docs/compatibility.md) and [v0.1.1 Evaluation Results](docs/evaluation-results/v0.1.1.md) for evidence and limitations.
-
-### v0.2.0 Release Candidate
-
-| Client | Candidate evidence | Status |
-| --- | --- | --- |
-| Codex | Current working-tree Quick, Deep, and Fix Review smoke runs | Runtime verified |
-| Cursor Desktop 3.13.25 / CLI 2026.01.23 | Earlier Desktop runs plus a post-hardening CLI Improve-only Quick rerun produced a consistent `Can submit` result and no fixture writes | Runtime verified |
+| Codex | Quick, Deep, and Fix Review smoke runs plus post-hardening regression checks | Runtime verified |
+| Cursor Desktop 3.13.25 / CLI 2026.01.23 | Desktop review runs plus a post-hardening CLI Improve-only Quick rerun with no fixture writes | Runtime verified |
 | Claude Code | Structure and adapter tests only; runtime credentials unavailable | `Cannot Verify` |
 
-Candidate evidence is not stable-release evidence. See [v0.2.0 Candidate Evaluation Results](docs/evaluation-results/v0.2.0.md) for completed checks and remaining promotion gates.
+Claude Code runtime verification remains `Cannot Verify` because valid runtime credentials are unavailable; it is not reported as a runtime pass. See [Compatibility](docs/compatibility.md) and [v0.2.0 Evaluation Results](docs/evaluation-results/v0.2.0.md) for evidence and limitations. Historical v0.1.1 evidence remains available in [v0.1.1 Evaluation Results](docs/evaluation-results/v0.1.1.md).
 
 ## Usage
 
@@ -164,7 +154,7 @@ More examples are available in [Prompt Examples](examples/prompts.md).
 The result is a decision-oriented review report, not only a list of comments.
 
 > [!NOTE]
-> The minimal-sufficient-design rules, stricter documentation-tool contract, conditional browser evidence, clarified `Cannot Verify` semantics, and Fix/Deep mode boundary below are part of the `v0.2.0` release candidate on `main`. They are not included in the stable `v0.1.1` tag. Stable installs continue to use the v0.1.1 contract until v0.2.0 is published.
+> The minimal-sufficient-design rules, stricter documentation-tool contract, conditional browser evidence, clarified `Cannot Verify` semantics, Fix/Deep mode boundary, and recommendation-consistency contract below are part of stable `v0.2.0`. The `v0.1.1` tag remains available for the previous contract.
 
 | Mode | Required result |
 | --- | --- |
@@ -240,7 +230,7 @@ Vitest checks the repository structure, adapters, references, and required revie
 - [Changelog](CHANGELOG.md)
 - [Compatibility](docs/compatibility.md)
 - [Evaluation Protocol](docs/evaluation.md)
-- [v0.2.0 Candidate Evaluation Results](docs/evaluation-results/v0.2.0.md)
+- [v0.2.0 Evaluation Results](docs/evaluation-results/v0.2.0.md)
 - [v0.1.1 Evaluation Results](docs/evaluation-results/v0.1.1.md)
 - [Versioning and Release Policy](docs/versioning.md)
 - [Roadmap](docs/roadmap.md)

@@ -40,10 +40,10 @@ tests/                       Vitest 结构和契约检查
 
 ## 安装稳定版本
 
-当前稳定版本为 `v0.1.1`。需要可复现安装时，应固定 Release tag，不要直接安装 `main`。
+当前稳定版本为 `v0.2.0`。需要可复现安装时，应固定 Release tag，不要直接安装 `main`。
 
 ```bash
-git clone --depth 1 --branch v0.1.1 \
+git clone --depth 1 --branch v0.2.0 \
   https://github.com/keykovar/skill-fe-code-review.git
 cd skill-fe-code-review
 ```
@@ -111,25 +111,15 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 ## 兼容性
 
-### 稳定版 v0.1.1
+### 稳定版 v0.2.0
 
-| 客户端 | v0.1.1 验证证据 | 状态 |
+| 客户端 | v0.2.0 验证证据 | 状态 |
 | --- | --- | --- |
-| Codex | Quick 冒烟测试，以及 Quick、Deep、Fix 人工实测 | 运行时已验证 |
-| Cursor 3.12.17 | 项目级 Skill 安装与 Quick 冒烟测试 | 运行时已验证 |
-| Claude Code 2.1.206 | Skill 结构与适配器验证 | 结构通过，运行时未验证 |
-
-由于当前可用 Claude 账号订阅已到期，Claude Code 运行时明确记录为 `Cannot Verify：无法验证`，不会被描述为运行通过。v0.1.1 核心 Skill tree 与 v0.1.0 完全一致，因此只继承既有运行时证据，不会声称重新执行了模型测试。详细证据和限制见[兼容性说明](docs/compatibility.md)与 [v0.1.1 评测结果](docs/evaluation-results/v0.1.1.md)。
-
-### v0.2.0 Release Candidate
-
-| 客户端 | 候选版本证据 | 状态 |
-| --- | --- | --- |
-| Codex | 当前工作树已执行 Quick、Deep、Fix Review 冒烟 | 运行时已验证 |
-| Cursor Desktop 3.13.25 / CLI 2026.01.23 | 此前 Desktop 实测与收紧后的 CLI Improve-only Quick 回归均已记录；新回归结论一致为“可以提交”，且未写入 fixture | 运行时已验证 |
+| Codex | Quick、Deep、Fix Review 冒烟及收紧后的回归验证 | 运行时已验证 |
+| Cursor Desktop 3.13.25 / CLI 2026.01.23 | Desktop 实测及收紧后的 CLI Improve-only Quick 回归，未写入 fixture | 运行时已验证 |
 | Claude Code | 仅完成结构与适配器测试；当前无可用运行时凭据 | `Cannot Verify：无法验证` |
 
-候选版本证据不能替代稳定版本证据。已完成检查与剩余发布门槛见 [v0.2.0 候选评测结果](docs/evaluation-results/v0.2.0.md)。
+由于当前没有有效的 Claude Code 运行时凭据，Claude Code 明确记录为 `Cannot Verify：无法验证`，不会被描述为运行通过。详细证据和限制见[兼容性说明](docs/compatibility.md)与 [v0.2.0 评测结果](docs/evaluation-results/v0.2.0.md)；历史 v0.1.1 证据仍保留在 [v0.1.1 评测结果](docs/evaluation-results/v0.1.1.md)。
 
 ## 使用方式
 
@@ -164,7 +154,7 @@ Fix Review：
 审查结果是一份面向决策的报告，不只是零散的问题列表。
 
 > [!NOTE]
-> 下文的最小充分设计规则、更严格的文档工具合同、条件式浏览器证据、`Cannot Verify：无法验证` 语义以及 Fix/Deep 模式边界属于 `main` 上的 `v0.2.0` 候选版本，尚未包含在稳定标签 `v0.1.1`。v0.2.0 正式发布前，稳定安装仍使用 v0.1.1 合同。
+> 下文的最小充分设计规则、更严格的文档工具合同、条件式浏览器证据、`Cannot Verify：无法验证` 语义、Fix/Deep 模式边界和结论一致性合同均属于稳定版 `v0.2.0`。`v0.1.1` 标签仍保留上一版合同。
 
 | 模式 | 必需输出 |
 | --- | --- |
@@ -240,7 +230,7 @@ Vitest 负责验证仓库结构、适配器、引用文件和必需审查契约�
 - [更新日志](CHANGELOG.md)
 - [兼容性说明](docs/compatibility.md)
 - [评测协议](docs/evaluation.md)
-- [v0.2.0 候选评测结果](docs/evaluation-results/v0.2.0.md)
+- [v0.2.0 评测结果](docs/evaluation-results/v0.2.0.md)
 - [v0.1.1 评测结果](docs/evaluation-results/v0.1.1.md)
 - [版本与发布规则](docs/versioning.md)
 - [路线图](docs/roadmap.md)

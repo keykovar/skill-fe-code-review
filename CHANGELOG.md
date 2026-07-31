@@ -6,7 +6,7 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 
 ## [Unreleased]
 
-## [0.2.0] - Release Candidate
+## [0.2.0] - 2026-07-31
 
 ### Changed
 
@@ -40,7 +40,7 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 - Chinese output templates and example outputs.
 - Vitest contract tests, skill validation, and GitHub Actions CI.
 
-[Unreleased]: https://github.com/keykovar/skill-fe-code-review/compare/v0.1.1...HEAD
-[0.2.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/keykovar/skill-fe-code-review/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.1.0
