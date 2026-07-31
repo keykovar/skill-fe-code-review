@@ -12,6 +12,7 @@ description: Review frontend or hybrid app code changes. Use when the user asks 
 - For Chinese requests, use the Chinese template for the selected mode. Do not use English-only section headings such as `Overall Conclusion`, `Review Scope`, `Test Gaps`, or `Final Recommendation`.
 - Default to read-only review.
 - Do not modify files, format files, commit, push, reset, install packages, change branches, or run destructive commands unless the user explicitly asks.
+- A request to review, evaluate review quality, or output a review report authorizes chat output only. Do not create or update report, plan, todo, Markdown, or source files unless the user explicitly asks for that file artifact or for code changes. Client modes named Agent, Build, Write, or similar do not override this boundary.
 - Base findings on actual code, diffs, call paths, data flow, package versions, and runtime contracts.
 - Do not infer semantics from names alone.
 - Do not present static inspection as runtime verification.
@@ -162,6 +163,16 @@ If multiple fixes are possible, recommend one and explain the tradeoff briefly.
 
 Treat untracked files as submit-blocking when they are imported, referenced, or required by tracked or staged changes. Do not recommend `can submit` until the referenced untracked file is included in the submit scope or the reference is removed, because clean checkout, CI, or another developer's environment can fail.
 
+## Recommendation Consistency
+
+Choose the recommendation after findings and required verification limits are known. Treat the conclusion and final recommendation as one decision contract:
+
+- Quick Review: use `可以提交` only when no unresolved Blocking finding exists and no Risk finding or required verification is treated as a pre-submit condition. Any Blocking finding requires at least `修改后提交`; use `不建议提交` when bounded fixes are insufficient, the approach is unsafe, or critical evidence is unavailable. An Improve-only review remains `可以提交` unless the user declared a stricter quality gate before the review; describe those improvements as optional and explicitly non-blocking, never as work that should or must happen before submission.
+- Deep Review: apply the same rule with `可以进入下一步`, `修改后可以进入下一步`, and `暂不建议进入下一步`. An Improve-only review does not block the next step unless the user declared a stricter gate.
+- If a Risk finding exists, state whether it is a pre-submit or pre-next-step condition. If it is accepted instead, state the residual risk and why proceeding is still justified.
+- The final recommendation must restate the same decision and the same prerequisites as the conclusion. Do not introduce a new `before submit`, `before merge`, or `before next step` condition only in the final section. If the final evidence requires a stricter decision, update the conclusion to match.
+- Fix Review: use `可以关闭` only when every previous finding is Resolved and no material New Regression exists; use `修改后再次回审` when any finding is Partially Resolved or Unresolved, or a material new regression exists; use `暂时无法确认` when closure depends on a Cannot Verify result.
+
 ## Fix Review Rules
 
 Evaluate every previous finding with exactly one status:
@@ -175,7 +186,7 @@ For each previous finding, preserve its original severity and explain the curren
 
 Do not re-audit the whole feature by default. Inspect the fix diff and the affected callers, consumers, contracts, tests, and runtime paths needed to verify closure and detect regressions. Keep the Fix Review template and focused verification budget. If the fix changes architecture or reveals broader risk, inspect only the affected architecture needed to verify the previous findings and detect fix regressions; do not silently switch to or blend in Deep Review. Recommend a separate Deep Review with an explicit scope, and run it only as a separately selected mode.
 
-Recommend closure only when all Blocking findings are Resolved, no material new regression exists, and required verification has passed or its limits are explicit.
+Use `Recommendation Consistency` as the single authority for the closure recommendation. Do not add, weaken, or redefine closure criteria in Fix Review rules.
 
 ## Severity Rules
 

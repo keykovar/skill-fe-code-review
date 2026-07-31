@@ -15,6 +15,8 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 - Added optional, mode-budgeted browser runtime evidence with explicit entry, reproducible-state, expected-observation, side-effect, redaction, and environment-equivalence gates.
 - Clarified `Cannot Verify` semantics and kept architecture-changing fixes within the Fix Review template and budget while recommending a separate Deep Review.
 - Expanded Deep and Fix Review scope ledgers and added stronger bilingual, compatibility, and output-contract regression tests.
+- Clarified that review and evaluation requests authorize chat output only, including in Cursor Agent or Build mode.
+- Aligned conclusion and final-recommendation wording with severity gates so Improve-only findings remain explicitly non-blocking.
 
 ## [0.1.1] - 2026-07-23
 

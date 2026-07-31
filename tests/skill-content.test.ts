@@ -164,6 +164,34 @@ describe('skill content', () => {
     expect(skillMd).toContain('If multiple fixes are possible');
   });
 
+  test('keeps conclusion and final recommendation severity gates consistent', () => {
+    const recommendationRules = markdownSection(skillMd, 'Recommendation Consistency');
+
+    expect(recommendationRules).toContain('Treat the conclusion and final recommendation as one decision contract');
+    expect(recommendationRules).toContain('Any Blocking finding requires at least `修改后提交`');
+    expect(recommendationRules).toContain('An Improve-only review remains `可以提交`');
+    expect(recommendationRules).toContain('state whether it is a pre-submit or pre-next-step condition');
+    expect(recommendationRules).toContain('Do not introduce a new `before submit`');
+    expect(recommendationRules).toContain('use `可以关闭` only when every previous finding is Resolved');
+    const fixRecommendationCases = [
+      ['可以关闭', 'every previous finding is Resolved'],
+      ['修改后再次回审', 'Partially Resolved or Unresolved'],
+      ['暂时无法确认', 'Cannot Verify'],
+    ];
+
+    for (const [recommendation, condition] of fixRecommendationCases) {
+      expect(recommendationRules).toContain(`\`${recommendation}\``);
+      expect(recommendationRules).toContain(condition);
+    }
+
+    expect(skillMd).toContain('single authority for the closure recommendation');
+    expect(skillMd).not.toContain('Recommend closure only when all Blocking findings are Resolved');
+    expect(quickReview).toContain('do not add `建议提交前`');
+    expect(quickReview).toContain('仅有 Improve 时明确说明优化不影响提交');
+    expect(deepReview).toContain('An Improve-only review uses `可以进入下一步`');
+    expect(fixReview).toContain('must describe the same closure state');
+  });
+
   test('uses local evidence first and follows documentation tool contracts', () => {
     const context7Contract = skillMd
       .split(/\n\n+/)
@@ -356,6 +384,11 @@ describe('skill content', () => {
     expect(quickReview).toContain('Design / Simplify');
     expect(quickReview).toContain('File Placement / Module Boundary');
     expect(quickReview).toContain('No clear issue.');
+  });
+
+  test('keeps review and evaluation output in chat unless file writes are explicit', () => {
+    expect(skillMd).toContain('authorizes chat output only');
+    expect(skillMd).toContain('Client modes named Agent, Build, Write, or similar do not override this boundary');
   });
 
   test('defines evidence-backed minimal sufficient design checks', () => {

@@ -5,4 +5,4 @@ alwaysApply: false
 
 When the user asks to review frontend code, current diff, staged changes, uncommitted changes, a commit, branch range, PR, previous review fixes, naming, structure, simplification, regression risk, or release risk, use the `fe-code-review` skill if available.
 
-Default to read-only review. Do not edit files, format, commit, push, install dependencies, reset, or change branches unless explicitly asked.
+Default to read-only review. Return the review in chat. A review or evaluation request does not authorize creating or updating report, plan, todo, Markdown, or source files, and Cursor Agent or Build mode does not change that boundary. Do not edit files, format, commit, push, install dependencies, reset, or change branches unless the user explicitly asks for a file artifact or code changes.

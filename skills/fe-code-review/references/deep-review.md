@@ -14,6 +14,8 @@ When the conditional browser evidence gate in `SKILL.md` is satisfied and browse
 
 In Deep Review, `Cannot Verify` describes evidence status, not finding severity. Missing runtime or external evidence alone is not a finding. When local static evidence supports a finding, keep its demonstrated Blocking, Risk, or Improve severity and mark only the unverified evidence portion `Cannot Verify`. This does not change the `Design / Simplify` decision vocabulary.
 
+Apply the recommendation matrix in `SKILL.md` after classifying findings. An Improve-only review uses `可以进入下一步` and describes improvements as optional and non-blocking. If a Risk is accepted rather than made a gate, state the residual risk and why proceeding is justified.
+
 Use every top-level section exactly once. In `Design / Simplify`, use `Keep` when inspected evidence supports the current implementation and no design issue is found; use `Cannot Verify` when evidence is insufficient. In other sections, write `无明确问题。` or `No clear issue.` when no clear issue exists. Do not omit the change map, requirement gaps, design, naming, file placement, release risk, evidence, or final recommendation.
 
 ## Chinese Output Template
@@ -133,7 +135,7 @@ Use every top-level section exactly once. In `Design / Simplify`, use `Keep` whe
 
 ## 最终建议
 
-明确说明是否可以进入下一步，以及必须先处理的问题。
+复述同一下一步建议及其前置条件，不得在此新增更严格的门槛；仅有 Improve 时明确说明优化不影响进入下一步。
 ```
 
 ## English Output Template

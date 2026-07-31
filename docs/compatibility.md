@@ -3,7 +3,7 @@
 Stable evidence verified: 2026-07-23
 Stable evidence baseline: [`v0.1.1`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.1.1)
 Candidate checked: 2026-07-31
-Candidate under test: `v0.2.0` working tree based on commit `28c2323`
+Candidate under test: `v0.2.0` working tree based on commit `99bb3cc`
 
 ## Evidence Levels
 
@@ -42,8 +42,8 @@ The v0.2.0 candidate changes the core Skill contract. Stable v0.1.1 runtime resu
 
 | Client | Candidate structural evidence | Candidate runtime evidence | Candidate status |
 | --- | --- | --- | --- |
-| Codex | `39/39` repository tests and both Skill validators pass | Current working-tree Quick, Deep, and Fix Review smoke runs completed without file writes | Runtime verified |
-| Cursor | Adapter and repository contract tests pass | Candidate Quick and Fix Review not executed | Cannot Verify |
+| Codex | `41/41` repository tests and both Skill validators pass | Current working-tree Quick, Deep, and Fix Review smoke runs plus a post-hardening Improve-only Quick rerun completed without file writes | Runtime verified |
+| Cursor | Adapter and repository contract tests pass | Earlier Cursor Desktop 3.13.25 runs plus a post-hardening Cursor CLI 2026.01.23 Improve-only Quick rerun completed without fixture writes; the rerun returned `可以提交`, one `Improve` / `Simplify`, and an explicitly non-blocking final recommendation | Runtime verified |
 | Claude Code | Adapter and repository contract tests pass | Not executed because valid runtime credentials are unavailable | Cannot Verify |
 
 The shared core contract defines the following fallback for Codex, Claude Code, and Cursor:
@@ -58,10 +58,10 @@ The shared core contract defines the following fallback for Codex, Claude Code, 
 ## Known Limitations
 
 - Claude Code candidate runtime behavior is not claimed because valid credentials are unavailable.
-- Cursor candidate Quick and Fix Review remain unverified. Historical v0.1.1 Quick evidence does not carry forward because the core Skill changed.
+- The post-hardening recommendation gate was rerun in Cursor CLI 2026.01.23, not repeated in the Desktop UI. The result verifies the inspected fixture and CLI path; it does not prove identical behavior across every Cursor surface, model, or repository.
 - The repeatable v0.1.0 fixture validates finding recall and read-only behavior, not production framework behavior, model quality in every repository, or performance.
 - Local code remains primary for repository-specific behavior. Official documentation may be queried only through a channel whose tool contract permits code review; the Context7 MCP tool contract excludes code review, so the skill does not use Context7 directly or indirectly through delegation, subagents, proxies, or request reframing.
 - No candidate result claims browser runtime evidence; the reviewed repository change has no browser-observable product path.
-- The paired minimal-design oracle cases in `docs/evaluation.md` are not yet recorded as a complete release dataset.
+- The paired minimal-design oracle is a manual synthetic-fixture dataset. It verifies the recorded decisions and forbidden outcomes, not model quality in every repository.
 
 See [v0.2.0 Candidate Evaluation Results](evaluation-results/v0.2.0.md) for current candidate gates, [v0.1.1 Evaluation Results](evaluation-results/v0.1.1.md) for the stable patch delta, and [v0.1.0 Evaluation Results](evaluation-results/v0.1.0.md) for the original runtime cases and metrics.

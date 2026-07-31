@@ -10,6 +10,8 @@ Stay in Fix Review and keep its focused template and verification budget. If the
 
 Use every top-level section exactly once. Preserve each previous finding's severity and assign exactly one status: Resolved, Partially Resolved, Unresolved, or Cannot Verify.
 
+Apply the Fix Review recommendation matrix in `SKILL.md`. The conclusion counts, per-finding statuses, New Regression section, and final recommendation must describe the same closure state.
+
 ## Chinese Output Template
 
 ```md
@@ -100,7 +102,7 @@ Use every top-level section exactly once. Preserve each previous finding's sever
 
 ## 最终建议
 
-明确说明哪些问题可以关闭、哪些仍需处理，以及是否需要再次回审。
+复述同一回审建议，明确哪些问题可以关闭、哪些仍需处理，以及是否需要再次回审；不得与状态统计或 New Regression 结论冲突。
 ```
 
 ## English Output Template

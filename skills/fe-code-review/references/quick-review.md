@@ -12,6 +12,8 @@ Do not start Playwright or other browser automation by default. When the conditi
 
 In Quick Review, `Cannot Verify` describes evidence status, not finding severity. Missing runtime or external evidence alone is not a finding. When local static evidence supports a finding, keep its demonstrated Blocking, Risk, or Improve severity and mark only the unverified evidence portion `Cannot Verify`. This does not change the `Design / Simplify` decision vocabulary.
 
+Apply the recommendation matrix in `SKILL.md` after classifying findings. In particular, an Improve-only review uses `可以提交` and describes the improvement as optional and non-blocking; do not add `建议提交前` or another pre-submit condition in the summary or final recommendation.
+
 Use every top-level section exactly once. Write `无明确问题。` or `No clear issue.` when a finding section is empty.
 
 ## Chinese Output Template
@@ -21,7 +23,7 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 
 提交建议：可以提交 / 修改后提交 / 不建议提交
 
-一句话说明主要风险。
+一句话说明主要风险，并与提交建议保持一致。
 
 ## 审查范围
 
@@ -98,7 +100,7 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 
 ## 最终建议
 
-明确说明提交前必须处理什么。
+复述同一提交建议及其前置条件，不得新增更严格的提交门槛；仅有 Improve 时明确说明优化不影响提交。
 ```
 
 ## English Output Template

@@ -126,7 +126,7 @@ Claude Code runtime verification is currently marked `Cannot Verify` because the
 | Client | Candidate evidence | Status |
 | --- | --- | --- |
 | Codex | Current working-tree Quick, Deep, and Fix Review smoke runs | Runtime verified |
-| Cursor | Structure and adapter tests only; candidate Quick and Fix runs remain pending | `Cannot Verify` |
+| Cursor Desktop 3.13.25 / CLI 2026.01.23 | Earlier Desktop runs plus a post-hardening CLI Improve-only Quick rerun produced a consistent `Can submit` result and no fixture writes | Runtime verified |
 | Claude Code | Structure and adapter tests only; runtime credentials unavailable | `Cannot Verify` |
 
 Candidate evidence is not stable-release evidence. See [v0.2.0 Candidate Evaluation Results](docs/evaluation-results/v0.2.0.md) for completed checks and remaining promotion gates.
@@ -181,6 +181,8 @@ Every Quick and Deep Review report should provide:
 - Separate checks for minimal sufficient design and simplification, naming and readability, and file placement and module boundaries.
 - Test gaps, local evidence, commands that actually ran, skipped validation, and runtime paths that remain unverified.
 - A final recommendation that reflects unresolved blockers and verification limits.
+
+The conclusion and final recommendation are one decision contract. `Can submit` / `can proceed` requires no unresolved Blocking finding and no Risk or required verification treated as a gate. A Blocking finding requires at least `submit after changes`; a Risk must be identified either as a gate or as explicitly accepted residual risk. Improve-only findings are optional and do not block submission or the next step unless the user declared a stricter quality gate before the review. The final section must not introduce a new pre-submit or pre-next-step condition.
 
 Minimal sufficient design means using only the complexity justified by current requirements, runtime contracts, and repository patterns; it does not mean the fewest lines of code. The review checks for overdesign, semantic duplication and drift risk, missed reuse, redundant state or process, and unjustified cases or fallbacks. It does not recommend mechanical DRY extraction when code only looks similar, or simplification that weakens correctness, compatibility, recovery, observability, or rollback safety.
 

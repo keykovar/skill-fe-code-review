@@ -60,6 +60,21 @@ Every `Blocking` and `Risk` finding must include:
 - Suggested fix.
 - Verification method.
 
+## Recommendation Consistency Expectations
+
+- The conclusion and final recommendation must use the same decision and prerequisites.
+- Quick Review cannot use `可以提交` when an unresolved Blocking exists or a Risk or required verification is treated as a pre-submit condition.
+- Deep Review applies the equivalent rule to `可以进入下一步`.
+- Improve-only findings remain optional and cannot produce `提交前` or `进入下一步前` requirements unless the user declared a stricter quality gate before the review.
+- Every Risk must be identified as a gate or as accepted residual risk with a reason.
+- Fix Review counts, per-finding statuses, New Regression results, closure recommendation, and final recommendation must agree.
+
+| Fix Review state | Required recommendation |
+| --- | --- |
+| Every previous finding is `Resolved` and no material New Regression exists | `可以关闭` |
+| Any finding is `Partially Resolved` or `Unresolved`, or a material New Regression exists | `修改后再次回审` |
+| Closure depends on a `Cannot Verify` result | `暂时无法确认` |
+
 ## Behavior Comparison Expectations
 
 Quick and Deep Review must compare the selected baseline with the target code. They should detect removed or weakened behavior, missing branches or fallbacks, changed defaults or ordering, incomplete consumer migration, changed runtime contracts, and unintended side effects.

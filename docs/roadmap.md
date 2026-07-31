@@ -19,17 +19,22 @@ The current candidate includes:
 4. Explicit `Cannot Verify` semantics and a strict Fix Review versus Deep Review boundary.
 5. Complete Deep and Fix scope ledgers plus stronger bilingual and compatibility contract tests.
 
+## Completed v0.2.0 Promotion Evidence
+
+- Pre-hardening Cursor Quick and Fix Review evidence is retained for design and read-only behavior; a post-hardening Cursor CLI Improve-only Quick rerun returned `可以提交`, one `Improve` / `Simplify`, an explicitly non-blocking final recommendation, and no fixture writes.
+- All 10 paired minimal-design cases produced the required Quick and Deep decisions, allowed severities, and no forbidden design outcome.
+- A Cursor Agent-mode negative run exposed an unauthorized report write; the shared Skill and Cursor rule now require chat-only review output, and post-fix Quick, Deep, and Fix runs made no file writes.
+- Offline lockfile installation, `41/41` Vitest tests, both Skill validators, and `git diff --check` passed. The pre-hardening final Deep Review is historical evidence, not a current promotion pass.
+
 ## Remaining v0.2.0 Promotion Gates
 
-- Run Cursor Quick and Fix Review against the current candidate or retain `Cannot Verify` and do not claim candidate runtime compatibility.
 - Keep Claude Code as `Cannot Verify` while valid runtime credentials are unavailable.
-- Record the required paired minimal-design oracle cases from `docs/evaluation.md` before publishing the release.
-- Re-run all deterministic checks and final Deep Review after release metadata is complete.
+- Run the final Deep Review against an immutable commit candidate after commit approval; do not self-certify a moving working tree as the final promotion target.
 - Replace candidate changelog links and stable install references only when the `v0.2.0` tag is ready to be created and pushed.
 
 ## Post-v0.2.0 Candidates
 
-1. Add reproducible Quick, Deep, and Fix evaluation fixtures with explicit expected findings.
+1. Check in reproducible Quick, Deep, and Fix evaluation fixtures with explicit expected findings.
 2. Add stable finding IDs so Fix Review can map previous findings without relying only on prose.
 3. Add a large-diff coverage ledger that records reviewed, deferred, generated, and unverified files.
 4. Clarify precedence among repository instructions, client rules, mode references, and user-requested scope.

@@ -17,6 +17,8 @@ describe('adapters', () => {
     expect(frontmatter.description).toContain('Fix Review');
     expect(frontmatter.alwaysApply).toBe('false');
     expect(rule).toContain('use the `fe-code-review` skill');
+    expect(rule).toContain('Return the review in chat');
+    expect(rule).toContain('Cursor Agent or Build mode does not change that boundary');
     expect(rule.length).toBeLessThan(1000);
   });
 
