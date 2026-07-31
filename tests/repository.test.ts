@@ -117,8 +117,8 @@ describe('repository release support', () => {
     expect(readmeCursorRow).toMatch(/\| Runtime verified \|$/);
     expect(resultsCursorRow).toContain('| Runtime verified |');
     expect(roadmap).toContain('post-hardening Cursor CLI Improve-only Quick rerun');
-    expect(roadmap).toContain('final Deep Review against an immutable commit candidate');
-    expect(roadmap).not.toContain('final Deep Review passed');
+    expect(roadmap).toContain('post-hardening final Deep Review passed against the committed candidate');
+    expect(roadmap).not.toContain('final Deep Review against an immutable commit candidate after commit approval');
     expect(candidateClaudeRow).toContain('valid runtime credentials are unavailable');
     expect(candidateClaudeRow).toMatch(/\| Cannot Verify \|$/);
     expect(limitations).toContain('post-hardening recommendation gate was rerun in Cursor CLI 2026.01.23');
@@ -305,7 +305,7 @@ describe('repository release support', () => {
     expect(results).toContain('Playwright was not run');
     expect(results).toContain('Cursor CLI `2026.01.23-916f423`');
     expect(results).toContain('optimization did not affect submission');
-    expect(results).toContain('final immutable-target Deep Review remains pending');
-    expect(results).toContain('not for tag or publication until the immutable commit');
+    expect(results).toContain('post-hardening final Deep Review passed against the committed candidate');
+    expect(results).toContain('It remains untagged and unpublished');
   });
 });

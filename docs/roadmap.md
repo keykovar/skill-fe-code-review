@@ -24,12 +24,11 @@ The current candidate includes:
 - Pre-hardening Cursor Quick and Fix Review evidence is retained for design and read-only behavior; a post-hardening Cursor CLI Improve-only Quick rerun returned `可以提交`, one `Improve` / `Simplify`, an explicitly non-blocking final recommendation, and no fixture writes.
 - All 10 paired minimal-design cases produced the required Quick and Deep decisions, allowed severities, and no forbidden design outcome.
 - A Cursor Agent-mode negative run exposed an unauthorized report write; the shared Skill and Cursor rule now require chat-only review output, and post-fix Quick, Deep, and Fix runs made no file writes.
-- Offline lockfile installation, `41/41` Vitest tests, both Skill validators, and `git diff --check` passed. The pre-hardening final Deep Review is historical evidence, not a current promotion pass.
+- Offline lockfile installation, `41/41` Vitest tests, both Skill validators, and `git diff --check` passed. The post-hardening final Deep Review passed against the committed candidate with no findings.
 
 ## Remaining v0.2.0 Promotion Gates
 
 - Keep Claude Code as `Cannot Verify` while valid runtime credentials are unavailable.
-- Run the final Deep Review against an immutable commit candidate after commit approval; do not self-certify a moving working tree as the final promotion target.
 - Replace candidate changelog links and stable install references only when the `v0.2.0` tag is ready to be created and pushed.
 
 ## Post-v0.2.0 Candidates
