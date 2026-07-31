@@ -14,10 +14,17 @@ Main reasons:
 
 ## Change Understanding
 
+- Requested scope: review the complete `main...HEAD` branch change before merge.
 - Modules: routing, bridge, shared hooks
 - Change type: feature plus shared hook refactor
 - Impact scope: chat return and profile route refresh
 - User paths: open chat, background app, return to profile
+- Modified: `src/shared/bridge/useAppResume.ts`, its route consumers, and targeted tests.
+- Staged: none; this is a branch-range review.
+- Unstaged: none.
+- Untracked: none.
+- Executed validation: targeted hook tests and one isolated local Chromium path.
+- Skipped validation: real iOS/Android WebView and Native bridge execution; those environments were unavailable.
 
 ## Change Map
 
@@ -55,7 +62,16 @@ Main reasons:
 
 ## Design / Simplify
 
-- No clear issue.
+- Decision: Keep
+- Related finding: Risk, `src/shared/bridge/useAppResume.ts:63`
+- Required behavior and invariants: One active route/session owns the resume callback; cleanup must prevent late callbacks.
+- Existing capability reuse: The existing route hook and bridge lifecycle remain the correct owners, but the current implementation still needs the missing cleanup and late-callback guard.
+- Overdesign / redundant flow: No extra layer, state owner, or speculative compatibility path was introduced.
+- Semantic duplication and drift risk: No duplicated business rule was found.
+- Unnecessary cases / fallbacks / states: No case can be removed without weakening lifecycle recovery.
+- Simpler viable alternative: No simpler ownership boundary was found; this does not waive the missing cleanup required by the Risk finding.
+- Stability tradeoff: Keep the current ownership design, but add the cleanup and guard before merge; fewer lifecycle checks would weaken correctness.
+- Evidence and unverified assumptions: Callers and bridge callbacks were inspected; device runtime behavior remains unverified.
 
 ## Naming / Readability
 
@@ -83,8 +99,9 @@ Main reasons:
 - Local code: route hook and bridge callback registration.
 - Call paths: chat return -> route refresh -> app resume callback.
 - Package/version: not version-specific.
-- Official docs / Context7: not used.
-- Unverified: native callback timing on older app versions.
+- Official documentation verification: not needed; the finding is supported by repository lifecycle ownership and call paths.
+- Browser runtime evidence: isolated local test server; entry point was the local chat route; Chromium at `390x844`. A controlled mocked resume callback recreated the initial route-owned state before the run. Expected result: navigating away must prevent that callback from refreshing the old route. Observed result: after navigating away and invoking the callback, the shared refresh still ran; console recorded one late refresh and network recorded no related request. The fixture was reset after the run; no production system, real account, sensitive content, destructive action, or Native bridge was involved.
+- Unverified: native callback timing on older app versions (`Cannot Verify`); browser evidence cannot prove real WebView, Native bridge, device, or production behavior.
 
 ## Final Recommendation
 

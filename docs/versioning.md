@@ -45,14 +45,16 @@ Before `1.0.0`, minor releases may still evolve the contract. Breaking behavior 
 ## Release Procedure
 
 1. Choose the version from the contract change, not from the number of changed files.
-2. Update `package.json`, `CHANGELOG.md`, stable install references, compatibility evidence, and evaluation results.
+2. For a release candidate, update `package.json`, the candidate changelog entry, compatibility evidence, and evaluation results while keeping stable install references pinned to the current immutable tag.
 3. Run `pnpm install --frozen-lockfile` and `pnpm test`.
 4. Run both the repository-local validator and the official skill validator.
 5. Execute applicable smoke cases on every client claimed as runtime verified, and run the complete Quick, Deep, and Fix acceptance protocol on at least one primary client.
-6. Review the final diff and commit only after explicit confirmation.
-7. Create an annotated tag, push the commit and tag, then publish the GitHub Release as separately confirmed actions.
+6. For the final release commit, add the release date, change candidate comparison links to the immutable tag, and update stable install references to the new version.
+7. Review the final diff and commit only after explicit confirmation.
+8. Create an annotated tag, push the commit and tag, then publish the GitHub Release as separately confirmed actions.
 
 ## Current Version
 
 - Stable: `v0.1.1`
-- Development: `Unreleased`
+- Release candidate: `v0.2.0`
+- Candidate status: local validation passed; cross-client promotion gates remain open

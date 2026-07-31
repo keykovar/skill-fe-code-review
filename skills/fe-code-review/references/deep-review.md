@@ -4,7 +4,17 @@ Load this file for large features, risky refactors, release review, cross-module
 
 Review requirement alignment, change map, before/after behavior, functional correctness, regression risk, framework lifecycle, runtime contracts, API/storage/cache compatibility, performance, browser/WebView compatibility, architecture, naming, file placement, tests, observability, rollout, and rollback.
 
-Use every top-level section exactly once. Write `无明确问题。` or `No clear issue.` when a section has no clear issue. Do not omit the change map, requirement gaps, design, naming, file placement, release risk, evidence, or final recommendation.
+For `Design / Simplify`, assess the requirements, baseline behavior, affected callers and consumers, existing repository capabilities, abstraction ownership, and runtime contracts. Distinguish semantic duplication from merely similar syntax. Verify whether cases, fallbacks, states, flags, parameters, and extension points have real producers, consumers, recovery needs, or compatibility requirements.
+
+When a simpler viable alternative exists, compare it with the current design and state the correctness, stability, coupling, and maintenance tradeoff. Use `Keep`, `Simplify`, `Extract`, `Redesign`, or `Cannot Verify`; do not manufacture an issue when the current implementation is already the minimal sufficient design.
+
+Every `Simplify`, `Extract`, or `Redesign` decision must cite an actionable issue reported once under its applicable severity section. Do not repeat the full finding in `Design / Simplify`.
+
+When the conditional browser evidence gate in `SKILL.md` is satisfied and browser-observable behavior is material to the review, verify the primary user path and at most one additional high-risk path supported by code, diff, requirement, incident, or test evidence. Do not invent an edge case merely to fill the second path. Record any required WebView, Native, device, backend, deployment, or production validation separately as unverified.
+
+In Deep Review, `Cannot Verify` describes evidence status, not finding severity. Missing runtime or external evidence alone is not a finding. When local static evidence supports a finding, keep its demonstrated Blocking, Risk, or Improve severity and mark only the unverified evidence portion `Cannot Verify`. This does not change the `Design / Simplify` decision vocabulary.
+
+Use every top-level section exactly once. In `Design / Simplify`, use `Keep` when inspected evidence supports the current implementation and no design issue is found; use `Cannot Verify` when evidence is insufficient. In other sections, write `无明确问题。` or `No clear issue.` when no clear issue exists. Do not omit the change map, requirement gaps, design, naming, file placement, release risk, evidence, or final recommendation.
 
 ## Chinese Output Template
 
@@ -22,10 +32,17 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 
 ## 变更理解
 
+- 请求范围：
 - 涉及模块：
 - 变更类型：
 - 影响范围：
 - 用户路径：
+- 已修改：
+- 已暂存：
+- 未暂存：
+- 未跟踪：
+- 已执行验证：
+- 跳过的验证：
 
 ## Change Map：变更地图
 
@@ -61,7 +78,10 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 ### Improve：可优化
 
 - [file:line] 问题标题
-  - 优化建议：
+  - 触发场景：
+  - 影响：
+  - 根因：
+  - 建议方案：
 
 ## Requirement Gaps：需求缺口
 
@@ -69,7 +89,16 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 
 ## Design / Simplify：设计与简化
 
-- ...
+- 结论：Keep / Simplify / Extract / Redesign / Cannot Verify
+- 关联问题：Blocking / Risk / Improve [file:line] / 无
+- 当前需求与必须保持的行为：
+- 已有能力复用：
+- 过度设计 / 冗余流程：
+- 语义重复与漂移风险：
+- 不必要的 case / fallback / state / parameter：
+- 更简单可行方案：
+- 稳定性与维护性取舍：
+- 证据与未验证假设：
 
 ## Naming / Readability：命名与可读性
 
@@ -98,7 +127,8 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 - 本地代码：
 - 调用链：
 - package/version：
-- 官方文档 / Context7：
+- 官方文档核验：
+- 浏览器运行证据：
 - 未验证：
 
 ## 最终建议
@@ -108,4 +138,4 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 
 ## English Output Template
 
-Mirror the Chinese structure with these headings: `Overall Conclusion`, `Change Understanding`, `Change Map`, `Findings`, `Requirement Gaps`, `Design / Simplify`, `Naming / Readability`, `File Placement / Module Boundary`, `Test Gaps`, `Release Risks`, `Evidence`, and `Final Recommendation`. The change map must include the baseline, before behavior, after behavior, preserved invariants, and missing or removed behavior.
+Mirror the Chinese structure with these headings: `Overall Conclusion`, `Change Understanding`, `Change Map`, `Findings`, `Requirement Gaps`, `Design / Simplify`, `Naming / Readability`, `File Placement / Module Boundary`, `Test Gaps`, `Release Risks`, `Evidence`, and `Final Recommendation`. `Change Understanding` must include the requested scope, modified, staged, unstaged, and untracked files, and executed and skipped validation. The change map must include the baseline, before behavior, after behavior, preserved invariants, and missing or removed behavior. `Design / Simplify` must include a minimal-sufficient-design decision, existing capability reuse, semantic duplication, unjustified complexity, a simpler viable alternative when one exists, tradeoffs, evidence, and unverified assumptions. Under `Evidence`, distinguish permitted official documentation verification, browser runtime evidence, and unverified areas.

@@ -32,14 +32,19 @@ The main risk is a missing empty-state guard in the updated async path.
 
 ## Improve
 
-- None.
+- [src/features/profile/useProfile.ts:18] A factory and strategy registry select a single profile-result handler
+  - Trigger: Every current caller and runtime input selects the only registered `default` strategy.
+  - Impact: The registry, factory, and interface add indirection and additional change points without supporting a current variant.
+  - Root cause: The change introduced an extension mechanism before a second behavior or contract exists.
+  - Suggested fix: Call the existing result normalizer directly and introduce a strategy boundary only when a real second variant requires it.
 
 ## Design / Simplify
 
-- [src/features/profile/useProfile.ts:18] The local helper only wraps one call site
-  - Current implementation: `normalizeProfileResult` is used once.
-  - Suggested direction: Inline it unless another call site appears.
-  - Tradeoff: Keeps the failure path easier to read now; extract later if reuse appears.
+- Decision: Simplify
+- Related finding: Improve, `src/features/profile/useProfile.ts:18`
+- Minimal sufficient direction: Call the existing normalizer directly; defer the strategy boundary until a real second variant exists.
+- Behavior / invariant to preserve: Keep the same success and failure result normalization.
+- Evidence / unverified: The diff, owner, direct callers, runtime selector inputs, requirements, and tests expose only one strategy and no DI, framework, or test-isolation constraint; no repository-wide abstraction audit was performed in Quick Review.
 
 ## Naming / Readability
 
@@ -59,8 +64,9 @@ The main risk is a missing empty-state guard in the updated async path.
 - Local code: changed request state transitions and consumers.
 - Call paths: profile request -> failure branch -> profile render.
 - Package/version: not version-specific.
-- Official docs / Context7: not used.
-- Unverified: runtime error-state rendering.
+- Official documentation verification: not needed; the finding is supported by local code and is not version-specific.
+- Browser runtime evidence: not run; Quick Review used its default static-only path because no runnable environment was supplied.
+- Unverified: runtime error-state rendering (`Cannot Verify`).
 
 ## Final Recommendation
 

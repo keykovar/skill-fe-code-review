@@ -44,7 +44,31 @@ For Fix Review, also identify the previous review report or findings and the fix
 
 If `.codegraph/` exists at the repository root and CodeGraph is available, use it before broad grep/find to understand symbols, call paths, and blast radius.
 
-Use Context7 or another official documentation lookup only when framework or library behavior matters and local code is insufficient, such as version-specific APIs, lifecycle semantics, router behavior, build behavior, dependency upgrades, or migrations.
+Use evidence in this order:
+
+1. Repository source, diffs, call paths, tests, configuration, lockfiles, and project documentation.
+2. Installed dependency types and source for the resolved local version.
+3. Official documentation through a channel whose tool contract permits code review, only when version-sensitive framework or library behavior still cannot be established locally.
+
+The current official Context7 MCP tool contract excludes code review. Do not use Context7 while performing this skill, directly or indirectly. This includes asking a subagent, delegate, proxy, wrapper, or another tool or session to call it on the review's behalf. Do not bypass the restriction by reframing, decomposing, sanitizing, or relabeling review work as a documentation question. If a conclusion depends on external semantics and no permitted, authoritative source is available, mark it `Cannot Verify` and identify the missing evidence.
+
+When using any external documentation service, send only the public library, version, API, or sanitized behavior question needed for verification. Never send private source code, diffs, repository paths, internal API data, credentials, tokens, user data, or proprietary identifiers.
+
+## Conditional Browser Runtime Evidence
+
+Use Playwright or another available browser automation tool only when all of these conditions hold:
+
+- The changed behavior is browser-observable and runtime evidence can materially confirm or refute a finding, such as routing, forms, async UI state, storage or cookie behavior, hydration, focus, scrolling, responsive overflow, or request ordering.
+- A concrete entry point exists, such as a local route, URL, interaction, or test harness, and the expected observable result is explicit from the requirement, baseline behavior, or an existing test contract.
+- A suitable local or isolated test environment is already runnable without installing dependencies, changing project configuration, or writing generated artifacts into the repository.
+- The initial state is controlled and repeatable, or can be reconstructed before each run without relying on production data or a real account.
+- The path is isolated and can be exercised without production access, real payments, real user data, destructive actions, or irreversible external side effects.
+
+Keep browser verification read-only with respect to the repository, production systems, and real accounts. Isolated local browser state may change when required by the scenario, but reset it when practical and do not treat that state change as product data verification.
+
+Record the environment and URL type, entry point, browser and viewport, initial state and how it is reproduced, expected result, actions, observed result, and relevant console or network summary. Mask credentials, tokens, personal data, request bodies, and sensitive response content. If runtime evidence is required but the gate is not satisfied, use `Cannot Verify` and state the unavailable environment, state, expectation, or capability.
+
+Browser automation proves only the exercised path in the recorded environment. A passing browser check does not prove behavior in every browser or viewport and does not replace real WebView, Native bridge, device, backend, deployment, monitoring, or production verification.
 
 ## Mode Selection
 
@@ -102,6 +126,23 @@ Review in this order:
 
 Only report design, naming, readability, and file placement issues when they create real maintenance cost, confusion, coupling, or future bug risk.
 
+## Minimal Sufficient Design
+
+Evaluate Quick and Deep Review changes for the smallest justified complexity surface that satisfies current requirements, preserves behavior and invariants, and fits existing repository patterns. Minimal does not mean the fewest lines of code.
+
+- Flag speculative abstractions, extension points, layers, configuration, states, branches, fallbacks, parameters, or compatibility paths only when no requirement, caller, runtime contract, recovery need, observability need, or test evidence justifies them.
+- Treat duplication as an extraction candidate only when it represents the same business rule or contract, has the same reason to change, and creates meaningful drift risk. Do not extract solely because code looks similar.
+- Prefer an existing repository capability when it provides the required semantics without increasing coupling or obscuring data flow.
+- Check actual producers, consumers, baseline behavior, and runtime inputs before calling a case, fallback, state, or defensive path unnecessary.
+- Do not recommend simplification that weakens correctness, cleanup, compatibility, recovery, observability, or rollback safety.
+- Do not claim global optimality. Judge only the inspected scope. Use `Keep` when the current design is justified, `Simplify` when the current ownership and architecture can remain while local complexity is removed, `Extract` for a proven shared rule that needs one owner, `Redesign` in Deep Review when the ownership or data-flow boundary requires structural change, and `Cannot Verify` when evidence is insufficient or the selected mode is too narrow to support the decision.
+- In Quick Review, inspect the diff, its immediate owner, and directly affected callers. Report only clear, local, evidence-backed unnecessary complexity; do not perform a repository-wide abstraction audit solely for this section. If that bounded scope cannot establish whether complexity is justified, use `Cannot Verify` and state the missing evidence.
+- In Deep Review, inspect affected callers and consumers, existing repository capabilities, abstraction ownership, and runtime contracts. Compare the current design with a simpler viable alternative when one exists, and explain the correctness, stability, coupling, and maintenance tradeoff.
+
+Report each actionable design issue once in the applicable `Blocking`, `Risk`, or `Improve` finding section. Every `Simplify`, `Extract`, or `Redesign` decision must cite at least one such finding. In `Design / Simplify`, add only the decision context, required invariants, and tradeoffs; do not duplicate the full finding.
+
+Design severity follows demonstrated impact. Local maintainability cost without demonstrated behavior risk is `Improve`; use `Risk` or `Blocking` only when evidence shows corresponding behavior, regression, or delivery risk.
+
 ## Finding Requirements
 
 Every Quick or Deep finding must include:
@@ -114,6 +155,8 @@ Every Quick or Deep finding must include:
 - Suggested fix.
 - Verification method for Blocking and Risk findings.
 - Confidence when evidence is incomplete.
+
+For Quick and Deep Review, `Cannot Verify` is an evidence disposition, not a severity, and missing evidence alone does not create a finding. Record an evidence-only gap under scope, `Test Gaps`, or `Evidence`. If static evidence supports an actionable finding, keep its demonstrated Blocking, Risk, or Improve severity and mark only the unverified runtime or external-semantics portion `Cannot Verify`. This does not change `Cannot Verify` as a `Design / Simplify` decision or as a Fix Review closure status.
 
 If multiple fixes are possible, recommend one and explain the tradeoff briefly.
 
@@ -130,7 +173,7 @@ Evaluate every previous finding with exactly one status:
 
 For each previous finding, preserve its original severity and explain the current evidence, remaining risk, and verification result. Report newly introduced defects separately as `New Regression：新增回归`, using Blocking, Risk, or Improve severity.
 
-Do not re-audit the whole feature by default. Inspect the fix diff and the affected callers, consumers, contracts, tests, and runtime paths needed to verify closure and detect regressions. Expand to Deep Review only when the fix changes the architecture or reveals broader risk.
+Do not re-audit the whole feature by default. Inspect the fix diff and the affected callers, consumers, contracts, tests, and runtime paths needed to verify closure and detect regressions. Keep the Fix Review template and focused verification budget. If the fix changes architecture or reveals broader risk, inspect only the affected architecture needed to verify the previous findings and detect fix regressions; do not silently switch to or blend in Deep Review. Recommend a separate Deep Review with an explicit scope, and run it only as a separately selected mode.
 
 Recommend closure only when all Blocking findings are Resolved, no material new regression exists, and required verification has passed or its limits are explicit.
 
@@ -140,6 +183,6 @@ Use Blocking when an issue may cause a runtime error, white screen, infinite loo
 
 Also use Blocking when a changed tracked file imports or references an untracked file that is not included in the submit scope.
 
-Use Risk when an issue may cause edge-case bugs, race conditions, state inconsistency, cache inconsistency, poor error handling, performance degradation, cross-module coupling, or maintenance difficulty.
+Use Risk when an issue may cause edge-case bugs, race conditions, state inconsistency, cache inconsistency, poor error handling, performance degradation, or demonstrated cross-module coupling or drift that creates behavior, regression, or delivery risk.
 
-Use Improve for readability, minor duplication, local simplification, better naming, better type expression, better folder placement, or non-blocking cleanup.
+Use Improve for local maintainability cost without demonstrated behavior risk, readability, minor duplication, local simplification, better naming, better type expression, better folder placement, or non-blocking cleanup.

@@ -4,6 +4,14 @@ Load this file for daily changes, small PRs, bug fixes, local refactors, and nor
 
 Focus on functional correctness, behavior loss, edge cases, async/state/cache consistency, regression risk, React/Vue lifecycle issues, TypeScript/runtime contracts, naming clarity, file placement, unnecessary complexity, and missing minimal tests.
 
+For `Design / Simplify`, perform a bounded minimal-sufficient-design check over the diff, its immediate owner, and directly affected callers. Report only clear, local, evidence-backed overdesign, semantic duplication, missed reuse, redundant state or process, or unjustified cases and fallbacks. Do not expand Quick Review into an exhaustive repository-wide abstraction audit.
+
+Use one compact decision: `Keep`, `Simplify`, `Extract`, or `Cannot Verify`. `Keep` requires supporting local evidence; when the bounded Quick scope cannot establish whether complexity is justified, use `Cannot Verify` and state the missing evidence. Even when local evidence suggests a structural redesign, Quick scope is too narrow to verify its cross-module blast radius: use `Cannot Verify`, report the evidenced risk, and recommend Deep Review; do not emit `Redesign` in Quick Review. Every `Simplify` or `Extract` decision must cite an actionable issue reported once under its applicable severity section. Do not repeat the full finding in `Design / Simplify`, and do not recommend extraction solely because code looks similar.
+
+Do not start Playwright or other browser automation by default. When the conditional browser evidence gate in `SKILL.md` is satisfied and one browser-observable path would materially affect the submit recommendation, verify at most that one critical path. Otherwise keep the review static and record required runtime evidence as unverified or `Cannot Verify`.
+
+In Quick Review, `Cannot Verify` describes evidence status, not finding severity. Missing runtime or external evidence alone is not a finding. When local static evidence supports a finding, keep its demonstrated Blocking, Risk, or Improve severity and mark only the unverified evidence portion `Cannot Verify`. This does not change the `Design / Simplify` decision vocabulary.
+
 Use every top-level section exactly once. Write `无明确问题。` or `No clear issue.` when a finding section is empty.
 
 ## Chinese Output Template
@@ -47,15 +55,18 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 ## Improve：可优化
 
 - [file:line] 问题标题
-  - 当前实现：
-  - 优化建议：
+  - 触发场景：
+  - 影响：
+  - 根因：
+  - 建议方案：
 
 ## Design / Simplify：设计与简化
 
-- [file:line] 问题
-  - 当前实现：
-  - 建议方向：
-  - 取舍：
+- 结论：Keep / Simplify / Extract / Cannot Verify
+- 关联问题：Blocking / Risk / Improve [file:line] / 无
+- 最小充分方向 / 保留理由：
+- 必须保持的行为 / 约束：
+- 证据 / 未验证：
 
 ## Naming / Readability：命名与可读性
 
@@ -81,7 +92,8 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 - 本地代码：
 - 调用链：
 - package/version：
-- 官方文档 / Context7：
+- 官方文档核验：
+- 浏览器运行证据：
 - 未验证：
 
 ## 最终建议
@@ -91,4 +103,4 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 
 ## English Output Template
 
-Mirror the Chinese structure with these headings: `Overall Conclusion`, `Review Scope`, `Blocking`, `Risk`, `Improve`, `Design / Simplify`, `Naming / Readability`, `File Placement / Module Boundary`, `Test Gaps`, `Evidence`, and `Final Recommendation`. Include the comparison baseline and before/after behavior evidence.
+Mirror the Chinese structure with these headings: `Overall Conclusion`, `Review Scope`, `Blocking`, `Risk`, `Improve`, `Design / Simplify`, `Naming / Readability`, `File Placement / Module Boundary`, `Test Gaps`, `Evidence`, and `Final Recommendation`. Include the comparison baseline and before/after behavior evidence. In `Design / Simplify`, use a compact `Keep`, `Simplify`, `Extract`, or `Cannot Verify` decision and preserve required behavior or invariants. Under `Evidence`, distinguish permitted official documentation verification, browser runtime evidence, and unverified areas.

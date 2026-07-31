@@ -4,6 +4,10 @@ Load this file when reviewing code changed in response to an earlier review.
 
 Use the previous findings as the acceptance baseline. Inspect the fix diff, verify each finding against current code and relevant call paths, then check whether the fix introduces new regressions. Do not claim closure from code shape alone when runtime verification was required.
 
+When a previous finding or its acceptance criteria require browser runtime evidence, apply the conditional browser evidence gate in `SKILL.md` and reuse the original reproduction environment, initial state, steps, and observable assertions. Exercise the directly affected regression path only when evidence justifies it. If any original element is unavailable or cannot be reproduced equivalently, use `Cannot Verify`; do not substitute a different environment, state, steps, or assertions and claim the finding is `Resolved`.
+
+Stay in Fix Review and keep its focused template and verification budget. If the fix changes architecture or exposes broader risk, inspect only the affected architecture needed to decide finding closure and detect fix regressions. Recommend a separate Deep Review with an explicit scope; do not silently switch modes or add a Deep Review audit to this output.
+
 Use every top-level section exactly once. Preserve each previous finding's severity and assign exactly one status: Resolved, Partially Resolved, Unresolved, or Cannot Verify.
 
 ## Chinese Output Template
@@ -21,13 +25,18 @@ Use every top-level section exactly once. Preserve each previous finding's sever
 
 ## 回审范围
 
+- 请求范围：
 - 上次审查基线：
 - 原始变更范围：
 - 本次修复范围：
 - 比较基线：
 - 涉及文件与调用链：
+- 已修改：
+- 已暂存：
+- 未暂存：
+- 未跟踪：
 - 已执行验证：
-- 未验证项：
+- 跳过的验证：
 
 ## Issue Verification：问题验证
 
@@ -85,7 +94,8 @@ Use every top-level section exactly once. Preserve each previous finding's sever
 - fix diff：
 - 本地代码与调用链：
 - package/version：
-- 官方文档 / Context7：
+- 官方文档核验：
+- 浏览器运行证据：
 - 未验证：
 
 ## 最终建议
@@ -95,4 +105,4 @@ Use every top-level section exactly once. Preserve each previous finding's sever
 
 ## English Output Template
 
-Mirror the Chinese structure with these headings: `Review Conclusion`, `Review Scope`, `Issue Verification`, `New Regression`, `Behavior Delta`, `Test Gaps`, `Evidence`, and `Final Recommendation`. Preserve original severities and use exactly one closure status per previous finding.
+Mirror the Chinese structure with these headings: `Review Conclusion`, `Review Scope`, `Issue Verification`, `New Regression`, `Behavior Delta`, `Test Gaps`, `Evidence`, and `Final Recommendation`. `Review Scope` must include the requested scope, modified, staged, unstaged, and untracked files, and executed and skipped validation. Preserve original severities and use exactly one closure status per previous finding. Under `Evidence`, distinguish permitted official documentation verification, browser runtime evidence, and unverified areas.

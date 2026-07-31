@@ -1,6 +1,6 @@
 {
   "name": "skill-fe-code-review",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Reusable frontend and hybrid app code review skill for coding agents.",
   "license": "MIT",
   "private": true,

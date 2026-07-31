@@ -1,15 +1,17 @@
 # Compatibility
 
-Last verified: 2026-07-23
-Release under test: [`v0.1.1`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.1.1)
+Stable evidence verified: 2026-07-23
+Stable evidence baseline: [`v0.1.1`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.1.1)
+Candidate checked: 2026-07-31
+Candidate under test: `v0.2.0` working tree based on commit `28c2323`
 
 ## Evidence Levels
 
 - `Runtime verified`: the client loaded the installed skill and completed a review against an inspected diff.
 - `Structural verified`: install paths, required files, frontmatter, and adapter contracts passed deterministic validation.
-- `Cannot Verify`: runtime execution was unavailable. This is not equivalent to a pass or a failure.
+- `Cannot Verify`: required runtime evidence was unavailable or non-equivalent. This is an evidence state, not a severity, and is not equivalent to a pass or a failure.
 
-## Matrix
+## Stable v0.1.1 Matrix
 
 | Client | Version | Install surface | Structural evidence | Runtime evidence | Status |
 | --- | --- | --- | --- | --- | --- |
@@ -34,11 +36,32 @@ Runtime output can vary by model and client version. Re-run the smoke protocol a
 - Upgrading a client across a major version.
 - Publishing a new minor or major release.
 
+## v0.2.0 Candidate Evidence
+
+The v0.2.0 candidate changes the core Skill contract. Stable v0.1.1 runtime results remain historical evidence for that release, but they do not verify the candidate.
+
+| Client | Candidate structural evidence | Candidate runtime evidence | Candidate status |
+| --- | --- | --- | --- |
+| Codex | `39/39` repository tests and both Skill validators pass | Current working-tree Quick, Deep, and Fix Review smoke runs completed without file writes | Runtime verified |
+| Cursor | Adapter and repository contract tests pass | Candidate Quick and Fix Review not executed | Cannot Verify |
+| Claude Code | Adapter and repository contract tests pass | Not executed because valid runtime credentials are unavailable | Cannot Verify |
+
+The shared core contract defines the following fallback for Codex, Claude Code, and Cursor:
+
+- When a compatible Playwright or browser capability is callable, the review may collect evidence within the selected mode budget only in an already runnable local or isolated environment with an explicit entry point, a controlled and repeatable initial state or one reconstructible before each run without production data or a real account, and an explicit expected observation.
+- The run must require no dependency installation, configuration changes, repository writes, production access, real sensitive data, or destructive or irreversible side effects.
+- When the capability or runnable environment is unavailable, the client continues with source, call-path, package, and permitted official-documentation evidence, then marks affected runtime claims `Cannot Verify`.
+- Fix Review must reuse the original environment, state, steps, and observable assertions. Non-equivalent evidence may be recorded but cannot support `Resolved`; architecture-changing fixes retain the Fix template and budget and should recommend a separate Deep Review.
+- Browser automation is optional. Its absence does not make the core review structurally incompatible and must not suppress static findings.
+- A browser pass cannot be carried forward as evidence for a real WebView, Native bridge, physical device, or production environment.
+
 ## Known Limitations
 
-- Claude Code runtime behavior is not claimed for this verification date.
-- Cursor runtime evidence covers Quick Review only; Deep and Fix Review remain structurally compatible but were not executed in Cursor.
+- Claude Code candidate runtime behavior is not claimed because valid credentials are unavailable.
+- Cursor candidate Quick and Fix Review remain unverified. Historical v0.1.1 Quick evidence does not carry forward because the core Skill changed.
 - The repeatable v0.1.0 fixture validates finding recall and read-only behavior, not production framework behavior, model quality in every repository, or performance.
-- Official documentation or Context7 should be used only when a finding depends on version-sensitive framework or library behavior. Local code evidence remains primary for repository-specific behavior.
+- Local code remains primary for repository-specific behavior. Official documentation may be queried only through a channel whose tool contract permits code review; the Context7 MCP tool contract excludes code review, so the skill does not use Context7 directly or indirectly through delegation, subagents, proxies, or request reframing.
+- No candidate result claims browser runtime evidence; the reviewed repository change has no browser-observable product path.
+- The paired minimal-design oracle cases in `docs/evaluation.md` are not yet recorded as a complete release dataset.
 
-See [v0.1.1 Evaluation Results](evaluation-results/v0.1.1.md) for the patch delta and [v0.1.0 Evaluation Results](evaluation-results/v0.1.0.md) for the original runtime cases and metrics.
+See [v0.2.0 Candidate Evaluation Results](evaluation-results/v0.2.0.md) for current candidate gates, [v0.1.1 Evaluation Results](evaluation-results/v0.1.1.md) for the stable patch delta, and [v0.1.0 Evaluation Results](evaluation-results/v0.1.0.md) for the original runtime cases and metrics.

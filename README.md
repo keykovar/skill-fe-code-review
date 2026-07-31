@@ -111,6 +111,8 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 ## Compatibility
 
+### Stable v0.1.1
+
 | Client | v0.1.1 evidence | Status |
 | --- | --- | --- |
 | Codex | Quick smoke test plus manual Quick, Deep, and Fix runs | Runtime verified |
@@ -118,6 +120,16 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 | Claude Code 2.1.206 | Skill layout and adapter validation | Structural pass; runtime not verified |
 
 Claude Code runtime verification is currently marked `Cannot Verify` because the available account subscription expired. This is not reported as a runtime pass. The v0.1.1 core Skill tree is identical to v0.1.0, so existing runtime evidence is carried forward without claiming a new model run. See [Compatibility](docs/compatibility.md) and [v0.1.1 Evaluation Results](docs/evaluation-results/v0.1.1.md) for evidence and limitations.
+
+### v0.2.0 Release Candidate
+
+| Client | Candidate evidence | Status |
+| --- | --- | --- |
+| Codex | Current working-tree Quick, Deep, and Fix Review smoke runs | Runtime verified |
+| Cursor | Structure and adapter tests only; candidate Quick and Fix runs remain pending | `Cannot Verify` |
+| Claude Code | Structure and adapter tests only; runtime credentials unavailable | `Cannot Verify` |
+
+Candidate evidence is not stable-release evidence. See [v0.2.0 Candidate Evaluation Results](docs/evaluation-results/v0.2.0.md) for completed checks and remaining promotion gates.
 
 ## Usage
 
@@ -151,21 +163,26 @@ More examples are available in [Prompt Examples](examples/prompts.md).
 
 The result is a decision-oriented review report, not only a list of comments.
 
+> [!NOTE]
+> The minimal-sufficient-design rules, stricter documentation-tool contract, conditional browser evidence, clarified `Cannot Verify` semantics, and Fix/Deep mode boundary below are part of the `v0.2.0` release candidate on `main`. They are not included in the stable `v0.1.1` tag. Stable installs continue to use the v0.1.1 contract until v0.2.0 is published.
+
 | Mode | Required result |
 | --- | --- |
 | Quick Review | Overall conclusion, exact review scope, prioritized findings, engineering-quality checks, test gaps, evidence, and final recommendation |
 | Deep Review | Quick Review coverage plus change understanding, change map, requirement gaps, cross-module impact, and release risks |
 | Fix Review | Review conclusion, previous-finding status, new regressions, behavior delta, remaining test gaps, and closure recommendation |
 
-Every review report should provide:
+Every Quick and Deep Review report should provide:
 
 - A submit or next-step recommendation. Chinese Quick Review uses `可以提交`, `修改后提交`, or `不建议提交`; Deep Review uses the equivalent next-step wording.
 - The comparison baseline and requested scope, including modified, staged, unstaged, and untracked files.
 - Findings grouped as `Blocking`, `Risk`, and `Improve`.
 - For each material finding: file and line, trigger condition, impact, root cause, suggested fix, and verification method.
-- Separate checks for design and simplification, naming and readability, and file placement and module boundaries.
+- Separate checks for minimal sufficient design and simplification, naming and readability, and file placement and module boundaries.
 - Test gaps, local evidence, commands that actually ran, skipped validation, and runtime paths that remain unverified.
 - A final recommendation that reflects unresolved blockers and verification limits.
+
+Minimal sufficient design means using only the complexity justified by current requirements, runtime contracts, and repository patterns; it does not mean the fewest lines of code. The review checks for overdesign, semantic duplication and drift risk, missed reuse, redundant state or process, and unjustified cases or fallbacks. It does not recommend mechanical DRY extraction when code only looks similar, or simplification that weakens correctness, compatibility, recovery, observability, or rollback safety.
 
 Severity has stable meaning:
 
@@ -173,7 +190,23 @@ Severity has stable meaning:
 - `Risk`: can cause edge-case failures, races, state inconsistency, weak error handling, performance regressions, or unsafe coupling.
 - `Improve`: optional maintainability, naming, type-expression, or placement improvement.
 
+In Quick and Deep Review, `Cannot Verify` is an evidence state, not a severity. In Fix Review it is a closure status for a previous finding; in `Design / Simplify` it is a design decision used when the selected scope lacks enough evidence. Do not use it as a substitute for `Blocking`, `Risk`, or `Improve`.
+
 Fix Review preserves the original severity and assigns exactly one status to every previous finding: `Resolved`, `Partially Resolved`, `Unresolved`, or `Cannot Verify`. New defects introduced by the fix are reported separately as `New Regression`.
+
+If a fix changes architecture or exposes broader risk, complete it with the Fix Review template and budget, then recommend a separate Deep Review. Do not merge the two modes into one report.
+
+### Documentation and Browser Evidence
+
+Repository source, call paths, lockfiles, installed dependency source or types, configuration, and project documentation remain the primary evidence. When a finding depends on version-sensitive framework or library semantics and local evidence is insufficient, the review may query official documentation through a channel whose tool contract permits code review. The official Context7 MCP tool contract excludes code review, so Context7 must not be used directly or indirectly during a review, including through delegation, a subagent, a proxy, or a reframed request intended to bypass that restriction. If no permitted documentation channel is available, report the external claim as `Cannot Verify` instead of guessing. Never send private source, API payloads, internal paths, credentials, or user data to an external documentation service.
+
+Playwright or an equivalent browser tool is optional runtime evidence, not a dependency of the skill. Use it only when the finding concerns observable browser behavior and every gate is satisfied: an already runnable local or isolated environment; an explicit entry point; a controlled and repeatable initial state, or one that can be reconstructed before each run without production data or a real account; an explicit expected observation; and no dependency installation, configuration changes, repository writes, production access, real sensitive data, or destructive or irreversible side effects. The mode budget is:
+
+- Quick Review: skip by default; run at most one critical path when it can materially resolve uncertainty.
+- Deep Review: run the primary path and at most one evidence-backed high-risk path.
+- Fix Review: reuse the original environment, initial state, reproduction steps, and observable assertions. If any required element is unavailable, use `Cannot Verify`; evidence from a different environment may be reported separately but cannot support `Resolved`. Verify one directly affected regression path only when evidence justifies it.
+
+Record the environment and URL type, entry point, browser and viewport, initial state and how it is reconstructed, expected result, actions, observed result, and redacted console/network summary under `Browser runtime evidence`. If the client lacks browser automation or the environment is unavailable, continue the static review and mark the affected runtime claim `Cannot Verify`. A browser pass does not prove behavior in a real WebView, Native bridge, device, or production environment. See [Compatibility](docs/compatibility.md) for client fallbacks.
 
 Full output examples:
 
@@ -205,6 +238,7 @@ Vitest checks the repository structure, adapters, references, and required revie
 - [Changelog](CHANGELOG.md)
 - [Compatibility](docs/compatibility.md)
 - [Evaluation Protocol](docs/evaluation.md)
+- [v0.2.0 Candidate Evaluation Results](docs/evaluation-results/v0.2.0.md)
 - [v0.1.1 Evaluation Results](docs/evaluation-results/v0.1.1.md)
 - [Versioning and Release Policy](docs/versioning.md)
 - [Roadmap](docs/roadmap.md)

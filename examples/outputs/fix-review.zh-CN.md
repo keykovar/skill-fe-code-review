@@ -13,13 +13,18 @@
 
 ## 回审范围
 
+- 请求范围：复核上一轮 2 个 findings 的修复状态，并检查修复直接引入的回归。
 - 上次审查基线：上一轮 Review 的 2 个 findings
 - 原始变更范围：`main...feature/profile-cache`
 - 本次修复范围：`abc1234..HEAD`
 - 比较基线：修复前提交 `abc1234` 与当前 `HEAD`
 - 涉及文件与调用链：profile request -> cache owner -> page render
+- 已修改：`src/features/profile/useProfile.ts` 及其测试。
+- 已暂存：无；本次为提交范围回审。
+- 未暂存：无。
+- 未跟踪：无。
 - 已执行验证：单测、type-check
-- 未验证项：浏览器断网后的实际恢复路径
+- 跳过的验证：浏览器断网后的实际恢复路径；缺少可控且可重复重建的断网 fixture。
 
 ## Issue Verification：问题验证
 
@@ -80,8 +85,9 @@
 - fix diff：`abc1234..HEAD`。
 - 本地代码与调用链：失败分支、缓存 owner 和页面 consumer。
 - package/version：未涉及依赖变化。
-- 官方文档 / Context7：未使用。
-- 未验证：真实断网与恢复时序。
+- 官方文档核验：不需要；问题由本地状态转换和调用链证据支持。
+- 浏览器运行证据：未执行；原 findings 可由本地状态转换和聚焦单测判断，浏览器断网不属于其关闭条件；当前也没有满足安全 gate 的可控断网 fixture。
+- 未验证：真实断网与恢复时序；这是补充运行时路径，不属于原 findings 的验收条件，因此不改变上方回审状态。
 
 ## 最终建议
 

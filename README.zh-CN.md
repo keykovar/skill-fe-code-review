@@ -111,6 +111,8 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 ## 兼容性
 
+### 稳定版 v0.1.1
+
 | 客户端 | v0.1.1 验证证据 | 状态 |
 | --- | --- | --- |
 | Codex | Quick 冒烟测试，以及 Quick、Deep、Fix 人工实测 | 运行时已验证 |
@@ -118,6 +120,16 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 | Claude Code 2.1.206 | Skill 结构与适配器验证 | 结构通过，运行时未验证 |
 
 由于当前可用 Claude 账号订阅已到期，Claude Code 运行时明确记录为 `Cannot Verify：无法验证`，不会被描述为运行通过。v0.1.1 核心 Skill tree 与 v0.1.0 完全一致，因此只继承既有运行时证据，不会声称重新执行了模型测试。详细证据和限制见[兼容性说明](docs/compatibility.md)与 [v0.1.1 评测结果](docs/evaluation-results/v0.1.1.md)。
+
+### v0.2.0 Release Candidate
+
+| 客户端 | 候选版本证据 | 状态 |
+| --- | --- | --- |
+| Codex | 当前工作树已执行 Quick、Deep、Fix Review 冒烟 | 运行时已验证 |
+| Cursor | 仅完成结构与适配器测试；候选版本 Quick、Fix 仍待执行 | `Cannot Verify：无法验证` |
+| Claude Code | 仅完成结构与适配器测试；当前无可用运行时凭据 | `Cannot Verify：无法验证` |
+
+候选版本证据不能替代稳定版本证据。已完成检查与剩余发布门槛见 [v0.2.0 候选评测结果](docs/evaluation-results/v0.2.0.md)。
 
 ## 使用方式
 
@@ -151,21 +163,26 @@ Fix Review：
 
 审查结果是一份面向决策的报告，不只是零散的问题列表。
 
+> [!NOTE]
+> 下文的最小充分设计规则、更严格的文档工具合同、条件式浏览器证据、`Cannot Verify：无法验证` 语义以及 Fix/Deep 模式边界属于 `main` 上的 `v0.2.0` 候选版本，尚未包含在稳定标签 `v0.1.1`。v0.2.0 正式发布前，稳定安装仍使用 v0.1.1 合同。
+
 | 模式 | 必需输出 |
 | --- | --- |
 | Quick Review | 总体结论、准确审查范围、按优先级排列的问题、工程质量检查、测试缺口、证据和最终建议 |
 | Deep Review | Quick Review 内容，加上变更理解、变更地图、需求缺口、跨模块影响和上线风险 |
 | Fix Review | 回审结论、历史问题状态、新增回归、行为差异、剩余测试缺口和关闭建议 |
 
-每份审查报告应提供：
+每份 Quick Review 和 Deep Review 报告应提供：
 
 - 提交或下一步建议。Quick Review 使用 `可以提交`、`修改后提交`、`不建议提交`；Deep Review 使用对应的“进入下一步”表述。
 - 比较基线和请求范围，包括已修改、已暂存、未暂存、未跟踪文件。
 - 按 `Blocking：必须修改`、`Risk：建议修改`、`Improve：可优化` 分类的问题。
 - 每个重要问题的文件与行号、触发条件、影响、根因、建议方案和验证方式。
-- 独立的设计与简化、命名与可读性、文件存放与模块边界检查。
+- 独立的最小充分设计与简化、命名与可读性、文件存放与模块边界检查。
 - 测试缺口、本地证据、实际执行的命令、跳过的验证和仍未验证的运行时路径。
 - 与未解决 Blocking 和验证边界一致的最终建议。
+
+最小充分设计是指只保留当前需求、运行时契约和仓库模式能够证明有必要的复杂度，并不等于代码行数最少。审查会检查过度设计、存在漂移风险的重复业务规则、遗漏复用、冗余状态或流程，以及没有依据的 case 和 fallback；不会因为代码外形相似就机械提取，也不会建议削弱正确性、兼容性、恢复、可观测性或回滚安全的简化。
 
 严重级别具有稳定含义：
 
@@ -173,7 +190,23 @@ Fix Review：
 - `Risk：建议修改`：可能造成边界场景故障、竞态、状态不一致、错误处理不足、性能回归或不安全耦合。
 - `Improve：可优化`：可选的可维护性、命名、类型表达或文件存放优化。
 
+在 Quick 和 Deep Review 中，`Cannot Verify：无法验证` 是证据状态，不是严重级别；在 Fix Review 中，它是历史问题的回审状态；在 `Design / Simplify` 中，它是当前范围证据不足时的设计判断。不得用它替代 `Blocking`、`Risk` 或 `Improve`。
+
 Fix Review 保留问题的原严重级别，并为每个历史问题分配且只分配一种状态：`Resolved：已解决`、`Partially Resolved：部分解决`、`Unresolved：未解决`、`Cannot Verify：无法验证`。修复引入的新问题单独归入 `New Regression：新增回归`。
+
+修复若改变架构或暴露更广风险，仍应按 Fix Review 的模板和预算完成当前回审，再建议独立执行 Deep Review；不得把两种模式混成一份报告。
+
+### 官方文档与浏览器证据
+
+仓库源码、调用链、锁文件、已安装依赖的源码或类型、配置和项目文档始终是第一证据源。当 Finding 依赖版本敏感的框架或库语义且本地证据不足时，只能通过工具合同允许 Code Review 的渠道查询官方文档。Context7 官方 MCP 工具合同排除了 Code Review，因此审查期间不得直接或间接使用 Context7，包括委派给 subagent、通过代理工具调用，或改写问题以绕过限制。没有允许的官方文档渠道时，将对应外部语义标记为 `Cannot Verify：无法验证`，不作猜测；也不得向外部文档服务发送私有源码、接口数据、内部路径、凭据或用户数据。
+
+Playwright 或等价浏览器工具只提供可选运行时证据，不是 Skill 的硬依赖。仅当问题涉及可观察的浏览器行为且同时满足全部条件时才运行：已有可运行的本地或隔离环境；入口明确；初始状态可控且可重复，或可在每次运行前重建，并且不依赖生产数据或真实账号；预期观察结果明确；无需安装依赖、修改配置或仓库、访问生产环境、使用真实敏感数据，且不会产生破坏性或不可逆副作用。各模式预算如下：
+
+- Quick Review：默认跳过；仅在能够实质消除不确定性时验证最多一条关键路径。
+- Deep Review：验证主路径，以及最多一条有证据支持的高风险路径。
+- Fix Review：必须复用原问题的环境、初始状态、复现步骤和可观察断言。任一必要条件缺失时使用 `Cannot Verify：无法验证`；不同环境的结果可以单独记录，但不能据此标记 `Resolved：已解决`。仅在有证据支持时额外验证一条直接受影响的回归路径。
+
+在 `浏览器运行证据` 中记录环境与 URL 类型、入口、browser 与 viewport、初始状态及其重建方式、预期结果、操作、观察结果，以及经过掩码的 console/network 摘要。客户端没有浏览器自动化能力或环境不可用时，继续静态审查，并将受影响的运行时结论标记为 `Cannot Verify：无法验证`。浏览器验证通过不能外推为真实 WebView、Native Bridge、真机或生产环境已验证。跨客户端降级规则见[兼容性说明](docs/compatibility.md)。
 
 完整输出示例：
 
@@ -205,6 +238,7 @@ Vitest 负责验证仓库结构、适配器、引用文件和必需审查契约�
 - [更新日志](CHANGELOG.md)
 - [兼容性说明](docs/compatibility.md)
 - [评测协议](docs/evaluation.md)
+- [v0.2.0 候选评测结果](docs/evaluation-results/v0.2.0.md)
 - [v0.1.1 评测结果](docs/evaluation-results/v0.1.1.md)
 - [版本与发布规则](docs/versioning.md)
 - [路线图](docs/roadmap.md)
