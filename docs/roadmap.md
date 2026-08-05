@@ -30,13 +30,28 @@ The release includes:
 
 - Keep Claude Code as `Cannot Verify` while valid runtime credentials are unavailable.
 
-## Post-v0.2.0 Candidates
+## v0.2.1
 
-1. Implemented and runtime-accepted for the next patch, unreleased: checked-in Quick, Deep, and Fix evaluation fixtures with explicit semantic oracles and deterministic behavior checks.
-2. Add stable finding IDs so Fix Review can map previous findings without relying only on prose.
-3. Add a large-diff coverage ledger that records reviewed, deferred, generated, and unverified files.
-4. Clarify precedence among repository instructions, client rules, mode references, and user-requested scope.
-5. Add sanitized cross-client output snapshots only where they improve regression diagnosis.
+The release includes checked-in Quick, Deep, and Fix evaluation fixtures with explicit semantic oracles, isolated Git preparation, deterministic behavior checks, and sanitized runtime evidence.
+
+## Completed v0.2.1 Promotion Evidence
+
+- Codex Quick, Deep, and Fix fixture reviews completed without file writes; a repeated Quick run satisfied the complete oracle after the first run merged one expected Risk into other sections.
+- Cursor Agent CLI completed the Quick fixture with the complete oracle and no file writes; Deep and Fix were not rerun and are not claimed.
+- `47/47` Vitest tests, both Skill validators, all three fixture preparation commands, `git diff --check`, and the targeted sensitive-data scan passed.
+- The tracked core Skill tree and client adapters remain unchanged from v0.2.0.
+
+## v0.2.1 Release Boundaries
+
+- Claude Code remains `Cannot Verify` while valid runtime credentials are unavailable.
+- Codex token observations are not a Skill-only benchmark because user-level Memory and plugin context were loaded.
+
+## Post-v0.2.1 Candidates
+
+1. Add stable finding IDs so Fix Review can map previous findings without relying only on prose.
+2. Add a large-diff coverage ledger that records reviewed, deferred, generated, and unverified files.
+3. Clarify precedence among repository instructions, client rules, mode references, and user-requested scope.
+4. Add sanitized cross-client output snapshots only where they improve regression diagnosis.
 
 ## Future Promotion Gates
 

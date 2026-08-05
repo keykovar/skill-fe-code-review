@@ -40,10 +40,10 @@ tests/                       Vitest structure and contract checks
 
 ## Install a Stable Release
 
-The current stable release is `v0.2.0`. Pin the tag instead of installing from `main` when reproducibility matters.
+The current stable release is `v0.2.1`. Pin the tag instead of installing from `main` when reproducibility matters.
 
 ```bash
-git clone --depth 1 --branch v0.2.0 \
+git clone --depth 1 --branch v0.2.1 \
   https://github.com/keykovar/skill-fe-code-review.git
 cd skill-fe-code-review
 ```
@@ -111,15 +111,15 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 ## Compatibility
 
-### Stable v0.2.0
+### Stable v0.2.1
 
-| Client | v0.2.0 evidence | Status |
+| Client | v0.2.1 evidence | Status |
 | --- | --- | --- |
-| Codex | Quick, Deep, and Fix Review smoke runs plus post-hardening regression checks | Runtime verified |
-| Cursor Desktop 3.13.25 / CLI 2026.01.23 | Desktop review runs plus a post-hardening CLI Improve-only Quick rerun with no fixture writes | Runtime verified |
+| Codex CLI 0.146.0 | Quick, Deep, and Fix fixture reviews; the repeated Quick run satisfied the complete oracle and all runs were read-only | Runtime verified |
+| Cursor Agent CLI 2026.07.23-e383d2b | Quick fixture review satisfied the complete oracle and remained read-only; Deep and Fix were not rerun | Runtime verified |
 | Claude Code | Structure and adapter tests only; runtime credentials unavailable | `Cannot Verify` |
 
-Claude Code runtime verification remains `Cannot Verify` because valid runtime credentials are unavailable; it is not reported as a runtime pass. See [Compatibility](docs/compatibility.md) and [v0.2.0 Evaluation Results](docs/evaluation-results/v0.2.0.md) for evidence and limitations. Historical v0.1.1 evidence remains available in [v0.1.1 Evaluation Results](docs/evaluation-results/v0.1.1.md).
+Claude Code runtime verification remains `Cannot Verify` because valid runtime credentials are unavailable; it is not reported as a runtime pass. See [Compatibility](docs/compatibility.md) and [v0.2.1 Evaluation Results](docs/evaluation-results/v0.2.1.md) for evidence and limitations. Historical v0.2.0 evidence remains available in [v0.2.0 Evaluation Results](docs/evaluation-results/v0.2.0.md).
 
 ## Usage
 
@@ -232,7 +232,7 @@ Vitest checks the repository structure, adapters, references, and required revie
 - [Evaluation Protocol](docs/evaluation.md)
 - [v0.2.0 Evaluation Results](docs/evaluation-results/v0.2.0.md)
 - [v0.2.0 Post-release Smoke Results](docs/evaluation-results/v0.2.0-post-release.md)
-- [v0.2.1 Candidate Evaluation Results](docs/evaluation-results/v0.2.1-candidate.md)
+- [v0.2.1 Evaluation Results](docs/evaluation-results/v0.2.1.md)
 - [v0.1.1 Evaluation Results](docs/evaluation-results/v0.1.1.md)
 - [Versioning and Release Policy](docs/versioning.md)
 - [Roadmap](docs/roadmap.md)

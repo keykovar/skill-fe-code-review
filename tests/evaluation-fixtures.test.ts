@@ -75,12 +75,10 @@ describe('reproducible evaluation fixtures', () => {
     expect(readText('skills/fe-code-review/SKILL.md')).not.toContain('evaluation/fixtures');
     expect(readText('docs/evaluation.md')).toContain('pnpm fixture:prepare quick');
     expect(readText('docs/evaluation.md')).toContain('Do not compare complete model text');
-    expect(readText('docs/roadmap.md')).toContain(
-      'Implemented and runtime-accepted for the next patch, unreleased',
-    );
+    expect(readText('docs/roadmap.md')).toContain('## Completed v0.2.1 Promotion Evidence');
     expect(readText('CHANGELOG.md')).toContain('reproducible Quick, Deep, and Fix evaluation fixtures');
     expect(exists('docs/evaluation-results/v0.2.0-post-release.md')).toBe(true);
-    expect(exists('docs/evaluation-results/v0.2.1-candidate.md')).toBe(true);
+    expect(exists('docs/evaluation-results/v0.2.1.md')).toBe(true);
   });
 
   test('prepares the Quick fixture with the seeded untracked dependency and behavior regression', () => {

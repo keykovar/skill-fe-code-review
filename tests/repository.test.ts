@@ -66,17 +66,17 @@ describe('repository release support', () => {
     const chineseReadme = readText('README.zh-CN.md');
     const compatibility = readText('docs/compatibility.md');
 
-    expect(packageJson.version).toBe('0.2.0');
+    expect(packageJson.version).toBe('0.2.1');
     expect(readme).toContain('README.zh-CN.md');
-    expect(readme).toContain('--branch v0.2.0');
+    expect(readme).toContain('--branch v0.2.1');
     expect(readme).toContain('Runtime verified');
     expect(readme).toContain('part of stable `v0.2.0`');
     expect(chineseReadme).toContain('安装稳定版本');
-    expect(chineseReadme).toContain('--branch v0.2.0');
+    expect(chineseReadme).toContain('--branch v0.2.1');
     expect(chineseReadme).toContain('Cannot Verify：无法验证');
     expect(chineseReadme).toContain('属于稳定版 `v0.2.0`');
     expect(compatibility).toContain('Structural verified');
-    expect(compatibility).toContain('Stable evidence baseline: [`v0.2.0`]');
+    expect(compatibility).toContain('Stable evidence baseline: [`v0.2.1`]');
     expect(compatibility).not.toContain('Candidate under test:');
     expect(compatibility).toContain('a66e26e60e27f643f35b402c6660038c7070e759');
   });
@@ -87,17 +87,17 @@ describe('repository release support', () => {
     const roadmap = readText('docs/roadmap.md');
     const results = readText('docs/evaluation-results/v0.2.0.md');
     const historical = markdownSection(compatibility, '## Historical v0.1.1 Evidence');
-    const stable = markdownSection(compatibility, '## Stable v0.2.0 Evidence');
+    const stable = markdownSection(compatibility, '## Stable v0.2.1 Evidence');
     const limitations = markdownSection(compatibility, '## Known Limitations');
     const historicalClaudeRow = markdownTableRow(historical, 'Claude Code');
     const historicalCursorRow = markdownTableRow(historical, 'Cursor');
-    const stableCodexRow = markdownTableRow(stable, 'Codex');
-    const stableCursorRow = markdownTableRow(stable, 'Cursor');
+    const stableCodexRow = markdownTableRow(stable, 'Codex CLI 0.146.0');
+    const stableCursorRow = markdownTableRow(stable, 'Cursor Agent CLI 2026.07.23-e383d2b');
     const stableClaudeRow = markdownTableRow(stable, 'Claude Code');
-    const readmeStable = markdownSection(readme, '### Stable v0.2.0');
+    const readmeStable = markdownSection(readme, '### Stable v0.2.1');
     const readmeCursorRow = markdownTableRow(
       readmeStable,
-      'Cursor Desktop 3.13.25 / CLI 2026.01.23',
+      'Cursor Agent CLI 2026.07.23-e383d2b',
     );
     const resultsCursorRow = markdownTableRow(results, 'Cursor');
 
@@ -108,12 +108,11 @@ describe('repository release support', () => {
     expect(historicalCursorRow).toMatch(/\| Runtime verified \|$/);
     expect(historicalCursorRow).not.toContain('Deep');
     expect(historicalCursorRow).not.toContain('Fix');
-    expect(stable).toContain('Stable v0.1.1 runtime results remain historical evidence');
-    expect(stable).toContain('they do not verify v0.2.0');
-    expect(stableCodexRow).toContain('Quick, Deep, and Fix Review smoke runs');
+    expect(stable).toContain('does not change the shared Skill tree or client adapters');
+    expect(stableCodexRow).toContain('Quick, Deep, and Fix fixture reviews');
     expect(stableCodexRow).toMatch(/\| Runtime verified \|$/);
-    expect(stableCursorRow).toContain('post-hardening Cursor CLI 2026.01.23');
-    expect(stableCursorRow).toContain('explicitly non-blocking final recommendation');
+    expect(stableCursorRow).toContain('Quick fixture review satisfied the complete oracle');
+    expect(stableCursorRow).toContain('Deep and Fix were not rerun');
     expect(stableCursorRow).toMatch(/\| Runtime verified \|$/);
     expect(readmeCursorRow).toMatch(/\| Runtime verified \|$/);
     expect(resultsCursorRow).toContain('| Runtime verified |');
@@ -122,10 +121,10 @@ describe('repository release support', () => {
     expect(roadmap).not.toContain('final Deep Review against an immutable commit candidate after commit approval');
     expect(stableClaudeRow).toContain('valid runtime credentials are unavailable');
     expect(stableClaudeRow).toMatch(/\| Cannot Verify \|$/);
-    expect(limitations).toContain('post-hardening recommendation gate was rerun in Cursor CLI 2026.01.23');
-    expect(limitations).toContain('does not prove identical behavior across every Cursor surface');
+    expect(limitations).toContain('Cursor v0.2.1 runtime evidence covers the Quick fixture only');
+    expect(limitations).toContain('user-level Memory and plugin context');
     expect(limitations).toContain('manual synthetic-fixture dataset');
-    expect(limitations).toContain('No v0.2.0 result claims browser runtime evidence');
+    expect(limitations).toContain('No v0.2.1 result claims browser runtime evidence');
   });
 
   test('documents the public review output contract and examples', () => {
@@ -243,10 +242,12 @@ describe('repository release support', () => {
     const versioning = readText('docs/versioning.md');
 
     expect(changelog).toContain('## [Unreleased]');
+    expect(changelog).toContain('## [0.2.1] - 2026-08-05');
     expect(changelog).toContain('## [0.2.0] - 2026-07-31');
     expect(changelog).toContain('## [0.1.1] - 2026-07-23');
     expect(changelog).toContain('## [0.1.0] - 2026-07-23');
-    expect(changelog).toContain('compare/v0.2.0...HEAD');
+    expect(changelog).toContain('compare/v0.2.1...HEAD');
+    expect(changelog).toContain('compare/v0.2.0...v0.2.1');
     expect(changelog).toContain('compare/v0.1.1...v0.2.0');
     expect(changelog).not.toContain('compare/v0.1.1...HEAD');
     expect(versioning).toContain('Patch');
@@ -254,8 +255,8 @@ describe('repository release support', () => {
     expect(versioning).toContain('Major');
     expect(versioning).toContain('Release tags are immutable');
     expect(versioning).toContain('Cannot Verify');
-    expect(versioning).toContain('Stable: `v0.2.0`');
-    expect(versioning).toContain('Previous stable: `v0.1.1`');
+    expect(versioning).toContain('Stable: `v0.2.1`');
+    expect(versioning).toContain('Previous stable: `v0.2.0`');
   });
 
   test('ships issue forms and an evidence-driven roadmap', () => {
@@ -264,7 +265,7 @@ describe('repository release support', () => {
     expect(exists('.github/ISSUE_TEMPLATE/config.yml')).toBe(true);
 
     const roadmap = readText('docs/roadmap.md');
-    expect(roadmap).toContain('v0.2.0 Candidates');
+    expect(roadmap).toContain('Post-v0.2.1 Candidates');
     expect(roadmap).toContain('v0.2.0 Release Boundaries');
     expect(roadmap).toContain('finding IDs');
     expect(roadmap).toContain('Automatic code edits');
@@ -311,5 +312,21 @@ describe('repository release support', () => {
     expect(results).toContain('post-hardening final Deep Review passed against the committed release target');
     expect(results).toContain('## Release Decision');
     expect(results).toContain('Claude Code remains explicitly `Cannot Verify`');
+  });
+
+  test('publishes v0.2.1 fixture evidence without overstating client coverage', () => {
+    const results = readText('docs/evaluation-results/v0.2.1.md');
+
+    expect(results).toContain('# v0.2.1 Evaluation Results');
+    expect(results).toContain('Release: [`v0.2.1`]');
+    expect(results).toContain('6 files and 47 tests passed');
+    expect(results).toContain('Quick, first run');
+    expect(results).toContain('Quick, repeat run');
+    expect(results).toContain('design decision `Simplify`');
+    expect(results).toContain('3/3 previous findings `Resolved`');
+    expect(results).toContain('Cursor Deep and Fix were not rerun');
+    expect(results).toContain('user-level Memory was automatically loaded');
+    expect(results).toContain('Claude Code remains `Cannot Verify`');
+    expect(results).not.toContain('runtime acceptance for this candidate');
   });
 });

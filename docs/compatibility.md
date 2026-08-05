@@ -1,7 +1,7 @@
 # Compatibility
 
-Stable evidence verified: 2026-07-31
-Stable evidence baseline: [`v0.2.0`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.2.0)
+Stable evidence verified: 2026-08-05
+Stable evidence baseline: [`v0.2.1`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.2.1)
 
 ## Evidence Levels
 
@@ -34,11 +34,17 @@ Runtime output can vary by model and client version. Re-run the smoke protocol a
 - Upgrading a client across a major version.
 - Publishing a new minor or major release.
 
-## v0.2.1 Candidate Evidence
+## Stable v0.2.1 Evidence
 
-The unreleased candidate adds evaluation infrastructure and does not change the shared Skill tree or client adapters. Codex CLI 0.146.0 completed Quick, Deep, and Fix fixture reviews without writes; a repeated Quick run was required after the first run merged one expected `Risk` into other sections. Cursor Agent CLI 2026.07.23-e383d2b completed the Quick fixture without writes. Cursor Deep/Fix and Claude Code runtime behavior are not claimed for this candidate.
+v0.2.1 adds evaluation infrastructure and does not change the shared Skill tree or client adapters.
 
-See [v0.2.1 Candidate Evaluation Results](evaluation-results/v0.2.1-candidate.md) for the exact fixture, oracle, variance, token, and evidence boundaries.
+| Client | Structural evidence | Runtime evidence | Status |
+| --- | --- | --- | --- |
+| Codex CLI 0.146.0 | `47/47` repository tests and both Skill validators pass | Quick, Deep, and Fix fixture reviews completed without writes; the repeated Quick run satisfied the complete oracle | Runtime verified |
+| Cursor Agent CLI 2026.07.23-e383d2b | Adapter and repository contract tests pass | Quick fixture review satisfied the complete oracle without writes; Deep and Fix were not rerun | Runtime verified |
+| Claude Code | Adapter and repository contract tests pass | Not executed because valid runtime credentials are unavailable | Cannot Verify |
+
+See [v0.2.1 Evaluation Results](evaluation-results/v0.2.1.md) for the exact fixture, oracle, variance, token, and evidence boundaries.
 
 ## Stable v0.2.0 Evidence
 
@@ -61,11 +67,13 @@ The shared core contract defines the following fallback for Codex, Claude Code, 
 
 ## Known Limitations
 
-- Claude Code v0.2.0 runtime behavior is not claimed because valid credentials are unavailable.
-- The post-hardening recommendation gate was rerun in Cursor CLI 2026.01.23, not repeated in the Desktop UI. The result verifies the inspected fixture and CLI path; it does not prove identical behavior across every Cursor surface, model, or repository.
-- The repeatable v0.1.0 fixture validates finding recall and read-only behavior, not production framework behavior, model quality in every repository, or performance.
+- Claude Code v0.2.1 runtime behavior is not claimed because valid credentials are unavailable.
+- Cursor v0.2.1 runtime evidence covers the Quick fixture only; Deep and Fix were not rerun.
+- The repeated Codex Quick run passed the complete oracle, but the first run's classification variance remains recorded rather than discarded.
+- Codex loaded user-level Memory and plugin context, so its reported token values are not a Skill-only cost benchmark and the run is not a clean fixture-isolation benchmark.
+- The repeatable fixtures validate seeded-finding recall, classification, recommendation consistency, and read-only behavior, not production framework behavior, general model precision or recall, or performance.
 - Local code remains primary for repository-specific behavior. Official documentation may be queried only through a channel whose tool contract permits code review; the Context7 MCP tool contract excludes code review, so the skill does not use Context7 directly or indirectly through delegation, subagents, proxies, or request reframing.
-- No v0.2.0 result claims browser runtime evidence; the reviewed repository change has no browser-observable product path.
+- No v0.2.1 result claims browser runtime evidence; the release has no browser-observable product path.
 - The paired minimal-design oracle is a manual synthetic-fixture dataset. It verifies the recorded decisions and forbidden outcomes, not model quality in every repository.
 
-See [v0.2.0 Evaluation Results](evaluation-results/v0.2.0.md) for release evidence, [v0.1.1 Evaluation Results](evaluation-results/v0.1.1.md) for the previous stable patch delta, and [v0.1.0 Evaluation Results](evaluation-results/v0.1.0.md) for the original runtime cases and metrics.
+See [v0.2.1 Evaluation Results](evaluation-results/v0.2.1.md) for current release evidence, [v0.2.0 Evaluation Results](evaluation-results/v0.2.0.md) for the previous stable contract, and [v0.1.0 Evaluation Results](evaluation-results/v0.1.0.md) for the original runtime cases and metrics.

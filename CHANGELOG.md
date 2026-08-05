@@ -6,12 +6,17 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-08-05
+
 ### Added
 
 - Added reproducible Quick, Deep, and Fix evaluation fixtures with semantic oracles, an isolated Git fixture preparer, and deterministic behavior tests that do not call model clients in CI.
-- Excluded local `.plugin-eval` artifacts from generated fixtures and release tracking.
 - Recorded sanitized post-release v0.2.0 installation smoke evidence for Codex and Cursor.
-- Recorded v0.2.1 candidate runtime results, including repeated Codex Quick variance, Deep/Fix acceptance, Cursor Quick acceptance, read-only evidence, and the token-observation boundary.
+- Recorded v0.2.1 pre-release runtime results, including repeated Codex Quick variance, Deep/Fix acceptance, Cursor Quick acceptance, read-only evidence, and the token-observation boundary.
+
+### Changed
+
+- Excluded local `.plugin-eval` artifacts from generated fixtures and release tracking.
 
 ## [0.2.0] - 2026-07-31
 
@@ -47,7 +52,8 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 - Chinese output templates and example outputs.
 - Vitest contract tests, skill validation, and GitHub Actions CI.
 
-[Unreleased]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/keykovar/skill-fe-code-review/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.1.0
