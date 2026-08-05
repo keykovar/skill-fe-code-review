@@ -34,6 +34,12 @@ Runtime output can vary by model and client version. Re-run the smoke protocol a
 - Upgrading a client across a major version.
 - Publishing a new minor or major release.
 
+## v0.2.1 Candidate Evidence
+
+The unreleased candidate adds evaluation infrastructure and does not change the shared Skill tree or client adapters. Codex CLI 0.146.0 completed Quick, Deep, and Fix fixture reviews without writes; a repeated Quick run was required after the first run merged one expected `Risk` into other sections. Cursor Agent CLI 2026.07.23-e383d2b completed the Quick fixture without writes. Cursor Deep/Fix and Claude Code runtime behavior are not claimed for this candidate.
+
+See [v0.2.1 Candidate Evaluation Results](evaluation-results/v0.2.1-candidate.md) for the exact fixture, oracle, variance, token, and evidence boundaries.
+
 ## Stable v0.2.0 Evidence
 
 v0.2.0 changes the core Skill contract. Stable v0.1.1 runtime results remain historical evidence for that release, but they do not verify v0.2.0.

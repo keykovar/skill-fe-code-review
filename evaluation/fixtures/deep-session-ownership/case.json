@@ -1,0 +1,25 @@
+{
+  "name": "deep-session-ownership",
+  "modes": {
+    "deep": {
+      "prompt": "使用 $fe-code-review，Deep Review main...HEAD，重点审查跨模块状态所有权、行为回归和测试缺口。使用简体中文，严格只读。",
+      "expectedBranch": "candidate",
+      "expectedStatus": [],
+      "expectedFindings": [
+        {
+          "key": "stale-profile-token-after-logout",
+          "allowedSeverities": ["Blocking", "Risk"],
+          "evidence": [
+            "src/auth/session.ts",
+            "src/profile/profile-session.ts",
+            "src/profile/load-profile.ts",
+            "tests/session.test.mjs"
+          ]
+        }
+      ],
+      "expectedDesignDecision": "Simplify",
+      "allowedRecommendations": ["修改后可以进入下一步", "暂不建议进入下一步"],
+      "forbiddenRecommendations": ["可以进入下一步"]
+    }
+  }
+}

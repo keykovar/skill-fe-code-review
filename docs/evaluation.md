@@ -203,3 +203,23 @@ Before publishing a release:
 - Browser evidence records a reproducible, redacted observation and is not extrapolated to WebView, Native, device, or production behavior.
 - A client or environment without browser automation completes the static review and reports affected runtime claims as `Cannot Verify`.
 - No review output recommends submit when referenced untracked files are missing from the submit scope.
+
+## Reproducible Fixtures
+
+Checked-in fixtures provide stable Git states, prompts, and semantic oracles for release evaluation. They do not add output sections or change the public review contract.
+
+Prepare an isolated fixture with one of these commands:
+
+```bash
+pnpm fixture:prepare quick
+pnpm fixture:prepare deep
+pnpm fixture:prepare fix
+```
+
+Pass `--output /absolute/empty/directory` when the generated repository must use a known location. The script refuses to overwrite a non-empty directory and prints JSON containing the target directory, prompt, expected Git status, semantic oracle, test command, and expected deterministic test result.
+
+- Quick uses the uncommitted URL regression with a referenced untracked config file.
+- Fix starts from the recorded problem commit, exposes the previous findings under `.evaluation/previous-findings.md`, and applies the working-tree repair.
+- Deep creates a clean `candidate` branch whose profile module caches authentication state outside the shared session owner.
+
+Run the printed prompt in the generated repository, compare the response with the semantic oracle, and confirm that `git status --short` is unchanged after review. Do not compare complete model text or call model clients from deterministic CI. Vitest validates fixture construction, seeded behavior, repair behavior, and overwrite protection; runtime model quality remains a manual, client-scoped evaluation.

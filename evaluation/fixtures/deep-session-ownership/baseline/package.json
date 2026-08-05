@@ -1,0 +1,8 @@
+{
+  "name": "deep-session-ownership-fixture",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/session.test.mjs"
+  }
+}

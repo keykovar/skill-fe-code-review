@@ -32,7 +32,7 @@ The release includes:
 
 ## Post-v0.2.0 Candidates
 
-1. Check in reproducible Quick, Deep, and Fix evaluation fixtures with explicit expected findings.
+1. Implemented and runtime-accepted for the next patch, unreleased: checked-in Quick, Deep, and Fix evaluation fixtures with explicit semantic oracles and deterministic behavior checks.
 2. Add stable finding IDs so Fix Review can map previous findings without relying only on prose.
 3. Add a large-diff coverage ledger that records reviewed, deferred, generated, and unverified files.
 4. Clarify precedence among repository instructions, client rules, mode references, and user-requested scope.

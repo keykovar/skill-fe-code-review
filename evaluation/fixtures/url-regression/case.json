@@ -1,0 +1,42 @@
+{
+  "name": "url-regression",
+  "modes": {
+    "quick": {
+      "prompt": "使用 $fe-code-review，Quick Review 当前未提交改动。使用简体中文，严格只读。",
+      "expectedStatus": [
+        " M src/url.ts",
+        "?? src/request-config.ts"
+      ],
+      "expectedFindings": [
+        {
+          "key": "referenced-untracked-file",
+          "allowedSeverities": ["Blocking"],
+          "evidence": ["src/url.ts", "src/request-config.ts"]
+        },
+        {
+          "key": "removed-slash-normalization",
+          "allowedSeverities": ["Blocking", "Risk"],
+          "evidence": ["src/url.ts", "tests/url.test.mjs"]
+        },
+        {
+          "key": "ignored-base-url-contract",
+          "allowedSeverities": ["Risk"],
+          "evidence": ["src/url.ts", "src/profile.ts"]
+        }
+      ],
+      "allowedRecommendations": ["修改后提交", "不建议提交"],
+      "forbiddenRecommendations": ["可以提交"]
+    },
+    "fix": {
+      "prompt": "使用 $fe-code-review，Fix Review 当前修改，并对照 .evaluation/previous-findings.md 逐项验证，同时检查新增回归。使用简体中文，严格只读。",
+      "expectedStatus": [" M src/url.ts"],
+      "expectedFindingStatuses": {
+        "referenced-untracked-file": "Resolved",
+        "removed-slash-normalization": "Resolved",
+        "ignored-base-url-contract": "Resolved"
+      },
+      "expectedNewRegression": "none",
+      "expectedRecommendation": "可以关闭"
+    }
+  }
+}

@@ -231,6 +231,8 @@ Vitest checks the repository structure, adapters, references, and required revie
 - [Compatibility](docs/compatibility.md)
 - [Evaluation Protocol](docs/evaluation.md)
 - [v0.2.0 Evaluation Results](docs/evaluation-results/v0.2.0.md)
+- [v0.2.0 Post-release Smoke Results](docs/evaluation-results/v0.2.0-post-release.md)
+- [v0.2.1 Candidate Evaluation Results](docs/evaluation-results/v0.2.1-candidate.md)
 - [v0.1.1 Evaluation Results](docs/evaluation-results/v0.1.1.md)
 - [Versioning and Release Policy](docs/versioning.md)
 - [Roadmap](docs/roadmap.md)

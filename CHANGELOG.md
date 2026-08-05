@@ -6,6 +6,13 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 
 ## [Unreleased]
 
+### Added
+
+- Added reproducible Quick, Deep, and Fix evaluation fixtures with semantic oracles, an isolated Git fixture preparer, and deterministic behavior tests that do not call model clients in CI.
+- Excluded local `.plugin-eval` artifacts from generated fixtures and release tracking.
+- Recorded sanitized post-release v0.2.0 installation smoke evidence for Codex and Cursor.
+- Recorded v0.2.1 candidate runtime results, including repeated Codex Quick variance, Deep/Fix acceptance, Cursor Quick acceptance, read-only evidence, and the token-observation boundary.
+
 ## [0.2.0] - 2026-07-31
 
 ### Changed
