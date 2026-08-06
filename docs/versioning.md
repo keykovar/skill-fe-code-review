@@ -55,6 +55,6 @@ Before `1.0.0`, minor releases may still evolve the contract. Breaking behavior 
 
 ## Current Version
 
-- Stable: `v0.2.1`
-- Previous stable: `v0.2.0`
-- v0.2.1 status: deterministic validation and recorded Codex Quick/Deep/Fix plus Cursor Quick runtime checks passed; Claude Code remains `Cannot Verify`
+- Stable: `v0.2.2`
+- Previous stable: `v0.2.1`
+- v0.2.2 status: fresh-tag deterministic validation and Codex/Cursor Quick runtime checks passed; candidate Cursor Deep/Fix evidence passed; Claude Code remains `Cannot Verify`

@@ -46,14 +46,14 @@ The release includes checked-in Quick, Deep, and Fix evaluation fixtures with ex
 - Claude Code remains `Cannot Verify` while valid runtime credentials are unavailable.
 - Codex token observations are not a Skill-only benchmark because user-level Memory and plugin context were loaded.
 
-## Post-v0.2.1 Candidates
+## Post-v0.2.2 Candidates
 
 1. Add stable finding IDs so Fix Review can map previous findings without relying only on prose.
 2. Add a large-diff coverage ledger that records reviewed, deferred, generated, and unverified files.
 3. Clarify precedence among repository instructions, client rules, mode references, and user-requested scope.
 4. Add sanitized cross-client output snapshots only where they improve regression diagnosis.
 
-## Active v0.2.2 Candidate
+## Completed v0.2.2 Promotion Evidence
 
 - Reject runtime evidence when a client directly requests semantic oracles, checked-in expected outputs, or paths outside the generated fixture workspace.
 - Audit Cursor Agent `stream-json` traces for scope escape and explicit or common write attempts before semantic scoring, then retain before/after Git and file-hash checks as the write-safety authority.
@@ -61,6 +61,15 @@ The release includes checked-in Quick, Deep, and Fix evaluation fixtures with ex
 - Clarify that removing a later competing owner to restore an established repository owner is `Simplify`; reserve `Redesign` for introducing, moving, or materially reshaping a boundary.
 - The post-clarification Cursor Deep rerun produced `Simplify`, the expected Blocking finding, a non-permissive recommendation, a valid trace, and no fixture writes. The preceding `socket hang up` attempt produced no result and is excluded.
 - Do not count Ask-mode output that cannot inspect the selected Git baseline or deterministic test.
+- A fresh public-tag clone passed `51/51` tests and both Skill validators; Codex and Cursor Quick reviews each satisfied all three seeded findings without changing Git state or relevant file hashes.
+- The post-release Cursor Quick trace passed with 119 events, 15 tool calls, and no auditor violation.
+
+## v0.2.2 Release Boundaries
+
+- Claude Code remains `Cannot Verify` while valid runtime credentials are unavailable.
+- Codex automatically loaded user-level Memory and plugin context, so its post-release run is behavior evidence rather than a fixture-isolation or Skill-only token benchmark.
+- Trace auditing is not an operating-system sandbox; Git status and relevant file hashes remain the write-safety authority.
+- The release fixtures expose no browser-observable path, so Playwright was not applicable.
 
 ## Future Promotion Gates
 

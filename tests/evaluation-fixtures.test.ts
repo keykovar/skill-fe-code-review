@@ -73,7 +73,12 @@ describe('reproducible evaluation fixtures', () => {
     expect(deepCase.modes.deep.expectedDesignDecision).toBe('Simplify');
     expect(exists('evaluation/fixtures/url-regression/previous-findings.md')).toBe(true);
     expect(readText('skills/fe-code-review/SKILL.md')).not.toContain('evaluation/fixtures');
-    expect(readText('docs/evaluation.md')).toContain('pnpm fixture:prepare quick');
+    const evaluation = readText('docs/evaluation.md');
+    expect(evaluation).toContain('pnpm fixture:prepare quick');
+    expect(evaluation).toContain(
+      'pnpm fixture:prepare quick --output /private/tmp/fe-code-review-quick',
+    );
+    expect(evaluation).not.toContain('pnpm fixture:prepare quick -- --output');
     expect(readText('docs/evaluation.md')).toContain('Do not compare complete model text');
     expect(readText('docs/roadmap.md')).toContain('## Completed v0.2.1 Promotion Evidence');
     expect(readText('CHANGELOG.md')).toContain('reproducible Quick, Deep, and Fix evaluation fixtures');

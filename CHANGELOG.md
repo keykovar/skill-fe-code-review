@@ -6,6 +6,15 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 
 ## [Unreleased]
 
+### Added
+
+- Recorded fresh-tag v0.2.2 post-release smoke evidence for Codex and Cursor.
+
+### Fixed
+
+- Updated stable install and compatibility documentation to v0.2.2 after release.
+- Documented the exact fixture `--output` invocation without an extra pnpm argument separator.
+
 ## [0.2.2] - 2026-08-06
 
 ### Added

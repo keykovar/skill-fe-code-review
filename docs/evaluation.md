@@ -219,6 +219,14 @@ pnpm fixture:prepare fix
 
 Pass `--output /absolute/empty/directory` when the generated repository must use a known location. The script refuses to overwrite a non-empty directory and prints JSON containing the target directory, prompt, expected Git status, semantic oracle, test command, and expected deterministic test result.
 
+For example:
+
+```bash
+pnpm fixture:prepare quick --output /private/tmp/fe-code-review-quick
+```
+
+Do not add an extra `--` between the mode and `--output`; pnpm forwards it as a literal script argument.
+
 - Quick uses the uncommitted URL regression with a referenced untracked config file.
 - Fix starts from the recorded problem commit, exposes the previous findings under `.evaluation/previous-findings.md`, and applies the working-tree repair.
 - Deep creates a clean `candidate` branch whose profile module caches authentication state outside the shared session owner.

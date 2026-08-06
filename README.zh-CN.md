@@ -40,10 +40,10 @@ tests/                       Vitest 结构和契约检查
 
 ## 安装稳定版本
 
-当前稳定版本为 `v0.2.1`。需要可复现安装时，应固定 Release tag，不要直接安装 `main`。
+当前稳定版本为 `v0.2.2`。需要可复现安装时，应固定 Release tag，不要直接安装 `main`。
 
 ```bash
-git clone --depth 1 --branch v0.2.1 \
+git clone --depth 1 --branch v0.2.2 \
   https://github.com/keykovar/skill-fe-code-review.git
 cd skill-fe-code-review
 ```
@@ -111,15 +111,15 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 ## 兼容性
 
-### 稳定版 v0.2.1
+### 稳定版 v0.2.2
 
-| 客户端 | v0.2.1 验证证据 | 状态 |
+| 客户端 | v0.2.2 验证证据 | 状态 |
 | --- | --- | --- |
-| Codex CLI 0.146.0 | Quick、Deep、Fix fixture 回审；Quick 复跑满足完整 oracle，所有运行均保持只读 | 运行时已验证 |
-| Cursor Agent CLI 2026.07.23-e383d2b | Quick fixture 满足完整 oracle 并保持只读；未复跑 Deep 与 Fix | 运行时已验证 |
+| Codex CLI 0.146.0 | 从公开 tag 全新安装后的 Quick fixture 命中全部三个 finding，并保持只读 | 运行时已验证 |
+| Cursor Agent CLI 2026.08.04-aaa8809 | 候选阶段 Deep/Fix 与公开 tag 全新安装后的 Quick fixture 均满足 semantic oracle；trace 审计与文件 hash 均保持只读 | 运行时已验证 |
 | Claude Code | 仅完成结构与适配器测试；当前无可用运行时凭据 | `Cannot Verify：无法验证` |
 
-由于当前没有有效的 Claude Code 运行时凭据，Claude Code 明确记录为 `Cannot Verify：无法验证`，不会被描述为运行通过。详细证据和限制见[兼容性说明](docs/compatibility.md)与 [v0.2.1 评测结果](docs/evaluation-results/v0.2.1.md)；历史 v0.2.0 证据仍保留在 [v0.2.0 评测结果](docs/evaluation-results/v0.2.0.md)。
+由于当前没有有效的 Claude Code 运行时凭据，Claude Code 明确记录为 `Cannot Verify：无法验证`，不会被描述为运行通过。详细证据和限制见[兼容性说明](docs/compatibility.md)、[v0.2.2 评测结果](docs/evaluation-results/v0.2.2.md)与 [v0.2.2 发布后冒烟结果](docs/evaluation-results/v0.2.2-post-release.md)。
 
 ## 使用方式
 
@@ -233,6 +233,8 @@ Vitest 负责验证仓库结构、适配器、引用文件和必需审查契约�
 - [v0.2.0 评测结果](docs/evaluation-results/v0.2.0.md)
 - [v0.2.0 发布后冒烟结果](docs/evaluation-results/v0.2.0-post-release.md)
 - [v0.2.1 评测结果](docs/evaluation-results/v0.2.1.md)
+- [v0.2.2 评测结果](docs/evaluation-results/v0.2.2.md)
+- [v0.2.2 发布后冒烟结果](docs/evaluation-results/v0.2.2-post-release.md)
 - [v0.1.1 评测结果](docs/evaluation-results/v0.1.1.md)
 - [版本与发布规则](docs/versioning.md)
 - [路线图](docs/roadmap.md)

@@ -68,15 +68,15 @@ describe('repository release support', () => {
 
     expect(packageJson.version).toBe('0.2.2');
     expect(readme).toContain('README.zh-CN.md');
-    expect(readme).toContain('--branch v0.2.1');
+    expect(readme).toContain('--branch v0.2.2');
     expect(readme).toContain('Runtime verified');
     expect(readme).toContain('part of stable `v0.2.0`');
     expect(chineseReadme).toContain('安装稳定版本');
-    expect(chineseReadme).toContain('--branch v0.2.1');
+    expect(chineseReadme).toContain('--branch v0.2.2');
     expect(chineseReadme).toContain('Cannot Verify：无法验证');
     expect(chineseReadme).toContain('属于稳定版 `v0.2.0`');
     expect(compatibility).toContain('Structural verified');
-    expect(compatibility).toContain('Stable evidence baseline: [`v0.2.1`]');
+    expect(compatibility).toContain('Stable evidence baseline: [`v0.2.2`]');
     expect(compatibility).not.toContain('Candidate under test:');
     expect(compatibility).toContain('a66e26e60e27f643f35b402c6660038c7070e759');
   });
@@ -87,17 +87,17 @@ describe('repository release support', () => {
     const roadmap = readText('docs/roadmap.md');
     const results = readText('docs/evaluation-results/v0.2.0.md');
     const historical = markdownSection(compatibility, '## Historical v0.1.1 Evidence');
-    const stable = markdownSection(compatibility, '## Stable v0.2.1 Evidence');
+    const stable = markdownSection(compatibility, '## Stable v0.2.2 Evidence');
     const limitations = markdownSection(compatibility, '## Known Limitations');
     const historicalClaudeRow = markdownTableRow(historical, 'Claude Code');
     const historicalCursorRow = markdownTableRow(historical, 'Cursor');
     const stableCodexRow = markdownTableRow(stable, 'Codex CLI 0.146.0');
-    const stableCursorRow = markdownTableRow(stable, 'Cursor Agent CLI 2026.07.23-e383d2b');
+    const stableCursorRow = markdownTableRow(stable, 'Cursor Agent CLI 2026.08.04-aaa8809');
     const stableClaudeRow = markdownTableRow(stable, 'Claude Code');
-    const readmeStable = markdownSection(readme, '### Stable v0.2.1');
+    const readmeStable = markdownSection(readme, '### Stable v0.2.2');
     const readmeCursorRow = markdownTableRow(
       readmeStable,
-      'Cursor Agent CLI 2026.07.23-e383d2b',
+      'Cursor Agent CLI 2026.08.04-aaa8809',
     );
     const resultsCursorRow = markdownTableRow(results, 'Cursor');
 
@@ -108,11 +108,11 @@ describe('repository release support', () => {
     expect(historicalCursorRow).toMatch(/\| Runtime verified \|$/);
     expect(historicalCursorRow).not.toContain('Deep');
     expect(historicalCursorRow).not.toContain('Fix');
-    expect(stable).toContain('does not change the shared Skill tree or client adapters');
-    expect(stableCodexRow).toContain('Quick, Deep, and Fix fixture reviews');
+    expect(stable).toContain('does not add a review mode, output section, Finding field, or install path');
+    expect(stableCodexRow).toContain('Post-release Quick review found all three seeded issues');
     expect(stableCodexRow).toMatch(/\| Runtime verified \|$/);
-    expect(stableCursorRow).toContain('Quick fixture review satisfied the complete oracle');
-    expect(stableCursorRow).toContain('Deep and Fix were not rerun');
+    expect(stableCursorRow).toContain('Candidate Deep/Fix and post-release Quick reviews');
+    expect(stableCursorRow).toContain('119 events and 15 tool calls');
     expect(stableCursorRow).toMatch(/\| Runtime verified \|$/);
     expect(readmeCursorRow).toMatch(/\| Runtime verified \|$/);
     expect(resultsCursorRow).toContain('| Runtime verified |');
@@ -121,10 +121,10 @@ describe('repository release support', () => {
     expect(roadmap).not.toContain('final Deep Review against an immutable commit candidate after commit approval');
     expect(stableClaudeRow).toContain('valid runtime credentials are unavailable');
     expect(stableClaudeRow).toMatch(/\| Cannot Verify \|$/);
-    expect(limitations).toContain('Cursor v0.2.1 runtime evidence covers the Quick fixture only');
+    expect(limitations).toContain('Codex v0.2.2 post-release runtime evidence covers the Quick fixture');
     expect(limitations).toContain('user-level Memory and plugin context');
     expect(limitations).toContain('manual synthetic-fixture dataset');
-    expect(limitations).toContain('No v0.2.1 result claims browser runtime evidence');
+    expect(limitations).toContain('No v0.2.2 result claims browser runtime evidence');
   });
 
   test('documents the public review output contract and examples', () => {
@@ -257,8 +257,8 @@ describe('repository release support', () => {
     expect(versioning).toContain('Major');
     expect(versioning).toContain('Release tags are immutable');
     expect(versioning).toContain('Cannot Verify');
-    expect(versioning).toContain('Stable: `v0.2.1`');
-    expect(versioning).toContain('Previous stable: `v0.2.0`');
+    expect(versioning).toContain('Stable: `v0.2.2`');
+    expect(versioning).toContain('Previous stable: `v0.2.1`');
   });
 
   test('ships issue forms and an evidence-driven roadmap', () => {
@@ -267,7 +267,8 @@ describe('repository release support', () => {
     expect(exists('.github/ISSUE_TEMPLATE/config.yml')).toBe(true);
 
     const roadmap = readText('docs/roadmap.md');
-    expect(roadmap).toContain('Post-v0.2.1 Candidates');
+    expect(roadmap).toContain('Post-v0.2.2 Candidates');
+    expect(roadmap).toContain('Completed v0.2.2 Promotion Evidence');
     expect(roadmap).toContain('v0.2.0 Release Boundaries');
     expect(roadmap).toContain('finding IDs');
     expect(roadmap).toContain('Automatic code edits');
@@ -330,5 +331,20 @@ describe('repository release support', () => {
     expect(results).toContain('user-level Memory was automatically loaded');
     expect(results).toContain('Claude Code remains `Cannot Verify`');
     expect(results).not.toContain('runtime acceptance for this candidate');
+  });
+
+  test('publishes v0.2.2 post-release smoke evidence with explicit boundaries', () => {
+    const results = readText('docs/evaluation-results/v0.2.2-post-release.md');
+
+    expect(results).toContain('# v0.2.2 Post-release Smoke Results');
+    expect(results).toContain('Release commit: `f477d3dd5425b0adc9cc74d3bf7bf2ac793c16ab`');
+    expect(results).toContain('7 files and 51 tests passed');
+    expect(results).toContain('3/3 findings with accepted severity');
+    expect(results).toContain('119 events and 15 tool calls');
+    expect(results).toContain('zero violations');
+    expect(results).toContain('user-level Memory and plugin context');
+    expect(results).toContain('not a clean fixture-isolation or Skill-only token benchmark');
+    expect(results).toContain('Claude Code remains `Cannot Verify`');
+    expect(results).toContain('Playwright was skipped');
   });
 });
