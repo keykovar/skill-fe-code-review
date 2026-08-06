@@ -2,6 +2,8 @@
 
 Use this checklist before publishing or changing `fe-code-review`.
 
+For the v0.3.0 real-project baseline, use the [Real-project Evaluation Plan](v0.3.0-real-project-evaluation-plan.md) and complete one [Real-project Evaluation Record](real-project-evaluation-record-template.md) per model run. These documents add measurement and recording rules; they do not change the public review output contract.
+
 ## Scope
 
 Evaluate the skill with real repository diffs, not only synthetic examples.

@@ -230,6 +230,8 @@ Vitest checks the repository structure, adapters, references, and required revie
 - [Changelog](CHANGELOG.md)
 - [Compatibility](docs/compatibility.md)
 - [Evaluation Protocol](docs/evaluation.md)
+- [v0.3.0 Real-project Evaluation Plan](docs/v0.3.0-real-project-evaluation-plan.md)
+- [Real-project Evaluation Record Template](docs/real-project-evaluation-record-template.md)
 - [v0.2.0 Evaluation Results](docs/evaluation-results/v0.2.0.md)
 - [v0.2.0 Post-release Smoke Results](docs/evaluation-results/v0.2.0-post-release.md)
 - [v0.2.1 Evaluation Results](docs/evaluation-results/v0.2.1.md)

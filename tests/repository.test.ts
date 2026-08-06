@@ -43,6 +43,53 @@ describe('repository release support', () => {
     expect(exists('examples/outputs/fix-review.zh-CN.md')).toBe(true);
   });
 
+  test('documents the v0.3.0 real-project evaluation baseline', () => {
+    const readme = readText('README.md');
+    const chineseReadme = readText('README.zh-CN.md');
+    const evaluation = readText('docs/evaluation.md');
+    const roadmap = readText('docs/roadmap.md');
+    const plan = readText('docs/v0.3.0-real-project-evaluation-plan.md');
+    const record = readText('docs/real-project-evaluation-record-template.md');
+
+    expect(readme).toContain('docs/v0.3.0-real-project-evaluation-plan.md');
+    expect(readme).toContain('docs/real-project-evaluation-record-template.md');
+    expect(chineseReadme).toContain('v0.3.0 真实项目评测计划');
+    expect(chineseReadme).toContain('真实项目评测记录模板');
+    expect(evaluation).toContain('Real-project Evaluation Plan');
+    expect(roadmap).toContain('## v0.3.0 Real-project Evaluation Baseline');
+
+    for (const phrase of [
+      'React and TypeScript',
+      'Vue and TypeScript',
+      'Hybrid or WebView',
+      'Required-finding recall',
+      'Finding precision',
+      'Suggested-fix quality',
+      'Minimal-design accuracy',
+      'Read-only violations',
+      'Fix scope expansion',
+    ]) {
+      expect(plan).toContain(phrase);
+    }
+
+    expect(roadmap).toContain(
+      'Token reduction or plugin-eval cost alone is not sufficient evidence',
+    );
+
+    for (const phrase of [
+      'Authorization And Privacy',
+      'Evaluator-only Expectations',
+      'Finding Adjudication',
+      'Required-finding Recall',
+      'Output-contract Verification',
+      'Fix Review Verification',
+      'Post-run Integrity',
+      '`Valid`, `False Positive`, or `Cannot Verify`',
+    ]) {
+      expect(record).toContain(phrase);
+    }
+  });
+
   test('defines GitHub Actions CI', () => {
     const ci = readText('.github/workflows/ci.yml');
 

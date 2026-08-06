@@ -53,6 +53,12 @@ The release includes checked-in Quick, Deep, and Fix evaluation fixtures with ex
 3. Clarify precedence among repository instructions, client rules, mode references, and user-requested scope.
 4. Add sanitized cross-client output snapshots only where they improve regression diagnosis.
 
+## v0.3.0 Real-project Evaluation Baseline
+
+Before accepting any post-v0.2.2 behavior candidate, run the documented real-project matrix across React, Vue, TypeScript, JavaScript, Hybrid/WebView, no-clear-issue, and actual Fix Review chains. Measure required-finding recall, finding precision, severity accuracy, recommendation consistency, output-contract compliance, read-only safety, scope/oracle access, and Fix Review closure without changing the current Skill contract.
+
+Use the [v0.3.0 Real-project Evaluation Plan](v0.3.0-real-project-evaluation-plan.md) and [Real-project Evaluation Record Template](real-project-evaluation-record-template.md). A candidate enters v0.3.0 only when repeated failures justify it and every affected case is rerun. Token reduction or plugin-eval cost alone is not sufficient evidence for a Skill change.
+
 ## Completed v0.2.2 Promotion Evidence
 
 - Reject runtime evidence when a client directly requests semantic oracles, checked-in expected outputs, or paths outside the generated fixture workspace.

@@ -230,6 +230,8 @@ Vitest 负责验证仓库结构、适配器、引用文件和必需审查契约�
 - [更新日志](CHANGELOG.md)
 - [兼容性说明](docs/compatibility.md)
 - [评测协议](docs/evaluation.md)
+- [v0.3.0 真实项目评测计划](docs/v0.3.0-real-project-evaluation-plan.md)
+- [真实项目评测记录模板](docs/real-project-evaluation-record-template.md)
 - [v0.2.0 评测结果](docs/evaluation-results/v0.2.0.md)
 - [v0.2.0 发布后冒烟结果](docs/evaluation-results/v0.2.0-post-release.md)
 - [v0.2.1 评测结果](docs/evaluation-results/v0.2.1.md)
