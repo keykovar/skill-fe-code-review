@@ -1,12 +1,13 @@
 {
   "name": "skill-fe-code-review",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Reusable frontend and hybrid app code review skill for coding agents.",
   "license": "MIT",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@11.7.0",
   "scripts": {
+    "evaluation:trace-audit": "node scripts/audit-runtime-trace.mjs",
     "fixture:prepare": "node scripts/prepare-evaluation-fixture.mjs",
     "test": "vitest run",
     "test:watch": "vitest"

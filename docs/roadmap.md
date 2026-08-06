@@ -53,6 +53,15 @@ The release includes checked-in Quick, Deep, and Fix evaluation fixtures with ex
 3. Clarify precedence among repository instructions, client rules, mode references, and user-requested scope.
 4. Add sanitized cross-client output snapshots only where they improve regression diagnosis.
 
+## Active v0.2.2 Candidate
+
+- Reject runtime evidence when a client directly requests semantic oracles, checked-in expected outputs, or paths outside the generated fixture workspace.
+- Audit Cursor Agent `stream-json` traces for scope escape and explicit or common write attempts before semantic scoring, then retain before/after Git and file-hash checks as the write-safety authority.
+- Fresh Cursor Agent-mode traces passed the integrity gate for Deep and Fix. Fix passed its semantic oracle; the pre-clarification Deep run reproduced `Redesign` instead of the expected `Simplify`.
+- Clarify that removing a later competing owner to restore an established repository owner is `Simplify`; reserve `Redesign` for introducing, moving, or materially reshaping a boundary.
+- The post-clarification Cursor Deep rerun produced `Simplify`, the expected Blocking finding, a non-permissive recommendation, a valid trace, and no fixture writes. The preceding `socket hang up` attempt produced no result and is excluded.
+- Do not count Ask-mode output that cannot inspect the selected Git baseline or deterministic test.
+
 ## Future Promotion Gates
 
 - Every accepted capability has at least one real use case and one failure case.

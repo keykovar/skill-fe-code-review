@@ -6,6 +6,17 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-08-06
+
+### Added
+
+- Added a deterministic Cursor Agent `stream-json` trace auditor that rejects direct oracle reads, direct path requests outside the generated fixture workspace, and explicit or common write attempts before model output is scored.
+
+### Changed
+
+- Tightened runtime evaluation guidance so client mode, trace integrity, unchanged Git state, semantic scoring, and deterministic behavior are independent acceptance gates.
+- Clarified that deleting a later competing owner to restore an established repository owner is `Simplify`, while `Redesign` requires introducing, moving, or materially reshaping an ownership or data-flow boundary.
+
 ## [0.2.1] - 2026-08-05
 
 ### Added
@@ -52,7 +63,8 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 - Chinese output templates and example outputs.
 - Vitest contract tests, skill validation, and GitHub Actions CI.
 
-[Unreleased]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.2...HEAD
+[0.2.2]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/keykovar/skill-fe-code-review/compare/v0.1.0...v0.1.1

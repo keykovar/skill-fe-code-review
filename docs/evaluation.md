@@ -115,6 +115,7 @@ Before release, run paired real-diff cases against this manual oracle:
 | Existing fallback required by an API or runtime contract | The producer contract and consumer behavior are readable | `Keep` | `Keep` | Removing or simplifying the fallback | No design finding |
 | Speculative fallback or case with no producer, contract, recovery, or compatibility need | Baseline, producers, consumers, and runtime inputs are checked | `Simplify` when proven locally; otherwise `Cannot Verify` | `Simplify` | Claiming it is unnecessary without evidence | `Improve` unless demonstrated behavior risk is higher |
 | Derived value duplicated in state and synchronized by an effect | Owner and consumers show the value can be computed without changing timing or behavior | `Simplify` | `Simplify` | Removing state when it owns an independent transition | `Improve` or `Risk` based on demonstrated impact |
+| Later competing owner duplicates an established repository owner and breaks the baseline flow | Baseline, existing owner, competing owner, and affected consumers show that deleting the duplicate restores the established contract without introducing or moving a boundary | `Simplify` when proven in bounded scope; otherwise `Cannot Verify` | `Simplify` | `Redesign` solely because the repair touches multiple modules | `Improve`, `Risk`, or `Blocking` based on demonstrated impact |
 | Local evidence suggests an ownership or data-flow redesign | The Quick scope exposes a structural risk but has not verified cross-module blast radius | `Cannot Verify` plus a Deep Review recommendation | `Redesign` only when broader evidence confirms structural change | `Redesign` in Quick Review, or `Redesign` in Deep Review without cross-module evidence | `Risk` or `Blocking` based on demonstrated impact |
 | Normal implementation with no unjustified complexity | Diff, owner, and relevant contracts support the current design | `Keep` | `Keep` | Any manufactured design finding | No design finding |
 | Contract or caller evidence is unavailable | The missing evidence is named explicitly | `Cannot Verify` | `Cannot Verify` after the appropriate Deep scope is exhausted | Definitive `Keep`, `Simplify`, `Extract`, or `Redesign` | No unsupported finding |
@@ -223,3 +224,21 @@ Pass `--output /absolute/empty/directory` when the generated repository must use
 - Deep creates a clean `candidate` branch whose profile module caches authentication state outside the shared session owner.
 
 Run the printed prompt in the generated repository, compare the response with the semantic oracle, and confirm that `git status --short` is unchanged after review. Do not compare complete model text or call model clients from deterministic CI. Vitest validates fixture construction, seeded behavior, repair behavior, and overwrite protection; runtime model quality remains a manual, client-scoped evaluation.
+
+### Runtime Trace Integrity
+
+Keep the semantic oracle in the evaluator process. Do not include `case.json`, expected findings, expected decisions, or expected recommendations in the model prompt or readable fixture workspace. A matching answer is invalid when the client reads an oracle, an expected output, or source material outside the generated fixture to reconstruct the answer.
+
+For Cursor Agent, capture `--output-format stream-json` output, then audit that trace before scoring the response:
+
+```bash
+pnpm evaluation:trace-audit -- --workspace "$FIXTURE_DIR" "$TRACE_JSONL"
+```
+
+The current auditor supports Cursor Agent `stream-json` tool-call events and fails when a direct tool path or shell path request:
+
+- Reads outside the generated fixture workspace.
+- Reads `case.json`, checked-in fixture sources, evaluation results, or output examples.
+- Uses a write/edit/delete tool or an obvious write-capable shell command.
+
+Use a client mode that can inspect the selected Git baseline and run the fixture's declared deterministic test without authorizing file writes. If a mode blocks read-only Git or the declared test, record those checks as unavailable; do not recover by reading sibling fixture sources or the semantic oracle. Always compare the Git status and relevant file hashes before and after the model run. Trace validity, unchanged files, semantic-oracle matching, and deterministic fixture behavior are separate gates; all applicable gates must pass. Other clients require an equivalent trace adapter or a clearly documented manual evidence boundary; do not feed their unrelated event formats into this auditor and claim a pass.

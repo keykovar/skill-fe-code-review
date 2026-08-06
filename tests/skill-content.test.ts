@@ -397,6 +397,9 @@ describe('skill content', () => {
     expect(skillMd).toContain('Do not extract solely because code looks similar');
     expect(skillMd).toContain('actual producers, consumers, baseline behavior, and runtime inputs');
     expect(skillMd).toContain('Do not recommend simplification that weakens correctness');
+    expect(skillMd).toContain('a later competing owner can be deleted');
+    expect(skillMd).toContain('Cross-module file changes alone do not make that a `Redesign`');
+    expect(skillMd).toContain('instead of returning to an existing one');
     expect(skillMd).toContain('do not perform a repository-wide abstraction audit');
     expect(skillMd).toContain('use `Cannot Verify` and state the missing evidence');
     expect(skillMd).toContain('selected mode is too narrow to support the decision');

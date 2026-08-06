@@ -60,13 +60,13 @@ describe('repository release support', () => {
     expect(validator).toContain('Skill is valid!');
   });
 
-  test('documents stable bilingual installation and compatibility evidence', () => {
+  test('documents the candidate version and stable bilingual installation evidence', () => {
     const packageJson = JSON.parse(readText('package.json')) as { version: string };
     const readme = readText('README.md');
     const chineseReadme = readText('README.zh-CN.md');
     const compatibility = readText('docs/compatibility.md');
 
-    expect(packageJson.version).toBe('0.2.1');
+    expect(packageJson.version).toBe('0.2.2');
     expect(readme).toContain('README.zh-CN.md');
     expect(readme).toContain('--branch v0.2.1');
     expect(readme).toContain('Runtime verified');
@@ -242,11 +242,13 @@ describe('repository release support', () => {
     const versioning = readText('docs/versioning.md');
 
     expect(changelog).toContain('## [Unreleased]');
+    expect(changelog).toContain('## [0.2.2] - 2026-08-06');
     expect(changelog).toContain('## [0.2.1] - 2026-08-05');
     expect(changelog).toContain('## [0.2.0] - 2026-07-31');
     expect(changelog).toContain('## [0.1.1] - 2026-07-23');
     expect(changelog).toContain('## [0.1.0] - 2026-07-23');
-    expect(changelog).toContain('compare/v0.2.1...HEAD');
+    expect(changelog).toContain('compare/v0.2.2...HEAD');
+    expect(changelog).toContain('compare/v0.2.1...v0.2.2');
     expect(changelog).toContain('compare/v0.2.0...v0.2.1');
     expect(changelog).toContain('compare/v0.1.1...v0.2.0');
     expect(changelog).not.toContain('compare/v0.1.1...HEAD');
