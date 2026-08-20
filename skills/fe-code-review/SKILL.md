@@ -21,7 +21,15 @@ description: Review frontend or hybrid app code changes. Use when the user asks 
 
 ## Scope Discovery
 
-Inspect the requested scope. If the user does not specify one, review all uncommitted changes:
+Inspect the requested scope. If the user does not specify one, review all uncommitted changes. Collect the inventory once.
+
+When the requested scope is all uncommitted changes, `scripts/collect-review-context.mjs` is available inside the authorized Skill/workspace boundary, and Node.js is available, run it instead of issuing separate Git inventory commands:
+
+```bash
+node <skill-directory>/scripts/collect-review-context.mjs --workspace "$PWD"
+```
+
+The script is read-only and returns the repository root, `HEAD`, status, unstaged stat and patch, staged patch, untracked files, `git diff --check`, and CodeGraph presence. It always collects the complete uncommitted working tree. Do not run it for staged-only, commit, merge commit, branch, PR, range, or path-scoped reviews because that would read changes outside the requested scope. Use the matching bounded Git commands for those scopes. For an all-uncommitted review, reuse the collector output and do not rerun equivalent commands. If the script cannot be executed within the authorized boundary, collect the same evidence manually in one read-only batch when the client supports it:
 
 ```bash
 git status --short
@@ -96,6 +104,21 @@ Inspect project files and load only matching references:
 - Hybrid/WebView: load `references/hybrid-webview.md` for bridges, native contracts, WebView, app shell, storage, keyboard, safe area, audio, or video.
 - Release risk: load `references/release-risk.md` for Deep Review, release branches, feature flags, rollout, monitoring, rollback, or high-risk flows.
 
+## Quick/Fix Evidence Discipline
+
+Apply these required execution rules to Quick Review and Fix Review. They reduce repeated exploration without reducing required coverage:
+
+- Use one bounded read-only round trip per evidence group when the client supports batching: selected Skill/reference files; initial context collector or its manual fallback; changed and baseline source plus direct-consumer searches; and remaining applicable validation. Split a group only to prevent an unmanageably large result or when the first result exposes a new unresolved contract. Do not concatenate unrelated large files merely to lower the command count.
+- Freeze and reuse the initial Git inventory. In a read-only review, do not repeat status, name-status, stat, staged diff, untracked-file, or unchanged diff queries at the end. A host evaluator, not the reviewing model, performs any independent post-run integrity comparison.
+- Read each selected instruction, diff, baseline file, and overlapping source range once. Prefer one line-numbered read that covers the needed range. Before any repeated read or search, identify the specific unresolved evidence question; skip the command when existing output already answers it.
+- After the changed files and direct affected paths are known, do not run broad `rg` searches from `.` or an unfiltered `rg --files`/repository file inventory. Scope searches to the changed owner, named symbols, and directly affected paths; expand only when a concrete match exposes another consumer or contract.
+- Detect technology from changed file types, imports, and at most one relevant manifest read. Inspect package, lock, build, or TypeScript configuration in more depth only when it changed or when a finding depends on its resolved version or compiler/build contract. Do not probe absent config or lockfiles merely to complete a generic checklist.
+- Search once for directly relevant tests using paths that are known to exist or one bounded filename-glob query. If that search establishes no applicable test, record the gap; do not retry guessed test-directory names or alternate repository-wide patterns without new evidence.
+- Combine independent expression or deterministic checks that exercise the same behavior contract into one validation round trip. Do not rerun the diff solely to prepare the final explanation.
+- When the user or evaluator explicitly declares that a synthetic `HEAD` represents the original problem baseline, verify the current `HEAD` and fix diff, then use that declared baseline. Record unavailable original commit objects as an evidence limit instead of probing each object when closure does not depend on them.
+- Continue beyond these groups whenever evidence conflicts, a changed condition remains unclassified, a directly affected contract is unresolved, or a finding still lacks its trigger and impact. These are completeness rules, not a hard command or token ceiling.
+- Stop exploring when the requested baseline and diff are established, every changed-condition ledger entry in scope is accounted for, each reported finding has sufficient evidence, required validation is completed or explicitly bounded, and the selected output contract can be filled consistently. Do not broaden searches merely to increase subjective confidence.
+
 ## Before/After Behavior Analysis
 
 Perform this analysis in every mode. Compare behavior, not only changed lines:
@@ -103,10 +126,12 @@ Perform this analysis in every mode. Compare behavior, not only changed lines:
 1. Identify the behavior before the change and the intended behavior after it.
 2. Detect removed, weakened, or unintentionally preserved behavior.
 3. Check missing branches, guards, fallbacks, cleanup, cancellation, retries, and error handling.
-4. Check changed conditions, defaults, ordering, return values, state transitions, and side effects.
-5. Trace affected callers, consumers, events, API contracts, storage, cache, and runtime data shapes.
-6. Confirm behavior outside the requested change remains invariant where required.
-7. Inspect deleted or moved code and relevant untracked files; do not review only added lines.
+4. Before prioritizing findings, build a compact internal changed-condition ledger for every condition, guard, fallback, default, and early return that was added, changed, moved, split, or retained inside a modified decision block in the requested diff. A textually unchanged guard remains in scope when its surrounding control flow, return behavior, or state writes changed. Compare which runtime values take each branch before and after; do not output the ledger by default.
+5. In that ledger, distinguish absence (`null` or `undefined`) from valid falsy values such as `0`, `false`, or an empty string. For state writes behind those branches, trace transitions from a prior truthy or non-empty value into each valid falsy value through directly affected consumers; do not inspect only the current value in isolation.
+6. Account for every ledger entry before finalizing: classify it as behavior-preserving, an evidence gap, or a finding. Use behavior-preserving only after verifying that the preserved behavior itself remains correct for the visible runtime contract and state transitions. If a modified decision block retains a material defect, report it and identify it as a retained defect rather than a regression introduced by the diff. Do not omit an affected changed condition merely because another finding has higher severity.
+7. Trace affected callers, consumers, events, API contracts, storage, cache, and runtime data shapes.
+8. Confirm behavior outside the requested change remains invariant where required.
+9. Inspect deleted or moved code and relevant untracked files; do not review only added lines.
 
 Report material behavior differences as Blocking or Risk findings. In Quick Review, keep the output compact and record the baseline and relevant behavior delta under scope, findings, or evidence. In Deep Review, record before, after, preserved constraints, and missing or removed behavior in the change map. In Fix Review, compare both the original issue behavior and the fix behavior, then run a focused regression scan around affected call paths.
 
@@ -136,7 +161,10 @@ Evaluate Quick and Deep Review changes for the smallest justified complexity sur
 - Prefer an existing repository capability when it provides the required semantics without increasing coupling or obscuring data flow.
 - Check actual producers, consumers, baseline behavior, and runtime inputs before calling a case, fallback, state, or defensive path unnecessary.
 - Do not recommend simplification that weakens correctness, cleanup, compatibility, recovery, observability, or rollback safety.
-- Do not claim global optimality. Judge only the inspected scope. Use `Keep` when the current design is justified. Use `Simplify` when local complexity can be removed within the current architecture, or when a later competing owner can be deleted to restore and reuse an already-established repository owner and baseline data flow. Cross-module file changes alone do not make that a `Redesign`. Use `Extract` for a proven shared rule that needs one owner. Use `Redesign` in Deep Review only when the safe fix must introduce, move, or materially reshape an ownership or data-flow boundary instead of returning to an existing one. Use `Cannot Verify` when evidence is insufficient or the selected mode is too narrow to support the decision.
+- Do not claim global optimality. Judge only the inspected scope. Classify the minimum sufficient safe repair, not the breadth, number, or severity of findings. Use `Keep` when the current design is justified. Use `Cannot Verify` when evidence is insufficient or the selected mode is too narrow to support the decision.
+- Use `Simplify` when the safe repair preserves existing module and ownership boundaries while removing local complexity or restoring one established owner and baseline data flow. Consolidating actions within an existing store or owner, replacing an index with a stable ID, deriving rather than duplicating state, serializing or deduplicating requests, and snapshotting mutable data inside the current flow are `Simplify`, even when they fix several cross-module or high-severity findings.
+- Use `Extract` for a proven shared rule that needs one owner.
+- Use `Redesign` in Deep Review only when the minimum safe repair must replace, move, or materially reshape an ownership or data-flow boundary. Before choosing it, identify the existing boundary that cannot remain and explain why a local repair cannot preserve it safely. Cross-module impact, payment or other business criticality, multiple findings, or creation of one coordinating action inside the existing owner do not prove `Redesign`. If the proposed repair keeps the existing modules and authoritative owner, use `Simplify`.
 - In Quick Review, inspect the diff, its immediate owner, and directly affected callers. Report only clear, local, evidence-backed unnecessary complexity; do not perform a repository-wide abstraction audit solely for this section. If that bounded scope cannot establish whether complexity is justified, use `Cannot Verify` and state the missing evidence.
 - In Deep Review, inspect affected callers and consumers, existing repository capabilities, abstraction ownership, and runtime contracts. Compare the current design with a simpler viable alternative when one exists, and explain the correctness, stability, coupling, and maintenance tradeoff.
 
@@ -195,5 +223,7 @@ Use Blocking when an issue may cause a runtime error, white screen, infinite loo
 Also use Blocking when a changed tracked file imports or references an untracked file that is not included in the submit scope.
 
 Use Risk when an issue may cause edge-case bugs, race conditions, state inconsistency, cache inconsistency, poor error handling, performance degradation, or demonstrated cross-module coupling or drift that creates behavior, regression, or delivery risk.
+
+Also use Risk when evidence shows analytics or telemetry will attribute a real production event to the wrong product, user action, state, or outcome. Do not reduce demonstrated business or diagnostic misattribution to Improve merely because the visible UI still works.
 
 Use Improve for local maintainability cost without demonstrated behavior risk, readability, minor duplication, local simplification, better naming, better type expression, better folder placement, or non-blocking cleanup.

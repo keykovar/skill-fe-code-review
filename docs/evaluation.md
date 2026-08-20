@@ -2,7 +2,9 @@
 
 Use this checklist before publishing or changing `fe-code-review`.
 
-For the v0.3.0 real-project baseline, use the [Real-project Evaluation Plan](v0.3.0-real-project-evaluation-plan.md) and complete one [Real-project Evaluation Record](real-project-evaluation-record-template.md) per model run. These documents add measurement and recording rules; they do not change the public review output contract.
+For the v0.3.0 real-project baseline, use the [Real-project Evaluation Plan](v0.3.0-real-project-evaluation-plan.md) and complete one [Real-project Evaluation Record](real-project-evaluation-record-template.md) per model run. The completed matrix and prospective Fix replacement window are summarized in [v0.3.0 Candidate Evaluation Results](evaluation-results/v0.3.0-candidate.md) and approve the exact candidate for stable release preparation while retaining every historical failure. These documents add measurement and recording rules; they do not change the public review output contract.
+
+The bundled `skills/fe-code-review/scripts/collect-review-context.mjs` helper combines the stable read-only Git/CodeGraph inventory into one model tool invocation. Deterministic tests must prove its output before runtime evaluation. When invoked, it can reduce client round trips; it does not reduce the required review scope or replace post-run trace and workspace-integrity auditing. Record collector adoption from the trace instead of assuming that an available script was used: model guidance alone does not guarantee invocation.
 
 ## Scope
 
@@ -239,16 +241,34 @@ Run the printed prompt in the generated repository, compare the response with th
 
 Keep the semantic oracle in the evaluator process. Do not include `case.json`, expected findings, expected decisions, or expected recommendations in the model prompt or readable fixture workspace. A matching answer is invalid when the client reads an oracle, an expected output, or source material outside the generated fixture to reconstruct the answer.
 
-For Cursor Agent, capture `--output-format stream-json` output, then audit that trace before scoring the response:
+For Cursor Agent, capture `--output-format stream-json`. For Codex CLI, capture `codex exec --json`. Before either run, store the exact workspace status outside the model-readable workspace, then audit the trace and status together:
 
 ```bash
-pnpm evaluation:trace-audit -- --workspace "$FIXTURE_DIR" "$TRACE_JSONL"
+git -C "$FIXTURE_DIR" status --short --untracked-files=all > "$STATUS_BEFORE"
+
+pnpm evaluation:trace-audit -- \
+  --workspace "$FIXTURE_DIR" \
+  --baseline-status "$STATUS_BEFORE" \
+  --elapsed-seconds "$ELAPSED_SECONDS" \
+  "$TRACE_JSONL"
 ```
 
-The current auditor supports Cursor Agent `stream-json` tool-call events and fails when a direct tool path or shell path request:
+For a Quick or Fix case whose requested scope is the complete uncommitted working tree, add `--require-context-collector`. Enable this only after confirming that the bundled collector and Node.js are available inside the authorized workspace. The optional gate requires exactly one `collect-review-context.mjs` invocation and rejects separate `git status`, `git diff`, untracked-file inventory, or equivalent `HEAD`/repository-root reads already supplied by the collector. Do not enable it for staged-only, commit, branch, PR, range, or path-scoped reviews.
+
+In the model prompt for that case, state that the collector must run exactly once and that its output replaces separate Git inventory and `git diff --check`. List other bounded read-only Git commands only for evidence the collector does not provide, such as `git show HEAD:<path>` for a baseline file. Do not present the collector, unrestricted read-only Git inventory, and `git diff --check` as parallel alternatives. If collector execution fails, preserve the failed run and adjudicate the contract explicitly instead of silently rewriting the prompt or retrying.
+
+For Codex CLI evaluation through an external provider, set both `features.plugins=false` and `features.remote_plugin=false`. These are independent controls: `remote_plugin=false` alone can still leave the plugin manager active and allow a featured-catalog startup request. Before any non-public source run, execute a source-free probe outside the repository with the same client/provider and isolation overrides, a fixed non-sensitive prompt, no tools, and zero HTTP/SSE retries. Use a punctuation-free ASCII sentinel such as `CLIENT_ISOLATION_OK`, require exactly one agent message whose decoded text matches it byte-for-byte, and freeze that contract before execution. Require a successful response plus stderr and trace with no plugin, marketplace, featured-catalog, ChatGPT endpoint, MCP, or other undisclosed network activity. Any response mismatch fails the precondition; do not reinterpret or retry it after observing output. Record the probe separately; it is a client-isolation precondition, not model-quality evidence and not authorization to transmit source.
+
+The current auditor supports Cursor Agent `stream-json` tool-call events plus Codex CLI `command_execution` and `mcp_tool_call` events. Git command execution is fail-closed: only recognized read-only subcommands and read-only `config` or `branch --show-current` forms pass. MCP is also fail-closed. Each evaluator-approved MCP tool must be declared before the run with a repeated `--allow-mcp <server/tool>` argument; declaration does not bypass write-tool or path checks. The auditor reports MCP failures separately and fails when a direct tool path, shell path request, MCP call, or final workspace status:
 
 - Reads outside the generated fixture workspace.
 - Reads `case.json`, checked-in fixture sources, evaluation results, or output examples.
 - Uses a write/edit/delete tool or an obvious write-capable shell command.
+- Uses an unapproved MCP tool, an MCP write tool, malformed MCP arguments, or an MCP path outside the fixture.
+- Differs from the frozen pre-run Git status, including client-generated untracked files.
 
-Use a client mode that can inspect the selected Git baseline and run the fixture's declared deterministic test without authorizing file writes. If a mode blocks read-only Git or the declared test, record those checks as unavailable; do not recover by reading sibling fixture sources or the semantic oracle. Always compare the Git status and relevant file hashes before and after the model run. Trace validity, unchanged files, semantic-oracle matching, and deterministic fixture behavior are separate gates; all applicable gates must pass. Other clients require an equivalent trace adapter or a clearly documented manual evidence boundary; do not feed their unrelated event formats into this auditor and claim a pass.
+For Playwright MCP, predeclare only the exact tools justified by the scenario, for example `--allow-mcp playwright/browser_navigate`. Configure an evaluator-owned artifact directory outside `$FIXTURE_DIR`, for example `--output-dir "$BROWSER_ARTIFACT_DIR" --output-mode stdout`. `--isolated` keeps the browser profile ephemeral; it does not guarantee that console logs, snapshots, screenshots, or other MCP response artifacts stay out of the reviewed workspace. Tool approval proves only that the invocation was expected; separately verify the local URL, isolated state, output directory, and absence of production side effects.
+
+Use a client mode that can inspect the selected Git baseline and run the fixture's declared deterministic test without authorizing file writes. If a mode blocks read-only Git or the declared test, record those checks as unavailable; do not recover by reading sibling fixture sources or the semantic oracle. Always compare the Git status and relevant file hashes before and after the model run. Trace validity, unchanged files, semantic-oracle matching, deterministic fixture behavior, and client network-isolation are separate gates; all applicable gates must pass. Other clients require an equivalent trace adapter or a clearly documented manual evidence boundary; do not feed their unrelated event formats into this auditor and claim a pass.
+
+The audit report records command and MCP counts, supplied elapsed seconds, final-response characters and lines, and Codex token usage when present. Treat total and cached input as client/model observations rather than Skill-only cost. Compare uncached input, command count, elapsed time, and output size against an unchanged prompt/workspace/model/provider baseline, while separately preserving recall, precision, severity, closure, recommendation, output-contract, and read-only gates. An efficiency change fails when any required quality or safety gate regresses, even if it is faster.

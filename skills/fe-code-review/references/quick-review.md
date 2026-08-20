@@ -10,6 +10,8 @@ Use one compact decision: `Keep`, `Simplify`, `Extract`, or `Cannot Verify`. `Ke
 
 Do not start Playwright or other browser automation by default. When the conditional browser evidence gate in `SKILL.md` is satisfied and one browser-observable path would materially affect the submit recommendation, verify at most that one critical path. Otherwise keep the review static and record required runtime evidence as unverified or `Cannot Verify`.
 
+Apply the Quick/Fix evidence discipline in `SKILL.md`. After the initial inventory, inspect the diff, its immediate owner, and only the callers, consumers, contracts, or tests needed to classify changed conditions and findings. Expand beyond that bounded path only when concrete evidence exposes a wider affected contract; do not perform broad file inventories or repeat searches as a substitute for an unresolved hypothesis.
+
 In Quick Review, `Cannot Verify` describes evidence status, not finding severity. Missing runtime or external evidence alone is not a finding. When local static evidence supports a finding, keep its demonstrated Blocking, Risk, or Improve severity and mark only the unverified evidence portion `Cannot Verify`. This does not change the `Design / Simplify` decision vocabulary.
 
 Apply the recommendation matrix in `SKILL.md` after classifying findings. In particular, an Improve-only review uses `可以提交` and describes the improvement as optional and non-blocking; do not add `建议提交前` or another pre-submit condition in the summary or final recommendation.

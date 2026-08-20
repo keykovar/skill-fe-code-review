@@ -145,6 +145,78 @@ describe('skill content', () => {
     expect(deepReview).toContain('缺失 / 移除行为');
   });
 
+  test('defines evidence reuse and completeness stop conditions for Quick and Fix', () => {
+    const evidenceRules = markdownSection(skillMd, 'Quick/Fix Evidence Discipline');
+
+    expect(skillMd).toContain('scripts/collect-review-context.mjs');
+    expect(skillMd).toContain('When the requested scope is all uncommitted changes');
+    expect(skillMd).toContain('instead of issuing separate Git inventory commands');
+    expect(skillMd).toContain('The script is read-only');
+    expect(skillMd).toContain('It always collects the complete uncommitted working tree');
+    expect(skillMd).toContain('Do not run it for staged-only, commit, merge commit, branch, PR');
+    expect(skillMd).toContain('Use the matching bounded Git commands for those scopes');
+    expect(skillMd).toContain('If the script cannot be executed within the authorized boundary');
+    expect(evidenceRules).toContain('one bounded read-only round trip per evidence group');
+    expect(evidenceRules).toContain('Freeze and reuse the initial Git inventory');
+    expect(evidenceRules).toContain('do not repeat status, name-status, stat');
+    expect(evidenceRules).toContain('Read each selected instruction, diff, baseline file');
+    expect(evidenceRules).toContain('specific unresolved evidence question');
+    expect(evidenceRules).toContain('do not run broad `rg` searches from `.`');
+    expect(evidenceRules).toContain('unfiltered `rg --files`/repository file inventory');
+    expect(evidenceRules).toContain('at most one relevant manifest read');
+    expect(evidenceRules).toContain('Search once for directly relevant tests');
+    expect(evidenceRules).toContain('do not retry guessed test-directory names');
+    expect(evidenceRules).toContain('Combine independent expression or deterministic checks');
+    expect(evidenceRules).toContain('Do not rerun the diff solely to prepare the final explanation');
+    expect(evidenceRules).toContain('synthetic `HEAD` represents the original problem baseline');
+    expect(evidenceRules).toContain('completeness rules, not a hard command or token ceiling');
+    expect(evidenceRules).toContain('Stop exploring when');
+    expect(quickReview).toContain('only the callers, consumers, contracts, or tests needed');
+    expect(fixReview).toContain('map every previous finding to its original trigger');
+    expect(fixReview).toContain('scan only those affected paths for regressions introduced by the fix');
+    expect(fixReview).toContain('Do not inventory unrelated source trees');
+  });
+
+  test('checks valid falsy transitions and production attribution severity', () => {
+    const behaviorRules = markdownSection(skillMd, 'Before/After Behavior Analysis');
+    const severityRules = markdownSection(skillMd, 'Severity Rules');
+
+    expect(behaviorRules).toContain('build a compact internal changed-condition ledger');
+    expect(behaviorRules).toContain('added, changed, moved, split, or retained');
+    expect(behaviorRules).toContain('A textually unchanged guard remains in scope');
+    expect(behaviorRules).toContain('surrounding control flow, return behavior, or state writes changed');
+    expect(behaviorRules).toContain('do not output the ledger by default');
+    expect(behaviorRules).toContain('distinguish absence (`null` or `undefined`)');
+    expect(behaviorRules).toContain('valid falsy values such as `0`, `false`, or an empty string');
+    expect(behaviorRules).toContain('prior truthy or non-empty value');
+    expect(behaviorRules).toContain('Account for every ledger entry before finalizing');
+    expect(behaviorRules).toContain('preserved behavior itself remains correct');
+    expect(behaviorRules).toContain('modified decision block retains a material defect');
+    expect(behaviorRules).toContain('retained defect rather than a regression introduced by the diff');
+    expect(behaviorRules).toContain('another finding has higher severity');
+    expect(severityRules).toContain('analytics or telemetry will attribute a real production event');
+    expect(severityRules).toContain('demonstrated business or diagnostic misattribution');
+    expect(severityRules).toContain('visible UI still works');
+  });
+
+  test('requires proof before escalating Simplify to Redesign', () => {
+    const designRules = markdownSection(skillMd, 'Minimal Sufficient Design');
+
+    expect(designRules).toContain('Classify the minimum sufficient safe repair');
+    expect(designRules).toContain('not the breadth, number, or severity of findings');
+    expect(designRules).toContain('preserves existing module and ownership boundaries');
+    expect(designRules).toContain('Consolidating actions within an existing store or owner');
+    expect(designRules).toContain('replacing an index with a stable ID');
+    expect(designRules).toContain('serializing or deduplicating requests');
+    expect(designRules).toContain('snapshotting mutable data inside the current flow');
+    expect(designRules).toContain('identify the existing boundary that cannot remain');
+    expect(designRules).toContain('why a local repair cannot preserve it safely');
+    expect(designRules).toContain('creation of one coordinating action inside the existing owner do not prove');
+    expect(designRules).toContain('If the proposed repair keeps the existing modules and authoritative owner');
+    expect(deepReview).toContain('proposed repair, not to the apparent breadth of the defects');
+    expect(deepReview).toContain('classify it as `Simplify`, not `Redesign`');
+  });
+
   test('defines Fix Review closure statuses and regression reporting', () => {
     expect(skillMd).toContain('Use Fix Review when');
     expect(skillMd).toContain('Resolved：已解决');
@@ -397,9 +469,10 @@ describe('skill content', () => {
     expect(skillMd).toContain('Do not extract solely because code looks similar');
     expect(skillMd).toContain('actual producers, consumers, baseline behavior, and runtime inputs');
     expect(skillMd).toContain('Do not recommend simplification that weakens correctness');
-    expect(skillMd).toContain('a later competing owner can be deleted');
-    expect(skillMd).toContain('Cross-module file changes alone do not make that a `Redesign`');
-    expect(skillMd).toContain('instead of returning to an existing one');
+    expect(skillMd).toContain('restoring one established owner and baseline data flow');
+    expect(skillMd).toContain('Cross-module impact');
+    expect(skillMd).toContain('do not prove `Redesign`');
+    expect(skillMd).toContain('minimum safe repair must replace, move, or materially reshape');
     expect(skillMd).toContain('do not perform a repository-wide abstraction audit');
     expect(skillMd).toContain('use `Cannot Verify` and state the missing evidence');
     expect(skillMd).toContain('selected mode is too narrow to support the decision');

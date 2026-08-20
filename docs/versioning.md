@@ -58,3 +58,5 @@ Before `1.0.0`, minor releases may still evolve the contract. Breaking behavior 
 - Stable: `v0.2.2`
 - Previous stable: `v0.2.1`
 - v0.2.2 status: fresh-tag deterministic validation and Codex/Cursor Quick runtime checks passed; candidate Cursor Deep/Fix evidence passed; Claude Code remains `Cannot Verify`
+- Release candidate: `v0.3.0`
+- v0.3.0 candidate status: exact-candidate Quick, Deep, and prospective Fix acceptance plus deterministic release-readiness validation passed; Codex runtime is verified, while Cursor and Claude Code exact-candidate runtime remain `Cannot Verify`

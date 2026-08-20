@@ -121,6 +121,16 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 由于当前没有有效的 Claude Code 运行时凭据，Claude Code 明确记录为 `Cannot Verify：无法验证`，不会被描述为运行通过。详细证据和限制见[兼容性说明](docs/compatibility.md)、[v0.2.2 评测结果](docs/evaluation-results/v0.2.2.md)与 [v0.2.2 发布后冒烟结果](docs/evaluation-results/v0.2.2-post-release.md)。
 
+### v0.3.0 候选版本
+
+| 客户端 | 候选版本证据 | 状态 |
+| --- | --- | --- |
+| Codex CLI 0.146.0 | exact-candidate Quick、三数据集 Deep 与前瞻 Fix `3 / 3` 验收通过，并具备已审计的只读和客户端隔离证据 | 运行时已验证 |
+| Cursor | 结构与适配器契约通过；未针对 exact-candidate 重新执行运行时验证 | `Cannot Verify：无法验证` |
+| Claude Code | 结构与适配器契约通过；当前无可用运行时凭据 | `Cannot Verify：无法验证` |
+
+候选版本已经 `Go`，可以进入发布准备，但当前稳定版本仍是 `v0.2.2`。v0.3.0 正式发布前，稳定安装继续固定到 `v0.2.2`。完整证据见 [v0.3.0 候选评测结果](docs/evaluation-results/v0.3.0-candidate.md)。
+
 ## 使用方式
 
 Quick Review：
@@ -231,6 +241,7 @@ Vitest 负责验证仓库结构、适配器、引用文件和必需审查契约�
 - [兼容性说明](docs/compatibility.md)
 - [评测协议](docs/evaluation.md)
 - [v0.3.0 真实项目评测计划](docs/v0.3.0-real-project-evaluation-plan.md)
+- [v0.3.0 候选评测结果](docs/evaluation-results/v0.3.0-candidate.md)
 - [真实项目评测记录模板](docs/real-project-evaluation-record-template.md)
 - [v0.2.0 评测结果](docs/evaluation-results/v0.2.0.md)
 - [v0.2.0 发布后冒烟结果](docs/evaluation-results/v0.2.0-post-release.md)

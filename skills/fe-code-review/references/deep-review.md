@@ -8,6 +8,8 @@ For `Design / Simplify`, assess the requirements, baseline behavior, affected ca
 
 When a simpler viable alternative exists, compare it with the current design and state the correctness, stability, coupling, and maintenance tradeoff. Use `Keep`, `Simplify`, `Extract`, `Redesign`, or `Cannot Verify`; do not manufacture an issue when the current implementation is already the minimal sufficient design.
 
+Apply the `Minimal Sufficient Design` decision test in `SKILL.md` to the proposed repair, not to the apparent breadth of the defects. When the repair keeps the existing modules and authoritative owner and only consolidates behavior inside that owner, classify it as `Simplify`, not `Redesign`.
+
 Every `Simplify`, `Extract`, or `Redesign` decision must cite an actionable issue reported once under its applicable severity section. Do not repeat the full finding in `Design / Simplify`.
 
 When the conditional browser evidence gate in `SKILL.md` is satisfied and browser-observable behavior is material to the review, verify the primary user path and at most one additional high-risk path supported by code, diff, requirement, incident, or test evidence. Do not invent an edge case merely to fill the second path. Record any required WebView, Native, device, backend, deployment, or production validation separately as unverified.

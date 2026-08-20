@@ -51,6 +51,9 @@ Use one copy of this template per model run. Keep evaluator-only expectations an
 - Client and version: `[fill]`
 - Model/provider shown by client: `[fill or not observable]`
 - User-level Memory/plugins/rules loaded: `[fill or unknown]`
+- Codex plugin isolation: `[features.plugins=false and features.remote_plugin=false | not applicable | unknown]`
+- Source-free client-isolation probe: `Pass | Fail | Not applicable | Not run`
+- Disclosed network destinations and observed startup destinations: `[fill]`
 - Exact prompt:
 
 ```text
@@ -59,9 +62,13 @@ Use one copy of this template per model run. Keep evaluator-only expectations an
 
 - Allowed validation commands: `[fill]`
 - Commands actually run: `[fill]`
+- Context collector required: `Yes | No`
+- Context collector calls: `[n or trace unavailable]`
+- Equivalent Git inventory rereads: `[none, commands, or trace unavailable]`
 - Skipped checks and reasons: `[fill]`
 - Browser evidence applicable: `Yes | No`
 - Browser applicability reason: `[fill]`
+- Browser artifact output directory: `[evaluator-owned path outside review workspace or not applicable]`
 
 ## Evaluator-only Expectations
 
@@ -98,6 +105,8 @@ Do not place this section in the model prompt or readable review workspace.
 - Existing unrelated changes: `[fill or none]`
 - Trace capture enabled: `Yes | No | Unsupported`
 - Trace adapter: `[fill or none]`
+- Predeclared MCP tools: `[exact server/tool pairs or none]`
+- Frozen Git status artifact: `[authorized evaluator-owned path or none]`
 
 ## AI Output Summary
 
@@ -166,10 +175,14 @@ Complete only for Fix Review.
 
 - Git status unchanged: `Yes | No | Cannot Verify`
 - Relevant file hashes unchanged: `Yes | No | Cannot Verify`
+- Client-generated workspace artifacts: `None | Detected and cleaned | Detected and retained | Cannot Verify`
 - Write/edit/delete tool request: `None | Detected | Trace unavailable`
 - Dependency install, formatter, branch change, commit, or push: `None | Detected | Cannot Verify`
 - Oracle or unauthorized-path read: `None | Detected | Trace unavailable`
+- Context collector execution contract: `Pass | Fail | Not applicable | Trace unavailable`
 - Trace audit result: `Pass | Fail | Unsupported | Not captured`
+- Client network-isolation: `Pass | Fail | Cannot Verify | Not applicable`
+- MCP calls and failures: `[completed/failed counts or unsupported]`
 - Integrity evidence: `[fill]`
 
 ## Metrics
@@ -190,9 +203,17 @@ Record numerator and denominator, not only percentages.
 | Scope or oracle violations | `[n]` |
 | Fix closure accuracy | `[correct / previous findings = % or n/a]` |
 | Fix scope expansion | `Yes | No | n/a` |
-| Elapsed time | `[fill or not reliable]` |
-| Input/output tokens | `[fill, not observable, or not Skill-attributable]` |
-| Tool calls and retries | `[fill]` |
+| Elapsed seconds | `[fill or unavailable]` |
+| Input tokens | `[fill or unavailable; not Skill-attributable by itself]` |
+| Cached input tokens | `[fill or unavailable]` |
+| Uncached input tokens | `[input minus cached input, or unavailable]` |
+| Output tokens | `[fill or unavailable]` |
+| Reasoning output tokens | `[fill or unavailable]` |
+| Command executions | `[fill or unsupported]` |
+| MCP calls and failures | `[fill or unsupported]` |
+| Final response characters and lines | `[fill or unavailable]` |
+| Retries | `[fill]` |
+| Quality and safety comparison summary | `[recall/precision/severity/closure/recommendation/output/read-only summary]` |
 
 ## Final Disposition
 

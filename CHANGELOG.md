@@ -6,9 +6,25 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 
 ## [Unreleased]
 
+## [0.3.0] - Release Candidate
+
 ### Added
 
 - Recorded fresh-tag v0.2.2 post-release smoke evidence for Codex and Cursor.
+- Added Codex CLI command/MCP trace auditing and frozen Git-status comparison for detecting client-generated evaluation artifacts.
+- Hardened trace auditing with fail-closed Git and MCP authorization, MCP path inspection, and quoted-output redirect detection.
+- Published the sanitized v0.3.0 exact-candidate evaluation window, including Quick/Fix efficiency evidence, a synthetic Quick `Keep` pass, and the retained stable-release `No-Go` decision.
+- Recorded a current-hash real-project Deep repeat pair under the hardened fail-closed trace auditor while retaining `No-Go` until Quick, Fix, and remaining dataset gates are complete.
+- Recorded a current-hash real-project Quick no-finding pass with exact one-time collector adoption, zero findings, `Keep`, and a submit recommendation; retained `No-Go` pending Quick repeat, Fix, and remaining Deep coverage.
+- Recorded an unchanged repeat of the current-hash Quick no-finding case with stable semantics, severity, design, recommendation, output contract, collector adoption, and read-only behavior; current-candidate Quick acceptance is complete.
+- Recorded the first current-hash Fix run: closure quality and read-only safety passed, while mandatory collector adoption and focused execution discipline failed; retained the result and `No-Go` pending an unchanged repeat and second Fix chain.
+- Recorded the exact unchanged current-hash Fix repeat: semantic and safety behavior remained stable and collector adoption recovered, but equivalent Git evidence was still reread; stopped unchanged reruns and retained `No-Go` pending remediation analysis and the second Fix chain.
+- Added a dependency-free, read-only review-context collector that combines Git scope, diff, integrity, and CodeGraph evidence in one invocation.
+- Added an opt-in trace-audit gate for complete-uncommitted Quick/Fix evaluations that requires exactly one context-collector call and rejects equivalent Git inventory rereads without changing the Skill candidate content.
+- Recorded a second distinct current-hash Fix chain with correct closure, severity, zero New Regression, one-time collector use, zero equivalent rereads, and unchanged workspace integrity; retained `No-Go` because the client made an undisclosed plugin-catalog startup request.
+- Added a Codex external-evaluation isolation preflight that requires both plugin feature flags to be disabled and a source-free probe to show no undisclosed startup endpoint before private source is transmitted.
+- Recorded a second distinct exact-candidate Deep dataset on a public React/JavaScript package-entry change: required Blocking recall, `Simplify`, browser evidence, output contract, read-only integrity, Playwright artifact isolation, and corrected client network isolation all passed; retained `No-Go` pending the third distinct Deep dataset and unresolved historical Fix execution/isolation gates.
+- Completed the frozen v0.3.0 prospective Fix replacement window at `3 / 3`, including an unchanged repeat with stable closure, severity, New Regression, recommendation, collector, read-only, integrity, and client-isolation behavior; the exact candidate is now `Go` for release while historical failures remain recorded.
 
 ### Fixed
 
@@ -73,6 +89,7 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 - Vitest contract tests, skill validation, and GitHub Actions CI.
 
 [Unreleased]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.2...HEAD
+[0.3.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.2...HEAD
 [0.2.2]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.1.1...v0.2.0

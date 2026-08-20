@@ -40,6 +40,7 @@ describe('repository release support', () => {
     expect(evaluation).toContain('quick_validate.py skills/fe-code-review');
     expect(evaluation).toContain('总体结论');
     expect(evaluation).toContain('Evidence');
+    expect(evaluation).toContain('--require-context-collector');
     expect(exists('examples/outputs/fix-review.zh-CN.md')).toBe(true);
   });
 
@@ -68,9 +69,19 @@ describe('repository release support', () => {
       'Minimal-design accuracy',
       'Read-only violations',
       'Fix scope expansion',
+      'features.plugins=false',
+      'features.remote_plugin=false',
+      'source-free probe',
+      'CLIENT_ISOLATION_OK',
+      'Prospective Fix Replacement Window',
+      'exactly three source-bearing runs',
+      'byte-identical unchanged repeat',
     ]) {
       expect(plan).toContain(phrase);
     }
+
+    expect(plan).toContain('retain every failed run');
+    expect(plan).toContain('stops the replacement window at `No-Go`');
 
     expect(roadmap).toContain(
       'Token reduction or plugin-eval cost alone is not sufficient evidence',
@@ -84,6 +95,8 @@ describe('repository release support', () => {
       'Output-contract Verification',
       'Fix Review Verification',
       'Post-run Integrity',
+      'Context collector execution contract',
+      'Client network-isolation',
       '`Valid`, `False Positive`, or `Cannot Verify`',
     ]) {
       expect(record).toContain(phrase);
@@ -113,18 +126,23 @@ describe('repository release support', () => {
     const chineseReadme = readText('README.zh-CN.md');
     const compatibility = readText('docs/compatibility.md');
 
-    expect(packageJson.version).toBe('0.2.2');
+    expect(packageJson.version).toBe('0.3.0');
     expect(readme).toContain('README.zh-CN.md');
     expect(readme).toContain('--branch v0.2.2');
     expect(readme).toContain('Runtime verified');
+    expect(readme).toContain('### v0.3.0 Release Candidate');
+    expect(readme).toContain('Stable installation remains pinned to `v0.2.2`');
     expect(readme).toContain('part of stable `v0.2.0`');
     expect(chineseReadme).toContain('安装稳定版本');
     expect(chineseReadme).toContain('--branch v0.2.2');
     expect(chineseReadme).toContain('Cannot Verify：无法验证');
+    expect(chineseReadme).toContain('### v0.3.0 候选版本');
+    expect(chineseReadme).toContain('稳定安装继续固定到 `v0.2.2`');
     expect(chineseReadme).toContain('属于稳定版 `v0.2.0`');
     expect(compatibility).toContain('Structural verified');
     expect(compatibility).toContain('Stable evidence baseline: [`v0.2.2`]');
-    expect(compatibility).not.toContain('Candidate under test:');
+    expect(compatibility).toContain('Candidate under test: `v0.3.0` working tree');
+    expect(compatibility).toContain('## v0.3.0 Candidate Evidence');
     expect(compatibility).toContain('a66e26e60e27f643f35b402c6660038c7070e759');
   });
 
@@ -135,12 +153,16 @@ describe('repository release support', () => {
     const results = readText('docs/evaluation-results/v0.2.0.md');
     const historical = markdownSection(compatibility, '## Historical v0.1.1 Evidence');
     const stable = markdownSection(compatibility, '## Stable v0.2.2 Evidence');
+    const candidate = markdownSection(compatibility, '## v0.3.0 Candidate Evidence');
     const limitations = markdownSection(compatibility, '## Known Limitations');
     const historicalClaudeRow = markdownTableRow(historical, 'Claude Code');
     const historicalCursorRow = markdownTableRow(historical, 'Cursor');
     const stableCodexRow = markdownTableRow(stable, 'Codex CLI 0.146.0');
     const stableCursorRow = markdownTableRow(stable, 'Cursor Agent CLI 2026.08.04-aaa8809');
     const stableClaudeRow = markdownTableRow(stable, 'Claude Code');
+    const candidateCodexRow = markdownTableRow(candidate, 'Codex CLI 0.146.0');
+    const candidateCursorRow = markdownTableRow(candidate, 'Cursor');
+    const candidateClaudeRow = markdownTableRow(candidate, 'Claude Code');
     const readmeStable = markdownSection(readme, '### Stable v0.2.2');
     const readmeCursorRow = markdownTableRow(
       readmeStable,
@@ -168,6 +190,11 @@ describe('repository release support', () => {
     expect(roadmap).not.toContain('final Deep Review against an immutable commit candidate after commit approval');
     expect(stableClaudeRow).toContain('valid runtime credentials are unavailable');
     expect(stableClaudeRow).toMatch(/\| Cannot Verify \|$/);
+    expect(candidateCodexRow).toContain('prospective Fix replacement window passes `3 / 3`');
+    expect(candidateCodexRow).toMatch(/\| Runtime verified \|$/);
+    expect(candidateCursorRow).toContain('Not rerun against the exact v0.3.0 candidate');
+    expect(candidateCursorRow).toMatch(/\| Cannot Verify \|$/);
+    expect(candidateClaudeRow).toMatch(/\| Cannot Verify \|$/);
     expect(limitations).toContain('Codex v0.2.2 post-release runtime evidence covers the Quick fixture');
     expect(limitations).toContain('user-level Memory and plugin context');
     expect(limitations).toContain('manual synthetic-fixture dataset');
@@ -289,12 +316,14 @@ describe('repository release support', () => {
     const versioning = readText('docs/versioning.md');
 
     expect(changelog).toContain('## [Unreleased]');
+    expect(changelog).toContain('## [0.3.0] - Release Candidate');
     expect(changelog).toContain('## [0.2.2] - 2026-08-06');
     expect(changelog).toContain('## [0.2.1] - 2026-08-05');
     expect(changelog).toContain('## [0.2.0] - 2026-07-31');
     expect(changelog).toContain('## [0.1.1] - 2026-07-23');
     expect(changelog).toContain('## [0.1.0] - 2026-07-23');
     expect(changelog).toContain('compare/v0.2.2...HEAD');
+    expect(changelog).toContain('[0.3.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.2...HEAD');
     expect(changelog).toContain('compare/v0.2.1...v0.2.2');
     expect(changelog).toContain('compare/v0.2.0...v0.2.1');
     expect(changelog).toContain('compare/v0.1.1...v0.2.0');
@@ -306,6 +335,7 @@ describe('repository release support', () => {
     expect(versioning).toContain('Cannot Verify');
     expect(versioning).toContain('Stable: `v0.2.2`');
     expect(versioning).toContain('Previous stable: `v0.2.1`');
+    expect(versioning).toContain('Release candidate: `v0.3.0`');
   });
 
   test('ships issue forms and an evidence-driven roadmap', () => {
@@ -393,5 +423,68 @@ describe('repository release support', () => {
     expect(results).toContain('not a clean fixture-isolation or Skill-only token benchmark');
     expect(results).toContain('Claude Code remains `Cannot Verify`');
     expect(results).toContain('Playwright was skipped');
+  });
+
+  test('publishes the exact v0.3.0 candidate window without promoting synthetic evidence', () => {
+    const results = readText('docs/evaluation-results/v0.3.0-candidate.md');
+
+    expect(results).toContain('# v0.3.0 Candidate Evaluation Results');
+    expect(results).toContain('Candidate decision: `Go`');
+    expect(results).toContain(
+      '5665c80e426637221627f21e58c955a146865bf08d8cf64a8b88b03213e01296',
+    );
+    expect(results).toContain('`2 / 3 = 66.7%`');
+    expect(results).toContain('`3 / 4 = 75%`');
+    expect(results).toContain('### Current-candidate Deep Review');
+    expect(results).toContain('`14 / 14 = 100%`');
+    expect(results).toContain('`16 / 16 = 100%`');
+    expect(results).toContain('Distinct exact-candidate datasets | `3` | `3` | Pass');
+    expect(results).toContain('`42 / 42` commands, zero MCP');
+    expect(results).toContain('`40 / 40` commands, zero MCP');
+    expect(results).toContain('Public React/JavaScript package-entry compatibility change');
+    expect(results).toContain('`28 / 28` commands and `7 / 7` allowlisted browser MCP calls');
+    expect(results).toContain('Sanitized Vue/TypeScript response-shape mismatch');
+    expect(results).toContain('`40 / 40` commands, zero MCP, client isolation Pass');
+    expect(results).toContain('### Current-candidate Quick Review');
+    expect(results).toContain('`14 / 14` commands, zero MCP');
+    expect(results).toContain('`22 / 22` commands, zero MCP');
+    expect(results).toContain('`18 / 18` commands, zero MCP');
+    expect(results).toContain('`27 / 27` commands, zero MCP');
+    expect(results).toContain('`15 / 15` commands, zero MCP');
+    expect(results).toContain('`1 / 1 = 100%`');
+    expect(results).toContain('Real-project no-finding coverage | one | one | Pass');
+    expect(results).toContain('complete-uncommitted collector exactly once');
+    expect(results).toContain('one unchanged repeat');
+    expect(results).toContain('Current-candidate Quick acceptance is complete');
+    expect(results).toContain('Synthetic evidence is explicitly labeled');
+    expect(results).toContain('38 documented runs');
+    expect(results).toContain('34 per-run raw outputs');
+    expect(results).toContain('Fifteen sanitized or public real-project runs used this exact candidate');
+    expect(results).toContain('### Current-candidate Fix Review');
+    expect(results).toContain('Fix closure accuracy | `8 / 8 = 100%`');
+    expect(results).toContain('Mandatory collector adoption | `7 / 8 = 87.5%` | `100%`');
+    expect(results).toContain('Full execution-contract stability | two historical violations, six passes');
+    expect(results).toContain('client network-isolation Fail');
+    expect(results).toContain('does not retroactively convert the private Fix run into a pass');
+    expect(results).toContain('prospective Fix replacement window');
+    expect(results).toContain('stopped the replacement window at `2 / 3`');
+    expect(results).toContain('Plan 02 independently completes at `3 / 3`');
+    expect(results).toContain('Corrected-procedure payment-log Fix replacement');
+    expect(results).toContain('Distinct delivery-completeness Fix replacement');
+    expect(results).toContain('Plan 02 unchanged payment-log Fix repeat');
+    expect(results).toContain('Plan 02 distinct blacklist unread-badge Fix');
+    expect(results).toContain('Plan 02 unchanged blacklist unread-badge Fix repeat');
+    expect(results).toContain('existing sanitized payment-log Fix chain');
+    expect(results).toContain('new, distinct, sanitized real Fix chain');
+    expect(results).toContain('One byte-identical unchanged repeat of that new chain');
+    expect(results).toContain('All historical failures remain in the report');
+    expect(results).toContain('Plan 02 therefore completes at `3 / 3`');
+    expect(results).toContain('the evaluated candidate is `Go` for a stable `v0.3.0` release');
+    expect(results).toContain('## Final Release-readiness Validation');
+    expect(results).toContain('`8 / 8` files and `80 / 80` tests passed');
+    expect(results).toContain('both reported `Skill is valid!`');
+    expect(results).toContain('all 19 model-readable files');
+    expect(results).toContain('Both previous-candidate Quick runs ignored the available collector');
+    expect(results).not.toContain('No Quick run used the final Skill content');
   });
 });

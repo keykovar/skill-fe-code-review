@@ -2,6 +2,8 @@
 
 Stable evidence verified: 2026-08-06
 Stable evidence baseline: [`v0.2.2`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.2.2)
+Candidate checked: 2026-08-20
+Candidate under test: `v0.3.0` working tree with exact Skill SHA-256 `5665c80e426637221627f21e58c955a146865bf08d8cf64a8b88b03213e01296`
 
 ## Evidence Levels
 
@@ -33,6 +35,18 @@ Runtime output can vary by model and client version. Re-run the smoke protocol a
 - Changing an adapter or documented install path.
 - Upgrading a client across a major version.
 - Publishing a new minor or major release.
+
+## v0.3.0 Candidate Evidence
+
+v0.3.0 materially extends changed-condition review, retained-defect handling, minimal-sufficient-design evidence, optional browser evidence, trace auditing, and complete-uncommitted context collection. Stable installation remains pinned to v0.2.2 until v0.3.0 is published.
+
+| Client | Structural evidence | Exact-candidate runtime evidence | Status |
+| --- | --- | --- | --- |
+| Codex CLI 0.146.0 | `80/80` repository tests, both Skill validators, Node syntax, trace replay, candidate hashes, and workspace integrity pass | Current-hash Quick and three-dataset Deep acceptance pass; the prospective Fix replacement window passes `3 / 3` with stable closure, severity, recommendation, collector, read-only, repeat, and client-isolation behavior | Runtime verified |
+| Cursor | Adapter and repository contract tests pass | Not rerun against the exact v0.3.0 candidate | Cannot Verify |
+| Claude Code | Adapter and repository contract tests pass | Not executed because valid runtime credentials are unavailable | Cannot Verify |
+
+See [v0.3.0 Candidate Evaluation Results](evaluation-results/v0.3.0-candidate.md) for the complete run inventory, retained failures, quality metrics, execution gates, and evidence boundaries.
 
 ## Stable v0.2.2 Evidence
 
@@ -79,6 +93,9 @@ The shared core contract defines the following fallback for Codex, Claude Code, 
 
 ## Known Limitations
 
+- Cursor and Claude Code exact-candidate v0.3.0 runtime behavior is not claimed; stable v0.2.2 evidence remains historical evidence for that release only.
+- The v0.3.0 browser evidence covers one isolated public JavaScript path and does not verify WebView, Native, backend, deployment, or production behavior.
+- External Provider retention remains unverified, and token or elapsed observations are client/model measurements rather than Skill-only benchmarks.
 - Claude Code v0.2.2 runtime behavior is not claimed because valid credentials are unavailable.
 - Codex v0.2.2 post-release runtime evidence covers the Quick fixture; current Deep and Fix classification evidence comes from Cursor.
 - The repeated Codex Quick run passed the complete oracle, but the first run's classification variance remains recorded rather than discarded.
