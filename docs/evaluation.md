@@ -2,7 +2,7 @@
 
 Use this checklist before publishing or changing `fe-code-review`.
 
-For the v0.3.0 real-project baseline, use the [Real-project Evaluation Plan](v0.3.0-real-project-evaluation-plan.md) and complete one [Real-project Evaluation Record](real-project-evaluation-record-template.md) per model run. The completed matrix and prospective Fix replacement window are summarized in [v0.3.0 Candidate Evaluation Results](evaluation-results/v0.3.0-candidate.md) and approve the exact candidate for stable release preparation while retaining every historical failure. These documents add measurement and recording rules; they do not change the public review output contract.
+For the v0.3.0 real-project baseline, use the [Real-project Evaluation Plan](v0.3.0-real-project-evaluation-plan.md) and complete one [Real-project Evaluation Record](real-project-evaluation-record-template.md) per model run. The completed matrix and prospective Fix replacement window are summarized in [v0.3.0 Evaluation Results](evaluation-results/v0.3.0.md) and approve the exact candidate for stable release while retaining every historical failure. These documents add measurement and recording rules; they do not change the public review output contract.
 
 The bundled `skills/fe-code-review/scripts/collect-review-context.mjs` helper combines the stable read-only Git/CodeGraph inventory into one model tool invocation. Deterministic tests must prove its output before runtime evaluation. When invoked, it can reduce client round trips; it does not reduce the required review scope or replace post-run trace and workspace-integrity auditing. Record collector adoption from the trace instead of assuming that an available script was used: model guidance alone does not guarantee invocation.
 

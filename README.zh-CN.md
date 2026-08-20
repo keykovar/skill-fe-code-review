@@ -40,10 +40,10 @@ tests/                       Vitest 结构和契约检查
 
 ## 安装稳定版本
 
-当前稳定版本为 `v0.2.2`。需要可复现安装时，应固定 Release tag，不要直接安装 `main`。
+当前稳定版本为 `v0.3.0`。需要可复现安装时，应固定 Release tag，不要直接安装 `main`。
 
 ```bash
-git clone --depth 1 --branch v0.2.2 \
+git clone --depth 1 --branch v0.3.0 \
   https://github.com/keykovar/skill-fe-code-review.git
 cd skill-fe-code-review
 ```
@@ -111,25 +111,15 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 ## 兼容性
 
-### 稳定版 v0.2.2
+### 稳定版 v0.3.0
 
-| 客户端 | v0.2.2 验证证据 | 状态 |
-| --- | --- | --- |
-| Codex CLI 0.146.0 | 从公开 tag 全新安装后的 Quick fixture 命中全部三个 finding，并保持只读 | 运行时已验证 |
-| Cursor Agent CLI 2026.08.04-aaa8809 | 候选阶段 Deep/Fix 与公开 tag 全新安装后的 Quick fixture 均满足 semantic oracle；trace 审计与文件 hash 均保持只读 | 运行时已验证 |
-| Claude Code | 仅完成结构与适配器测试；当前无可用运行时凭据 | `Cannot Verify：无法验证` |
-
-由于当前没有有效的 Claude Code 运行时凭据，Claude Code 明确记录为 `Cannot Verify：无法验证`，不会被描述为运行通过。详细证据和限制见[兼容性说明](docs/compatibility.md)、[v0.2.2 评测结果](docs/evaluation-results/v0.2.2.md)与 [v0.2.2 发布后冒烟结果](docs/evaluation-results/v0.2.2-post-release.md)。
-
-### v0.3.0 候选版本
-
-| 客户端 | 候选版本证据 | 状态 |
+| 客户端 | v0.3.0 验证证据 | 状态 |
 | --- | --- | --- |
 | Codex CLI 0.146.0 | exact-candidate Quick、三数据集 Deep 与前瞻 Fix `3 / 3` 验收通过，并具备已审计的只读和客户端隔离证据 | 运行时已验证 |
-| Cursor | 结构与适配器契约通过；未针对 exact-candidate 重新执行运行时验证 | `Cannot Verify：无法验证` |
+| Cursor | 结构与适配器契约通过；未针对 v0.3.0 重新执行运行时验证 | `Cannot Verify：无法验证` |
 | Claude Code | 结构与适配器契约通过；当前无可用运行时凭据 | `Cannot Verify：无法验证` |
 
-候选版本已经 `Go`，可以进入发布准备，但当前稳定版本仍是 `v0.2.2`。v0.3.0 正式发布前，稳定安装继续固定到 `v0.2.2`。完整证据见 [v0.3.0 候选评测结果](docs/evaluation-results/v0.3.0-candidate.md)。
+Cursor 与 Claude Code 的 v0.3.0 运行时验证仍为 `Cannot Verify：无法验证`，不会被描述为运行通过。详细证据和限制见[兼容性说明](docs/compatibility.md)与 [v0.3.0 评测结果](docs/evaluation-results/v0.3.0.md)；历史 v0.2.2 证据仍保留在 [v0.2.2 评测结果](docs/evaluation-results/v0.2.2.md)和 [v0.2.2 发布后冒烟结果](docs/evaluation-results/v0.2.2-post-release.md)。
 
 ## 使用方式
 
@@ -241,7 +231,7 @@ Vitest 负责验证仓库结构、适配器、引用文件和必需审查契约�
 - [兼容性说明](docs/compatibility.md)
 - [评测协议](docs/evaluation.md)
 - [v0.3.0 真实项目评测计划](docs/v0.3.0-real-project-evaluation-plan.md)
-- [v0.3.0 候选评测结果](docs/evaluation-results/v0.3.0-candidate.md)
+- [v0.3.0 评测结果](docs/evaluation-results/v0.3.0.md)
 - [真实项目评测记录模板](docs/real-project-evaluation-record-template.md)
 - [v0.2.0 评测结果](docs/evaluation-results/v0.2.0.md)
 - [v0.2.0 发布后冒烟结果](docs/evaluation-results/v0.2.0-post-release.md)

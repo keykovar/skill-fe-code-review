@@ -1,9 +1,8 @@
 # Compatibility
 
-Stable evidence verified: 2026-08-06
-Stable evidence baseline: [`v0.2.2`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.2.2)
-Candidate checked: 2026-08-20
-Candidate under test: `v0.3.0` working tree with exact Skill SHA-256 `5665c80e426637221627f21e58c955a146865bf08d8cf64a8b88b03213e01296`
+Stable evidence verified: 2026-08-20
+Stable evidence baseline: [`v0.3.0`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.3.0)
+Release Skill SHA-256: `5665c80e426637221627f21e58c955a146865bf08d8cf64a8b88b03213e01296`
 
 ## Evidence Levels
 
@@ -36,9 +35,9 @@ Runtime output can vary by model and client version. Re-run the smoke protocol a
 - Upgrading a client across a major version.
 - Publishing a new minor or major release.
 
-## v0.3.0 Candidate Evidence
+## Stable v0.3.0 Evidence
 
-v0.3.0 materially extends changed-condition review, retained-defect handling, minimal-sufficient-design evidence, optional browser evidence, trace auditing, and complete-uncommitted context collection. Stable installation remains pinned to v0.2.2 until v0.3.0 is published.
+v0.3.0 materially extends changed-condition review, retained-defect handling, minimal-sufficient-design evidence, optional browser evidence, trace auditing, and complete-uncommitted context collection.
 
 | Client | Structural evidence | Exact-candidate runtime evidence | Status |
 | --- | --- | --- | --- |
@@ -46,9 +45,9 @@ v0.3.0 materially extends changed-condition review, retained-defect handling, mi
 | Cursor | Adapter and repository contract tests pass | Not rerun against the exact v0.3.0 candidate | Cannot Verify |
 | Claude Code | Adapter and repository contract tests pass | Not executed because valid runtime credentials are unavailable | Cannot Verify |
 
-See [v0.3.0 Candidate Evaluation Results](evaluation-results/v0.3.0-candidate.md) for the complete run inventory, retained failures, quality metrics, execution gates, and evidence boundaries.
+See [v0.3.0 Evaluation Results](evaluation-results/v0.3.0.md) for the complete run inventory, retained failures, quality metrics, execution gates, and evidence boundaries.
 
-## Stable v0.2.2 Evidence
+## Historical v0.2.2 Evidence
 
 v0.2.2 adds Cursor trace-integrity evaluation and clarifies one minimal-sufficient-design classification. It does not add a review mode, output section, Finding field, or install path.
 
@@ -93,7 +92,7 @@ The shared core contract defines the following fallback for Codex, Claude Code, 
 
 ## Known Limitations
 
-- Cursor and Claude Code exact-candidate v0.3.0 runtime behavior is not claimed; stable v0.2.2 evidence remains historical evidence for that release only.
+- Cursor and Claude Code v0.3.0 runtime behavior is not claimed; v0.2.2 evidence remains historical evidence for that release only.
 - The v0.3.0 browser evidence covers one isolated public JavaScript path and does not verify WebView, Native, backend, deployment, or production behavior.
 - External Provider retention remains unverified, and token or elapsed observations are client/model measurements rather than Skill-only benchmarks.
 - Claude Code v0.2.2 runtime behavior is not claimed because valid credentials are unavailable.
@@ -106,4 +105,4 @@ The shared core contract defines the following fallback for Codex, Claude Code, 
 - No v0.2.2 result claims browser runtime evidence; the release fixtures have no browser-observable product path.
 - The paired minimal-design oracle is a manual synthetic-fixture dataset. It verifies the recorded decisions and forbidden outcomes, not model quality in every repository.
 
-See [v0.2.2 Evaluation Results](evaluation-results/v0.2.2.md) and [v0.2.2 Post-release Smoke Results](evaluation-results/v0.2.2-post-release.md) for current release evidence, [v0.2.1 Evaluation Results](evaluation-results/v0.2.1.md) for the previous stable release, and [v0.1.0 Evaluation Results](evaluation-results/v0.1.0.md) for the original runtime cases and metrics.
+See [v0.3.0 Evaluation Results](evaluation-results/v0.3.0.md) for current release evidence, [v0.2.2 Evaluation Results](evaluation-results/v0.2.2.md) and [v0.2.2 Post-release Smoke Results](evaluation-results/v0.2.2-post-release.md) for the previous stable release, and [v0.1.0 Evaluation Results](evaluation-results/v0.1.0.md) for the original runtime cases and metrics.

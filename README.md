@@ -40,10 +40,10 @@ tests/                       Vitest structure and contract checks
 
 ## Install a Stable Release
 
-The current stable release is `v0.2.2`. Pin the tag instead of installing from `main` when reproducibility matters.
+The current stable release is `v0.3.0`. Pin the tag instead of installing from `main` when reproducibility matters.
 
 ```bash
-git clone --depth 1 --branch v0.2.2 \
+git clone --depth 1 --branch v0.3.0 \
   https://github.com/keykovar/skill-fe-code-review.git
 cd skill-fe-code-review
 ```
@@ -111,25 +111,15 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 ## Compatibility
 
-### Stable v0.2.2
+### Stable v0.3.0
 
-| Client | v0.2.2 evidence | Status |
-| --- | --- | --- |
-| Codex CLI 0.146.0 | A fresh-tag post-release Quick fixture review satisfied all three findings and remained read-only | Runtime verified |
-| Cursor Agent CLI 2026.08.04-aaa8809 | Candidate Deep/Fix and fresh-tag post-release Quick fixture reviews satisfied their semantic oracles; audited traces and file hashes remained read-only | Runtime verified |
-| Claude Code | Structure and adapter tests only; runtime credentials unavailable | `Cannot Verify` |
-
-Claude Code runtime verification remains `Cannot Verify` because valid runtime credentials are unavailable; it is not reported as a runtime pass. See [Compatibility](docs/compatibility.md), [v0.2.2 Evaluation Results](docs/evaluation-results/v0.2.2.md), and [v0.2.2 Post-release Smoke Results](docs/evaluation-results/v0.2.2-post-release.md) for evidence and limitations.
-
-### v0.3.0 Release Candidate
-
-| Client | Candidate evidence | Status |
+| Client | v0.3.0 evidence | Status |
 | --- | --- | --- |
 | Codex CLI 0.146.0 | Exact-candidate Quick, three-dataset Deep, and prospective Fix `3 / 3` acceptance pass with audited read-only and client-isolation evidence | Runtime verified |
-| Cursor | Structural and adapter contracts pass; exact-candidate runtime was not rerun | `Cannot Verify` |
+| Cursor | Structural and adapter contracts pass; v0.3.0 runtime was not rerun | `Cannot Verify` |
 | Claude Code | Structural and adapter contracts pass; runtime credentials unavailable | `Cannot Verify` |
 
-The candidate is `Go` for release preparation, but it is not the current stable release. Stable installation remains pinned to `v0.2.2` until v0.3.0 is published. See [v0.3.0 Candidate Evaluation Results](docs/evaluation-results/v0.3.0-candidate.md).
+Cursor and Claude Code v0.3.0 runtime verification remain `Cannot Verify`; neither is reported as a runtime pass. See [Compatibility](docs/compatibility.md) and [v0.3.0 Evaluation Results](docs/evaluation-results/v0.3.0.md) for evidence and limitations. Historical v0.2.2 evidence remains available in [v0.2.2 Evaluation Results](docs/evaluation-results/v0.2.2.md) and [v0.2.2 Post-release Smoke Results](docs/evaluation-results/v0.2.2-post-release.md).
 
 ## Usage
 
@@ -241,7 +231,7 @@ Vitest checks the repository structure, adapters, references, and required revie
 - [Compatibility](docs/compatibility.md)
 - [Evaluation Protocol](docs/evaluation.md)
 - [v0.3.0 Real-project Evaluation Plan](docs/v0.3.0-real-project-evaluation-plan.md)
-- [v0.3.0 Candidate Evaluation Results](docs/evaluation-results/v0.3.0-candidate.md)
+- [v0.3.0 Evaluation Results](docs/evaluation-results/v0.3.0.md)
 - [Real-project Evaluation Record Template](docs/real-project-evaluation-record-template.md)
 - [v0.2.0 Evaluation Results](docs/evaluation-results/v0.2.0.md)
 - [v0.2.0 Post-release Smoke Results](docs/evaluation-results/v0.2.0-post-release.md)

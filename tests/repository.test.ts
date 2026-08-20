@@ -128,21 +128,21 @@ describe('repository release support', () => {
 
     expect(packageJson.version).toBe('0.3.0');
     expect(readme).toContain('README.zh-CN.md');
-    expect(readme).toContain('--branch v0.2.2');
+    expect(readme).toContain('--branch v0.3.0');
     expect(readme).toContain('Runtime verified');
-    expect(readme).toContain('### v0.3.0 Release Candidate');
-    expect(readme).toContain('Stable installation remains pinned to `v0.2.2`');
+    expect(readme).toContain('### Stable v0.3.0');
+    expect(readme).not.toContain('### v0.3.0 Release Candidate');
     expect(readme).toContain('part of stable `v0.2.0`');
     expect(chineseReadme).toContain('安装稳定版本');
-    expect(chineseReadme).toContain('--branch v0.2.2');
+    expect(chineseReadme).toContain('--branch v0.3.0');
     expect(chineseReadme).toContain('Cannot Verify：无法验证');
-    expect(chineseReadme).toContain('### v0.3.0 候选版本');
-    expect(chineseReadme).toContain('稳定安装继续固定到 `v0.2.2`');
+    expect(chineseReadme).toContain('### 稳定版 v0.3.0');
+    expect(chineseReadme).not.toContain('### v0.3.0 候选版本');
     expect(chineseReadme).toContain('属于稳定版 `v0.2.0`');
     expect(compatibility).toContain('Structural verified');
-    expect(compatibility).toContain('Stable evidence baseline: [`v0.2.2`]');
-    expect(compatibility).toContain('Candidate under test: `v0.3.0` working tree');
-    expect(compatibility).toContain('## v0.3.0 Candidate Evidence');
+    expect(compatibility).toContain('Stable evidence baseline: [`v0.3.0`]');
+    expect(compatibility).not.toContain('Candidate under test:');
+    expect(compatibility).toContain('## Stable v0.3.0 Evidence');
     expect(compatibility).toContain('a66e26e60e27f643f35b402c6660038c7070e759');
   });
 
@@ -152,21 +152,22 @@ describe('repository release support', () => {
     const roadmap = readText('docs/roadmap.md');
     const results = readText('docs/evaluation-results/v0.2.0.md');
     const historical = markdownSection(compatibility, '## Historical v0.1.1 Evidence');
-    const stable = markdownSection(compatibility, '## Stable v0.2.2 Evidence');
-    const candidate = markdownSection(compatibility, '## v0.3.0 Candidate Evidence');
+    const stable = markdownSection(compatibility, '## Stable v0.3.0 Evidence');
+    const historicalV022 = markdownSection(compatibility, '## Historical v0.2.2 Evidence');
     const limitations = markdownSection(compatibility, '## Known Limitations');
     const historicalClaudeRow = markdownTableRow(historical, 'Claude Code');
     const historicalCursorRow = markdownTableRow(historical, 'Cursor');
     const stableCodexRow = markdownTableRow(stable, 'Codex CLI 0.146.0');
-    const stableCursorRow = markdownTableRow(stable, 'Cursor Agent CLI 2026.08.04-aaa8809');
+    const stableCursorRow = markdownTableRow(stable, 'Cursor');
     const stableClaudeRow = markdownTableRow(stable, 'Claude Code');
-    const candidateCodexRow = markdownTableRow(candidate, 'Codex CLI 0.146.0');
-    const candidateCursorRow = markdownTableRow(candidate, 'Cursor');
-    const candidateClaudeRow = markdownTableRow(candidate, 'Claude Code');
-    const readmeStable = markdownSection(readme, '### Stable v0.2.2');
+    const historicalV022CursorRow = markdownTableRow(
+      historicalV022,
+      'Cursor Agent CLI 2026.08.04-aaa8809',
+    );
+    const readmeStable = markdownSection(readme, '### Stable v0.3.0');
     const readmeCursorRow = markdownTableRow(
       readmeStable,
-      'Cursor Agent CLI 2026.08.04-aaa8809',
+      'Cursor',
     );
     const resultsCursorRow = markdownTableRow(results, 'Cursor');
 
@@ -177,24 +178,22 @@ describe('repository release support', () => {
     expect(historicalCursorRow).toMatch(/\| Runtime verified \|$/);
     expect(historicalCursorRow).not.toContain('Deep');
     expect(historicalCursorRow).not.toContain('Fix');
-    expect(stable).toContain('does not add a review mode, output section, Finding field, or install path');
-    expect(stableCodexRow).toContain('Post-release Quick review found all three seeded issues');
+    expect(stable).toContain('materially extends changed-condition review');
+    expect(stableCodexRow).toContain('prospective Fix replacement window passes `3 / 3`');
     expect(stableCodexRow).toMatch(/\| Runtime verified \|$/);
-    expect(stableCursorRow).toContain('Candidate Deep/Fix and post-release Quick reviews');
-    expect(stableCursorRow).toContain('119 events and 15 tool calls');
-    expect(stableCursorRow).toMatch(/\| Runtime verified \|$/);
-    expect(readmeCursorRow).toMatch(/\| Runtime verified \|$/);
+    expect(stableCursorRow).toContain('Not rerun against the exact v0.3.0 candidate');
+    expect(stableCursorRow).toMatch(/\| Cannot Verify \|$/);
+    expect(historicalV022CursorRow).toContain('Candidate Deep/Fix and post-release Quick reviews');
+    expect(historicalV022CursorRow).toContain('119 events and 15 tool calls');
+    expect(historicalV022CursorRow).toMatch(/\| Runtime verified \|$/);
+    expect(readmeCursorRow).toMatch(/\| `Cannot Verify` \|$/);
     expect(resultsCursorRow).toContain('| Runtime verified |');
     expect(roadmap).toContain('post-hardening Cursor CLI Improve-only Quick rerun');
     expect(roadmap).toContain('post-hardening final Deep Review passed against the committed candidate');
     expect(roadmap).not.toContain('final Deep Review against an immutable commit candidate after commit approval');
     expect(stableClaudeRow).toContain('valid runtime credentials are unavailable');
     expect(stableClaudeRow).toMatch(/\| Cannot Verify \|$/);
-    expect(candidateCodexRow).toContain('prospective Fix replacement window passes `3 / 3`');
-    expect(candidateCodexRow).toMatch(/\| Runtime verified \|$/);
-    expect(candidateCursorRow).toContain('Not rerun against the exact v0.3.0 candidate');
-    expect(candidateCursorRow).toMatch(/\| Cannot Verify \|$/);
-    expect(candidateClaudeRow).toMatch(/\| Cannot Verify \|$/);
+    expect(limitations).toContain('Cursor and Claude Code v0.3.0 runtime behavior is not claimed');
     expect(limitations).toContain('Codex v0.2.2 post-release runtime evidence covers the Quick fixture');
     expect(limitations).toContain('user-level Memory and plugin context');
     expect(limitations).toContain('manual synthetic-fixture dataset');
@@ -316,14 +315,14 @@ describe('repository release support', () => {
     const versioning = readText('docs/versioning.md');
 
     expect(changelog).toContain('## [Unreleased]');
-    expect(changelog).toContain('## [0.3.0] - Release Candidate');
+    expect(changelog).toContain('## [0.3.0] - 2026-08-20');
     expect(changelog).toContain('## [0.2.2] - 2026-08-06');
     expect(changelog).toContain('## [0.2.1] - 2026-08-05');
     expect(changelog).toContain('## [0.2.0] - 2026-07-31');
     expect(changelog).toContain('## [0.1.1] - 2026-07-23');
     expect(changelog).toContain('## [0.1.0] - 2026-07-23');
-    expect(changelog).toContain('compare/v0.2.2...HEAD');
-    expect(changelog).toContain('[0.3.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.2...HEAD');
+    expect(changelog).toContain('compare/v0.3.0...HEAD');
+    expect(changelog).toContain('[0.3.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.2...v0.3.0');
     expect(changelog).toContain('compare/v0.2.1...v0.2.2');
     expect(changelog).toContain('compare/v0.2.0...v0.2.1');
     expect(changelog).toContain('compare/v0.1.1...v0.2.0');
@@ -333,9 +332,9 @@ describe('repository release support', () => {
     expect(versioning).toContain('Major');
     expect(versioning).toContain('Release tags are immutable');
     expect(versioning).toContain('Cannot Verify');
-    expect(versioning).toContain('Stable: `v0.2.2`');
-    expect(versioning).toContain('Previous stable: `v0.2.1`');
-    expect(versioning).toContain('Release candidate: `v0.3.0`');
+    expect(versioning).toContain('Stable: `v0.3.0`');
+    expect(versioning).toContain('Previous stable: `v0.2.2`');
+    expect(versioning).not.toContain('Release candidate: `v0.3.0`');
   });
 
   test('ships issue forms and an evidence-driven roadmap', () => {
@@ -425,11 +424,12 @@ describe('repository release support', () => {
     expect(results).toContain('Playwright was skipped');
   });
 
-  test('publishes the exact v0.3.0 candidate window without promoting synthetic evidence', () => {
-    const results = readText('docs/evaluation-results/v0.3.0-candidate.md');
+  test('publishes the exact v0.3.0 release window without promoting synthetic evidence', () => {
+    const results = readText('docs/evaluation-results/v0.3.0.md');
 
-    expect(results).toContain('# v0.3.0 Candidate Evaluation Results');
-    expect(results).toContain('Candidate decision: `Go`');
+    expect(results).toContain('# v0.3.0 Evaluation Results');
+    expect(results).toContain('Release: `v0.3.0`');
+    expect(results).toContain('Release decision: `Go`');
     expect(results).toContain(
       '5665c80e426637221627f21e58c955a146865bf08d8cf64a8b88b03213e01296',
     );
@@ -479,7 +479,7 @@ describe('repository release support', () => {
     expect(results).toContain('One byte-identical unchanged repeat of that new chain');
     expect(results).toContain('All historical failures remain in the report');
     expect(results).toContain('Plan 02 therefore completes at `3 / 3`');
-    expect(results).toContain('the evaluated candidate is `Go` for a stable `v0.3.0` release');
+    expect(results).toContain('approved for the stable `v0.3.0` release');
     expect(results).toContain('## Final Release-readiness Validation');
     expect(results).toContain('`8 / 8` files and `80 / 80` tests passed');
     expect(results).toContain('both reported `Skill is valid!`');
