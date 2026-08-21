@@ -181,7 +181,7 @@ describe('repository release support', () => {
     expect(stable).toContain('materially extends changed-condition review');
     expect(stableCodexRow).toContain('prospective Fix replacement window passes `3 / 3`');
     expect(stableCodexRow).toMatch(/\| Runtime verified \|$/);
-    expect(stableCursorRow).toContain('Not rerun against the exact v0.3.0 candidate');
+    expect(stableCursorRow).toContain('failed one or more workspace-isolation');
     expect(stableCursorRow).toMatch(/\| Cannot Verify \|$/);
     expect(historicalV022CursorRow).toContain('Candidate Deep/Fix and post-release Quick reviews');
     expect(historicalV022CursorRow).toContain('119 events and 15 tool calls');
@@ -194,6 +194,7 @@ describe('repository release support', () => {
     expect(stableClaudeRow).toContain('valid runtime credentials are unavailable');
     expect(stableClaudeRow).toMatch(/\| Cannot Verify \|$/);
     expect(limitations).toContain('Cursor and Claude Code v0.3.0 runtime behavior is not claimed');
+    expect(limitations).toContain('fresh-tag Quick smoke passed trace/read-only gates');
     expect(limitations).toContain('Codex v0.2.2 post-release runtime evidence covers the Quick fixture');
     expect(limitations).toContain('user-level Memory and plugin context');
     expect(limitations).toContain('manual synthetic-fixture dataset');
@@ -422,6 +423,25 @@ describe('repository release support', () => {
     expect(results).toContain('not a clean fixture-isolation or Skill-only token benchmark');
     expect(results).toContain('Claude Code remains `Cannot Verify`');
     expect(results).toContain('Playwright was skipped');
+  });
+
+  test('publishes v0.3.0 post-release failures without promoting partial runs', () => {
+    const results = readText('docs/evaluation-results/v0.3.0-post-release.md');
+
+    expect(results).toContain('# v0.3.0 Post-release Smoke Results');
+    expect(results).toContain('Release commit: `b04caf58f435e4074824f830617facc895dbf154`');
+    expect(results).toContain('`8 / 8` files and `80 / 80` tests passed');
+    expect(results).toContain('Codex CLI 0.146.0');
+    expect(results).toContain('`2 / 3`; the ignored-parameter risk');
+    expect(results).toContain('one collector call, zero equivalent Git rereads, zero MCP');
+    expect(results).toContain('exact CLI version not captured in trace');
+    expect(results).toContain('Exact `CLIENT_ISOLATION_OK`');
+    expect(results).toContain('`createPlanToolCall` is a write tool');
+    expect(results).toContain('equivalent Git inventory rereads');
+    expect(results).toContain('Cursor remains `Cannot Verify`');
+    expect(results).toContain('No failed run was retried in place or reclassified');
+    expect(results).not.toContain('| Runtime pass |');
+    expect(results).not.toContain('13011235000@163.com');
   });
 
   test('publishes the exact v0.3.0 release window without promoting synthetic evidence', () => {

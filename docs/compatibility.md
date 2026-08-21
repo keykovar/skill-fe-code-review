@@ -1,6 +1,6 @@
 # Compatibility
 
-Stable evidence verified: 2026-08-20
+Stable evidence verified: 2026-08-21
 Stable evidence baseline: [`v0.3.0`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.3.0)
 Release Skill SHA-256: `5665c80e426637221627f21e58c955a146865bf08d8cf64a8b88b03213e01296`
 
@@ -41,11 +41,11 @@ v0.3.0 materially extends changed-condition review, retained-defect handling, mi
 
 | Client | Structural evidence | Exact-candidate runtime evidence | Status |
 | --- | --- | --- | --- |
-| Codex CLI 0.146.0 | `80/80` repository tests, both Skill validators, Node syntax, trace replay, candidate hashes, and workspace integrity pass | Current-hash Quick and three-dataset Deep acceptance pass; the prospective Fix replacement window passes `3 / 3` with stable closure, severity, recommendation, collector, read-only, repeat, and client-isolation behavior | Runtime verified |
-| Cursor | Adapter and repository contract tests pass | Not rerun against the exact v0.3.0 candidate | Cannot Verify |
+| Codex CLI 0.146.0 | Fresh public-tag `80/80` repository tests, both Skill validators, Node syntax, candidate hashes, and workspace integrity pass | Exact-candidate Quick and three-dataset Deep acceptance pass; the prospective Fix replacement window passes `3 / 3`; the post-release Quick smoke retained a `2 / 3` independent-finding failure while its trace and read-only gates passed | Runtime verified |
+| Cursor | Fresh public-tag adapter and repository contract tests pass | Post-release plan/ask runs found the seeded behavior but failed one or more workspace-isolation, write-tool, output-contract, collector-discipline, or semantic gates | Cannot Verify |
 | Claude Code | Adapter and repository contract tests pass | Not executed because valid runtime credentials are unavailable | Cannot Verify |
 
-See [v0.3.0 Evaluation Results](evaluation-results/v0.3.0.md) for the complete run inventory, retained failures, quality metrics, execution gates, and evidence boundaries.
+See [v0.3.0 Evaluation Results](evaluation-results/v0.3.0.md) for the release acceptance window and [v0.3.0 Post-release Smoke Results](evaluation-results/v0.3.0-post-release.md) for the fresh-tag validation, retained failures, and current client-mode boundaries.
 
 ## Historical v0.2.2 Evidence
 
@@ -92,7 +92,8 @@ The shared core contract defines the following fallback for Codex, Claude Code, 
 
 ## Known Limitations
 
-- Cursor and Claude Code v0.3.0 runtime behavior is not claimed; v0.2.2 evidence remains historical evidence for that release only.
+- Cursor and Claude Code v0.3.0 runtime behavior is not claimed; the post-release Cursor runs failed one or more required gates, and v0.2.2 evidence remains historical evidence for that release only.
+- Codex v0.3.0 remains runtime verified from the exact-candidate acceptance window; its fresh-tag Quick smoke passed trace/read-only gates but did not emit all three expected findings independently and is retained as a failure.
 - The v0.3.0 browser evidence covers one isolated public JavaScript path and does not verify WebView, Native, backend, deployment, or production behavior.
 - External Provider retention remains unverified, and token or elapsed observations are client/model measurements rather than Skill-only benchmarks.
 - Claude Code v0.2.2 runtime behavior is not claimed because valid credentials are unavailable.
@@ -105,4 +106,4 @@ The shared core contract defines the following fallback for Codex, Claude Code, 
 - No v0.2.2 result claims browser runtime evidence; the release fixtures have no browser-observable product path.
 - The paired minimal-design oracle is a manual synthetic-fixture dataset. It verifies the recorded decisions and forbidden outcomes, not model quality in every repository.
 
-See [v0.3.0 Evaluation Results](evaluation-results/v0.3.0.md) for current release evidence, [v0.2.2 Evaluation Results](evaluation-results/v0.2.2.md) and [v0.2.2 Post-release Smoke Results](evaluation-results/v0.2.2-post-release.md) for the previous stable release, and [v0.1.0 Evaluation Results](evaluation-results/v0.1.0.md) for the original runtime cases and metrics.
+See [v0.3.0 Evaluation Results](evaluation-results/v0.3.0.md) and [v0.3.0 Post-release Smoke Results](evaluation-results/v0.3.0-post-release.md) for current release evidence, [v0.2.2 Evaluation Results](evaluation-results/v0.2.2.md) and [v0.2.2 Post-release Smoke Results](evaluation-results/v0.2.2-post-release.md) for the previous stable release, and [v0.1.0 Evaluation Results](evaluation-results/v0.1.0.md) for the original runtime cases and metrics.

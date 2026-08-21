@@ -115,11 +115,11 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 | Client | v0.3.0 evidence | Status |
 | --- | --- | --- |
-| Codex CLI 0.146.0 | Exact-candidate Quick, three-dataset Deep, and prospective Fix `3 / 3` acceptance pass with audited read-only and client-isolation evidence | Runtime verified |
-| Cursor | Structural and adapter contracts pass; v0.3.0 runtime was not rerun | `Cannot Verify` |
+| Codex CLI 0.146.0 | Exact-candidate Quick, three-dataset Deep, and prospective Fix `3 / 3` acceptance pass; the fresh-tag Quick smoke retained a `2 / 3` semantic failure | Runtime verified |
+| Cursor | Structural and adapter contracts pass; fresh-tag plan/ask runs failed isolation, tool, output, or semantic gates | `Cannot Verify` |
 | Claude Code | Structural and adapter contracts pass; runtime credentials unavailable | `Cannot Verify` |
 
-Cursor and Claude Code v0.3.0 runtime verification remain `Cannot Verify`; neither is reported as a runtime pass. See [Compatibility](docs/compatibility.md) and [v0.3.0 Evaluation Results](docs/evaluation-results/v0.3.0.md) for evidence and limitations. Historical v0.2.2 evidence remains available in [v0.2.2 Evaluation Results](docs/evaluation-results/v0.2.2.md) and [v0.2.2 Post-release Smoke Results](docs/evaluation-results/v0.2.2-post-release.md).
+Cursor and Claude Code v0.3.0 runtime verification remain `Cannot Verify`; neither is reported as a runtime pass. The Codex status comes from the exact-candidate acceptance window, not the incomplete post-release Quick run. See [Compatibility](docs/compatibility.md), [v0.3.0 Evaluation Results](docs/evaluation-results/v0.3.0.md), and [v0.3.0 Post-release Smoke Results](docs/evaluation-results/v0.3.0-post-release.md) for evidence and limitations. Historical v0.2.2 evidence remains available in [v0.2.2 Evaluation Results](docs/evaluation-results/v0.2.2.md) and [v0.2.2 Post-release Smoke Results](docs/evaluation-results/v0.2.2-post-release.md).
 
 ## Usage
 
@@ -232,6 +232,7 @@ Vitest checks the repository structure, adapters, references, and required revie
 - [Evaluation Protocol](docs/evaluation.md)
 - [v0.3.0 Real-project Evaluation Plan](docs/v0.3.0-real-project-evaluation-plan.md)
 - [v0.3.0 Evaluation Results](docs/evaluation-results/v0.3.0.md)
+- [v0.3.0 Post-release Smoke Results](docs/evaluation-results/v0.3.0-post-release.md)
 - [Real-project Evaluation Record Template](docs/real-project-evaluation-record-template.md)
 - [v0.2.0 Evaluation Results](docs/evaluation-results/v0.2.0.md)
 - [v0.2.0 Post-release Smoke Results](docs/evaluation-results/v0.2.0-post-release.md)

@@ -63,6 +63,23 @@ The completed historical matrix and acceptance windows are documented in [v0.3.0
 
 The previous-candidate Quick/Fix efficiency follow-up is complete. The Fix collector run reduced command executions by `46.0%` and lowered uncached input while preserving its recorded quality and safety gates, but missed the elapsed target. Current-hash Quick, Deep, and prospective Fix acceptance are complete. Do not rerun frozen cases to select a favorable sample; retain every execution failure and preserve the quality, closure, localized-output, client-isolation, collector, and read-only gates through release preparation.
 
+## Completed v0.3.0 Post-release Evidence
+
+- A fresh public-tag clone resolved to the published commit and passed lockfile installation, `80/80` Vitest tests, both Skill validators, Node syntax checks, and deterministic Quick fixture preparation.
+- The Codex Quick smoke passed its collector, trace, MCP, read-only, integrity, output, and recommendation gates but emitted only `2 / 3` expected findings independently; it is retained as a post-release failure rather than replacing the exact-candidate acceptance evidence.
+- The first Cursor run satisfied the `3 / 3` semantic oracle but read an identical user-level Skill outside the fixture, so workspace isolation failed.
+- A fixed-version Cursor source-free probe with an isolated home returned exact `CLIENT_ISOLATION_OK` with zero tools and zero MCP.
+- The isolated Cursor plan run satisfied `3 / 3` semantically but routed the review through `createPlan`, violating the chat-only and write-tool contract.
+- The isolated Cursor ask run returned a complete chat review but satisfied only `2 / 3` findings and failed equivalent-Git-read and outside-workspace transcript gates.
+- Every source-bearing fixture retained its frozen Git status and file hashes. No failed run was retried in place, discarded, or promoted to a runtime pass.
+
+## v0.3.0 Post-release Boundaries
+
+- Codex remains runtime verified from the exact-candidate Quick, Deep, and Fix acceptance window; the post-release Quick failure remains separate evidence.
+- Cursor remains `Cannot Verify` because no v0.3.0 post-release run passed every semantic, output, isolation, collector, and read-only gate.
+- Claude Code remains `Cannot Verify` while valid runtime credentials are unavailable.
+- The synthetic Quick fixture does not verify browser, WebView, Native, backend, deployment, monitoring, or production behavior.
+
 ## Completed v0.2.2 Promotion Evidence
 
 - Reject runtime evidence when a client directly requests semantic oracles, checked-in expected outputs, or paths outside the generated fixture workspace.

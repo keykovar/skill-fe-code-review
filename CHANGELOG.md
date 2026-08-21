@@ -6,6 +6,10 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 
 ## [Unreleased]
 
+### Added
+
+- Recorded fresh-tag v0.3.0 post-release validation and retained the incomplete Codex Quick semantic result plus all Cursor isolation, mode, output, and trace failures without promoting any run to a post-release runtime pass.
+
 ## [0.3.0] - 2026-08-20
 
 ### Added
