@@ -136,7 +136,7 @@ describe('repository release support', () => {
     expect(validator).not.toContain('writeFile');
   });
 
-  test('documents the candidate version and stable bilingual installation evidence', () => {
+  test('documents the v0.4.0 stable bilingual installation evidence', () => {
     const packageJson = JSON.parse(readText('package.json')) as { version: string };
     const readme = readText('README.md');
     const chineseReadme = readText('README.zh-CN.md');
@@ -144,22 +144,22 @@ describe('repository release support', () => {
 
     expect(packageJson.version).toBe('0.4.0');
     expect(readme).toContain('README.zh-CN.md');
-    expect(readme).toContain('--branch v0.3.0');
+    expect(readme).toContain('--branch v0.4.0');
     expect(readme).toContain('Runtime verified');
-    expect(readme).toContain('### Stable v0.3.0');
-    expect(readme).not.toContain('### v0.3.0 Release Candidate');
+    expect(readme).toContain('### Stable v0.4.0');
+    expect(readme).not.toContain('### v0.4.0 Release Candidate');
     expect(readme).toContain('part of stable `v0.2.0`');
     expect(chineseReadme).toContain('安装稳定版本');
-    expect(chineseReadme).toContain('--branch v0.3.0');
+    expect(chineseReadme).toContain('--branch v0.4.0');
     expect(chineseReadme).toContain('Cannot Verify：无法验证');
-    expect(chineseReadme).toContain('### 稳定版 v0.3.0');
-    expect(chineseReadme).not.toContain('### v0.3.0 候选版本');
+    expect(chineseReadme).toContain('### 稳定版 v0.4.0');
+    expect(chineseReadme).not.toContain('### v0.4.0 候选版本');
     expect(chineseReadme).toContain('属于稳定版 `v0.2.0`');
     expect(compatibility).toContain('Structural verified');
-    expect(compatibility).toContain('Stable evidence baseline: [`v0.3.0`]');
-    expect(compatibility).toContain('Candidate under test: `v0.4.0`');
-    expect(compatibility).toContain('## v0.4.0 Release Candidate Evidence');
-    expect(compatibility).toContain('## Stable v0.3.0 Evidence');
+    expect(compatibility).toContain('Stable evidence baseline: [`v0.4.0`]');
+    expect(compatibility).toContain('Release contract: `v0.4.0`');
+    expect(compatibility).toContain('## Stable v0.4.0 Evidence');
+    expect(compatibility).toContain('## Historical v0.3.0 Evidence');
     expect(compatibility).toContain('a66e26e60e27f643f35b402c6660038c7070e759');
   });
 
@@ -169,7 +169,8 @@ describe('repository release support', () => {
     const roadmap = readText('docs/roadmap.md');
     const results = readText('docs/evaluation-results/v0.2.0.md');
     const historical = markdownSection(compatibility, '## Historical v0.1.1 Evidence');
-    const stable = markdownSection(compatibility, '## Stable v0.3.0 Evidence');
+    const stable = markdownSection(compatibility, '## Stable v0.4.0 Evidence');
+    const historicalV030 = markdownSection(compatibility, '## Historical v0.3.0 Evidence');
     const historicalV022 = markdownSection(compatibility, '## Historical v0.2.2 Evidence');
     const limitations = markdownSection(compatibility, '## Known Limitations');
     const historicalClaudeRow = markdownTableRow(historical, 'Claude Code');
@@ -181,7 +182,7 @@ describe('repository release support', () => {
       historicalV022,
       'Cursor Agent CLI 2026.08.04-aaa8809',
     );
-    const readmeStable = markdownSection(readme, '### Stable v0.3.0');
+    const readmeStable = markdownSection(readme, '### Stable v0.4.0');
     const readmeCursorRow = markdownTableRow(
       readmeStable,
       'Cursor',
@@ -195,11 +196,12 @@ describe('repository release support', () => {
     expect(historicalCursorRow).toMatch(/\| Runtime verified \|$/);
     expect(historicalCursorRow).not.toContain('Deep');
     expect(historicalCursorRow).not.toContain('Fix');
-    expect(stable).toContain('materially extends changed-condition review');
-    expect(stableCodexRow).toContain('prospective Fix replacement window passes `3 / 3`');
+    expect(stable).toContain('independent Findings with sequential IDs');
+    expect(stableCodexRow).toContain('saved Fix trace passes corrected execution auditing');
     expect(stableCodexRow).toMatch(/\| Runtime verified \|$/);
-    expect(stableCursorRow).toContain('failed one or more workspace-isolation');
+    expect(stableCursorRow).toContain('No v0.4.0 runtime run was executed');
     expect(stableCursorRow).toMatch(/\| Cannot Verify \|$/);
+    expect(historicalV030).toContain('materially extends changed-condition review');
     expect(historicalV022CursorRow).toContain('Candidate Deep/Fix and post-release Quick reviews');
     expect(historicalV022CursorRow).toContain('119 events and 15 tool calls');
     expect(historicalV022CursorRow).toMatch(/\| Runtime verified \|$/);
@@ -210,7 +212,7 @@ describe('repository release support', () => {
     expect(roadmap).not.toContain('final Deep Review against an immutable commit candidate after commit approval');
     expect(stableClaudeRow).toContain('valid runtime credentials are unavailable');
     expect(stableClaudeRow).toMatch(/\| Cannot Verify \|$/);
-    expect(limitations).toContain('Cursor and Claude Code v0.3.0 runtime behavior is not claimed');
+    expect(limitations).toContain('Cursor and Claude Code v0.4.0 runtime behavior remains `Cannot Verify`');
     expect(limitations).toContain('fresh-tag Quick smoke passed trace/read-only gates');
     expect(limitations).toContain('Codex v0.2.2 post-release runtime evidence covers the Quick fixture');
     expect(limitations).toContain('user-level Memory and plugin context');
@@ -333,14 +335,16 @@ describe('repository release support', () => {
     const versioning = readText('docs/versioning.md');
 
     expect(changelog).toContain('## [Unreleased]');
+    expect(changelog).toContain('## [0.4.0] - 2026-08-25');
     expect(changelog).toContain('## [0.3.0] - 2026-08-20');
     expect(changelog).toContain('## [0.2.2] - 2026-08-06');
     expect(changelog).toContain('## [0.2.1] - 2026-08-05');
     expect(changelog).toContain('## [0.2.0] - 2026-07-31');
     expect(changelog).toContain('## [0.1.1] - 2026-07-23');
     expect(changelog).toContain('## [0.1.0] - 2026-07-23');
-    expect(changelog).toContain('compare/v0.3.0...HEAD');
+    expect(changelog).toContain('compare/v0.4.0...HEAD');
     expect(changelog).toContain('Completed Candidate 08 at `7 / 7`');
+    expect(changelog).toContain('[0.4.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.3.0...v0.4.0');
     expect(changelog).toContain('[0.3.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.2...v0.3.0');
     expect(changelog).toContain('compare/v0.2.1...v0.2.2');
     expect(changelog).toContain('compare/v0.2.0...v0.2.1');
@@ -351,10 +355,9 @@ describe('repository release support', () => {
     expect(versioning).toContain('Major');
     expect(versioning).toContain('Release tags are immutable');
     expect(versioning).toContain('Cannot Verify');
-    expect(versioning).toContain('Stable: `v0.3.0`');
-    expect(versioning).toContain('Previous stable: `v0.2.2`');
-    expect(versioning).toContain('Release candidate: `v0.4.0`');
-    expect(versioning).not.toContain('Release candidate: `v0.3.0`');
+    expect(versioning).toContain('Stable: `v0.4.0`');
+    expect(versioning).toContain('Previous stable: `v0.3.0`');
+    expect(versioning).not.toContain('Release candidate: `v0.4.0`');
   });
 
   test('ships issue forms and an evidence-driven roadmap', () => {
@@ -538,7 +541,9 @@ describe('repository release support', () => {
     );
     const publishedResults = readText('docs/evaluation-results/v0.4.0-candidate.md');
 
-    expect(plan).toContain('Status: Phase 12 Candidate 08 `Go` at `7 / 7`');
+    expect(plan).toContain(
+      'Status: Candidate 08 selected for v0.4.0 release at `7 / 7` after tooling-only preserved-trace replay; raw `6 / 7` retained',
+    );
     expect(plan).toContain('independent-finding recall remained `2 / 3`');
     expect(plan).toContain('`F-001`, `F-002`');
     expect(plan).toContain('one Initial Review to Fix Review chain');
@@ -2201,13 +2206,13 @@ describe('repository release support', () => {
     expect(plan).toContain('Completed Stage 2: all five separately authorized');
     expect(plan).toContain('Completed tooling-only replay');
     expect(plan).toContain('Current decision: `Go 7 / 7` after tooling replay');
-    expect(publishedResults).toContain(
-      'Candidate 02 `No-Go`',
-    );
+    expect(publishedResults).toContain('## Candidate 02 Decision');
+    expect(publishedResults).toContain('It is not eligible for v0.4.0 promotion');
     expect(publishedResults).toContain('Candidate 03 implemented the frozen');
     expect(publishedResults).toContain('`8 / 9` (`88.9%`)');
     expect(publishedResults).toContain('approximately `963.4s`');
-    expect(publishedResults).toContain('Candidate 03 `No-Go` at `2 / 7`');
+    expect(publishedResults).toContain('source-bearing window completed at only `2 / 7`');
+    expect(publishedResults).toContain('It therefore remains `No-Go`');
     expect(publishedResults).toContain('Structural validator pass: `2 / 7`');
     expect(publishedResults).toContain('Zero-retry provider stream disconnected');
     expect(publishedResults).toContain('tooling-only correction now accepts standard Markdown links');

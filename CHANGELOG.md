@@ -6,6 +6,8 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-08-25
+
 ### Added
 
 - Recorded fresh-tag v0.3.0 post-release validation and retained the incomplete Codex Quick semantic result plus all Cursor isolation, mode, output, and trace failures without promoting any run to a post-release runtime pass.
@@ -113,7 +115,8 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 - Chinese output templates and example outputs.
 - Vitest contract tests, skill validation, and GitHub Actions CI.
 
-[Unreleased]: https://github.com/keykovar/skill-fe-code-review/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/keykovar/skill-fe-code-review/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.2...v0.3.0
 [0.2.2]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.0...v0.2.1

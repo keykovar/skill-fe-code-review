@@ -40,10 +40,10 @@ tests/                       Vitest structure and contract checks
 
 ## Install a Stable Release
 
-The current stable release is `v0.3.0`. Pin the tag instead of installing from `main` when reproducibility matters.
+The current stable release is `v0.4.0`. Pin the tag instead of installing from `main` when reproducibility matters.
 
 ```bash
-git clone --depth 1 --branch v0.3.0 \
+git clone --depth 1 --branch v0.4.0 \
   https://github.com/keykovar/skill-fe-code-review.git
 cd skill-fe-code-review
 ```
@@ -111,15 +111,15 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 ## Compatibility
 
-### Stable v0.3.0
+### Stable v0.4.0
 
-| Client | v0.3.0 evidence | Status |
+| Client | v0.4.0 evidence | Status |
 | --- | --- | --- |
-| Codex CLI 0.146.0 | Exact-candidate Quick, three-dataset Deep, and prospective Fix `3 / 3` acceptance pass; the fresh-tag Quick smoke retained a `2 / 3` semantic failure | Runtime verified |
-| Cursor | Structural and adapter contracts pass; fresh-tag plan/ask runs failed isolation, tool, output, or semantic gates | `Cannot Verify` |
+| Codex CLI 0.146.0 | Candidate 08 passed the frozen seven-run Quick, Deep, Fix, and no-finding window at `7 / 7` after one tooling-only preserved-trace replay; raw `6 / 7` remains recorded | Runtime verified |
+| Cursor | Shared Skill and adapter contracts pass; no v0.4.0 runtime run was executed | `Cannot Verify` |
 | Claude Code | Structural and adapter contracts pass; runtime credentials unavailable | `Cannot Verify` |
 
-Cursor and Claude Code v0.3.0 runtime verification remain `Cannot Verify`; neither is reported as a runtime pass. The Codex status comes from the exact-candidate acceptance window, not the incomplete post-release Quick run. See [Compatibility](docs/compatibility.md), [v0.3.0 Evaluation Results](docs/evaluation-results/v0.3.0.md), and [v0.3.0 Post-release Smoke Results](docs/evaluation-results/v0.3.0-post-release.md) for evidence and limitations. Historical v0.2.2 evidence remains available in [v0.2.2 Evaluation Results](docs/evaluation-results/v0.2.2.md) and [v0.2.2 Post-release Smoke Results](docs/evaluation-results/v0.2.2-post-release.md).
+Cursor and Claude Code v0.4.0 runtime verification remain `Cannot Verify`; neither is reported as a runtime pass. The Codex status comes from the exact Candidate 08 acceptance window and preserves the raw trace-auditor failure separately from its tooling-only replay. See [Compatibility](docs/compatibility.md), [v0.4.0 Evaluation Plan](docs/v0.4.0-finding-identity-evaluation-plan.md), and [v0.4.0 Candidate Results](docs/evaluation-results/v0.4.0-candidate.md) for evidence and limitations. Historical v0.3.0 evidence remains available in [v0.3.0 Evaluation Results](docs/evaluation-results/v0.3.0.md) and [v0.3.0 Post-release Smoke Results](docs/evaluation-results/v0.3.0-post-release.md).
 
 ## Usage
 
@@ -230,6 +230,8 @@ Vitest checks the repository structure, adapters, references, and required revie
 - [Changelog](CHANGELOG.md)
 - [Compatibility](docs/compatibility.md)
 - [Evaluation Protocol](docs/evaluation.md)
+- [v0.4.0 Evaluation Plan](docs/v0.4.0-finding-identity-evaluation-plan.md)
+- [v0.4.0 Candidate Results](docs/evaluation-results/v0.4.0-candidate.md)
 - [v0.3.0 Real-project Evaluation Plan](docs/v0.3.0-real-project-evaluation-plan.md)
 - [v0.3.0 Evaluation Results](docs/evaluation-results/v0.3.0.md)
 - [v0.3.0 Post-release Smoke Results](docs/evaluation-results/v0.3.0-post-release.md)

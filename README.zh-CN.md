@@ -40,10 +40,10 @@ tests/                       Vitest 结构和契约检查
 
 ## 安装稳定版本
 
-当前稳定版本为 `v0.3.0`。需要可复现安装时，应固定 Release tag，不要直接安装 `main`。
+当前稳定版本为 `v0.4.0`。需要可复现安装时，应固定 Release tag，不要直接安装 `main`。
 
 ```bash
-git clone --depth 1 --branch v0.3.0 \
+git clone --depth 1 --branch v0.4.0 \
   https://github.com/keykovar/skill-fe-code-review.git
 cd skill-fe-code-review
 ```
@@ -111,15 +111,15 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 ## 兼容性
 
-### 稳定版 v0.3.0
+### 稳定版 v0.4.0
 
-| 客户端 | v0.3.0 验证证据 | 状态 |
+| 客户端 | v0.4.0 验证证据 | 状态 |
 | --- | --- | --- |
-| Codex CLI 0.146.0 | exact-candidate Quick、三数据集 Deep 与前瞻 Fix `3 / 3` 验收通过；公开 tag Quick 冒烟保留 `2 / 3` 语义失败 | 运行时已验证 |
-| Cursor | 结构与适配器契约通过；公开 tag 的 plan/ask 运行未通过隔离、工具、输出或语义门禁 | `Cannot Verify：无法验证` |
+| Codex CLI 0.146.0 | Candidate 08 的 Quick、Deep、Fix 和无问题七次冻结窗口在一次仅工具保存 trace 重放后达到 `7 / 7`；原始 `6 / 7` 仍保留 | 运行时已验证 |
+| Cursor | 共享 Skill 与适配器契约通过；未执行 v0.4.0 运行时验证 | `Cannot Verify：无法验证` |
 | Claude Code | 结构与适配器契约通过；当前无可用运行时凭据 | `Cannot Verify：无法验证` |
 
-Cursor 与 Claude Code 的 v0.3.0 运行时验证仍为 `Cannot Verify：无法验证`，不会被描述为运行通过。Codex 的状态来自 exact-candidate 验收窗口，不来自未完整通过的发布后 Quick 冒烟。详细证据和限制见[兼容性说明](docs/compatibility.md)、[v0.3.0 评测结果](docs/evaluation-results/v0.3.0.md)与 [v0.3.0 发布后冒烟结果](docs/evaluation-results/v0.3.0-post-release.md)；历史 v0.2.2 证据仍保留在 [v0.2.2 评测结果](docs/evaluation-results/v0.2.2.md)和 [v0.2.2 发布后冒烟结果](docs/evaluation-results/v0.2.2-post-release.md)。
+Cursor 与 Claude Code 的 v0.4.0 运行时验证仍为 `Cannot Verify：无法验证`，不会被描述为运行通过。Codex 的状态来自 Candidate 08 精确候选验收窗口，并将原始 trace auditor 失败与仅工具重放结果分开保留。详细证据和限制见[兼容性说明](docs/compatibility.md)、[v0.4.0 评测计划](docs/v0.4.0-finding-identity-evaluation-plan.md)与 [v0.4.0 候选结果](docs/evaluation-results/v0.4.0-candidate.md)；历史 v0.3.0 证据仍保留在 [v0.3.0 评测结果](docs/evaluation-results/v0.3.0.md)和 [v0.3.0 发布后冒烟结果](docs/evaluation-results/v0.3.0-post-release.md)。
 
 ## 使用方式
 
@@ -230,6 +230,8 @@ Vitest 负责验证仓库结构、适配器、引用文件和必需审查契约�
 - [更新日志](CHANGELOG.md)
 - [兼容性说明](docs/compatibility.md)
 - [评测协议](docs/evaluation.md)
+- [v0.4.0 评测计划](docs/v0.4.0-finding-identity-evaluation-plan.md)
+- [v0.4.0 候选结果](docs/evaluation-results/v0.4.0-candidate.md)
 - [v0.3.0 真实项目评测计划](docs/v0.3.0-real-project-evaluation-plan.md)
 - [v0.3.0 评测结果](docs/evaluation-results/v0.3.0.md)
 - [v0.3.0 发布后冒烟结果](docs/evaluation-results/v0.3.0-post-release.md)

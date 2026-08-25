@@ -1,8 +1,8 @@
 # Compatibility
 
-Stable evidence verified: 2026-08-21
-Stable evidence baseline: [`v0.3.0`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.3.0)
-Release Skill SHA-256: `5665c80e426637221627f21e58c955a146865bf08d8cf64a8b88b03213e01296`
+Stable evidence verified: 2026-08-25
+Stable evidence baseline: [`v0.4.0`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.4.0)
+Release Skill SHA-256: `6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286`
 
 ## Evidence Levels
 
@@ -35,9 +35,9 @@ Runtime output can vary by model and client version. Re-run the smoke protocol a
 - Upgrading a client across a major version.
 - Publishing a new minor or major release.
 
-## v0.4.0 Release Candidate Evidence
+## Stable v0.4.0 Evidence
 
-Candidate under test: `v0.4.0`. Stable installation and evidence remain pinned to `v0.3.0` until the release is published.
+Release contract: `v0.4.0`. Stable installation now pins the immutable `v0.4.0` tag; tag creation and GitHub Release publication remain separately authorized operations.
 
 v0.4.0 adds independent Findings with sequential IDs that remain stable through one Initial Review to Fix Review chain. Candidate 08 completed the frozen seven-run public-synthetic window at `7 / 7` after a tooling-only replay of one saved Fix trace. The original raw result remains `6 / 7`; no model output was retried or replaced.
 
@@ -49,7 +49,7 @@ v0.4.0 adds independent Findings with sequential IDs that remain stable through 
 
 See [v0.4.0 Candidate Results](evaluation-results/v0.4.0-candidate.md) and the [v0.4.0 Evaluation Plan](v0.4.0-finding-identity-evaluation-plan.md) for the retained failures, source boundary, and promotion evidence.
 
-## Stable v0.3.0 Evidence
+## Historical v0.3.0 Evidence
 
 v0.3.0 materially extends changed-condition review, retained-defect handling, minimal-sufficient-design evidence, optional browser evidence, trace auditing, and complete-uncommitted context collection.
 
@@ -123,4 +123,4 @@ The shared core contract defines the following fallback for Codex, Claude Code, 
 - No v0.2.2 result claims browser runtime evidence; the release fixtures have no browser-observable product path.
 - The paired minimal-design oracle is a manual synthetic-fixture dataset. It verifies the recorded decisions and forbidden outcomes, not model quality in every repository.
 
-See [v0.3.0 Evaluation Results](evaluation-results/v0.3.0.md) and [v0.3.0 Post-release Smoke Results](evaluation-results/v0.3.0-post-release.md) for current release evidence, [v0.2.2 Evaluation Results](evaluation-results/v0.2.2.md) and [v0.2.2 Post-release Smoke Results](evaluation-results/v0.2.2-post-release.md) for the previous stable release, and [v0.1.0 Evaluation Results](evaluation-results/v0.1.0.md) for the original runtime cases and metrics.
+See [v0.4.0 Candidate Results](evaluation-results/v0.4.0-candidate.md) and the [v0.4.0 Evaluation Plan](v0.4.0-finding-identity-evaluation-plan.md) for current release evidence, [v0.3.0 Evaluation Results](evaluation-results/v0.3.0.md) and [v0.3.0 Post-release Smoke Results](evaluation-results/v0.3.0-post-release.md) for the previous stable release, and [v0.1.0 Evaluation Results](evaluation-results/v0.1.0.md) for the original runtime cases and metrics.

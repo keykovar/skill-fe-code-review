@@ -55,8 +55,7 @@ Before `1.0.0`, minor releases may still evolve the contract. Breaking behavior 
 
 ## Current Version
 
-- Stable: `v0.3.0`
-- Previous stable: `v0.2.2`
-- Release candidate: `v0.4.0`
-- v0.4.0 status: Candidate 08 passed `7 / 7` after a tooling-only preserved-trace replay; the raw `6 / 7` auditor result remains recorded, stable installation references remain on v0.3.0, and no tag or release has been created
-- v0.3.0 status: exact-candidate Quick, Deep, and prospective Fix acceptance plus deterministic release-readiness validation passed; Codex runtime is verified, while Cursor and Claude Code v0.3.0 runtime remain `Cannot Verify`
+- Stable: `v0.4.0`
+- Previous stable: `v0.3.0`
+- v0.4.0 status: Candidate 08 passed `7 / 7` after a tooling-only preserved-trace replay; the raw `6 / 7` auditor result remains recorded, final release metadata is prepared, and tag plus GitHub Release publication remain pending explicit authorization
+- v0.3.0 status: historical exact-candidate Quick, Deep, and prospective Fix acceptance passed; its post-release limitations remain recorded
