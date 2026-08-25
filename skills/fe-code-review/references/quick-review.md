@@ -12,6 +12,8 @@ Do not start Playwright or other browser automation by default. When the conditi
 
 Apply the Quick/Fix evidence discipline in `SKILL.md`. After the initial inventory, inspect the diff, its immediate owner, and only the callers, consumers, contracts, or tests needed to classify changed conditions and findings. Expand beyond that bounded path only when concrete evidence exposes a wider affected contract; do not perform broad file inventories or repeat searches as a substitute for an unresolved hypothesis.
 
+Apply the `Finding Requirements` finalization sequence before rendering. Keep discovery keys and acceptance sentences internal; expose the ledger only after final IDs are backfilled. Render each independently assessable changed condition, return-value contract, or observable behavior in its own `before -> after` entry, ending in one final Finding ID, `Behavior Preserving`, or `Cannot Verify`. Never summarize independent changes. Complete the repeated-ID ledger check in `SKILL.md` before responding.
+
 In Quick Review, `Cannot Verify` describes evidence status, not finding severity. Missing runtime or external evidence alone is not a finding. When local static evidence supports a finding, keep its demonstrated Blocking, Risk, or Improve severity and mark only the unverified evidence portion `Cannot Verify`. This does not change the `Design / Simplify` decision vocabulary.
 
 Apply the recommendation matrix in `SKILL.md` after classifying findings. In particular, an Improve-only review uses `可以提交` and describes the improvement as optional and non-blocking; do not add `建议提交前` or another pre-submit condition in the summary or final recommendation.
@@ -38,18 +40,23 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 - 已执行验证：
 - 未验证项：
 
+## Changed-Condition Coverage：变更条件覆盖
+
+- [file:line] 条件：修改前 -> 修改后；结论：[F-001] / Behavior Preserving：行为保持 / Cannot Verify：无法验证；合并依据：<仅重复 ID 时填写同一简短键>
+
 ## Blocking：必须修改
 
-- [file:line] 问题标题
+- [F-001] [file:line] 问题标题
   - 触发场景：
   - 影响：
+  - 阻断结果：<Severity Rules 中的稳定英文结果名> - <证据>
   - 根因：
   - 建议方案：
   - 验证方式：
 
 ## Risk：建议修改
 
-- [file:line] 问题标题
+- [F-001] [file:line] 问题标题
   - 触发场景：
   - 影响：
   - 根因：
@@ -58,7 +65,7 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 
 ## Improve：可优化
 
-- [file:line] 问题标题
+- [F-001] [file:line] 问题标题
   - 触发场景：
   - 影响：
   - 根因：
@@ -67,7 +74,7 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 ## Design / Simplify：设计与简化
 
 - 结论：Keep / Simplify / Extract / Cannot Verify
-- 关联问题：Blocking / Risk / Improve [file:line] / 无
+- 关联问题：[F-001] Blocking / Risk / Improve [file:line] / 无
 - 最小充分方向 / 保留理由：
 - 必须保持的行为 / 约束：
 - 证据 / 未验证：
@@ -107,4 +114,4 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 
 ## English Output Template
 
-Mirror the Chinese structure with these headings: `Overall Conclusion`, `Review Scope`, `Blocking`, `Risk`, `Improve`, `Design / Simplify`, `Naming / Readability`, `File Placement / Module Boundary`, `Test Gaps`, `Evidence`, and `Final Recommendation`. Include the comparison baseline and before/after behavior evidence. In `Design / Simplify`, use a compact `Keep`, `Simplify`, `Extract`, or `Cannot Verify` decision and preserve required behavior or invariants. Under `Evidence`, distinguish permitted official documentation verification, browser runtime evidence, and unverified areas.
+Mirror the Chinese structure with these headings: `Overall Conclusion`, `Review Scope`, `Changed-Condition Coverage`, `Blocking`, `Risk`, `Improve`, `Design / Simplify`, `Naming / Readability`, `File Placement / Module Boundary`, `Test Gaps`, `Evidence`, and `Final Recommendation`. Prefix every finding with its chain-local `F-NNN` ID. Include the comparison baseline and before/after behavior evidence. Begin each Blocking outcome with its stable English name. In `Design / Simplify`, use a compact `Keep`, `Simplify`, `Extract`, or `Cannot Verify` decision and preserve required behavior or invariants. Under `Evidence`, distinguish permitted official documentation verification, browser runtime evidence, and unverified areas.

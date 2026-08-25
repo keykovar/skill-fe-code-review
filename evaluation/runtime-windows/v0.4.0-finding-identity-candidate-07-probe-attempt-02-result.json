@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "candidate": "v0.4.0-finding-identity-candidate-07",
+  "attemptId": "source-free-probe-attempt-02",
+  "plan": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-07-plan.json",
+  "status": "pass-source-bearing-stage-1-authorization-pending",
+  "sourceTransmitted": false,
+  "privateSourceTransmitted": false,
+  "networkPayload": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.",
+  "clientWindow": {
+    "client": "Codex CLI 0.146.0",
+    "provider": "Joymeet",
+    "model": "gpt-5.5",
+    "sandbox": "read-only",
+    "ephemeral": true,
+    "httpRetries": 0,
+    "sseRetries": 0,
+    "mcpServersExplicitlyDisabled": 9
+  },
+  "replacementContract": {
+    "predecessorAttempt": "source-free-probe-attempt-01",
+    "onlyCommandDelta": "Rename the local wrapper capture variable from status to exit_code.",
+    "providerRequestParametersUnchanged": true,
+    "carryForwardAttempt01AsPass": false
+  },
+  "result": {
+    "mandatoryGatePassed": true,
+    "processExitCode": 0,
+    "elapsedSeconds": 5,
+    "decodedResponse": "CLIENT_ISOLATION_OK",
+    "decodedResponseBytes": 19,
+    "agentMessages": 1,
+    "turnCompletedEvents": 1,
+    "toolCalls": 0,
+    "commandExecutions": 0,
+    "mcpToolCalls": 0,
+    "traceEvents": 4,
+    "undisclosedEndpointSignals": 0,
+    "pluginSignals": 0,
+    "marketplaceSignals": 0,
+    "retrySignals": 0,
+    "auditorValid": true,
+    "auditorViolations": 0,
+    "tokenUsage": {
+      "inputTokens": 11143,
+      "cachedInputTokens": 10752,
+      "uncachedInputTokens": 391,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 37,
+      "reasoningOutputTokens": 26
+    }
+  },
+  "workspaceIntegrityAfterAttempt": {
+    "unchanged": "7/7",
+    "candidateHashesUnchanged": "7/7",
+    "agentCursorTreesUnchanged": "14/14",
+    "repeatPairsUnchanged": "2/2"
+  },
+  "artifactHashes": {
+    "outputSha256": "08d172bf341a620dbf1b9e55887d785beb2d93f92c73a17728f97012e1ef62ba",
+    "traceSha256": "7554fb01ebf665b7a081096ed316d973aaa83c38860819ec5feba1acf4dd426d",
+    "stderrSha256": "fea96d1e823d5db64caa0fc6113f42bb610a15fa9acc82c569951bb7451cf67b",
+    "auditSha256": "68ae5824a946ea2e619f2fc5194ceac00cc633f8176495fad69cc936e363d9bf",
+    "workspaceFreezeBeforeSha256": "849ca0771b52e650e6ea0794ebbfe6103757dc85549d347bc46be5c1d2900ee7",
+    "workspaceFreezeAfterSha256": "849ca0771b52e650e6ea0794ebbfe6103757dc85549d347bc46be5c1d2900ee7"
+  },
+  "decision": "The replacement source-free client-isolation precondition passed. It sent no source, provides no model-quality evidence, and does not authorize the source-bearing Stage 1 run."
+}

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "candidate": "v0.4.0-finding-identity-candidate-05",
+  "attemptId": "source-free-probe-attempt-02",
+  "manifest": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-05-plan.json",
+  "manifestSha256BeforeProbe": "40e8586d88e8d65c8019e4d3bde0e5eadac7133fefc6c07a53aa08c18710302b",
+  "probeDate": "2026-08-24",
+  "status": "pass-source-bearing-stage-1-authorization-pending",
+  "sourceTransmitted": false,
+  "request": {
+    "provider": "Joymeet",
+    "model": "gpt-5.5",
+    "workingDirectory": "/private/tmp",
+    "prompt": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.",
+    "skipGitRepoCheck": true,
+    "sandbox": "read-only",
+    "httpRetries": 0,
+    "sseRetries": 0
+  },
+  "result": {
+    "mandatoryGatePassed": true,
+    "processExitCode": 0,
+    "elapsedSeconds": 6,
+    "decodedResponse": "CLIENT_ISOLATION_OK",
+    "decodedResponseBytes": 19,
+    "agentMessages": 1,
+    "toolCalls": 0,
+    "mcpToolCalls": 0,
+    "mcpProcessStarted": false,
+    "traceEvents": 4,
+    "undisclosedEndpointSignals": 0,
+    "pluginSignals": 0,
+    "marketplaceSignals": 0,
+    "chatGptEndpointSignals": 0,
+    "retrySignals": 0,
+    "auditorValid": true,
+    "auditorViolations": 0
+  },
+  "usage": {
+    "inputTokens": 12554,
+    "cachedInputTokens": 5632,
+    "uncachedInputTokens": 6922,
+    "cacheWriteInputTokens": 0,
+    "outputTokens": 41,
+    "reasoningOutputTokens": 30
+  },
+  "evidence": {
+    "output": {
+      "path": "/private/tmp/fe-code-review-v040-c05-probe-attempt-02-output.txt",
+      "sha256": "08d172bf341a620dbf1b9e55887d785beb2d93f92c73a17728f97012e1ef62ba",
+      "bytes": 19
+    },
+    "trace": {
+      "path": "/private/tmp/fe-code-review-v040-c05-probe-attempt-02-trace.jsonl",
+      "sha256": "a5ba8089aafe10d4df07ef6821ba0d0171170e33637f0f01cdf142f4ee3349f0",
+      "bytes": 363,
+      "eventCount": 4
+    },
+    "stderr": {
+      "path": "/private/tmp/fe-code-review-v040-c05-probe-attempt-02-stderr.txt",
+      "sha256": "e0f0b2a6156fdc267eeb183c9a4eb06b74b3cb5f2a6bc11dc65a768b84103646",
+      "bytes": 5265,
+      "lineCount": 40,
+      "boundary": "Only local Codex rollout state-database fallback warnings and one stdin-status line were present; no endpoint, retry, plugin, marketplace, ChatGPT, or MCP signal was observed."
+    },
+    "exit": {
+      "path": "/private/tmp/fe-code-review-v040-c05-probe-attempt-02-exit.txt",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "elapsed": {
+      "path": "/private/tmp/fe-code-review-v040-c05-probe-attempt-02-elapsed.txt",
+      "sha256": "06e9d52c1720fca412803e3b07c4b228ff113e303f4c7ab94665319d832bbfb7"
+    }
+  },
+  "workspaceIntegrityAfterAttempt": {
+    "unchanged": "7/7",
+    "candidateHashesUnchanged": "7/7",
+    "agentCursorTreesUnchanged": "14/14",
+    "repeatPairsUnchanged": "2/2"
+  },
+  "decision": "The source-free client-isolation precondition passed. This is not model-quality evidence and does not authorize either Stage 1 source-bearing run."
+}

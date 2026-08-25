@@ -1,0 +1,8 @@
+{
+  "name": "no-clear-issue-fixture",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/label.test.mjs"
+  }
+}

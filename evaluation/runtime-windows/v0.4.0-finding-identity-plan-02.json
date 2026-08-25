@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "candidate": "v0.4.0-finding-identity",
+  "status": "replacement-window-frozen-probe-pending",
+  "baseManifest": "evaluation/runtime-windows/v0.4.0-finding-identity.json",
+  "baseManifestSha256": "1ddb5e8d782fd12cf189609b4b66a7a2c5a16e8b3feb00b8a48a2522a2e7bf11",
+  "replacesProbeResult": "evaluation/runtime-windows/v0.4.0-finding-identity-probe-result.json",
+  "replacementReason": "The original source-free probe returned the exact response but started a user-level MCP process because an empty table did not clear merged MCP configuration.",
+  "carryForward": {
+    "candidateHashes": true,
+    "oracleHashes": true,
+    "sevenSourceBearingWorkspaces": true,
+    "sourceBearingResults": false,
+    "previousProbePass": false
+  },
+  "sourcePolicy": {
+    "visibility": "public-synthetic-only",
+    "privateSourceAllowed": false,
+    "oracleReadableByModel": false,
+    "sourceTransmitted": false
+  },
+  "clientWindow": {
+    "client": "Codex CLI 0.146.0",
+    "provider": "Joymeet",
+    "providerConfigId": "custom",
+    "model": "gpt-5.5",
+    "sandbox": "read-only",
+    "ephemeral": true,
+    "ignoreRules": true,
+    "features": {
+      "plugins": false,
+      "remote_plugin": false,
+      "apps": false,
+      "hooks": false,
+      "memories": false,
+      "multi_agent": false
+    },
+    "webSearch": "disabled",
+    "mcpServersExplicitlyDisabled": [
+      "codegraph",
+      "computer-use",
+      "context7",
+      "mcp-deepwiki",
+      "node_repl",
+      "open-websearch",
+      "playwright",
+      "figma",
+      "sentry-kxmeet"
+    ],
+    "httpRetries": 0,
+    "sseRetries": 0,
+    "traceDirectory": "/private/tmp",
+    "sourceBearingRetryPolicy": "no-in-place-retry",
+    "sourceFreeProbe": {
+      "workingDirectory": "/private/tmp",
+      "prompt": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.",
+      "expectedDecodedResponse": "CLIENT_ISOLATION_OK",
+      "expectedAgentMessages": 1,
+      "expectedToolCalls": 0,
+      "expectedMcpCalls": 0,
+      "expectedMcpProcessStarts": 0,
+      "expectedUndisclosedEndpoints": 0
+    }
+  },
+  "executionRule": "Run the replacement source-free probe once. Only after it passes may the separately authorized seven source-bearing runs execute in the unchanged base-manifest order."
+}

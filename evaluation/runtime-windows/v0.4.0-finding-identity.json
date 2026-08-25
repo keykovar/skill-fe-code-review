@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "candidate": "v0.4.0-finding-identity",
+  "frozenDate": "2026-08-21",
+  "status": "frozen-source-free-probe-pending",
+  "sourcePolicy": {
+    "visibility": "public-synthetic-only",
+    "privateSourceAllowed": false,
+    "oracleReadableByModel": false,
+    "sourceTransmitted": false
+  },
+  "clientWindow": {
+    "client": "Codex CLI 0.146.0",
+    "provider": "Joymeet",
+    "model": "gpt-5.5",
+    "sandbox": "read-only",
+    "features": {
+      "plugins": false,
+      "remote_plugin": false
+    },
+    "mcpAllowed": [],
+    "httpRetries": 0,
+    "sseRetries": 0,
+    "traceDirectory": "/private/tmp",
+    "sourceBearingRetryPolicy": "no-in-place-retry",
+    "sourceFreeProbe": {
+      "workingDirectory": "/private/tmp",
+      "prompt": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.",
+      "expectedDecodedResponse": "CLIENT_ISOLATION_OK",
+      "expectedAgentMessages": 1,
+      "expectedToolCalls": 0,
+      "expectedMcpCalls": 0,
+      "expectedUndisclosedEndpoints": 0
+    }
+  },
+  "candidateHashes": {
+    "skills/fe-code-review/SKILL.md": "1b70a8281abc7e8ec2c95f829fda59c94ee65ac504dd7c5ea9ab70729e9f3882",
+    "skills/fe-code-review/references/quick-review.md": "9d5e0c7cd9ed7d36d0007f9eeaf32454024373b1cfa3d4fe06007f4adeeafa4a",
+    "skills/fe-code-review/references/deep-review.md": "eb77448763c097538da55101e147244936d85ddd0d0fbb74e5b051e6822e0723",
+    "skills/fe-code-review/references/fix-review.md": "105b72bd35f882144da03d562e5635f79a54e10b6fd00f71e687757bd86b522e"
+  },
+  "oracleHashes": {
+    "evaluation/fixtures/url-regression/case.json": "b5b6c3a1a1ef67e3dd9fc2fff69110ea91fd140fc4d56f719e477d3bd4c282bc",
+    "evaluation/fixtures/independent-findings/case.json": "8ea9848d1f52aa92037b92332375aa64626da0d2aa2e499b737e524ac2d0c227",
+    "evaluation/fixtures/deep-session-ownership/case.json": "5604aaa4326f857f396f38bc79fb3ebfe71858c201feb44de6a14e6417d338d3",
+    "evaluation/fixtures/no-clear-issue/case.json": "a48fbb40fa6901fc2beba5edceda7ad4cce4f70a5fb866f76f690885fbcac6cb",
+    "evaluation/fixtures/url-regression/previous-findings.identity.md": "5d6a6261edbafc659b569bc25b8aba68d076ee1905b900290cbce9d8a098eb06"
+  },
+  "runOrder": [
+    {
+      "sequence": 1,
+      "caseId": "Q-ID-001",
+      "runId": "RUN-01",
+      "mode": "quick-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-q-id-001-run-01",
+      "branch": "main",
+      "head": "be64cb9383d1bf49a8932bd3256dce1611f17fee",
+      "status": [" M src/url.ts", "?? src/request-config.ts"],
+      "fileCount": 30,
+      "treeSha256": "d72286063f45c0b7361303394b29efd3f48d19247ab55f4f08bcdac8c33d0eea",
+      "prompt": "使用 $fe-code-review，Quick Review 当前未提交改动。使用简体中文，严格只读。",
+      "expectedTestExitCode": 1,
+      "expectedFindings": [
+        { "id": "F-001", "key": "referenced-untracked-file", "allowedSeverities": ["Blocking"] },
+        { "id": "F-002", "key": "removed-slash-normalization", "allowedSeverities": ["Blocking", "Risk"] },
+        { "id": "F-003", "key": "ignored-base-url-contract", "allowedSeverities": ["Risk"] }
+      ],
+      "allowedRecommendations": ["修改后提交", "不建议提交"],
+      "forbiddenRecommendations": ["可以提交"]
+    },
+    {
+      "sequence": 2,
+      "caseId": "Q-ID-001",
+      "runId": "RUN-02",
+      "mode": "quick-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-q-id-001-run-02",
+      "branch": "main",
+      "head": "be64cb9383d1bf49a8932bd3256dce1611f17fee",
+      "status": [" M src/url.ts", "?? src/request-config.ts"],
+      "fileCount": 30,
+      "treeSha256": "d72286063f45c0b7361303394b29efd3f48d19247ab55f4f08bcdac8c33d0eea",
+      "prompt": "使用 $fe-code-review，Quick Review 当前未提交改动。使用简体中文，严格只读。",
+      "expectedTestExitCode": 1,
+      "expectedFindings": [
+        { "id": "F-001", "key": "referenced-untracked-file", "allowedSeverities": ["Blocking"] },
+        { "id": "F-002", "key": "removed-slash-normalization", "allowedSeverities": ["Blocking", "Risk"] },
+        { "id": "F-003", "key": "ignored-base-url-contract", "allowedSeverities": ["Risk"] }
+      ],
+      "allowedRecommendations": ["修改后提交", "不建议提交"],
+      "forbiddenRecommendations": ["可以提交"]
+    },
+    {
+      "sequence": 3,
+      "caseId": "Q-ID-002",
+      "runId": "RUN-01",
+      "mode": "quick-independent",
+      "workspace": "/private/tmp/fe-code-review-v040-q-id-002-run-01",
+      "branch": "main",
+      "head": "6865d56cf7079340bc86ae4fc5fb1ae628ce71aa",
+      "status": [" M src/cache-key.ts", " M src/request-options.ts"],
+      "fileCount": 31,
+      "treeSha256": "8fe454e6e1b2aec4eb0c422e86a9491b3a74dd75ff024ac187aeec8e6ee525c5",
+      "prompt": "使用 $fe-code-review，Quick Review 当前未提交改动。使用简体中文，严格只读。",
+      "expectedTestExitCode": 1,
+      "expectedFindings": [
+        { "id": "F-001", "key": "account-cache-key-collision", "allowedSeverities": ["Blocking", "Risk"] },
+        { "id": "F-002", "key": "ignored-timeout-contract", "allowedSeverities": ["Risk"] }
+      ],
+      "allowedRecommendations": ["修改后提交", "不建议提交"],
+      "forbiddenRecommendations": ["可以提交"]
+    },
+    {
+      "sequence": 4,
+      "caseId": "D-ID-001",
+      "runId": "RUN-01",
+      "mode": "deep-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-d-id-001-run-01",
+      "branch": "candidate",
+      "head": "a15414653e2f9ff0e129468e463fb30a99d0cd39",
+      "status": [],
+      "fileCount": 31,
+      "treeSha256": "1322f09a4da80b58672a41127429d123fa7008ec6972a31e1cc68b41649fe74e",
+      "prompt": "使用 $fe-code-review，Deep Review main...HEAD，重点审查跨模块状态所有权、行为回归和测试缺口。使用简体中文，严格只读。",
+      "expectedTestExitCode": 1,
+      "expectedFindings": [
+        { "id": "F-001", "key": "stale-profile-token-after-logout", "allowedSeverities": ["Blocking", "Risk"] }
+      ],
+      "expectedDesignDecision": "Simplify",
+      "allowedRecommendations": ["修改后可以进入下一步", "暂不建议进入下一步"],
+      "forbiddenRecommendations": ["可以进入下一步"]
+    },
+    {
+      "sequence": 5,
+      "caseId": "F-ID-001",
+      "runId": "RUN-01",
+      "mode": "fix-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-f-id-001-run-01",
+      "branch": "main",
+      "head": "5ba787e81accd7fc482f37164253ced8c8e4e304",
+      "status": [" M src/url.ts"],
+      "fileCount": 31,
+      "treeSha256": "e983525a2d43c5c2319f0e3f8c8d128d8ceb5cabcf02a7b705b42d33916e7ab3",
+      "previousFindingsSha256": "5d6a6261edbafc659b569bc25b8aba68d076ee1905b900290cbce9d8a098eb06",
+      "prompt": "使用 $fe-code-review，Fix Review 当前修改，并对照 .evaluation/previous-findings.md 按 Finding ID 逐项验证，同时检查新增回归。使用简体中文，严格只读。",
+      "expectedTestExitCode": 0,
+      "expectedClosures": [
+        { "id": "F-001", "originalSeverity": "Blocking", "status": "Resolved" },
+        { "id": "F-002", "originalSeverity": "Blocking", "status": "Resolved" },
+        { "id": "F-003", "originalSeverity": "Risk", "status": "Resolved" }
+      ],
+      "expectedNewRegression": "none",
+      "expectedRecommendation": "可以关闭"
+    },
+    {
+      "sequence": 6,
+      "caseId": "F-ID-001",
+      "runId": "RUN-02",
+      "mode": "fix-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-f-id-001-run-02",
+      "branch": "main",
+      "head": "5ba787e81accd7fc482f37164253ced8c8e4e304",
+      "status": [" M src/url.ts"],
+      "fileCount": 31,
+      "treeSha256": "e983525a2d43c5c2319f0e3f8c8d128d8ceb5cabcf02a7b705b42d33916e7ab3",
+      "previousFindingsSha256": "5d6a6261edbafc659b569bc25b8aba68d076ee1905b900290cbce9d8a098eb06",
+      "prompt": "使用 $fe-code-review，Fix Review 当前修改，并对照 .evaluation/previous-findings.md 按 Finding ID 逐项验证，同时检查新增回归。使用简体中文，严格只读。",
+      "expectedTestExitCode": 0,
+      "expectedClosures": [
+        { "id": "F-001", "originalSeverity": "Blocking", "status": "Resolved" },
+        { "id": "F-002", "originalSeverity": "Blocking", "status": "Resolved" },
+        { "id": "F-003", "originalSeverity": "Risk", "status": "Resolved" }
+      ],
+      "expectedNewRegression": "none",
+      "expectedRecommendation": "可以关闭"
+    },
+    {
+      "sequence": 7,
+      "caseId": "K-ID-001",
+      "runId": "RUN-01",
+      "mode": "quick-keep",
+      "workspace": "/private/tmp/fe-code-review-v040-k-id-001-run-01",
+      "branch": "main",
+      "head": "09aa8a316a1427c77033e708e9acf57793c1e849",
+      "status": [" M src/label.ts"],
+      "fileCount": 28,
+      "treeSha256": "e7442eea4286b639295d05601f5a372246d81d49c88c6c3888062eaf57486451",
+      "prompt": "使用 $fe-code-review，Quick Review 当前未提交改动。使用简体中文，严格只读。",
+      "expectedTestExitCode": 0,
+      "expectedFindings": [],
+      "expectedDesignDecision": "Keep",
+      "allowedRecommendations": ["可以提交"],
+      "forbiddenRecommendations": ["修改后提交", "不建议提交"]
+    }
+  ],
+  "repeatAssertions": [
+    {
+      "caseId": "Q-ID-001",
+      "runs": ["RUN-01", "RUN-02"],
+      "expectedTreeSha256": "d72286063f45c0b7361303394b29efd3f48d19247ab55f4f08bcdac8c33d0eea"
+    },
+    {
+      "caseId": "F-ID-001",
+      "runs": ["RUN-01", "RUN-02"],
+      "expectedTreeSha256": "e983525a2d43c5c2319f0e3f8c8d128d8ceb5cabcf02a7b705b42d33916e7ab3"
+    }
+  ]
+}

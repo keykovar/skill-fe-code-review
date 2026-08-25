@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "candidate": "v0.4.0-finding-identity-candidate-05",
+  "attemptId": "source-free-probe-attempt-01",
+  "manifest": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-05-plan.json",
+  "manifestSha256BeforeProbe": "00b46bf55c276ee1aa5542faf5f41db0967d877fd04f942937b11ef94028737a",
+  "probeDate": "2026-08-24",
+  "status": "failed-client-preflight-no-provider-request-observed",
+  "sourceTransmitted": false,
+  "request": {
+    "provider": "Joymeet",
+    "model": "gpt-5.5",
+    "workingDirectory": "/private/tmp",
+    "prompt": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.",
+    "skipGitRepoCheck": false,
+    "sandbox": "read-only",
+    "httpRetries": 0,
+    "sseRetries": 0
+  },
+  "result": {
+    "mandatoryGatePassed": false,
+    "processExitCode": 1,
+    "elapsedSeconds": 1,
+    "failurePhase": "client-preflight",
+    "failure": "Not inside a trusted directory and --skip-git-repo-check was not specified.",
+    "decodedResponse": null,
+    "decodedResponseBytes": 0,
+    "agentMessages": 0,
+    "toolCalls": 0,
+    "mcpToolCalls": 0,
+    "traceEvents": 0,
+    "providerRequestObserved": false,
+    "retrySignals": 0,
+    "auditorRun": false,
+    "auditorBoundary": "The trace is empty because Codex stopped during local trusted-directory preflight. This is not a successful isolation audit and cannot authorize source-bearing evaluation."
+  },
+  "evidence": {
+    "output": {
+      "path": "/private/tmp/fe-code-review-v040-c05-probe-output.txt",
+      "exists": false
+    },
+    "trace": {
+      "path": "/private/tmp/fe-code-review-v040-c05-probe-trace.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "stderr": {
+      "path": "/private/tmp/fe-code-review-v040-c05-probe-stderr.txt",
+      "sha256": "121db64788d9c8d29af50964b03ed3db1be4105f3d8ad29a6c5f343c59368f64",
+      "bytes": 115,
+      "lineCount": 2
+    },
+    "exit": {
+      "path": "/private/tmp/fe-code-review-v040-c05-probe-exit.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    "elapsed": {
+      "path": "/private/tmp/fe-code-review-v040-c05-probe-elapsed.txt",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    }
+  },
+  "workspaceIntegrityAfterAttempt": {
+    "unchanged": "7/7",
+    "candidateHashesUnchanged": "7/7",
+    "agentCursorTreesUnchanged": "14/14",
+    "repeatPairsUnchanged": "2/2"
+  },
+  "decision": "Attempt 01 failed before model execution because the frozen command omitted the required non-Git working-directory flag. It is retained without retry. A separately declared and authorized replacement may add only --skip-git-repo-check; this attempt does not authorize source-bearing evaluation."
+}

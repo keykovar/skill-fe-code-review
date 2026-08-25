@@ -16,7 +16,9 @@ When the conditional browser evidence gate in `SKILL.md` is satisfied and browse
 
 In Deep Review, `Cannot Verify` describes evidence status, not finding severity. Missing runtime or external evidence alone is not a finding. When local static evidence supports a finding, keep its demonstrated Blocking, Risk, or Improve severity and mark only the unverified evidence portion `Cannot Verify`. This does not change the `Design / Simplify` decision vocabulary.
 
-Apply the recommendation matrix in `SKILL.md` after classifying findings. An Improve-only review uses `可以进入下一步` and describes improvements as optional and non-blocking. If a Risk is accepted rather than made a gate, state the residual risk and why proceeding is justified.
+Apply the `Finding Requirements` finalization sequence before rendering. Keep discovery keys and acceptance sentences internal; expose the ledger only after final IDs are backfilled. Render each independently assessable changed condition, return-value contract, or observable behavior in its own `before -> after` entry, ending in one final Finding ID, `Behavior Preserving`, or `Cannot Verify`. Never summarize independent changes. Complete the repeated-ID ledger check in `SKILL.md` before responding.
+
+Apply the recommendation matrix in `SKILL.md` after classifying findings. Use `修改后可以进入下一步` when bounded fixes within the current design address all findings; reserve `暂不建议进入下一步` for an unsafe approach, insufficient bounded fixes, or unavailable critical evidence. An Improve-only review uses `可以进入下一步` and describes improvements as optional and non-blocking. If a Risk is accepted rather than made a gate, state the residual risk and why proceeding is justified.
 
 Use every top-level section exactly once. In `Design / Simplify`, use `Keep` when inspected evidence supports the current implementation and no design issue is found; use `Cannot Verify` when evidence is insufficient. In other sections, write `无明确问题。` or `No clear issue.` when no clear issue exists. Do not omit the change map, requirement gaps, design, naming, file placement, release risk, evidence, or final recommendation.
 
@@ -59,20 +61,25 @@ Use every top-level section exactly once. In `Design / Simplify`, use `Keep` whe
 - 共享模块影响：
 - 配置 / 依赖影响：
 
+## Changed-Condition Coverage：变更条件覆盖
+
+- [file:line] 条件：修改前 -> 修改后；结论：[F-001] / Behavior Preserving：行为保持 / Cannot Verify：无法验证；合并依据：<仅重复 ID 时填写同一简短键>
+
 ## Findings：问题列表
 
 ### Blocking：必须修改
 
-- [file:line] 问题标题
+- [F-001] [file:line] 问题标题
   - 触发场景：
   - 影响：
+  - 阻断结果：<Severity Rules 中的稳定英文结果名> - <证据>
   - 根因：
   - 建议方案：
   - 验证方式：
 
 ### Risk：建议修改
 
-- [file:line] 问题标题
+- [F-001] [file:line] 问题标题
   - 触发场景：
   - 影响：
   - 根因：
@@ -81,7 +88,7 @@ Use every top-level section exactly once. In `Design / Simplify`, use `Keep` whe
 
 ### Improve：可优化
 
-- [file:line] 问题标题
+- [F-001] [file:line] 问题标题
   - 触发场景：
   - 影响：
   - 根因：
@@ -94,7 +101,7 @@ Use every top-level section exactly once. In `Design / Simplify`, use `Keep` whe
 ## Design / Simplify：设计与简化
 
 - 结论：Keep / Simplify / Extract / Redesign / Cannot Verify
-- 关联问题：Blocking / Risk / Improve [file:line] / 无
+- 关联问题：[F-001] Blocking / Risk / Improve [file:line] / 无
 - 当前需求与必须保持的行为：
 - 已有能力复用：
 - 过度设计 / 冗余流程：
@@ -142,4 +149,4 @@ Use every top-level section exactly once. In `Design / Simplify`, use `Keep` whe
 
 ## English Output Template
 
-Mirror the Chinese structure with these headings: `Overall Conclusion`, `Change Understanding`, `Change Map`, `Findings`, `Requirement Gaps`, `Design / Simplify`, `Naming / Readability`, `File Placement / Module Boundary`, `Test Gaps`, `Release Risks`, `Evidence`, and `Final Recommendation`. `Change Understanding` must include the requested scope, modified, staged, unstaged, and untracked files, and executed and skipped validation. The change map must include the baseline, before behavior, after behavior, preserved invariants, and missing or removed behavior. `Design / Simplify` must include a minimal-sufficient-design decision, existing capability reuse, semantic duplication, unjustified complexity, a simpler viable alternative when one exists, tradeoffs, evidence, and unverified assumptions. Under `Evidence`, distinguish permitted official documentation verification, browser runtime evidence, and unverified areas.
+Mirror the Chinese structure with these headings: `Overall Conclusion`, `Change Understanding`, `Change Map`, `Changed-Condition Coverage`, `Findings`, `Requirement Gaps`, `Design / Simplify`, `Naming / Readability`, `File Placement / Module Boundary`, `Test Gaps`, `Release Risks`, `Evidence`, and `Final Recommendation`. Prefix every finding with its chain-local `F-NNN` ID. `Change Understanding` must include the requested scope, modified, staged, unstaged, and untracked files, and executed and skipped validation. The change map must include the baseline, before behavior, after behavior, preserved invariants, and missing or removed behavior. Begin each Blocking outcome with its stable English name. `Design / Simplify` must include a minimal-sufficient-design decision, existing capability reuse, semantic duplication, unjustified complexity, a simpler viable alternative when one exists, tradeoffs, evidence, and unverified assumptions. Under `Evidence`, distinguish permitted official documentation verification, browser runtime evidence, and unverified areas.

@@ -395,6 +395,118 @@ describe('runtime evaluation trace audit', () => {
     expect(report.violations.map(({ type }) => type)).toEqual(['write-command']);
   });
 
+  test('does not treat URL literals in a read-only node eval as filesystem paths', () => {
+    const workspace = makeWorkspace();
+    const tracePath = writeTrace(workspace, [
+      ...commandEvents(
+        'item_1',
+        String.raw`/bin/zsh -lc "node --input-type=module -e \"import assert from 'node:assert/strict'; import { buildUrl } from './src/url.ts'; const cases = [['https://api.example.com','users/42'], ['https://api.example.com/','users/42'], ['https://api.example.com','/users/42'], ['https://api.example.com/','/users/42']]; for (const [base, path] of cases) assert.equal(buildUrl(base, path), 'https://api.example.com/users/42'); assert.equal(buildUrl(undefined, '/users/42'), 'https://api.example.com/users/42');\""`,
+      ),
+    ]);
+
+    const result = audit(workspace, tracePath);
+    const report = JSON.parse(result.stdout) as AuditResult;
+
+    expect(result.status, result.stderr).toBe(0);
+    expect(report.valid).toBe(true);
+    expect(report.violations).toEqual([]);
+  });
+
+  test('does not treat relative imports in a ripgrep pattern as filesystem reads', () => {
+    const workspace = makeWorkspace();
+    const tracePath = writeTrace(workspace, [
+      ...commandEvents(
+        'item_1',
+        String.raw`/bin/zsh -lc "rg -n \"buildUrl\\(|from './url\\.ts'|from \\\"./url\\.ts\\\"|from '../src/url\\.ts'|from \\\"../src/url\\.ts\\\"\" \"tests\" \"src\""`,
+      ),
+    ]);
+
+    const result = audit(workspace, tracePath);
+    const report = JSON.parse(result.stdout) as AuditResult;
+
+    expect(result.status, result.stderr).toBe(0);
+    expect(report.valid).toBe(true);
+    expect(report.violations).toEqual([]);
+  });
+
+  test('keeps ripgrep pattern ranges aligned after non-BMP shell text', () => {
+    const workspace = makeWorkspace();
+    const tracePath = writeTrace(workspace, [
+      ...commandEvents(
+        'item_1',
+        String.raw`printf '😀' && rg -n "from '../src/url\.ts'" "tests" "src"`,
+      ),
+    ]);
+
+    const result = audit(workspace, tracePath);
+    const report = JSON.parse(result.stdout) as AuditResult;
+
+    expect(result.status, result.stderr).toBe(0);
+    expect(report.valid).toBe(true);
+    expect(report.violations).toEqual([]);
+  });
+
+  test('still detects a ripgrep path operand outside the workspace', () => {
+    const workspace = makeWorkspace();
+    const tracePath = writeTrace(workspace, [
+      ...commandEvents('item_1', String.raw`rg "from '../src/url\.ts'" "../outside"`),
+    ]);
+
+    const result = audit(workspace, tracePath);
+    const report = JSON.parse(result.stdout) as AuditResult;
+
+    expect(result.status).toBe(1);
+    expect(report.violations.map(({ type }) => type)).toEqual([
+      'outside-workspace-read',
+    ]);
+  });
+
+  test('still detects ripgrep no-pattern paths and pattern files outside the workspace', () => {
+    const workspace = makeWorkspace();
+    const tracePath = writeTrace(workspace, [
+      ...commandEvents('item_1', 'rg --files "../outside"'),
+      ...commandEvents('item_2', 'rg -f "../outside-patterns" "src"'),
+      ...commandEvents('item_3', 'cat rg "../outside-source"'),
+      ...commandEvents('item_4', 'rg -f../outside-attached-patterns "src"'),
+    ]);
+
+    const result = audit(workspace, tracePath);
+    const report = JSON.parse(result.stdout) as AuditResult;
+
+    expect(result.status).toBe(1);
+    expect(report.violations.map(({ type }) => type)).toEqual([
+      'outside-workspace-read',
+      'outside-workspace-read',
+      'outside-workspace-read',
+      'outside-workspace-read',
+    ]);
+  });
+
+  test('still detects filesystem reads inside and after a node eval', () => {
+    const workspace = makeWorkspace();
+    const outsidePath = path.join(path.dirname(workspace), 'outside-source.ts');
+    const tracePath = writeTrace(workspace, [
+      ...commandEvents(
+        'item_1',
+        `/bin/zsh -lc "node -e \"fs.readFileSync('${outsidePath}')\" && cat '${outsidePath}'"`,
+      ),
+      ...commandEvents(
+        'item_2',
+        `/bin/zsh -lc "node -e \"const read = fs.readFileSync; read('${outsidePath}')\""`,
+      ),
+    ]);
+
+    const result = audit(workspace, tracePath);
+    const report = JSON.parse(result.stdout) as AuditResult;
+
+    expect(result.status).toBe(1);
+    expect(report.violations.map(({ type }) => type)).toEqual([
+      'outside-workspace-read',
+      'outside-workspace-read',
+      'outside-workspace-read',
+    ]);
+  });
+
   test('detects output redirection to a quoted file target', () => {
     const workspace = makeWorkspace();
     const tracePath = writeTrace(workspace, [

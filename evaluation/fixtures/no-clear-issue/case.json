@@ -1,0 +1,14 @@
+{
+  "name": "no-clear-issue",
+  "modes": {
+    "quick-keep": {
+      "prompt": "使用 $fe-code-review，Quick Review 当前未提交改动。使用简体中文，严格只读。",
+      "expectedStatus": [" M src/label.ts"],
+      "expectedFindings": [],
+      "expectedDesignDecision": "Keep",
+      "expectedFindingIds": [],
+      "allowedRecommendations": ["可以提交"],
+      "forbiddenRecommendations": ["修改后提交", "不建议提交"]
+    }
+  }
+}

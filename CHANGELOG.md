@@ -9,6 +9,27 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 ### Added
 
 - Recorded fresh-tag v0.3.0 post-release validation and retained the incomplete Codex Quick semantic result plus all Cursor isolation, mode, output, and trace failures without promoting any run to a post-release runtime pass.
+- Added a frozen v0.4.0 evaluation plan, deterministic candidate fixtures, and a minimal Skill contract for independent Findings and chain-stable Finding IDs.
+- Recorded the complete seven-run v0.4.0 candidate window as `No-Go`, retaining Quick recall/identity failures, the severity mismatch, and both Fix auditor false positives without retry or favorable-sample selection.
+- Completed the fresh seven-run Candidate 02 window at `4 / 7`: independent-finding recall improved to `8 / 9`, while one omitted Finding, unstable Quick ID ordering, and the retained timeout severity failure kept v0.4.0 at `No-Go`; all execution, read-only, collector, MCP, and workspace-integrity gates passed without retry.
+- Completed the frozen Candidate 03 source-bearing window at `2 / 7` without retry: one merged Quick Finding, four structural output-contract failures, and one provider stream failure keep v0.4.0 at `No-Go`, while all read-only, MCP, oracle-access, and workspace-integrity gates passed.
+- Corrected the evaluator-only review-output validator to recognize standard Markdown links around documented file locations, then replayed six preserved Candidate 03 outputs with zero model calls; false unknown-ID errors were removed without changing the `2 / 7` decision.
+- Implemented and evaluated the frozen Candidate 04 contract for canonical Finding locations, stable Blocking outcome category prefixes, and measurable merge evidence when multiple ledger conditions share one Finding. Static, source-free isolation, execution, severity, Fix, no-finding, read-only, and workspace-integrity gates passed, but the seven-run public-synthetic window completed at `6 / 7`: one unchanged Quick repeat merged independently verifiable contracts and rendered non-sequential IDs. Candidate 04 remains `No-Go` with zero retries or replacement samples.
+- Completed Candidate 05's two-stage seven-run public-synthetic window at `4 / 7` with zero retries or replacement samples. Independent-finding recall, Finding-ID coverage, severity, unchanged-repeat identity, and Fix closure all passed, but two ledger-structure failures and one post-collector equivalent Git reread keep v0.4.0 at `No-Go`; all workspaces remained read-only and no private source was transmitted.
+- Froze Candidate 06 as three sentence replacements only: independently assessable ledger entries, merge keys on every repeated-ID entry, and collector patches as the authoritative all-uncommitted Fix diff. No external request or source transmission is authorized by the design freeze.
+- Implemented Candidate 06 exactly within the frozen instruction budget: `SKILL.md` stayed unchanged, Quick/Deep grew by 14 net English words, and Fix grew by 25; static and runtime acceptance remain separate gates.
+- Prepared seven fresh Candidate 06 public-synthetic workspaces with deterministic local fixture commit time, exact Skill copies, expected test exits, and byte-identical Quick/Fix repeat pairs; no external request or source transmission occurred.
+- Passed Candidate 06's source-free Joymeet isolation probe with exact `CLIENT_ISOLATION_OK`, zero tools, MCP, retry, plugin, marketplace, or undisclosed endpoint signals, and unchanged frozen workspaces; the pass authorizes no source-bearing run.
+- Completed Candidate 06 Stage 1 at `3 / 4` and stopped before Stage 2 after the Deep output omitted required repeated-ID merge keys and selected an unsupported recommendation; retained all passing Fix, severity, collector, read-only, and isolation evidence without retry.
+- Completed Candidate 07 at `6 / 7`: centralized repeated-ID finalization and bounded-fix Deep recommendations passed, while one unchanged Quick repeat still merged two independently repairable contracts.
+- Completed Candidate 08 at `7 / 7` after a focused tooling-only replay. All seven original model runs passed semantic and structural gates; the raw `6 / 7` auditor result remains recorded, and the saved Fix trace passed after correcting its deterministic `rg` pattern false positive with zero model calls, network requests, source transmission, retries, or workspace changes.
+
+### Fixed
+
+- Stopped the trace auditor from treating HTTP(S) URL literals inside read-only `node -e` assertions as shell filesystem paths while preserving direct, aliased, and post-eval outside-workspace read detection; replayed the unchanged Fix traces without new model calls.
+- Stopped the trace auditor from treating relative import text inside a confirmed `rg` search pattern as filesystem access while continuing to reject external `rg` path operands, `rg --files` paths, pattern files, and non-`rg` shell reads.
+- Rejected empty or ambiguous Fix Review evaluator outputs by requiring one Issue Verification section, at least one prior Finding ID, and exactly one supported closure status per prior Finding.
+- Prepared a second v0.4.0 candidate that finalizes the Finding ledger before numbering, splits independently verifiable issues, and requires evidence of a Blocking outcome before escalating a local contract regression; no Candidate 01 runtime result was carried forward, and the new source-free isolation precondition passed before any source-bearing run.
 
 ## [0.3.0] - 2026-08-20
 

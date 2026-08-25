@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "candidate": "v0.4.0-finding-identity",
+  "plan": "evaluation/runtime-windows/v0.4.0-finding-identity-plan-02.json",
+  "probeDate": "2026-08-21",
+  "status": "pass-source-bearing-authorization-pending",
+  "sourceTransmitted": false,
+  "networkPayload": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.",
+  "result": {
+    "processExitCode": 0,
+    "decodedResponse": "CLIENT_ISOLATION_OK",
+    "agentMessageCount": 1,
+    "toolCallCount": 0,
+    "mcpToolCallCount": 0,
+    "traceAuditValid": true,
+    "undisclosedUrlSignals": 0,
+    "mcpProcessStarted": false,
+    "mandatoryGatePassed": true
+  },
+  "observations": {
+    "elapsedSeconds": 24.2,
+    "traceEvents": 4,
+    "stderrLines": 60,
+    "stderrMcpWarningLines": 0,
+    "inputTokens": 12554,
+    "cachedInputTokens": 0,
+    "uncachedInputTokens": 12554,
+    "outputTokens": 55,
+    "reasoningOutputTokens": 44
+  },
+  "artifactHashes": {
+    "/private/tmp/fe-code-review-v040-plan02-probe-trace.jsonl": "d5fe85225649b020334dfae9eb19a51e03f4831d53b699dc60cd00c6cf368504",
+    "/private/tmp/fe-code-review-v040-plan02-probe-stderr.txt": "0dfced01227bc45163b71a7522f69e2754a2e25915f7a22ca245a2a89e864658",
+    "/private/tmp/fe-code-review-v040-plan02-probe-output.txt": "08d172bf341a620dbf1b9e55887d785beb2d93f92c73a17728f97012e1ef62ba"
+  },
+  "decision": "The unchanged seven-run source-bearing window may proceed only after explicit external-transmission authorization."
+}

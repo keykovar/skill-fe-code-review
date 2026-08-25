@@ -1,0 +1,383 @@
+{
+  "schemaVersion": 1,
+  "candidate": "v0.4.0-finding-identity-candidate-04",
+  "frozenDate": "2026-08-21",
+  "status": "complete-no-go",
+  "predecessor": {
+    "results": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-03-results.json",
+    "resultsSha256": "9a9918c78af3f216de197a6c46ef5204a50304223073c561ce211afae6792743",
+    "toolingReplay": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-03-tooling-replay.json",
+    "toolingReplaySha256": "7d238f3dc54c6d7cbf34568811d1012d8a80c73b93deefb64a093275ee75e20f",
+    "decision": "No-Go",
+    "mandatoryPassCount": 2,
+    "mandatoryRunCount": 7
+  },
+  "sourcePolicy": {
+    "visibility": "public-synthetic-only",
+    "privateSourceAllowed": false,
+    "oracleReadableByModel": false,
+    "sourceTransmitted": true
+  },
+  "oracleHashes": {
+    "evaluation/fixtures/url-regression/case.json": "b5b6c3a1a1ef67e3dd9fc2fff69110ea91fd140fc4d56f719e477d3bd4c282bc",
+    "evaluation/fixtures/independent-findings/case.json": "8ea9848d1f52aa92037b92332375aa64626da0d2aa2e499b737e524ac2d0c227",
+    "evaluation/fixtures/deep-session-ownership/case.json": "5604aaa4326f857f396f38bc79fb3ebfe71858c201feb44de6a14e6417d338d3",
+    "evaluation/fixtures/no-clear-issue/case.json": "a48fbb40fa6901fc2beba5edceda7ad4cce4f70a5fb866f76f690885fbcac6cb",
+    "evaluation/fixtures/url-regression/previous-findings.identity.md": "5d6a6261edbafc659b569bc25b8aba68d076ee1905b900290cbce9d8a098eb06"
+  },
+  "rootCause": {
+    "independentFinding": "One unchanged Quick repeat still merged two contracts whose acceptance criteria can pass independently.",
+    "blockingOutcome": "Three Initial Review outputs described Blocking evidence but did not begin the field with a measurable outcome category.",
+    "findingLocation": "One Deep output used a backtick-only location outside the frozen bracketed template.",
+    "validatorDefect": "The Markdown-link parser defect was corrected tooling-only and replayed without changing the 2/7 decision.",
+    "providerFailure": "One zero-retry stream ended before final output; this is retained as execution evidence and is not treated as a Skill defect."
+  },
+  "candidateContract": {
+    "findingHeader": {
+      "grammar": "- [F-NNN] [file:line] title",
+      "markdownLinkExtensionAllowed": true,
+      "markdownLinkExample": "- [F-001] [src/a.ts:1](/absolute/src/a.ts:1) title",
+      "backtickOnlyLocationAllowed": false,
+      "missingLocationDisposition": "Use the existing location-when-possible evidence boundary without inventing a path or line."
+    },
+    "blockingOutcome": {
+      "fieldMustBeginWithCanonicalCategory": true,
+      "evidenceAfterCategoryAllowed": true,
+      "delimiter": " - ",
+      "categories": [
+        "Runtime Error",
+        "White Screen",
+        "Infinite Loop",
+        "Broken Main Flow",
+        "Payment Failure",
+        "Login/Auth Failure",
+        "Data Corruption",
+        "Build Failure",
+        "Serious Compatibility Issue",
+        "Severe Regression",
+        "Referenced Untracked File"
+      ],
+      "localTestFailureAloneIsSufficient": false,
+      "unsupportedDisposition": "Downgrade to Risk or remove the unsupported Finding before rendering."
+    },
+    "repeatedLedgerFindingId": {
+      "singleReferenceRequiresMergeKey": false,
+      "repeatedReferenceRequiresMergeKey": true,
+      "fieldNames": ["Merge key", "合并依据"],
+      "sameIdRequiresIdenticalNonEmptyKey": true,
+      "keyMeaning": "The changed conditions share one root cause, one repair, and one verification path.",
+      "differentAcceptanceCriteriaDisposition": "Split into independent Findings before numbering.",
+      "semanticBoundary": "The validator checks presence and equality only; the frozen oracle decides whether a claimed merge is semantically valid."
+    }
+  },
+  "deterministicValidatorDelta": {
+    "runtimeDependency": false,
+    "modelMustInvoke": false,
+    "writesReviewArtifacts": false,
+    "checks": [
+      "canonical bracketed or Markdown-linked Finding location",
+      "Blocking outcome begins with one exact stable English category",
+      "repeated ledger Finding IDs carry one identical non-empty merge key",
+      "existing coverage, ID uniqueness, ID order, Fix exclusion, and read-only behavior remain unchanged"
+    ]
+  },
+  "nonGoals": [
+    "no new review or repair mode",
+    "no mandatory JSON user output",
+    "no second model, subagent, or hidden verification pass",
+    "no global Finding fingerprint",
+    "no Fix Review contract or scope change",
+    "no forced one-Finding-per-ledger-entry over-splitting",
+    "no semantic inference by the deterministic validator",
+    "no provider retry, oracle relaxation, or favorable-sample selection"
+  ],
+  "instructionBudgetRelativeToCandidate03": {
+    "skillMdNetWords": "<=60",
+    "quickAndDeepReferenceNetWords": "<=80",
+    "fixReferenceNetWords": "0",
+    "frontmatterNetWords": "0",
+    "validatorInstructionsLoadedAtRuntime": false
+  },
+  "implementation": {
+    "runtimeInstructionHashes": {
+      "skills/fe-code-review/SKILL.md": "abaabfa1e6e487e8ec7572599ba854669d6f35566e80f4184cb8f89f3b67553b",
+      "skills/fe-code-review/references/quick-review.md": "9e0acaedd0db9fd922cf7b1d5d1cf5ba5e1482612c55ddcd3fda0225667c1839",
+      "skills/fe-code-review/references/deep-review.md": "6f310b0f88198561cebcb267084080031a0e7f2e761c1dffe91016186c5dbd20",
+      "skills/fe-code-review/references/fix-review.md": "105b72bd35f882144da03d562e5635f79a54e10b6fd00f71e687757bd86b522e"
+    },
+    "candidate03EnglishWords": {
+      "skillMd": 3629,
+      "quickReference": 610,
+      "deepReference": 656,
+      "fixReference": 494
+    },
+    "candidate04EnglishWords": {
+      "skillMd": 3661,
+      "quickReference": 649,
+      "deepReference": 695,
+      "fixReference": 494
+    },
+    "netEnglishWords": {
+      "skillMd": 32,
+      "quickAndDeepReferences": 78,
+      "fixReference": 0,
+      "frontmatter": 0
+    },
+    "fixReferenceUnchanged": true,
+    "evaluator": {
+      "validatorPath": "scripts/validate-review-output.mjs",
+      "validatorSha256": "2de3e3e772986f201d7cb89f619376a5e9c34b1e438c5c3d68b24f3eb9dedaff",
+      "testPath": "tests/review-output-validator.test.ts",
+      "testSha256": "ef05dc57c36c763e2aea063b4e82c39d26a7db8cd1143f2cb29146128cbdec1d"
+    }
+  },
+  "preservedOutputReplay": {
+    "scope": "six Candidate 03 final outputs",
+    "modelCalls": 0,
+    "sourceTransmitted": false,
+    "runsRetried": 0,
+    "results": [
+      "Q-ID-001 RUN-01: blocking-outcome-unsupported; three Finding IDs recognized",
+      "Q-ID-001 RUN-02: blocking-outcome-unsupported plus repeated-Finding merge-key missing",
+      "Q-ID-002 RUN-01: blocking-outcome-unsupported",
+      "D-ID-001 RUN-01: invalid backtick-only Finding location, three unknown-ID entries, and repeated-Finding merge-key missing",
+      "F-ID-001 RUN-01: Pass; Fix contract unchanged",
+      "K-ID-001 RUN-01: Pass; no-finding contract unchanged"
+    ],
+    "interpretation": "This offline replay verifies only deterministic structural behavior. It does not rescore semantics or provide Candidate 04 runtime evidence."
+  },
+  "staticValidation": {
+    "vitest": "9/9 files; 104/104 tests",
+    "reviewOutputValidatorTests": "12/12",
+    "repositoryValidator": "pass",
+    "officialSkillValidator": "pass",
+    "nodeSyntax": "3/3 scripts",
+    "jsonParse": "25/25 files",
+    "runtimeInstructionHashes": "4/4 recorded",
+    "evaluatorHashes": "2/2 recorded",
+    "instructionBudget": "4/4",
+    "sensitiveValueScan": "pass-no-matches",
+    "gitDiffCheck": "pass"
+  },
+  "baseline": {
+    "runtimeInstructionHashes": {
+      "skills/fe-code-review/SKILL.md": "2fdf74bbddc8b4592a26bf7ea628bb155083ad548ad7159b7e20a6b5c75fc781",
+      "skills/fe-code-review/references/quick-review.md": "19fb2c346e8e63c232cd6e1f008c728da72bf36f832aae4f512a22230652588c",
+      "skills/fe-code-review/references/deep-review.md": "1fc9bc17797d219e5ce94ffe14153e7ca2541082bde2366c060e748a2fe27c17",
+      "skills/fe-code-review/references/fix-review.md": "105b72bd35f882144da03d562e5635f79a54e10b6fd00f71e687757bd86b522e"
+    },
+    "correctedValidatorSha256": "4167a7399b4b5b974794dfe7b61aeae4488950fb1bb7f687e5175c6531e93a57",
+    "correctedValidatorTestSha256": "7feef18473148d56e1a12ab537c8e9d61e40c6f1c782c601d5261bb156a08c3f",
+    "staticValidation": "9/9 files; 102/102 tests; both Skill validators pass"
+  },
+  "prospectiveWindow": {
+    "sourceBearingRuns": 7,
+    "runOrder": [
+      "Q-ID-001 RUN-01",
+      "Q-ID-001 RUN-02",
+      "Q-ID-002 RUN-01",
+      "D-ID-001 RUN-01",
+      "F-ID-001 RUN-01",
+      "F-ID-001 RUN-02",
+      "K-ID-001 RUN-01"
+    ],
+    "freshWorkspacesRequired": true,
+    "freshSourceFreeProbeRequired": true,
+    "freshSourceBearingAuthorizationRequired": true,
+    "carryForwardSourceBearingResults": false,
+    "failedRunRetryPolicy": "no-in-place-retry"
+  },
+  "carryForward": {
+    "fixtureDefinitions": true,
+    "oracleHashes": true,
+    "preparedWorkspaceHashes": false,
+    "sourceFreeProbeResult": false,
+    "sourceBearingResults": false
+  },
+  "clientWindow": {
+    "client": "Codex CLI 0.146.0",
+    "provider": "Joymeet",
+    "providerConfigId": "custom",
+    "model": "gpt-5.5",
+    "sandbox": "read-only",
+    "ephemeral": true,
+    "ignoreRules": true,
+    "features": {
+      "plugins": false,
+      "remote_plugin": false,
+      "apps": false,
+      "hooks": false,
+      "memories": false,
+      "multi_agent": false
+    },
+    "webSearch": "disabled",
+    "mcpServersExplicitlyDisabled": [
+      "codegraph",
+      "computer-use",
+      "context7",
+      "mcp-deepwiki",
+      "node_repl",
+      "open-websearch",
+      "playwright",
+      "figma",
+      "sentry-kxmeet"
+    ],
+    "httpRetries": 0,
+    "sseRetries": 0,
+    "traceDirectory": "/private/tmp",
+    "sourceBearingRetryPolicy": "no-in-place-retry",
+    "sourceFreeProbe": {
+      "workingDirectory": "/private/tmp",
+      "prompt": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.",
+      "expectedDecodedResponse": "CLIENT_ISOLATION_OK",
+      "expectedAgentMessages": 1,
+      "expectedToolCalls": 0,
+      "expectedMcpCalls": 0,
+      "expectedMcpProcessStarts": 0,
+      "expectedUndisclosedEndpoints": 0
+    }
+  },
+  "sourceFreeProbeResult": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-04-probe-result.json",
+  "sourceBearingResult": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-04-results.json",
+  "preparedWorkspaces": [
+    {
+      "sequence": 1,
+      "caseId": "Q-ID-001",
+      "runId": "RUN-01",
+      "mode": "quick-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c04-q-id-001-run-01",
+      "branch": "main",
+      "head": "d8283f38beb14f2de3feb75d2019561966576ee5",
+      "status": [" M src/url.ts", "?? src/request-config.ts"],
+      "fileCount": 30,
+      "treeSha256": "65eeacdd578299c56fd4283a4d392584f4b2006acc7f3e3cca07e3f58d658d2c",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 2,
+      "caseId": "Q-ID-001",
+      "runId": "RUN-02",
+      "mode": "quick-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c04-q-id-001-run-02",
+      "branch": "main",
+      "head": "d8283f38beb14f2de3feb75d2019561966576ee5",
+      "status": [" M src/url.ts", "?? src/request-config.ts"],
+      "fileCount": 30,
+      "treeSha256": "65eeacdd578299c56fd4283a4d392584f4b2006acc7f3e3cca07e3f58d658d2c",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 3,
+      "caseId": "Q-ID-002",
+      "runId": "RUN-01",
+      "mode": "quick-independent",
+      "workspace": "/private/tmp/fe-code-review-v040-c04-q-id-002-run-01",
+      "branch": "main",
+      "head": "e0ed8e37b295ecb37fec84f71acc47a509aae585",
+      "status": [" M src/cache-key.ts", " M src/request-options.ts"],
+      "fileCount": 31,
+      "treeSha256": "3e1f0c8f548f28bf613898e803045303b0376116fa845776f8700699bf2da650",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 4,
+      "caseId": "D-ID-001",
+      "runId": "RUN-01",
+      "mode": "deep-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c04-d-id-001-run-01",
+      "branch": "candidate",
+      "head": "c70294859ce37c4824cdae65b697808c1181be6b",
+      "status": [],
+      "fileCount": 31,
+      "treeSha256": "4c3050b419380bcd1f6e9e60b5752914f3300126a2a4a2c78777f81663b28a78",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 5,
+      "caseId": "F-ID-001",
+      "runId": "RUN-01",
+      "mode": "fix-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c04-f-id-001-run-01",
+      "branch": "main",
+      "head": "124711b93d42d7f4b862bf3f432a8f931d7f54dc",
+      "status": [" M src/url.ts"],
+      "fileCount": 31,
+      "treeSha256": "825aeb81caaa9a1e0ca2dd8ee61fcd2b268c1bba6065992665943fd40a3903c4",
+      "expectedTestExitCode": 0,
+      "actualTestExitCode": 0
+    },
+    {
+      "sequence": 6,
+      "caseId": "F-ID-001",
+      "runId": "RUN-02",
+      "mode": "fix-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c04-f-id-001-run-02",
+      "branch": "main",
+      "head": "124711b93d42d7f4b862bf3f432a8f931d7f54dc",
+      "status": [" M src/url.ts"],
+      "fileCount": 31,
+      "treeSha256": "825aeb81caaa9a1e0ca2dd8ee61fcd2b268c1bba6065992665943fd40a3903c4",
+      "expectedTestExitCode": 0,
+      "actualTestExitCode": 0
+    },
+    {
+      "sequence": 7,
+      "caseId": "K-ID-001",
+      "runId": "RUN-01",
+      "mode": "quick-keep",
+      "workspace": "/private/tmp/fe-code-review-v040-c04-k-id-001-run-01",
+      "branch": "main",
+      "head": "fba759b5a07e1e40281372431487d6931b6a0f5d",
+      "status": [" M src/label.ts"],
+      "fileCount": 28,
+      "treeSha256": "412a098e5b44940ae17f17fa125dc368b60dd4b94f7292a830aeeb4c4cd269ee",
+      "expectedTestExitCode": 0,
+      "actualTestExitCode": 0
+    }
+  ],
+  "workspaceIntegrity": {
+    "expectedTestResultsMatched": "7/7",
+    "candidateSkillHashesMatched": "7/7",
+    "agentCursorSkillCopiesMatched": "7/7",
+    "quickDeepFixReferenceHashesMatched": "21/21",
+    "cursorAdapterCopiesMatched": "7/7",
+    "previousFindingsHashesMatched": "2/2",
+    "evaluatorValidatorCopiedIntoRuntime": false,
+    "cursorAdapterSha256": "f53777a997ce9ab7394782f4fd77c7b808072166fced45fbf0a4a85a515be0ff"
+  },
+  "repeatAssertions": [
+    {
+      "caseId": "Q-ID-001",
+      "runs": ["RUN-01", "RUN-02"],
+      "expectedHead": "d8283f38beb14f2de3feb75d2019561966576ee5",
+      "expectedTreeSha256": "65eeacdd578299c56fd4283a4d392584f4b2006acc7f3e3cca07e3f58d658d2c"
+    },
+    {
+      "caseId": "F-ID-001",
+      "runs": ["RUN-01", "RUN-02"],
+      "expectedHead": "124711b93d42d7f4b862bf3f432a8f931d7f54dc",
+      "expectedTreeSha256": "825aeb81caaa9a1e0ca2dd8ee61fcd2b268c1bba6065992665943fd40a3903c4"
+    }
+  ],
+  "promotionGates": {
+    "mandatoryRuns": "7/7",
+    "independentFindingRecall": "9/9",
+    "sectionLeakage": "0/9",
+    "findingIdCoverage": "9/9",
+    "initialRepeatIdentityStability": "3/3",
+    "fixIdPreservation": "6/6",
+    "severityAccuracy": "9/9",
+    "falsePositiveCount": 0,
+    "noFindingPlaceholderCount": 0,
+    "structuralValidatorPass": "7/7 applicable contracts",
+    "executionPass": "7/7",
+    "readOnlyIntegrityPass": "7/7",
+    "mcpToolCalls": 0,
+    "undisclosedEndpointSignals": 0
+  },
+  "nextGate": "Retain Candidate 04 as No-Go at 6/7 without retry or replacement. Investigate final Finding reconciliation and ID assignment before freezing any new candidate; v0.3.0 remains stable."
+}

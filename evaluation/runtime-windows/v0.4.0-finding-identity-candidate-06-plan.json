@@ -1,0 +1,427 @@
+{
+  "schemaVersion": 1,
+  "candidate": "v0.4.0-finding-identity-candidate-06",
+  "frozenDate": "2026-08-24",
+  "status": "complete-no-go-stage-2-not-run",
+  "predecessor": {
+    "candidate": "v0.4.0-finding-identity-candidate-05",
+    "results": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-05-results.json",
+    "resultsSha256": "070d62b78c170ea773b653cf7239eeb9136652a80b9c6fd4c0ee3d31291a463e",
+    "decision": "No-Go",
+    "mandatoryPassCount": 4,
+    "mandatoryRunCount": 7,
+    "failedRuns": [
+      "Q-ID-002 RUN-01",
+      "D-ID-001 RUN-01",
+      "F-ID-001 RUN-02"
+    ]
+  },
+  "sourcePolicy": {
+    "visibility": "public-synthetic-only",
+    "privateSourceAllowed": false,
+    "oracleReadableByModel": false,
+    "sourceTransmitted": true
+  },
+  "oracleHashes": {
+    "evaluation/fixtures/url-regression/case.json": "b5b6c3a1a1ef67e3dd9fc2fff69110ea91fd140fc4d56f719e477d3bd4c282bc",
+    "evaluation/fixtures/independent-findings/case.json": "8ea9848d1f52aa92037b92332375aa64626da0d2aa2e499b737e524ac2d0c227",
+    "evaluation/fixtures/deep-session-ownership/case.json": "5604aaa4326f857f396f38bc79fb3ebfe71858c201feb44de6a14e6417d338d3",
+    "evaluation/fixtures/no-clear-issue/case.json": "a48fbb40fa6901fc2beba5edceda7ad4cce4f70a5fb866f76f690885fbcac6cb",
+    "evaluation/fixtures/url-regression/previous-findings.identity.md": "5d6a6261edbafc659b569bc25b8aba68d076ee1905b900290cbce9d8a098eb06"
+  },
+  "baselineInstructionHashes": {
+    "skills/fe-code-review/SKILL.md": "1ba585d2e31ef93e74981e26442cd07249939521c7bb627b8a1615aa12c3e0d4",
+    "skills/fe-code-review/references/quick-review.md": "42a231a4b417fc284fbfde125581be54ec9088227195ac1b87cf30cd3559c37c",
+    "skills/fe-code-review/references/deep-review.md": "d1c40d2c54d99387659c7f69e7fbf3983e679c8fcc1491a80cc93ea66de6b250",
+    "skills/fe-code-review/references/fix-review.md": "105b72bd35f882144da03d562e5635f79a54e10b6fd00f71e687757bd86b522e"
+  },
+  "baselineEnglishWords": {
+    "skillMd": 3725,
+    "quickReference": 643,
+    "deepReference": 696,
+    "fixReference": 494
+  },
+  "rootCause": {
+    "qId002": "Material condition was interpreted as conditional syntax only, so two independently assessable changed return contracts were summarized outside the required ledger grammar.",
+    "dId001": "The repeated-ID rule required a merge key structurally but did not state directly enough that every entry sharing the ID must carry the same non-empty key.",
+    "fId001Run02": "The main Skill prohibited equivalent inventory rereads, but Fix Review still said to inspect the fix diff without explicitly naming the collector patches as the authoritative diff for all-uncommitted scope.",
+    "classification": {
+      "qId002": "reference-wording-gap",
+      "dId001": "reference-wording-gap",
+      "fId001Run02": "runtime-variance-with-removable-reference-ambiguity"
+    }
+  },
+  "instructionDelta": {
+    "skillMd": "unchanged",
+    "quickAndDeepExactReplacement": {
+      "old": "Render each material condition once as `before -> after`, ending in a final Finding ID, `Behavior Preserving`, or `Cannot Verify`. A repeated-ID `Merge key` / `合并依据` records the completed merge decision; it does not make independently passable contracts mergeable. Omit it for a single reference.",
+      "new": "Render each independently assessable changed condition, return-value contract, or observable behavior in its own `before -> after` entry, ending in one final Finding ID, `Behavior Preserving`, or `Cannot Verify`. Never summarize independent changes. If an ID repeats, append the same non-empty `Merge key` / `合并依据` to every matching entry; omit it otherwise."
+    },
+    "fixExactReplacement": {
+      "old": "Apply the Quick/Fix evidence discipline in `SKILL.md`. Use this focused sequence: map every previous finding to its original trigger and acceptance criteria; inspect the fix diff; inspect the direct callers, consumers, contracts, and tests needed to exercise that trigger; compare the repaired path with adjacent behavior that must remain unchanged; then scan only those affected paths for regressions introduced by the fix. Do not inventory unrelated source trees, dependencies, routes, or architecture merely because they are available.",
+      "new": "Apply the Quick/Fix evidence discipline in `SKILL.md`. Use this focused sequence: map every previous finding to its original trigger and acceptance criteria; for an all-uncommitted review, treat the collector's staged and unstaged patches as the fix diff and do not rerun `git diff`, `git status`, or untracked-file inventory after successful collection; inspect the direct callers, consumers, contracts, and tests needed to exercise that trigger; compare the repaired path with adjacent behavior that must remain unchanged; then scan only those affected paths for regressions introduced by the fix. Do not inventory unrelated source trees, dependencies, routes, or architecture merely because they are available."
+    }
+  },
+  "instructionBudgetRelativeToCandidate05": {
+    "skillMdNetWords": "0",
+    "quickAndDeepReferenceNetWords": "<=20",
+    "fixReferenceNetWords": "<=30",
+    "frontmatterNetWords": "0",
+    "newVisibleOutputFields": 0,
+    "validatorInstructionsLoadedAtRuntime": false
+  },
+  "implementation": {
+    "runtimeInstructionHashes": {
+      "skills/fe-code-review/SKILL.md": "1ba585d2e31ef93e74981e26442cd07249939521c7bb627b8a1615aa12c3e0d4",
+      "skills/fe-code-review/references/quick-review.md": "ae658a358313a094c3ca77396c8cf4080f054c60b0205063de000df099cd106b",
+      "skills/fe-code-review/references/deep-review.md": "04fbeaa0daeecb80926f4f41dfef83532e5e6ded61d375c7c196a04cb953df3b",
+      "skills/fe-code-review/references/fix-review.md": "8380289a00f3c2f1a1ea740bc824b1a53813d6839b3957cae3c54c0e27757d33"
+    },
+    "candidate06EnglishWords": {
+      "skillMd": 3725,
+      "quickReference": 650,
+      "deepReference": 703,
+      "fixReference": 519
+    },
+    "netEnglishWords": {
+      "skillMd": 0,
+      "quickAndDeepReferences": 14,
+      "fixReference": 25,
+      "frontmatter": 0
+    },
+    "exactFrozenReplacementsApplied": "3/3",
+    "visibleOutputTemplateFieldsAdded": 0,
+    "evaluatorChanged": false,
+    "frontmatterUnchanged": true
+  },
+  "staticValidation": {
+    "vitest": "9/9 files; 104/104 tests",
+    "repositoryValidator": "pass",
+    "officialSkillValidator": "pass",
+    "nodeSyntax": "3/3 scripts",
+    "jsonParse": "pass",
+    "runtimeInstructionHashes": "4/4 recorded and matched",
+    "exactFrozenReplacements": "3/3",
+    "instructionBudget": "pass",
+    "sensitiveValueScan": "pass",
+    "gitDiffCheck": "pass"
+  },
+  "preparedWorkspaces": [
+    {
+      "sequence": 1,
+      "caseId": "Q-ID-002",
+      "runId": "RUN-01",
+      "mode": "quick-independent",
+      "workspace": "/private/tmp/fe-code-review-v040-c06-q-id-002-run-01",
+      "branch": "main",
+      "head": "20a23c07eb734c890a9e20656661abeeb76a6a5b",
+      "status": [" M src/cache-key.ts", " M src/request-options.ts"],
+      "fileCount": 31,
+      "treeSha256": "8e64b01105d2bf8023a5052bf74ee74473c6a53182ebb0b22849c62ed10fc036",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 2,
+      "caseId": "D-ID-001",
+      "runId": "RUN-01",
+      "mode": "deep-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c06-d-id-001-run-01",
+      "branch": "candidate",
+      "head": "445c190c2a8c00decf12cd5448b7ded588a4e0d4",
+      "status": [],
+      "fileCount": 31,
+      "treeSha256": "5bdd87ca2d0879dba36cc4153f95872bfafdcc8e834cedac354d69d8297f9fd8",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 3,
+      "caseId": "F-ID-001",
+      "runId": "RUN-01",
+      "mode": "fix-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c06-f-id-001-run-01",
+      "branch": "main",
+      "head": "75a01aeb458e74395cc9f4dcc0d01f2a284aed12",
+      "status": [" M src/url.ts"],
+      "fileCount": 31,
+      "treeSha256": "e21c44b104521eb66178d3f30e4adde87300bd317bca7383fbc2ad9f7d205b61",
+      "expectedTestExitCode": 0,
+      "actualTestExitCode": 0
+    },
+    {
+      "sequence": 4,
+      "caseId": "F-ID-001",
+      "runId": "RUN-02",
+      "mode": "fix-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c06-f-id-001-run-02",
+      "branch": "main",
+      "head": "75a01aeb458e74395cc9f4dcc0d01f2a284aed12",
+      "status": [" M src/url.ts"],
+      "fileCount": 31,
+      "treeSha256": "e21c44b104521eb66178d3f30e4adde87300bd317bca7383fbc2ad9f7d205b61",
+      "expectedTestExitCode": 0,
+      "actualTestExitCode": 0
+    },
+    {
+      "sequence": 5,
+      "caseId": "Q-ID-001",
+      "runId": "RUN-01",
+      "mode": "quick-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c06-q-id-001-run-01",
+      "branch": "main",
+      "head": "8854dd10f582ce7d9930edfe41cfaaeee310c87c",
+      "status": [" M src/url.ts", "?? src/request-config.ts"],
+      "fileCount": 30,
+      "treeSha256": "db86dcd21eeedfd6c991b9cf918cfef1d4f6e99f5b4a8d61473b048a22c5c756",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 6,
+      "caseId": "Q-ID-001",
+      "runId": "RUN-02",
+      "mode": "quick-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c06-q-id-001-run-02",
+      "branch": "main",
+      "head": "8854dd10f582ce7d9930edfe41cfaaeee310c87c",
+      "status": [" M src/url.ts", "?? src/request-config.ts"],
+      "fileCount": 30,
+      "treeSha256": "db86dcd21eeedfd6c991b9cf918cfef1d4f6e99f5b4a8d61473b048a22c5c756",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 7,
+      "caseId": "K-ID-001",
+      "runId": "RUN-01",
+      "mode": "quick-keep",
+      "workspace": "/private/tmp/fe-code-review-v040-c06-k-id-001-run-01",
+      "branch": "main",
+      "head": "6fdb3ffe472064290b682ae1af243265f9762a41",
+      "status": [" M src/label.ts"],
+      "fileCount": 28,
+      "treeSha256": "19c999baef2f4c73f799d687847fda37b5ea4bdeec13b2fc28281b348dff8a0e",
+      "expectedTestExitCode": 0,
+      "actualTestExitCode": 0
+    }
+  ],
+  "repeatAssertions": [
+    {
+      "caseId": "Q-ID-001",
+      "runs": ["RUN-01", "RUN-02"],
+      "expectedHead": "8854dd10f582ce7d9930edfe41cfaaeee310c87c",
+      "expectedTreeSha256": "db86dcd21eeedfd6c991b9cf918cfef1d4f6e99f5b4a8d61473b048a22c5c756"
+    },
+    {
+      "caseId": "F-ID-001",
+      "runs": ["RUN-01", "RUN-02"],
+      "expectedHead": "75a01aeb458e74395cc9f4dcc0d01f2a284aed12",
+      "expectedTreeSha256": "e21c44b104521eb66178d3f30e4adde87300bd317bca7383fbc2ad9f7d205b61"
+    }
+  ],
+  "workspaceIntegrity": {
+    "expectedTestResultsMatched": "7/7",
+    "candidateSkillHashesMatched": "7/7",
+    "agentCursorSkillCopiesMatched": "7/7",
+    "agentCursorSkillTreesMatched": "14/14",
+    "quickDeepFixReferenceHashesMatched": "21/21",
+    "cursorAdapterCopiesMatched": "7/7",
+    "previousFindingsHashesMatched": "2/2",
+    "evaluatorValidatorCopiedIntoRuntime": false,
+    "cursorAdapterSha256": "f53777a997ce9ab7394782f4fd77c7b808072166fced45fbf0a4a85a515be0ff"
+  },
+  "clientWindow": {
+    "client": "Codex CLI 0.146.0",
+    "provider": "Joymeet",
+    "providerConfigId": "custom",
+    "model": "gpt-5.5",
+    "sandbox": "read-only",
+    "ephemeral": true,
+    "ignoreRules": true,
+    "features": {
+      "plugins": false,
+      "remote_plugin": false,
+      "apps": false,
+      "hooks": false,
+      "memories": false,
+      "multi_agent": false
+    },
+    "webSearch": "disabled",
+    "mcpServersExplicitlyDisabled": [
+      "codegraph",
+      "computer-use",
+      "context7",
+      "mcp-deepwiki",
+      "node_repl",
+      "open-websearch",
+      "playwright",
+      "figma",
+      "sentry-kxmeet"
+    ],
+    "httpRetries": 0,
+    "sseRetries": 0,
+    "traceDirectory": "/private/tmp",
+    "sourceBearingRetryPolicy": "no-in-place-retry",
+    "sourceFreeProbe": {
+      "workingDirectory": "/private/tmp",
+      "skipGitRepoCheck": true,
+      "prompt": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.",
+      "expectedDecodedResponse": "CLIENT_ISOLATION_OK",
+      "expectedAgentMessages": 1,
+      "expectedToolCalls": 0,
+      "expectedMcpCalls": 0,
+      "expectedMcpProcessStarts": 0,
+      "expectedUndisclosedEndpoints": 0,
+      "expectedRetrySignals": 0,
+      "artifactPrefix": "/private/tmp/fe-code-review-v040-c06-probe",
+      "sourceTransmitted": false,
+      "sourceBearingAuthorized": false,
+      "retryPolicy": "no retry"
+    }
+  },
+  "sourceFreeProbeResult": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-06-probe-result.json",
+  "sourceFreeProbeDecision": {
+    "status": "pass",
+    "mandatoryGatePassed": true,
+    "decodedResponse": "CLIENT_ISOLATION_OK",
+    "agentMessages": 1,
+    "toolCalls": 0,
+    "mcpToolCalls": 0,
+    "undisclosedEndpointSignals": 0,
+    "retrySignals": 0,
+    "workspaceIntegrity": "7/7",
+    "sourceBearingStage1Authorized": false
+  },
+  "stage1Authorization": {
+    "status": "complete",
+    "authorizedDate": "2026-08-25",
+    "sourceScope": "four-public-synthetic-workspaces",
+    "publicSyntheticSourceTransmitted": true,
+    "privateSourceTransmitted": false,
+    "runOrder": [
+      "Q-ID-002 RUN-01",
+      "D-ID-001 RUN-01",
+      "F-ID-001 RUN-01",
+      "F-ID-001 RUN-02"
+    ],
+    "retryPolicy": "no retry, replacement, or favorable-sample selection"
+  },
+  "stage1Execution": {
+    "status": "complete-no-go-stage-2-not-run",
+    "runsExecuted": 4,
+    "runsRetried": 0,
+    "mandatoryPassCount": 3,
+    "mandatoryFailCount": 1,
+    "completedRuns": [
+      {
+        "caseId": "Q-ID-002",
+        "runId": "RUN-01",
+        "mandatoryResult": "Pass",
+        "semanticResult": "Pass",
+        "structuralValidatorResult": "Pass",
+        "executionResult": "Pass",
+        "retry": false
+      },
+      {
+        "caseId": "D-ID-001",
+        "runId": "RUN-01",
+        "mandatoryResult": "Fail",
+        "semanticResult": "Fail",
+        "structuralValidatorResult": "Fail",
+        "executionResult": "Pass",
+        "failure": "Both Changed-Condition entries referenced F-001 without the required identical non-empty merge key; the final recommendation also drifted from the frozen wording.",
+        "retry": false
+      },
+      {
+        "caseId": "F-ID-001",
+        "runId": "RUN-01",
+        "mandatoryResult": "Pass",
+        "semanticResult": "Pass",
+        "structuralValidatorResult": "Pass",
+        "executionResult": "Pass",
+        "fixClosureCoverage": "3/3",
+        "fixIdPreservation": "3/3",
+        "newRegressionCount": 0,
+        "recommendation": "可以关闭",
+        "retry": false
+      },
+      {
+        "caseId": "F-ID-001",
+        "runId": "RUN-02",
+        "mandatoryResult": "Pass",
+        "semanticResult": "Pass",
+        "structuralValidatorResult": "Pass",
+        "executionResult": "Pass",
+        "fixClosureCoverage": "3/3",
+        "fixIdPreservation": "3/3",
+        "newRegressionCount": 0,
+        "recommendation": "可以关闭",
+        "retry": false
+      }
+    ],
+    "result": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-06-stage-1-results.json",
+    "decision": "No-Go; Stage 2 not run"
+  },
+  "nonGoals": [
+    "No new visible section, field, mode, or JSON review output.",
+    "No evaluator validator in runtime Skill context.",
+    "No change to severity, recommendation, Fix closure, read-only, browser, or external-documentation contracts.",
+    "No second model, hidden pass, retry, replacement sample, or favorable-sample selection.",
+    "No weakening of the collector equivalent-reread gate."
+  ],
+  "prospectiveWindow": {
+    "sourceBearingRuns": 7,
+    "freshWorkspacesRequired": true,
+    "freshSourceFreeProbeRequired": true,
+    "freshSourceBearingAuthorizationRequired": true,
+    "carryForwardSourceBearingResults": false,
+    "failedRunRetryPolicy": "no-in-place-retry",
+    "stage1": {
+      "purpose": "Fail fast on all three Candidate 05 failure classes.",
+      "runOrder": [
+        "Q-ID-002 RUN-01",
+        "D-ID-001 RUN-01",
+        "F-ID-001 RUN-01",
+        "F-ID-001 RUN-02"
+      ],
+      "continueOnlyIf": {
+        "mandatoryRuns": "4/4",
+        "structuralValidatorPass": "4/4",
+        "executionPass": "4/4",
+        "fixClosureCoverage": "6/6",
+        "fixIdPreservation": "6/6",
+        "fixRepeatStability": "3/3",
+        "readOnlyIntegrityPass": "4/4",
+        "mcpToolCalls": 0,
+        "undisclosedEndpointSignals": 0
+      }
+    },
+    "stage2": {
+      "precondition": "Every Stage 1 gate passes against the frozen candidate.",
+      "runOrder": [
+        "Q-ID-001 RUN-01",
+        "Q-ID-001 RUN-02",
+        "K-ID-001 RUN-01"
+      ],
+      "relationshipToStage1": "Stage 1 and Stage 2 together form one seven-run promotion window."
+    }
+  },
+  "promotionGates": {
+    "mandatoryRuns": "7/7",
+    "independentFindingRecall": "9/9",
+    "sectionLeakage": "0/9",
+    "findingIdCoverage": "9/9",
+    "initialRepeatIdentityStability": "3/3",
+    "fixIdPreservation": "6/6",
+    "severityAccuracy": "9/9",
+    "falsePositiveCount": 0,
+    "noFindingPlaceholderCount": 0,
+    "structuralValidatorPass": "7/7 applicable contracts",
+    "executionPass": "7/7",
+    "readOnlyIntegrityPass": "7/7",
+    "mcpToolCalls": 0,
+    "undisclosedEndpointSignals": 0
+  },
+  "nextGate": "Retain Candidate 06 as No-Go at Stage 1 3/4 without retry or replacement. Diagnose repeated-ID merge-key and Deep recommendation compliance before freezing another candidate; v0.3.0 remains stable."
+}

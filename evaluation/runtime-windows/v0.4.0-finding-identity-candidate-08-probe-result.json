@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "candidate": "v0.4.0-finding-identity-candidate-08",
+  "plan": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-08-plan.json",
+  "probeDate": "2026-08-25",
+  "status": "pass-source-bearing-stage-1-authorization-pending",
+  "sourceTransmitted": false,
+  "privateSourceTransmitted": false,
+  "networkPayload": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.",
+  "clientWindow": {
+    "client": "Codex CLI 0.146.0",
+    "provider": "Joymeet",
+    "model": "gpt-5.5",
+    "sandbox": "read-only",
+    "ephemeral": true,
+    "httpRetries": 0,
+    "sseRetries": 0,
+    "mcpServersExplicitlyDisabled": 9
+  },
+  "result": {
+    "mandatoryGatePassed": true,
+    "processExitCode": 0,
+    "elapsedSeconds": 19,
+    "decodedResponse": "CLIENT_ISOLATION_OK",
+    "decodedResponseBytes": 19,
+    "agentMessages": 1,
+    "turnCompletedEvents": 1,
+    "toolCalls": 0,
+    "commandExecutions": 0,
+    "mcpToolCalls": 0,
+    "traceEvents": 4,
+    "undisclosedEndpointSignals": 0,
+    "pluginSignals": 0,
+    "marketplaceSignals": 0,
+    "retrySignals": 0,
+    "auditorValid": true,
+    "auditorViolations": 0,
+    "tokenUsage": {
+      "inputTokens": 11113,
+      "cachedInputTokens": 4608,
+      "uncachedInputTokens": 6505,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 30,
+      "reasoningOutputTokens": 19
+    }
+  },
+  "stderrBoundary": {
+    "stateDatabaseFallbackWarnings": 45,
+    "classification": "local-client-warning",
+    "affectedMandatoryGate": false,
+    "note": "The retained stderr contains only repeated codex_rollout state-database fallback warnings. It contains no plugin, marketplace, URL, retry, MCP startup, or tool-call signal."
+  },
+  "auditorBoundary": "The probe working directory /private/tmp is intentionally not a Git repository, so the trace auditor did not perform a repository-status comparison. All seven frozen source-bearing workspaces were independently rehashed before and after the probe and remained byte-identical.",
+  "workspaceIntegrityAfterProbe": {
+    "unchanged": "7/7",
+    "candidateHashesUnchanged": "7/7",
+    "agentCursorTreesUnchanged": "14/14",
+    "repeatPairsUnchanged": "2/2"
+  },
+  "artifactHashes": {
+    "outputSha256": "08d172bf341a620dbf1b9e55887d785beb2d93f92c73a17728f97012e1ef62ba",
+    "traceSha256": "97b224f7e5f201595e42b6860e3de9965defe9fa03568df52573ac9e728a6fcb",
+    "stderrSha256": "2bd64b453da69b543a824efa1dbe11164e163886afd17cec2e9a15658cb13aa0",
+    "exitSha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "elapsedSha256": "a9742eb8ee320e006666aef25ae9aeed948247f3125c9cafa7cf97b7e7467dd5",
+    "auditSha256": "0d5eb562f1c27d9a5db86f924532f5765163a7c34b5f3a041e37192295b2a441",
+    "workspaceFreezeBeforeSha256": "6912108007799760e1816522135cd7996172384b6059c62620bb028f3f1bcae6",
+    "workspaceFreezeAfterSha256": "6912108007799760e1816522135cd7996172384b6059c62620bb028f3f1bcae6"
+  },
+  "decision": "The source-free client-isolation precondition passed. It sent no source, provides no model-quality evidence, and does not authorize either source-bearing Stage 1 run."
+}

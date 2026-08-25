@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "candidate": "v0.4.0-finding-identity-candidate-03",
+  "status": "complete-pass-tooling-only",
+  "scope": "preserved-output-structural-validator-replay",
+  "modelCalls": 0,
+  "sourceTransmitted": false,
+  "runsRetried": 0,
+  "changedFiles": {
+    "scripts/validate-review-output.mjs": {
+      "baselineSha256": "266bc63d45c9be72039d99c08d724327f14c26fa1e6d957fb5fbf7caeb578a4d",
+      "correctedSha256": "4167a7399b4b5b974794dfe7b61aeae4488950fb1bb7f687e5175c6531e93a57"
+    },
+    "tests/review-output-validator.test.ts": {
+      "baselineSha256": "61e8710c6fd9abf1954a6d71b0c2bc11719feeeffa0ae04029902c4fe193e702",
+      "correctedSha256": "7feef18473148d56e1a12ab537c8e9d61e40c6f1c782c601d5261bb156a08c3f"
+    }
+  },
+  "guard": {
+    "targetedTests": "10/10",
+    "acceptedBehavior": "A documented bracketed file:line label may be rendered as a standard Markdown link without becoming invisible to Finding reconciliation.",
+    "preservedRejections": [
+      "backtick-only Finding location outside the frozen template",
+      "missing Blocking outcome",
+      "unsupported Blocking outcome",
+      "unknown coverage-ledger Finding ID",
+      "duplicate or non-sequential Finding ID"
+    ]
+  },
+  "replayedOutputs": [
+    {
+      "caseId": "Q-ID-001",
+      "runId": "RUN-01",
+      "outputSha256": "37b473d1ff7398c3ae5db78ab7a8617c0b0de1642d7c0c98be0acd333a59f906",
+      "originalValidatorResult": "Fail: three coverage-ledger-unknown-finding-id errors",
+      "correctedValidatorResult": "Fail: one blocking-outcome-unsupported error",
+      "recognizedFindingIds": ["F-001", "F-002", "F-003"]
+    },
+    {
+      "caseId": "Q-ID-001",
+      "runId": "RUN-02",
+      "outputSha256": "17921cce4b58d41a6410d5b0352df9e4c2c8aea3bf478ea9743566a287a5a0bd",
+      "originalValidatorResult": "Fail: one blocking-outcome-unsupported error",
+      "correctedValidatorResult": "Fail: one blocking-outcome-unsupported error",
+      "recognizedFindingIds": ["F-001", "F-002"]
+    },
+    {
+      "caseId": "Q-ID-002",
+      "runId": "RUN-01",
+      "outputSha256": "73000d7d24b4cf80d44ad85c75137ecca4c10fe4c71668d3e7f3b1c38f81c62b",
+      "originalValidatorResult": "Fail: one blocking-outcome-unsupported error",
+      "correctedValidatorResult": "Fail: one blocking-outcome-unsupported error",
+      "recognizedFindingIds": ["F-001", "F-002"]
+    },
+    {
+      "caseId": "D-ID-001",
+      "runId": "RUN-01",
+      "outputSha256": "1a45eb3efe8e94a34b867b047fe5a18f70bcef0fb7807f7895f5a5143989305e",
+      "originalValidatorResult": "Fail: three coverage-ledger-unknown-finding-id errors",
+      "correctedValidatorResult": "Fail: three coverage-ledger-unknown-finding-id errors",
+      "recognizedFindingIds": []
+    },
+    {
+      "caseId": "F-ID-001",
+      "runId": "RUN-01",
+      "outputSha256": "61fb3636c837a5b440ccf71cc0a7ceb06ef00a2f1c6eff978cab5367070828c8",
+      "originalValidatorResult": "Pass",
+      "correctedValidatorResult": "Pass",
+      "recognizedFindingIds": []
+    },
+    {
+      "caseId": "K-ID-001",
+      "runId": "RUN-01",
+      "outputSha256": "99444aac57401de6346194a3879c5be25dec637dc8decde1d006f576dc888aac",
+      "originalValidatorResult": "Pass",
+      "correctedValidatorResult": "Pass",
+      "recognizedFindingIds": []
+    }
+  ],
+  "skippedOutputs": [
+    {
+      "caseId": "F-ID-001",
+      "runId": "RUN-02",
+      "reason": "The preserved provider-stream failure produced no final output."
+    }
+  ],
+  "mandatoryPassCountBefore": 2,
+  "mandatoryPassCountAfter": 2,
+  "decision": "The Markdown-link parser defect is corrected without a model call, but Candidate 03 remains No-Go. Blocking-outcome, Deep location-format, independent-Finding, and provider-stream failures remain unchanged."
+}

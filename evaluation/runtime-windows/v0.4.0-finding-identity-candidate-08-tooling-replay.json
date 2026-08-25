@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "candidate": "v0.4.0-finding-identity-candidate-08",
+  "status": "complete-pass-tooling-only",
+  "scope": "preserved-f-id-001-run-01-trace-auditor-replay",
+  "modelCalls": 0,
+  "externalNetworkRequests": 0,
+  "sourceTransmitted": false,
+  "runsRetried": 0,
+  "correctedToolHashes": {
+    "scripts/audit-runtime-trace.mjs": "4f7f0734de8874e13e2634beaac35a01993ac20f01d7cf76a285938207635132",
+    "tests/runtime-trace-audit.test.ts": "b7d39d90af5839c70dcc12e1dd1e4ee36b3a2673806be26fce4c1a9f62fbefc3"
+  },
+  "guard": {
+    "targetedTests": "30/30",
+    "acceptedBehavior": "A relative import string inside a confirmed ripgrep search-pattern operand is not filesystem path access.",
+    "preservedRejections": [
+      "ripgrep path operand outside the workspace",
+      "ripgrep --files path outside the workspace",
+      "ripgrep -f pattern file outside the workspace, including attached -f<path>",
+      "direct shell and Node filesystem reads outside the workspace"
+    ]
+  },
+  "replayedTrace": {
+    "caseId": "F-ID-001",
+    "runId": "RUN-01",
+    "traceSha256": "8367a53ad7faa9b2383e4416ef3cbe181eabd27fefa8c217597782b5bb690338",
+    "outputSha256": "e15f3934342b344416a19648198aee7b0a632945e4d517cedd8fc5fe57d4fbd7",
+    "originalAuditSha256": "4344bb588d5fc32b06f8ccbe5f1ab0551f3ed65e298f2af372e75a60076bbde9",
+    "originalAuditResult": "Fail: two outside-workspace-read violations from relative import text inside the rg pattern",
+    "correctedAuditResult": "Pass",
+    "violations": 0,
+    "commandExecutions": 17,
+    "collectorCalls": 1,
+    "equivalentGitReads": 0,
+    "mcpToolCalls": 0,
+    "workspaceStatusChecked": true,
+    "workspaceStatusUnchanged": true,
+    "statusBeforeSha256": "43915c2da896e437bf50266d161ab5b34a13a3a0a1b8cb6fe0d79fb989a61ede",
+    "statusAfterSha256": "43915c2da896e437bf50266d161ab5b34a13a3a0a1b8cb6fe0d79fb989a61ede",
+    "elapsedSeconds": 162,
+    "inputTokens": 225085,
+    "cachedInputTokens": 193536,
+    "uncachedInputTokens": 31549,
+    "outputTokens": 6452,
+    "reasoningOutputTokens": 2900
+  },
+  "promotion": {
+    "rawMandatoryRunsPreserved": "6/7",
+    "mandatoryRunsAfterToolingReplay": "7/7",
+    "semanticOraclePass": "7/7",
+    "structuralValidatorPass": "7/7",
+    "executionPassAfterToolingReplay": "7/7",
+    "workspaceReadOnlyIntegrityPass": "7/7",
+    "clientIsolationPass": "7/7"
+  },
+  "decision": "Go",
+  "decisionReason": "The only raw failure was a deterministic trace-auditor false positive. The focused guard and preserved-trace replay pass without a model call, network request, source transmission, retry, or workspace change; all seven candidate runs now satisfy every promotion gate while the raw failure remains recorded."
+}

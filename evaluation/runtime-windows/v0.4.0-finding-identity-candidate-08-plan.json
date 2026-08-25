@@ -1,0 +1,406 @@
+{
+  "schemaVersion": 1,
+  "candidate": "v0.4.0-finding-identity-candidate-08",
+  "frozenDate": "2026-08-25",
+  "status": "complete-go-after-tooling-replay",
+  "toolingReplayResult": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-08-tooling-replay.json",
+  "predecessor": {
+    "candidate": "v0.4.0-finding-identity-candidate-07",
+    "plan": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-07-plan.json",
+    "planSha256": "d0c55b1557767715b0be38a5b4f46aed12b920a71de09874baedbfd6c6eef210",
+    "results": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-07-results.json",
+    "resultsSha256": "a3d64d97e9051256120b0426549c8cd8d49e3c46316124739a0ed3bd20fc3038",
+    "decision": "No-Go",
+    "mandatoryPassCount": 6,
+    "mandatoryRunCount": 7,
+    "failedRuns": ["Q-ID-001 RUN-02"]
+  },
+  "sourcePolicy": {
+    "visibility": "public-synthetic-only",
+    "privateSourceAllowed": false,
+    "sourceTransmitted": true,
+    "externalRequestAuthorized": true,
+    "sourceFreeProbeAuthorized": true,
+    "sourceFreeProbeCompleted": true,
+    "sourceBearingExternalRequestAuthorized": true,
+    "stage1SourceBearingAuthorized": true,
+    "stage1SourceBearingCompleted": true,
+    "stage2SourceBearingAuthorized": true,
+    "stage2SourceBearingCompleted": true,
+    "publicSyntheticSourceTransmitted": true,
+    "privateSourceTransmitted": false,
+    "evaluatorOracleTransmitted": false
+  },
+  "oracleHashes": {
+    "evaluation/fixtures/url-regression/case.json": "b5b6c3a1a1ef67e3dd9fc2fff69110ea91fd140fc4d56f719e477d3bd4c282bc",
+    "evaluation/fixtures/independent-findings/case.json": "8ea9848d1f52aa92037b92332375aa64626da0d2aa2e499b737e524ac2d0c227",
+    "evaluation/fixtures/deep-session-ownership/case.json": "5604aaa4326f857f396f38bc79fb3ebfe71858c201feb44de6a14e6417d338d3",
+    "evaluation/fixtures/no-clear-issue/case.json": "a48fbb40fa6901fc2beba5edceda7ad4cce4f70a5fb866f76f690885fbcac6cb",
+    "evaluation/fixtures/url-regression/previous-findings.identity.md": "5d6a6261edbafc659b569bc25b8aba68d076ee1905b900290cbce9d8a098eb06"
+  },
+  "baselineInstructionHashes": {
+    "skills/fe-code-review/SKILL.md": "08ca997f8667f5f84aaa3a51b95d31c81dc8faecd115df29b1866dff66cdf76f",
+    "skills/fe-code-review/references/quick-review.md": "3d8d775387ff91d7fffd5711957a0af13b2f9d52d4036f4214c1d208c0a58d17",
+    "skills/fe-code-review/references/deep-review.md": "9fef69f9db11cc846ad3cb2231f1ede1307227df83465ee8e3404cb5e6fcc276",
+    "skills/fe-code-review/references/fix-review.md": "8380289a00f3c2f1a1ea740bc824b1a53813d6839b3957cae3c54c0e27757d33"
+  },
+  "baselineEnglishWords": {
+    "skillMd": 3745,
+    "quickReference": 643,
+    "deepReference": 719,
+    "fixReference": 519
+  },
+  "rootCause": {
+    "candidate07Failure": "Q-ID-001 RUN-02 assigned ignored-base-url-contract and removed-slash-normalization to F-002 even though either acceptance criterion can pass independently.",
+    "instructionGap": "The central rule stated the independence outcome but did not force a concrete falsification attempt before accepting a merge, allowing the broad label URL construction contract to substitute for an indivisible repair.",
+    "classification": "central-merge-decision-wording-gap"
+  },
+  "instructionDelta": {
+    "file": "skills/fe-code-review/SKILL.md",
+    "step": "Finding Requirements step 2",
+    "old": "Give each candidate issue one internal pass/fail acceptance sentence. Split candidates when either sentence can pass while the other fails, even if one patch or test covers both. Merge only when root cause, minimum repair, verification path, and acceptance result are inseparable.",
+    "new": "Give each candidate issue one atomic pass/fail acceptance sentence. Before merging candidates, test both counterfactuals: can the minimum safe repair for A pass while B still fails, and vice versa? If either can, split them. A shared function, diff hunk, patch, test, output, or broad contract label is not merge evidence. Merge only when one indivisible repair necessarily makes every acceptance sentence pass."
+  },
+  "instructionBudgetRelativeToCandidate07": {
+    "skillMdNetWords": "<=25",
+    "quickAndDeepReferenceNetWords": "0",
+    "fixReferenceNetWords": "0",
+    "frontmatterNetWords": "0",
+    "newVisibleOutputFields": 0,
+    "evaluatorInstructionsLoadedAtRuntime": false
+  },
+  "implementation": {
+    "runtimeInstructionHashes": {
+      "skills/fe-code-review/SKILL.md": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+      "skills/fe-code-review/references/quick-review.md": "3d8d775387ff91d7fffd5711957a0af13b2f9d52d4036f4214c1d208c0a58d17",
+      "skills/fe-code-review/references/deep-review.md": "9fef69f9db11cc846ad3cb2231f1ede1307227df83465ee8e3404cb5e6fcc276",
+      "skills/fe-code-review/references/fix-review.md": "8380289a00f3c2f1a1ea740bc824b1a53813d6839b3957cae3c54c0e27757d33"
+    },
+    "candidate08EnglishWords": {
+      "skillMd": 3766,
+      "quickReference": 643,
+      "deepReference": 719,
+      "fixReference": 519
+    },
+    "netEnglishWords": {
+      "skillMd": 21,
+      "quickAndDeepReferences": 0,
+      "fixReference": 0,
+      "frontmatter": 0
+    },
+    "visibleOutputTemplateFieldsAdded": 0,
+    "evaluatorChanged": false,
+    "modeReferencesUnchanged": true,
+    "frontmatterUnchanged": true
+  },
+  "staticValidation": {
+    "status": "pass",
+    "targetedVitest": "2/2 files; 44/44 tests",
+    "fullVitest": "9/9 files; 104/104 tests",
+    "repositoryValidator": "pass",
+    "officialSkillValidator": "pass",
+    "nodeSyntax": "3/3 scripts",
+    "jsonParse": "39/39 files",
+    "runtimeInstructionHashes": "4/4 recorded and matched",
+    "instructionBudget": "pass",
+    "sensitiveValueScan": "pass",
+    "gitDiffCheck": "pass"
+  },
+  "fixtureCommitTimestamp": "2026-08-25T08:00:00Z",
+  "preparedWorkspaces": [
+    {
+      "sequence": 1,
+      "caseId": "Q-ID-001",
+      "runId": "RUN-01",
+      "mode": "quick-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c08-q-id-001-run-01",
+      "branch": "main",
+      "head": "9565638c25593393108459acde4477e42c4f6a5c",
+      "status": [" M src/url.ts", "?? src/request-config.ts"],
+      "fileCount": 30,
+      "treeSha256": "186ede60cd5bb3eaf5165a5a1b6393b55a059e61c8a864e2f578a04afb577934",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 2,
+      "caseId": "Q-ID-001",
+      "runId": "RUN-02",
+      "mode": "quick-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c08-q-id-001-run-02",
+      "branch": "main",
+      "head": "9565638c25593393108459acde4477e42c4f6a5c",
+      "status": [" M src/url.ts", "?? src/request-config.ts"],
+      "fileCount": 30,
+      "treeSha256": "186ede60cd5bb3eaf5165a5a1b6393b55a059e61c8a864e2f578a04afb577934",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 3,
+      "caseId": "Q-ID-002",
+      "runId": "RUN-01",
+      "mode": "quick-independent",
+      "workspace": "/private/tmp/fe-code-review-v040-c08-q-id-002-run-01",
+      "branch": "main",
+      "head": "b4dfd8466caf962ca821039c43f8a984f34767de",
+      "status": [" M src/cache-key.ts", " M src/request-options.ts"],
+      "fileCount": 31,
+      "treeSha256": "65251f6dd6cf6fbc5a0cfd92f5e5b23e713a79d669f3417fb78a30481fccafc9",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 4,
+      "caseId": "D-ID-001",
+      "runId": "RUN-01",
+      "mode": "deep-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c08-d-id-001-run-01",
+      "branch": "candidate",
+      "head": "14590874c38d18579f16ffccc644dcfd77b01c1f",
+      "status": [],
+      "fileCount": 31,
+      "treeSha256": "55f10fa939f900980780abd948e036574baedca2b129008e87be5e6905440214",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 5,
+      "caseId": "F-ID-001",
+      "runId": "RUN-01",
+      "mode": "fix-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c08-f-id-001-run-01",
+      "branch": "main",
+      "head": "92f6ec81973748811c7e202ed326e35ad1a077c1",
+      "status": [" M src/url.ts"],
+      "fileCount": 31,
+      "treeSha256": "93b66a8d4880e78ffac4db152d1226ce9d532c564b28a39bc580bc50cac74cda",
+      "expectedTestExitCode": 0,
+      "actualTestExitCode": 0
+    },
+    {
+      "sequence": 6,
+      "caseId": "F-ID-001",
+      "runId": "RUN-02",
+      "mode": "fix-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c08-f-id-001-run-02",
+      "branch": "main",
+      "head": "92f6ec81973748811c7e202ed326e35ad1a077c1",
+      "status": [" M src/url.ts"],
+      "fileCount": 31,
+      "treeSha256": "93b66a8d4880e78ffac4db152d1226ce9d532c564b28a39bc580bc50cac74cda",
+      "expectedTestExitCode": 0,
+      "actualTestExitCode": 0
+    },
+    {
+      "sequence": 7,
+      "caseId": "K-ID-001",
+      "runId": "RUN-01",
+      "mode": "quick-keep",
+      "workspace": "/private/tmp/fe-code-review-v040-c08-k-id-001-run-01",
+      "branch": "main",
+      "head": "4c24871dbfebe0895c6984b04fe283322aa0044b",
+      "status": [" M src/label.ts"],
+      "fileCount": 28,
+      "treeSha256": "793d7b0ed6c78c53bdd66fc05cb699c0e02380afb81c1d16a288a673205bfed7",
+      "expectedTestExitCode": 0,
+      "actualTestExitCode": 0
+    }
+  ],
+  "repeatAssertions": [
+    {
+      "caseId": "Q-ID-001",
+      "runs": ["RUN-01", "RUN-02"],
+      "expectedHead": "9565638c25593393108459acde4477e42c4f6a5c",
+      "expectedTreeSha256": "186ede60cd5bb3eaf5165a5a1b6393b55a059e61c8a864e2f578a04afb577934"
+    },
+    {
+      "caseId": "F-ID-001",
+      "runs": ["RUN-01", "RUN-02"],
+      "expectedHead": "92f6ec81973748811c7e202ed326e35ad1a077c1",
+      "expectedTreeSha256": "93b66a8d4880e78ffac4db152d1226ce9d532c564b28a39bc580bc50cac74cda"
+    }
+  ],
+  "workspaceIntegrity": {
+    "status": "pass",
+    "expectedTestResultsMatched": "7/7",
+    "candidateSkillHashesMatched": "7/7",
+    "agentCursorSkillCopiesMatched": "7/7",
+    "agentCursorSkillTreesMatched": "14/14",
+    "quickDeepFixReferenceHashesMatched": "21/21",
+    "cursorAdapterCopiesMatched": "7/7",
+    "previousFindingsHashesMatched": "2/2",
+    "evaluatorValidatorCopiedIntoRuntime": false,
+    "cursorAdapterSha256": "f53777a997ce9ab7394782f4fd77c7b808072166fced45fbf0a4a85a515be0ff",
+    "snapshot": "/private/tmp/fe-code-review-v040-c08-workspace-freeze.json",
+    "snapshotSha256": "6912108007799760e1816522135cd7996172384b6059c62620bb028f3f1bcae6"
+  },
+  "clientWindow": {
+    "client": "Codex CLI 0.146.0",
+    "provider": "Joymeet",
+    "providerConfigId": "custom",
+    "model": "gpt-5.5",
+    "sandbox": "read-only",
+    "ephemeral": true,
+    "ignoreRules": true,
+    "featuresDisabled": [
+      "plugins",
+      "remote_plugin",
+      "apps",
+      "hooks",
+      "memories",
+      "multi_agent",
+      "multi_agent_v2"
+    ],
+    "webSearch": "disabled",
+    "mcpServersExplicitlyDisabled": [
+      "codegraph",
+      "computer-use",
+      "context7",
+      "mcp-deepwiki",
+      "node_repl",
+      "open-websearch",
+      "playwright",
+      "figma",
+      "sentry-kxmeet"
+    ],
+    "httpRetries": 0,
+    "sseRetries": 0,
+    "sourceFreeProbe": {
+      "workingDirectory": "/private/tmp",
+      "skipGitRepoCheck": true,
+      "prompt": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.",
+      "expectedDecodedResponse": "CLIENT_ISOLATION_OK",
+      "expectedAgentMessages": 1,
+      "expectedToolCalls": 0,
+      "expectedMcpCalls": 0,
+      "expectedUndisclosedEndpoints": 0,
+      "expectedRetrySignals": 0,
+      "retryPolicy": "no in-place retry"
+    }
+  },
+  "sourceFreeProbe": {
+    "status": "pass-source-bearing-stage-1-authorization-pending",
+    "sourceTransmitted": false,
+    "sourceBearingAuthorized": false,
+    "result": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-08-probe-result.json",
+    "processExitCode": 0,
+    "elapsedSeconds": 19,
+    "decodedResponse": "CLIENT_ISOLATION_OK",
+    "decodedResponseBytes": 19,
+    "agentMessages": 1,
+    "turnCompletedEvents": 1,
+    "toolCalls": 0,
+    "mcpToolCalls": 0,
+    "traceEvents": 4,
+    "undisclosedEndpointSignals": 0,
+    "retrySignals": 0,
+    "auditorValid": true,
+    "workspacesUnchanged": "7/7"
+  },
+  "nonGoals": [
+    "No new visible section, field, mode, validator dependency, or hidden model pass.",
+    "No change to severity, recommendation, Fix Review, collector discipline, read-only, browser, or external-documentation contracts.",
+    "No weakening of Candidate 07 repeated-ID merge-key, Deep recommendation, Fix stability, or safety gates.",
+    "No retry or reinterpretation of Candidate 07 Q-ID-001 RUN-02."
+  ],
+  "prospectiveWindow": {
+    "sourceBearingRuns": 7,
+    "freshWorkspacesRequired": true,
+    "freshSourceFreeProbeRequired": true,
+    "freshSourceBearingAuthorizationRequired": true,
+    "carryForwardSourceBearingResults": false,
+    "failedRunRetryPolicy": "no-in-place-retry",
+    "stage1": {
+      "purpose": "Fail fast on the only Candidate 07 failure class and require repeat stability before broader evaluation.",
+      "runOrder": ["Q-ID-001 RUN-01", "Q-ID-001 RUN-02"],
+      "continueOnlyIf": {
+        "mandatoryRuns": "2/2",
+        "independentFindingRecall": "6/6",
+        "initialRepeatIdentityStability": "3/3",
+        "structuralValidatorPass": "2/2",
+        "executionPass": "2/2",
+        "readOnlyIntegrityPass": "2/2",
+        "mcpToolCalls": 0,
+        "undisclosedEndpointSignals": 0
+      }
+    },
+    "stage2": {
+      "precondition": "Every Stage 1 gate passes against the frozen candidate.",
+      "runOrder": [
+        "Q-ID-002 RUN-01",
+        "D-ID-001 RUN-01",
+        "F-ID-001 RUN-01",
+        "F-ID-001 RUN-02",
+        "K-ID-001 RUN-01"
+      ],
+      "relationshipToStage1": "Stage 1 and Stage 2 together form one fresh seven-run promotion window."
+    }
+  },
+  "stage1Authorization": {
+    "status": "complete",
+    "sourceScope": "two-byte-identical-public-synthetic-q-id-001-workspaces",
+    "runOrder": ["Q-ID-001 RUN-01", "Q-ID-001 RUN-02"],
+    "publicSyntheticSourceTransmitted": true,
+    "privateSourceTransmitted": false,
+    "evaluatorOracleTransmitted": false
+  },
+  "stage1Execution": {
+    "status": "complete-pass",
+    "result": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-08-stage-1-results.json",
+    "runsExecuted": 2,
+    "runsRetried": 0,
+    "mandatoryPassCount": 2,
+    "mandatoryFailCount": 0,
+    "stage2RunsExecuted": 0,
+    "metrics": {
+      "mandatoryRuns": "2/2",
+      "independentFindingRecall": "6/6",
+      "initialRepeatIdentityStability": "3/3",
+      "severityAccuracy": "6/6",
+      "structuralValidatorPass": "2/2",
+      "executionPass": "2/2",
+      "readOnlyIntegrityPass": "2/2",
+      "clientIsolationPass": "2/2"
+    }
+  },
+  "stage2Authorization": {
+    "status": "complete",
+    "sourceScope": "five-public-synthetic-stage-2-workspaces",
+    "runOrder": [
+      "Q-ID-002 RUN-01",
+      "D-ID-001 RUN-01",
+      "F-ID-001 RUN-01",
+      "F-ID-001 RUN-02",
+      "K-ID-001 RUN-01"
+    ],
+    "publicSyntheticSourceTransmitted": true,
+    "privateSourceTransmitted": false,
+    "evaluatorOracleTransmitted": false
+  },
+  "stage2Execution": {
+    "status": "complete-hold-tooling-replay-pending",
+    "result": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-08-results.json",
+    "runsExecuted": 5,
+    "runsRetried": 0,
+    "rawMandatoryPassCount": 4,
+    "rawMandatoryFailCount": 1,
+    "semanticPass": "5/5",
+    "structuralValidatorPass": "5/5",
+    "rawExecutionPass": "4/5",
+    "failedRuns": ["F-ID-001 RUN-01"],
+    "failureClassification": "suspected-evaluator-false-positive"
+  },
+  "toolingReplay": {
+    "status": "complete-pass-tooling-only",
+    "modelCalls": 0,
+    "externalNetworkRequests": 0,
+    "sourceTransmitted": false,
+    "runsRetried": 0,
+    "replayedTrace": "F-ID-001 RUN-01",
+    "rawMandatoryRunsPreserved": "6/7",
+    "mandatoryRunsAfterToolingReplay": "7/7",
+    "decision": "Go"
+  },
+  "nextGate": "Complete the v0.4.0 release-readiness review without rerunning the model window. Publishing, Git commits, pushes, tags, and releases remain separately authorized operations."
+}

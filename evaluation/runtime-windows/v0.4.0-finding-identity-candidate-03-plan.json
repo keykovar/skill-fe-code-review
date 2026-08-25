@@ -1,0 +1,332 @@
+{
+  "schemaVersion": 1,
+  "candidate": "v0.4.0-finding-identity-candidate-03",
+  "frozenDate": "2026-08-21",
+  "status": "complete-no-go",
+  "predecessor": {
+    "results": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-02-results.json",
+    "resultsSha256": "e15a2096402e7df7a36e00719d4501306c13d10c1f22de332dde7f75621a1f6e",
+    "decision": "No-Go",
+    "mandatoryPassCount": 4,
+    "mandatoryRunCount": 7
+  },
+  "sourcePolicy": {
+    "visibility": "public-synthetic-only",
+    "privateSourceAllowed": false,
+    "oracleReadableByModel": false,
+    "sourceTransmitted": true
+  },
+  "baseOracleManifest": {
+    "path": "evaluation/runtime-windows/v0.4.0-finding-identity.json",
+    "sha256": "1ddb5e8d782fd12cf189609b4b66a7a2c5a16e8b3feb00b8a48a2522a2e7bf11"
+  },
+  "oracleHashes": {
+    "evaluation/fixtures/url-regression/case.json": "b5b6c3a1a1ef67e3dd9fc2fff69110ea91fd140fc4d56f719e477d3bd4c282bc",
+    "evaluation/fixtures/independent-findings/case.json": "8ea9848d1f52aa92037b92332375aa64626da0d2aa2e499b737e524ac2d0c227",
+    "evaluation/fixtures/deep-session-ownership/case.json": "5604aaa4326f857f396f38bc79fb3ebfe71858c201feb44de6a14e6417d338d3",
+    "evaluation/fixtures/no-clear-issue/case.json": "a48fbb40fa6901fc2beba5edceda7ad4cce4f70a5fb866f76f690885fbcac6cb",
+    "evaluation/fixtures/url-regression/previous-findings.identity.md": "5d6a6261edbafc659b569bc25b8aba68d076ee1905b900290cbce9d8a098eb06"
+  },
+  "rootCause": {
+    "skillEntrypointLoaded": "3/3 failing-or-unstable Quick runs",
+    "quickReferenceLoaded": "3/3 failing-or-unstable Quick runs",
+    "relevantSourceAndTestsRead": "3/3 failing-or-unstable Quick runs",
+    "executionSafetyPassed": "3/3 failing-or-unstable Quick runs",
+    "failureStage": "final Finding reconciliation, ID ordering, and severity synthesis",
+    "decision": "Do not add another internal reminder. Make the coverage and Blocking evidence contracts observable and structurally measurable."
+  },
+  "runtimeContract": {
+    "quickAndDeepCoverageLedger": {
+      "visible": true,
+      "purpose": "List each materially changed condition or contract once with its before/after behavior and a disposition that references a Finding ID, Behavior Preserving, or Cannot Verify.",
+      "fullFindingDuplicationAllowed": false
+    },
+    "blockingOutcomeField": {
+      "requiredForBlocking": true,
+      "allowedOutcomeSource": "the existing explicit Blocking outcome list or the referenced-untracked module-resolution exception",
+      "localTestFailureAloneIsSufficient": false,
+      "missingOutcomeDisposition": "downgrade to Risk or remove the unsupported Finding"
+    },
+    "findingIds": {
+      "format": "F-NNN",
+      "ordering": "severity then first changed source location after the complete visible ledger is reconciled",
+      "fixPreservation": "unchanged"
+    }
+  },
+  "deterministicEvaluationValidator": {
+    "runtimeDependency": false,
+    "modelMustInvoke": false,
+    "writesReviewArtifacts": false,
+    "checks": [
+      "required coverage-ledger section exists exactly once for Quick and Deep",
+      "every ledger disposition uses an existing Finding ID, Behavior Preserving, or Cannot Verify",
+      "Finding IDs are unique and sequential in rendered order",
+      "every Blocking Finding declares a supported Blocking outcome",
+      "Fix Review output remains outside the new ledger contract"
+    ],
+    "boundary": "Structural validation cannot infer a missing semantic contract or replace evaluator-only finding and severity adjudication."
+  },
+  "nonGoals": [
+    "no new review mode",
+    "no mandatory JSON user output",
+    "no runtime report file or workspace write",
+    "no second model or subagent pass",
+    "no content-derived or global Finding fingerprint",
+    "no change to Fix Review scope or closure rules",
+    "no oracle relaxation, retry, or favorable-sample selection"
+  ],
+  "instructionBudgetRelativeToCandidate02": {
+    "skillMdNetWords": "<=20",
+    "quickAndDeepReferenceNetWords": "<=100",
+    "fixReferenceNetWords": "0",
+    "validatorInstructionsLoadedAtRuntime": false
+  },
+  "implementation": {
+    "runtimeInstructionHashes": {
+      "skills/fe-code-review/SKILL.md": "2fdf74bbddc8b4592a26bf7ea628bb155083ad548ad7159b7e20a6b5c75fc781",
+      "skills/fe-code-review/references/quick-review.md": "19fb2c346e8e63c232cd6e1f008c728da72bf36f832aae4f512a22230652588c",
+      "skills/fe-code-review/references/deep-review.md": "1fc9bc17797d219e5ce94ffe14153e7ca2541082bde2366c060e748a2fe27c17",
+      "skills/fe-code-review/references/fix-review.md": "105b72bd35f882144da03d562e5635f79a54e10b6fd00f71e687757bd86b522e"
+    },
+    "candidate02EnglishWords": {
+      "skillMd": 3616,
+      "quickReference": 574,
+      "deepReference": 607,
+      "fixReference": 494
+    },
+    "candidate03EnglishWords": {
+      "skillMd": 3629,
+      "quickReference": 610,
+      "deepReference": 656,
+      "fixReference": 494
+    },
+    "netEnglishWords": {
+      "skillMd": 13,
+      "quickAndDeepReferences": 85,
+      "fixReference": 0
+    },
+    "fixReferenceUnchanged": true,
+    "validator": {
+      "path": "scripts/validate-review-output.mjs",
+      "sha256": "266bc63d45c9be72039d99c08d724327f14c26fa1e6d957fb5fbf7caeb578a4d",
+      "test": "tests/review-output-validator.test.ts",
+      "cli": "pnpm evaluation:review-output --mode <quick|deep|fix> <review.md>"
+    }
+  },
+  "staticValidation": {
+    "vitest": "9/9 files; 101/101 tests",
+    "reviewOutputValidatorTests": "9/9",
+    "repositoryValidator": "pass",
+    "officialSkillValidator": "pass",
+    "python": "3.11 with PyYAML 6.0.3",
+    "nodeSyntax": "3/3 scripts",
+    "jsonParse": "pass",
+    "candidateHashAndWordBudget": "5/5",
+    "sensitiveValueScan": "pass",
+    "gitDiffCheck": "pass"
+  },
+  "carryForward": {
+    "fixtureDefinitions": true,
+    "oracleHashes": true,
+    "preparedWorkspaceHashes": false,
+    "sourceBearingResults": false,
+    "sourceFreeProbeResult": false
+  },
+  "prospectiveWindow": {
+    "sourceBearingRuns": 7,
+    "freshWorkspacesRequired": true,
+    "freshSourceFreeProbeRequired": true,
+    "carryForwardSourceBearingResults": false,
+    "runOrder": [
+      "Q-ID-001 RUN-01",
+      "Q-ID-001 RUN-02",
+      "Q-ID-002 RUN-01",
+      "D-ID-001 RUN-01",
+      "F-ID-001 RUN-01",
+      "F-ID-001 RUN-02",
+      "K-ID-001 RUN-01"
+    ]
+  },
+  "clientWindow": {
+    "client": "Codex CLI 0.146.0",
+    "provider": "Joymeet",
+    "providerConfigId": "custom",
+    "model": "gpt-5.5",
+    "sandbox": "read-only",
+    "ephemeral": true,
+    "ignoreRules": true,
+    "features": {
+      "plugins": false,
+      "remote_plugin": false,
+      "apps": false,
+      "hooks": false,
+      "memories": false,
+      "multi_agent": false
+    },
+    "webSearch": "disabled",
+    "mcpServersExplicitlyDisabled": [
+      "codegraph",
+      "computer-use",
+      "context7",
+      "mcp-deepwiki",
+      "node_repl",
+      "open-websearch",
+      "playwright",
+      "figma",
+      "sentry-kxmeet"
+    ],
+    "httpRetries": 0,
+    "sseRetries": 0,
+    "traceDirectory": "/private/tmp",
+    "sourceBearingRetryPolicy": "no-in-place-retry",
+    "sourceFreeProbe": {
+      "workingDirectory": "/private/tmp",
+      "prompt": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.",
+      "expectedDecodedResponse": "CLIENT_ISOLATION_OK",
+      "expectedAgentMessages": 1,
+      "expectedToolCalls": 0,
+      "expectedMcpCalls": 0,
+      "expectedMcpProcessStarts": 0,
+      "expectedUndisclosedEndpoints": 0
+    }
+  },
+  "preparedWorkspaces": [
+    {
+      "sequence": 1,
+      "caseId": "Q-ID-001",
+      "runId": "RUN-01",
+      "mode": "quick-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c03-q-id-001-run-01",
+      "branch": "main",
+      "head": "0a5a874ce02ba0fca9918aa286804ecbf7c94f43",
+      "status": [" M src/url.ts", "?? src/request-config.ts"],
+      "fileCount": 30,
+      "treeSha256": "91f2046030c2c721da833430cb827f6aa1ef87141027b6465356ba93f2de8a71",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 2,
+      "caseId": "Q-ID-001",
+      "runId": "RUN-02",
+      "mode": "quick-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c03-q-id-001-run-02",
+      "branch": "main",
+      "head": "0a5a874ce02ba0fca9918aa286804ecbf7c94f43",
+      "status": [" M src/url.ts", "?? src/request-config.ts"],
+      "fileCount": 30,
+      "treeSha256": "91f2046030c2c721da833430cb827f6aa1ef87141027b6465356ba93f2de8a71",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 3,
+      "caseId": "Q-ID-002",
+      "runId": "RUN-01",
+      "mode": "quick-independent",
+      "workspace": "/private/tmp/fe-code-review-v040-c03-q-id-002-run-01",
+      "branch": "main",
+      "head": "d3faf4bc692acea463ff2fe770b8be65e28c9b0b",
+      "status": [" M src/cache-key.ts", " M src/request-options.ts"],
+      "fileCount": 31,
+      "treeSha256": "3b6b0238fab5990b1088fb2e63a6d4b1f4c35b4634677acce8a85963a2f191da",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 4,
+      "caseId": "D-ID-001",
+      "runId": "RUN-01",
+      "mode": "deep-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c03-d-id-001-run-01",
+      "branch": "candidate",
+      "head": "bf6c9e97cbb8c55bf567f0df559d56a86fe2f71f",
+      "status": [],
+      "fileCount": 31,
+      "treeSha256": "be9f6b46274eeb3c90df04a5c4f808ae2a9245a2ff7fd016fd34a287cc385390",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 5,
+      "caseId": "F-ID-001",
+      "runId": "RUN-01",
+      "mode": "fix-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c03-f-id-001-run-01",
+      "branch": "main",
+      "head": "e043746273d0e712f999ffbc912139c94d1d4657",
+      "status": [" M src/url.ts"],
+      "fileCount": 31,
+      "treeSha256": "0024b0d927c26a0c13b74939c1962d7824006689b3b3d91add0ef89eda77ed4b",
+      "expectedTestExitCode": 0,
+      "actualTestExitCode": 0
+    },
+    {
+      "sequence": 6,
+      "caseId": "F-ID-001",
+      "runId": "RUN-02",
+      "mode": "fix-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c03-f-id-001-run-02",
+      "branch": "main",
+      "head": "e043746273d0e712f999ffbc912139c94d1d4657",
+      "status": [" M src/url.ts"],
+      "fileCount": 31,
+      "treeSha256": "0024b0d927c26a0c13b74939c1962d7824006689b3b3d91add0ef89eda77ed4b",
+      "expectedTestExitCode": 0,
+      "actualTestExitCode": 0
+    },
+    {
+      "sequence": 7,
+      "caseId": "K-ID-001",
+      "runId": "RUN-01",
+      "mode": "quick-keep",
+      "workspace": "/private/tmp/fe-code-review-v040-c03-k-id-001-run-01",
+      "branch": "main",
+      "head": "08750b3fa780b439748eee7f4942f2f038f49e2e",
+      "status": [" M src/label.ts"],
+      "fileCount": 28,
+      "treeSha256": "c7cda4e5aecc6baaa6fbf529f30e3617f673be7c473f913ac274c9411f310988",
+      "expectedTestExitCode": 0,
+      "actualTestExitCode": 0
+    }
+  ],
+  "workspaceIntegrity": {
+    "expectedTestResultsMatched": "7/7",
+    "candidateSkillHashesMatched": "7/7",
+    "agentCursorSkillCopiesMatched": "7/7",
+    "cursorAdapterCopiesMatched": "7/7",
+    "evaluatorValidatorCopiedIntoRuntime": false,
+    "cursorAdapterSha256": "f53777a997ce9ab7394782f4fd77c7b808072166fced45fbf0a4a85a515be0ff"
+  },
+  "repeatAssertions": [
+    {
+      "caseId": "Q-ID-001",
+      "runs": ["RUN-01", "RUN-02"],
+      "expectedTreeSha256": "91f2046030c2c721da833430cb827f6aa1ef87141027b6465356ba93f2de8a71"
+    },
+    {
+      "caseId": "F-ID-001",
+      "runs": ["RUN-01", "RUN-02"],
+      "expectedTreeSha256": "0024b0d927c26a0c13b74939c1962d7824006689b3b3d91add0ef89eda77ed4b"
+    }
+  ],
+  "promotionGates": {
+    "mandatoryRuns": "7/7",
+    "independentFindingRecall": "9/9",
+    "sectionLeakage": "0/9",
+    "findingIdCoverage": "9/9",
+    "initialRepeatIdentityStability": "3/3",
+    "fixIdPreservation": "6/6",
+    "severityAccuracy": "9/9",
+    "falsePositiveCount": 0,
+    "noFindingPlaceholderCount": 0,
+    "structuralValidatorPass": "7/7 applicable contracts",
+    "readOnlyIntegrityPass": "7/7",
+    "mcpToolCalls": 0,
+    "undisclosedEndpointSignals": 0
+  },
+  "sourceFreeProbeResult": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-03-probe-result.json",
+  "sourceBearingResult": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-03-results.json",
+  "toolingReplayResult": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-03-tooling-replay.json",
+  "nextGate": "Retain Candidate 03 as No-Go. Diagnose the validator/output-syntax contract and provider-failure boundary before freezing any new candidate."
+}

@@ -35,6 +35,20 @@ Runtime output can vary by model and client version. Re-run the smoke protocol a
 - Upgrading a client across a major version.
 - Publishing a new minor or major release.
 
+## v0.4.0 Release Candidate Evidence
+
+Candidate under test: `v0.4.0`. Stable installation and evidence remain pinned to `v0.3.0` until the release is published.
+
+v0.4.0 adds independent Findings with sequential IDs that remain stable through one Initial Review to Fix Review chain. Candidate 08 completed the frozen seven-run public-synthetic window at `7 / 7` after a tooling-only replay of one saved Fix trace. The original raw result remains `6 / 7`; no model output was retried or replaced.
+
+| Client | Structural evidence | Candidate runtime evidence | Status |
+| --- | --- | --- | --- |
+| Codex CLI 0.146.0 | `109/109` repository tests, both Skill validators, Node syntax, JSON parsing, candidate hashes, and workspace integrity pass | Quick, Deep, Fix, and no-finding cases pass the frozen semantic and output gates; the saved Fix trace passes corrected execution auditing with zero model calls, network requests, source transmission, retries, or workspace changes | Runtime verified |
+| Cursor | Shared Skill and adapter contracts pass repository validation | No v0.4.0 runtime run was executed | Cannot Verify |
+| Claude Code | Shared Skill and adapter contracts pass repository validation | Not executed because valid runtime credentials are unavailable | Cannot Verify |
+
+See [v0.4.0 Candidate Results](evaluation-results/v0.4.0-candidate.md) and the [v0.4.0 Evaluation Plan](v0.4.0-finding-identity-evaluation-plan.md) for the retained failures, source boundary, and promotion evidence.
+
 ## Stable v0.3.0 Evidence
 
 v0.3.0 materially extends changed-condition review, retained-defect handling, minimal-sufficient-design evidence, optional browser evidence, trace auditing, and complete-uncommitted context collection.
@@ -92,6 +106,9 @@ The shared core contract defines the following fallback for Codex, Claude Code, 
 
 ## Known Limitations
 
+- Cursor and Claude Code v0.4.0 runtime behavior remains `Cannot Verify`; only Codex CLI executed the release-candidate runtime matrix.
+- The v0.4.0 runtime window uses public synthetic fixtures. It does not establish general model precision or verify private repositories, browser/WebView behavior, backend behavior, deployment, monitoring, or production systems.
+- Candidate 08's `7 / 7` includes one deterministic tooling-only trace replay; the original raw `6 / 7` and both false-positive violations remain recorded.
 - Cursor and Claude Code v0.3.0 runtime behavior is not claimed; the post-release Cursor runs failed one or more required gates, and v0.2.2 evidence remains historical evidence for that release only.
 - Codex v0.3.0 remains runtime verified from the exact-candidate acceptance window; its fresh-tag Quick smoke passed trace/read-only gates but did not emit all three expected findings independently and is retained as a failure.
 - The v0.3.0 browser evidence covers one isolated public JavaScript path and does not verify WebView, Native, backend, deployment, or production behavior.

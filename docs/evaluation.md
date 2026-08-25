@@ -261,6 +261,8 @@ For Codex CLI evaluation through an external provider, set both `features.plugin
 
 The current auditor supports Cursor Agent `stream-json` tool-call events plus Codex CLI `command_execution` and `mcp_tool_call` events. Git command execution is fail-closed: only recognized read-only subcommands and read-only `config` or `branch --show-current` forms pass. MCP is also fail-closed. Each evaluator-approved MCP tool must be declared before the run with a repeated `--allow-mcp <server/tool>` argument; declaration does not bypass write-tool or path checks. The auditor reports MCP failures separately and fails when a direct tool path, shell path request, MCP call, or final workspace status:
 
+Shell inspection is deterministic analysis of recorded command text, not an operating-system sandbox. It does not expand shell variables or fully interpret arbitrary embedded programs; keep the client sandbox plus independent before/after status and hash checks as separate mandatory gates.
+
 - Reads outside the generated fixture workspace.
 - Reads `case.json`, checked-in fixture sources, evaluation results, or output examples.
 - Uses a write/edit/delete tool or an obvious write-capable shell command.

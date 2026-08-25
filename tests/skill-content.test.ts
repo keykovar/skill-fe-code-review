@@ -11,6 +11,7 @@ const fixReview = readText('skills/fe-code-review/references/fix-review.md');
 const quickHeadings = [
   '## 总体结论',
   '## 审查范围',
+  '## Changed-Condition Coverage：变更条件覆盖',
   '## Blocking：必须修改',
   '## Risk：建议修改',
   '## Improve：可优化',
@@ -26,6 +27,7 @@ const deepHeadings = [
   '## 总体结论',
   '## 变更理解',
   '## Change Map：变更地图',
+  '## Changed-Condition Coverage：变更条件覆盖',
   '## Findings：问题列表',
   '## Requirement Gaps：需求缺口',
   '## Design / Simplify：设计与简化',
@@ -338,6 +340,96 @@ describe('skill content', () => {
     expect(deepReview).toContain('`Cannot Verify` describes evidence status, not finding severity');
   });
 
+  test('defines independent chain-local Finding IDs without weakening legacy Fix Review', () => {
+    const findingRequirements = markdownSection(skillMd, 'Finding Requirements');
+    const fixRules = markdownSection(skillMd, 'Fix Review Rules');
+
+    expect(findingRequirements).toContain('Finalize findings with this sequence');
+    expect(findingRequirements).toContain('use short semantic keys, never `F-NNN` IDs');
+    expect(findingRequirements).toContain('one atomic pass/fail acceptance sentence');
+    expect(findingRequirements).toContain(
+      'Reconcile every actionable statement outside severity sections',
+    );
+    expect(findingRequirements).toContain(
+      'sort by severity (`Blocking`, `Risk`, `Improve`) and first changed source location',
+    );
+    expect(findingRequirements).toContain(
+      'Assign chain-local IDs (`F-001`, `F-002`, ...) only after sorting',
+    );
+    expect(findingRequirements).toContain(
+      'Backfill final IDs into the visible ledger and cross-section references',
+    );
+    expect(findingRequirements).toContain(
+      'Group ledger entries by final ID: repeated IDs require the same non-empty `Merge key` / `合并依据` on every entry; single IDs require none',
+    );
+    expect(findingRequirements).toContain('Scan rendered Finding headers in body order');
+    expect(findingRequirements).toContain('renumber every header and reference before responding');
+    expect(findingRequirements).toContain('Emit no placeholder ID');
+    expect(findingRequirements).toContain('test both counterfactuals');
+    expect(findingRequirements).toContain(
+      'can the minimum safe repair for A pass while B still fails, and vice versa',
+    );
+    expect(findingRequirements).toContain(
+      'A shared function, diff hunk, patch, test, output, or broad contract label is not merge evidence',
+    );
+    expect(findingRequirements).toContain(
+      'Merge only when one indivisible repair necessarily makes every acceptance sentence pass',
+    );
+    expect(findingRequirements).toContain(
+      'Render Quick/Deep Finding headers as `- [F-NNN] [file:line] title`',
+    );
+    expect(findingRequirements).toContain('never backtick-only');
+    expect(quickReview).toContain('Keep discovery keys and acceptance sentences internal');
+    expect(quickReview).toContain('expose the ledger only after final IDs are backfilled');
+    expect(fixRules).toContain('Evaluate every previous finding with exactly one status');
+
+    for (const mode of [quickReview, deepReview]) {
+      expect(mode).toContain('- [F-001] [file:line] 问题标题');
+      expect(mode).toContain('- 关联问题：[F-001] Blocking / Risk / Improve [file:line] / 无');
+      expect(mode).toContain('chain-local `F-NNN` ID');
+      expect(mode).toContain('## Changed-Condition Coverage：变更条件覆盖');
+      expect(mode).toContain('Behavior Preserving：行为保持');
+      expect(mode).toContain('Cannot Verify：无法验证');
+      expect(mode).toContain('- 阻断结果：');
+      expect(mode).toContain('return-value contract, or observable behavior');
+      expect(mode).toContain('Never summarize independent changes.');
+      expect(mode).toContain('Complete the repeated-ID ledger check in `SKILL.md`');
+      expect(mode).toContain('expose the ledger only after final IDs are backfilled');
+    }
+
+    expect(skillMd).toContain(
+      'Demonstrated Blocking outcome for Blocking findings; a local test failure alone is insufficient',
+    );
+    expect(fixReview).toContain('Preserve each supplied previous Finding ID verbatim');
+    expect(fixReview).not.toContain('Changed-Condition Coverage');
+    expect(fixReview).toContain('If the previous report has no IDs, keep prose matching');
+    expect(fixReview).toContain('next unused `F-NNN` after the highest previous ID');
+    expect(fixReview).toContain(
+      "treat the collector's staged and unstaged patches as the fix diff",
+    );
+    expect(fixReview).toContain(
+      'do not rerun `git diff`, `git status`, or untracked-file inventory after successful collection',
+    );
+    expect(fixReview).toContain('- [F-001] [原 finding / file:line] 问题标题');
+    expect(fixReview).toContain('- [F-004] [file:line] 问题标题');
+  });
+
+  test('requires demonstrated Blocking outcomes for local contract regressions', () => {
+    const severityRules = markdownSection(skillMd, 'Severity Rules');
+
+    expect(severityRules).toContain('Use Blocking only when evidence supports');
+    expect(severityRules).toContain('`Referenced Untracked File`');
+    expect(severityRules).toContain(
+      'a local contract regression without evidence of a Blocking outcome',
+    );
+    expect(deepReview).toContain(
+      'Use `修改后可以进入下一步` when bounded fixes within the current design address all findings',
+    );
+    expect(deepReview).toContain(
+      'reserve `暂不建议进入下一步` for an unsafe approach, insufficient bounded fixes, or unavailable critical evidence',
+    );
+  });
+
   test('defines bounded browser evidence budgets for every review mode', () => {
     expect(quickReview).toContain('Do not start Playwright or other browser automation by default');
     expect(quickReview).toContain('at most that one critical path');
@@ -362,7 +454,7 @@ describe('skill content', () => {
     expect(fixReview).not.toContain('Expand to Deep Review');
   });
 
-  test('adds evidence fields without changing mode template sections', () => {
+  test('keeps evidence fields and mode template sections aligned', () => {
     for (const mode of [quickReview, deepReview, fixReview]) {
       expect(mode).toContain('- 官方文档核验：');
       expect(mode).toContain('- 浏览器运行证据：');
@@ -407,6 +499,7 @@ describe('skill content', () => {
     expect(englishTemplateTopLevelHeadings(quickReview)).toEqual([
       '## Overall Conclusion',
       '## Review Scope',
+      '## Changed-Condition Coverage',
       '## Blocking',
       '## Risk',
       '## Improve',
@@ -421,6 +514,7 @@ describe('skill content', () => {
       '## Overall Conclusion',
       '## Change Understanding',
       '## Change Map',
+      '## Changed-Condition Coverage',
       '## Findings',
       '## Requirement Gaps',
       '## Design / Simplify',

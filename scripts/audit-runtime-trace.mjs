@@ -203,13 +203,377 @@ function inspectRequestedPath(value, workspace, lineNumber, violations) {
   }
 }
 
+function isInsideNodeEvalArgument(command, pathIndex) {
+  const evalPattern = /(?:^|[\s;&|])node(?:\s+--[^\s]+)*\s+(?:-e|--eval)\s+/gu;
+  let evalMatch;
+
+  for (const match of command.matchAll(evalPattern)) {
+    if (match.index >= pathIndex) {
+      break;
+    }
+    evalMatch = match;
+  }
+
+  if (!evalMatch) {
+    return false;
+  }
+
+  const argumentStart = evalMatch.index + evalMatch[0].length;
+  const prefix = command.slice(argumentStart, pathIndex);
+  if (prefix.startsWith('\\"')) {
+    return (prefix.match(/\\"/gu) ?? []).length % 2 === 1;
+  }
+
+  const quote = prefix[0];
+  if (quote !== "'" && quote !== '"') {
+    return false;
+  }
+
+  let escaped = false;
+  for (let index = 1; index < prefix.length; index += 1) {
+    const character = prefix[index];
+    if (escaped) {
+      escaped = false;
+    } else if (character === '\\' && quote === '"') {
+      escaped = true;
+    } else if (character === quote) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function isNodeEvalDataLiteral(command, pathIndex) {
+  if (!isInsideNodeEvalArgument(command, pathIndex)) {
+    return false;
+  }
+
+  const potentiallyPathAccessingProgram =
+    /\b(?:access|chdir|createReadStream|exec|execFile|existsSync|lstat|open|readFile|readdir|realpath|spawn|stat|watch)(?:Sync)?\b|\bchild_process\b|\bnode:fs\b/u;
+  if (!/https?:\/\//u.test(command) || potentiallyPathAccessingProgram.test(command)) {
+    return false;
+  }
+
+  const expressionPrefix = command
+    .slice(0, pathIndex)
+    .replace(/[\\'"`]\s*$/u, '')
+    .trimEnd();
+  const accessPattern =
+    /(?:\b(?:access|chdir|createReadStream|exec|execFile|existsSync|import|lstat|open|readFile|readdir|realpath|require|spawn|stat|watch)(?:Sync)?\s*\(\s*|\bfrom\s*)$/u;
+
+  return !accessPattern.test(expressionPrefix);
+}
+
+const ripgrepFlags = new Set([
+  '--case-sensitive',
+  '--count',
+  '--count-matches',
+  '--files-with-matches',
+  '--files-without-match',
+  '--fixed-strings',
+  '--heading',
+  '--hidden',
+  '--ignore-case',
+  '--invert-match',
+  '--line-number',
+  '--no-heading',
+  '--no-ignore',
+  '--no-ignore-vcs',
+  '--no-line-number',
+  '--no-messages',
+  '--no-unicode',
+  '--null',
+  '--only-matching',
+  '--pcre2',
+  '--pretty',
+  '--quiet',
+  '--smart-case',
+  '--text',
+  '--trim',
+  '--unicode',
+  '--vimgrep',
+  '--with-filename',
+  '--word-regexp',
+  '-F',
+  '-H',
+  '-L',
+  '-N',
+  '-P',
+  '-S',
+  '-U',
+  '-a',
+  '-c',
+  '-h',
+  '-i',
+  '-l',
+  '-n',
+  '-o',
+  '-q',
+  '-s',
+  '-u',
+  '-v',
+  '-w',
+]);
+const ripgrepOptionsWithValue = new Set([
+  '--after-context',
+  '--before-context',
+  '--context',
+  '--context-separator',
+  '--encoding',
+  '--engine',
+  '--field-context-separator',
+  '--field-match-separator',
+  '--glob',
+  '--iglob',
+  '--ignore-file',
+  '--max-columns',
+  '--max-count',
+  '--max-depth',
+  '--max-filesize',
+  '--path-separator',
+  '--pre',
+  '--pre-glob',
+  '--replace',
+  '--sort',
+  '--sortr',
+  '--threads',
+  '--type',
+  '--type-add',
+  '--type-clear',
+  '--type-not',
+  '-A',
+  '-B',
+  '-C',
+  '-E',
+  '-M',
+  '-T',
+  '-g',
+  '-j',
+  '-m',
+  '-r',
+  '-t',
+]);
+const ripgrepNoPatternModes = new Set([
+  '--files',
+  '--generate',
+  '--help',
+  '--type-list',
+  '--version',
+]);
+
+function tokenizeShellSegments(command) {
+  const segments = [];
+  let currentSegment = [];
+  let currentToken = '';
+  let tokenStart;
+  let tokenEnd;
+  let escaped = false;
+  let quote;
+
+  const finishToken = () => {
+    if (currentToken) {
+      currentSegment.push({ end: tokenEnd, start: tokenStart, value: currentToken });
+    }
+    currentToken = '';
+    tokenStart = undefined;
+    tokenEnd = undefined;
+  };
+  const finishSegment = () => {
+    finishToken();
+    if (currentSegment.length > 0) {
+      segments.push(currentSegment);
+      currentSegment = [];
+    }
+  };
+
+  for (let index = 0; index < command.length; index += 1) {
+    const character = command[index];
+    if (escaped) {
+      currentToken += character;
+      tokenEnd = index + 1;
+      escaped = false;
+      continue;
+    }
+    if (character === '\\') {
+      tokenStart ??= index;
+      tokenEnd = index + 1;
+      escaped = true;
+      continue;
+    }
+    if (quote) {
+      tokenEnd = index + 1;
+      if (character === quote) {
+        quote = undefined;
+      } else {
+        currentToken += character;
+      }
+      continue;
+    }
+    if (character === "'" || character === '"') {
+      tokenStart ??= index;
+      tokenEnd = index + 1;
+      quote = character;
+      continue;
+    }
+    if (character === '`' || /[;&|()\n]/u.test(character)) {
+      finishSegment();
+      continue;
+    }
+    if (/\s/u.test(character)) {
+      finishToken();
+      continue;
+    }
+    tokenStart ??= index;
+    tokenEnd = index + 1;
+    currentToken += character;
+  }
+  finishSegment();
+  return segments;
+}
+
+function findRipgrepPatternRanges(command) {
+  const ranges = [];
+
+  for (const tokens of tokenizeShellSegments(command)) {
+    const commandToken = tokens[0];
+    if (!commandToken || !['rg', 'ripgrep'].includes(path.basename(commandToken.value))) {
+      continue;
+    }
+
+    let hasExplicitPattern = false;
+    let hasNoPatternMode = false;
+    let invocationIsUnambiguous = true;
+    for (let index = 1; index < tokens.length; index += 1) {
+      const token = tokens[index];
+      const argument = token.value;
+
+      if (argument === '-e' || argument === '--regexp') {
+        const pattern = tokens[index + 1];
+        if (pattern) {
+          ranges.push(pattern);
+          index += 1;
+        }
+        hasExplicitPattern = true;
+        continue;
+      }
+      if (/^(?:-e.+|--regexp=)/u.test(argument)) {
+        ranges.push(token);
+        hasExplicitPattern = true;
+        continue;
+      }
+      if (argument === '-f' || argument === '--file') {
+        hasExplicitPattern = true;
+        index += 1;
+        continue;
+      }
+      if (/^(?:-f.+|--file=)/u.test(argument)) {
+        hasExplicitPattern = true;
+        continue;
+      }
+      if (ripgrepNoPatternModes.has(argument)) {
+        hasNoPatternMode = true;
+        continue;
+      }
+      if (ripgrepFlags.has(argument)) {
+        continue;
+      }
+      if (ripgrepOptionsWithValue.has(argument)) {
+        index += 1;
+        continue;
+      }
+      if (
+        [...ripgrepOptionsWithValue].some((option) => argument.startsWith(`${option}=`))
+      ) {
+        continue;
+      }
+      if (argument === '--') {
+        continue;
+      }
+      if (argument.startsWith('-')) {
+        invocationIsUnambiguous = false;
+        continue;
+      }
+      if (!hasExplicitPattern && !hasNoPatternMode && invocationIsUnambiguous) {
+        ranges.push(token);
+      }
+      break;
+    }
+  }
+
+  return ranges;
+}
+
+function findRipgrepAttachedPatternFiles(command) {
+  const patternFiles = [];
+
+  for (const tokens of tokenizeShellSegments(command)) {
+    const commandToken = tokens[0];
+    if (!commandToken || !['rg', 'ripgrep'].includes(path.basename(commandToken.value))) {
+      continue;
+    }
+
+    for (const token of tokens.slice(1)) {
+      if (token.value === '--') {
+        break;
+      }
+      if (
+        /^-f.+/u.test(token.value) &&
+        command[token.start + 2] !== "'" &&
+        command[token.start + 2] !== '"'
+      ) {
+        patternFiles.push(token.value.slice(2));
+      }
+    }
+  }
+
+  return patternFiles;
+}
+
+function maskRanges(value, ranges) {
+  const characters = value.split('');
+  for (const { start, end } of ranges) {
+    characters.fill(' ', start, end);
+  }
+  return characters.join('');
+}
+
+function unwrapShellCommandForInspection(command) {
+  const match = command.match(/^\/bin\/(?:ba|z)?sh\s+-lc\s+([\s\S]+)$/u);
+  if (!match) {
+    return command;
+  }
+
+  const payload = match[1].trim();
+  const quote = payload[0];
+  if ((quote !== "'" && quote !== '"') || payload.at(-1) !== quote) {
+    return payload;
+  }
+
+  const unwrapped = payload.slice(1, -1);
+  return quote === '"'
+    ? unwrapped.replace(/\\(["\\$`])/gu, '$1').replace(/\\\n/gu, '')
+    : unwrapped;
+}
+
 function inspectShellCommand(command, workspace, lineNumber, violations) {
-  const commandWithoutHereDocuments = stripHereDocuments(unwrapShellCommand(command));
+  const commandWithoutHereDocuments = stripHereDocuments(
+    unwrapShellCommandForInspection(command),
+  );
+  const commandWithoutRipgrepPatterns = maskRanges(
+    commandWithoutHereDocuments,
+    findRipgrepPatternRanges(commandWithoutHereDocuments),
+  );
   const shellPathPattern = /(?:^|[\s'"=])((?:~|\/|\.\.\/)[^\s'"`;|&]*)/gu;
 
-  for (const match of commandWithoutHereDocuments.matchAll(shellPathPattern)) {
+  for (const match of commandWithoutRipgrepPatterns.matchAll(shellPathPattern)) {
     const requestedPath = match[1];
+    const pathIndex = match.index + match[0].lastIndexOf(requestedPath);
     if (requestedPath === '/dev/null') {
+      continue;
+    }
+
+    if (isNodeEvalDataLiteral(commandWithoutRipgrepPatterns, pathIndex)) {
       continue;
     }
 
@@ -225,8 +589,14 @@ function inspectShellCommand(command, workspace, lineNumber, violations) {
     inspectRequestedPath(requestedPath, workspace, lineNumber, violations);
   }
 
+  for (const patternFile of findRipgrepAttachedPatternFiles(commandWithoutHereDocuments)) {
+    inspectRequestedPath(patternFile, workspace, lineNumber, violations);
+  }
+
   if (
-    /(?:^|[\s'"=])(?:\.\/)?case\.json(?=$|[\s'"`;|&])/u.test(commandWithoutHereDocuments)
+    /(?:^|[\s'"=])(?:\.\/)?case\.json(?=$|[\s'"`;|&])/u.test(
+      commandWithoutRipgrepPatterns,
+    )
   ) {
     violations.push({
       line: lineNumber,
@@ -346,60 +716,9 @@ function hasFileOutputRedirect(command) {
 }
 
 function splitShellSegments(command) {
-  const segments = [];
-  let currentSegment = [];
-  let currentToken = '';
-  let escaped = false;
-  let quote;
-
-  const finishToken = () => {
-    if (currentToken) {
-      currentSegment.push(currentToken);
-      currentToken = '';
-    }
-  };
-  const finishSegment = () => {
-    finishToken();
-    if (currentSegment.length > 0) {
-      segments.push(currentSegment);
-      currentSegment = [];
-    }
-  };
-
-  for (const character of stripHereDocuments(command)) {
-    if (escaped) {
-      currentToken += character;
-      escaped = false;
-      continue;
-    }
-    if (character === '\\') {
-      escaped = true;
-      continue;
-    }
-    if (quote) {
-      if (character === quote) {
-        quote = undefined;
-      } else {
-        currentToken += character;
-      }
-      continue;
-    }
-    if (character === "'" || character === '"') {
-      quote = character;
-      continue;
-    }
-    if (character === '`' || /[;&|()\n]/u.test(character)) {
-      finishSegment();
-      continue;
-    }
-    if (/\s/u.test(character)) {
-      finishToken();
-      continue;
-    }
-    currentToken += character;
-  }
-  finishSegment();
-  return segments;
+  return tokenizeShellSegments(stripHereDocuments(command)).map((tokens) =>
+    tokens.map(({ value }) => value),
+  );
 }
 
 function isReadOnlyGitConfig(args) {
@@ -647,7 +966,7 @@ function inspectCommandExecution(
 
   const command = unwrapShellCommand(event.item.command);
   commands.push({ command, line: lineNumber });
-  inspectShellCommand(command, workspace, lineNumber, violations);
+  inspectShellCommand(event.item.command, workspace, lineNumber, violations);
   if (isWriteCommand(command)) {
     violations.push({
       command: event.item.command,

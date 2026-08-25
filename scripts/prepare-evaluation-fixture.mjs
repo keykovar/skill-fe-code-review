@@ -12,25 +12,55 @@ const modeConfig = {
   quick: {
     caseName: 'url-regression',
     expectedTestResult: 'fail',
+    workflow: 'quick',
   },
   fix: {
     caseName: 'url-regression',
     expectedTestResult: 'pass',
+    previousFindings: 'previous-findings.md',
+    workflow: 'fix',
   },
   deep: {
     caseName: 'deep-session-ownership',
     expectedTestResult: 'fail',
+    workflow: 'deep',
+  },
+  'deep-identity': {
+    caseName: 'deep-session-ownership',
+    expectedTestResult: 'fail',
+    workflow: 'deep',
+  },
+  'quick-independent': {
+    caseName: 'independent-findings',
+    expectedTestResult: 'fail',
+    workflow: 'quick',
+  },
+  'quick-identity': {
+    caseName: 'url-regression',
+    expectedTestResult: 'fail',
+    workflow: 'quick',
+  },
+  'quick-keep': {
+    caseName: 'no-clear-issue',
+    expectedTestResult: 'pass',
+    workflow: 'quick',
+  },
+  'fix-identity': {
+    caseName: 'url-regression',
+    expectedTestResult: 'pass',
+    previousFindings: 'previous-findings.identity.md',
+    workflow: 'fix',
   },
 };
 
 function usage() {
-  return 'Usage: node scripts/prepare-evaluation-fixture.mjs <quick|deep|fix> [--output <directory>]';
+  return `Usage: node scripts/prepare-evaluation-fixture.mjs <${Object.keys(modeConfig).join('|')}> [--output <directory>]`;
 }
 
 function parseArguments(argv) {
   const [mode, ...rest] = argv;
 
-  if (!(mode in modeConfig)) {
+  if (!Object.hasOwn(modeConfig, mode)) {
     throw new Error(usage());
   }
 
@@ -117,14 +147,14 @@ function commitAll(targetDir, message) {
   runGit(targetDir, ['commit', '-m', message]);
 }
 
-function initializeRepository(targetDir, caseDir, mode) {
+function initializeRepository(targetDir, caseDir, previousFindings) {
   copyOverlay(path.join(caseDir, 'baseline'), targetDir);
   installSkill(targetDir);
 
-  if (mode === 'fix') {
+  if (previousFindings) {
     const findingsTarget = path.join(targetDir, '.evaluation', 'previous-findings.md');
     fs.mkdirSync(path.dirname(findingsTarget), { recursive: true });
-    fs.copyFileSync(path.join(caseDir, 'previous-findings.md'), findingsTarget);
+    fs.copyFileSync(path.join(caseDir, previousFindings), findingsTarget);
   }
 
   runGit(targetDir, ['init', '-b', 'main']);
@@ -133,13 +163,13 @@ function initializeRepository(targetDir, caseDir, mode) {
   commitAll(targetDir, 'test: establish evaluation baseline');
 }
 
-function prepareMode(targetDir, caseDir, mode) {
-  if (mode === 'quick') {
+function prepareMode(targetDir, caseDir, workflow) {
+  if (workflow === 'quick') {
     copyOverlay(path.join(caseDir, 'problem'), targetDir);
     return;
   }
 
-  if (mode === 'fix') {
+  if (workflow === 'fix') {
     copyOverlay(path.join(caseDir, 'problem'), targetDir);
     commitAll(targetDir, 'test: establish previous review problem');
     copyOverlay(path.join(caseDir, 'fixed'), targetDir);
@@ -157,8 +187,8 @@ const caseDir = path.join(fixturesDir, config.caseName);
 const caseDefinition = JSON.parse(fs.readFileSync(path.join(caseDir, 'case.json'), 'utf8'));
 const targetDir = createTarget(mode, outputDir);
 
-initializeRepository(targetDir, caseDir, mode);
-prepareMode(targetDir, caseDir, mode);
+initializeRepository(targetDir, caseDir, config.previousFindings);
+prepareMode(targetDir, caseDir, config.workflow);
 
 const status = runGit(targetDir, ['status', '--short']);
 const branch = runGit(targetDir, ['branch', '--show-current']);

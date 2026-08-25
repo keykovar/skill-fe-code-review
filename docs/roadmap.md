@@ -53,6 +53,12 @@ The release includes checked-in Quick, Deep, and Fix evaluation fixtures with ex
 3. Clarify precedence among repository instructions, client rules, mode references, and user-requested scope.
 4. Add sanitized cross-client output snapshots only where they improve regression diagnosis.
 
+## v0.4.0 Candidate: Independent Findings And Stable IDs
+
+The first post-v0.3.0 behavior candidate addresses a repeated Quick Review failure where an actionable contract risk was recognized but appeared only under `Design / Simplify` instead of an independent severity-classified Finding. The candidate combines a narrow independent-Finding clarification with sequential IDs that remain stable through one Initial Review to Fix Review chain.
+
+The [v0.4.0 Independent Finding and Stable ID Evaluation Plan](v0.4.0-finding-identity-evaluation-plan.md) was frozen before any Skill change. Candidate 01-07 remain retained `No-Go` evidence. Candidate 08 passed all semantic, structural, Finding-ID, severity, Fix closure, recommendation, collector, read-only, client-isolation, and workspace-integrity gates. Its original result remains recorded as raw `6 / 7`: one Fix trace contained two false outside-workspace violations from relative import text inside an `rg` pattern. A focused tooling correction preserved rejection of actual external `rg` paths and replayed only that saved trace with zero model calls, network requests, source transmission, retries, or workspace changes. Candidate 08 is therefore `Go 7 / 7` for release readiness; v0.3.0 remains stable until final release authorization. See [v0.4.0 Candidate Results](evaluation-results/v0.4.0-candidate.md).
+
 ## v0.3.0 Real-project Evaluation Baseline
 
 Before accepting any post-v0.2.2 behavior candidate, run the documented real-project matrix across React, Vue, TypeScript, JavaScript, Hybrid/WebView, no-clear-issue, and actual Fix Review chains. Measure required-finding recall, finding precision, severity accuracy, recommendation consistency, output-contract compliance, read-only safety, scope/oracle access, and Fix Review closure without changing the current Skill contract.

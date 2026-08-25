@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "candidate": "v0.4.0-finding-identity",
+  "manifest": "evaluation/runtime-windows/v0.4.0-finding-identity.json",
+  "manifestSha256": "1ddb5e8d782fd12cf189609b4b66a7a2c5a16e8b3feb00b8a48a2522a2e7bf11",
+  "probeDate": "2026-08-21",
+  "status": "fail-window-stopped",
+  "sourceTransmitted": false,
+  "networkPayload": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.",
+  "result": {
+    "processExitCode": 0,
+    "decodedResponse": "CLIENT_ISOLATION_OK",
+    "agentMessageCount": 1,
+    "toolCallCount": 0,
+    "mcpToolCallCount": 0,
+    "traceAuditValid": true,
+    "undisclosedUrlSignals": 0,
+    "mcpProcessStarted": true,
+    "mandatoryGatePassed": false,
+    "failureReason": "A user-level MCP process was still started; an empty mcp_servers override did not remove merged user configuration."
+  },
+  "observations": {
+    "elapsedSeconds": 22.5,
+    "traceEvents": 4,
+    "stderrLines": 62,
+    "stderrMcpWarningLines": 2,
+    "inputTokens": 21341,
+    "cachedInputTokens": 1408,
+    "uncachedInputTokens": 19933,
+    "outputTokens": 44,
+    "reasoningOutputTokens": 33
+  },
+  "artifactHashes": {
+    "/private/tmp/fe-code-review-v040-probe-trace.jsonl": "35da239c8aafd7dec83c952988b8e83d2b8f6557d66cc95ce6592f9887704af4",
+    "/private/tmp/fe-code-review-v040-probe-stderr.txt": "994c1effc888b63721348ef7663814d4f7c35fff29ab1f0f6107854b8446f69a",
+    "/private/tmp/fe-code-review-v040-probe-output.txt": "08d172bf341a620dbf1b9e55887d785beb2d93f92c73a17728f97012e1ef62ba"
+  },
+  "decision": "Do not run any source-bearing case and do not retry this window in place."
+}

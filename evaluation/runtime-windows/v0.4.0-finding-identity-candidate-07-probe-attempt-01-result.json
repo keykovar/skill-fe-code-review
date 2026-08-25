@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "candidate": "v0.4.0-finding-identity-candidate-07",
+  "attemptId": "source-free-probe-attempt-01",
+  "plan": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-07-plan.json",
+  "status": "inconclusive-local-wrapper-exit-evidence-missing",
+  "sourceTransmitted": false,
+  "privateSourceTransmitted": false,
+  "networkPayload": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.",
+  "clientWindow": {
+    "client": "Codex CLI 0.146.0",
+    "provider": "Joymeet",
+    "model": "gpt-5.5",
+    "sandbox": "read-only",
+    "ephemeral": true,
+    "httpRetries": 0,
+    "sseRetries": 0,
+    "mcpServersExplicitlyDisabled": 9
+  },
+  "result": {
+    "mandatoryGatePassed": false,
+    "responseGatePassed": true,
+    "traceGatePassed": true,
+    "isolationSignalGatePassed": true,
+    "workspaceIntegrityGatePassed": true,
+    "processExitEvidenceGatePassed": false,
+    "codexProcessExitCode": null,
+    "codexProcessExitCodeObserved": false,
+    "wrapperExitCode": 1,
+    "wrapperFailure": "zsh:3: read-only variable: status",
+    "decodedResponse": "CLIENT_ISOLATION_OK",
+    "decodedResponseBytes": 19,
+    "agentMessages": 1,
+    "turnCompletedEvents": 1,
+    "toolCalls": 0,
+    "commandExecutions": 0,
+    "mcpToolCalls": 0,
+    "traceEvents": 4,
+    "traceElapsedSeconds": 11,
+    "undisclosedEndpointSignals": 0,
+    "pluginSignals": 0,
+    "marketplaceSignals": 0,
+    "retrySignals": 0,
+    "auditorValid": true,
+    "auditorViolations": 0
+  },
+  "workspaceIntegrityAfterAttempt": {
+    "unchanged": "7/7",
+    "candidateHashesUnchanged": "7/7",
+    "agentCursorTreesUnchanged": "14/14",
+    "repeatPairsUnchanged": "2/2"
+  },
+  "artifactHashes": {
+    "outputSha256": "08d172bf341a620dbf1b9e55887d785beb2d93f92c73a17728f97012e1ef62ba",
+    "traceSha256": "68294e5b958bd358a64368f797c5d025ae4cee8d3d6a1d798dc73ea188f1c459",
+    "stderrSha256": "255eaac4d7aad29023f90d3b4d716f2e603e5e05476bac29ae93e3a57951067f",
+    "auditSha256": "4456b9697f3ed851fb778435e6ce81ccec516ab797386956d6377271e1726a8e",
+    "workspaceFreezeBeforeSha256": "849ca0771b52e650e6ea0794ebbfe6103757dc85549d347bc46be5c1d2900ee7",
+    "workspaceFreezeAfterSha256": "849ca0771b52e650e6ea0794ebbfe6103757dc85549d347bc46be5c1d2900ee7"
+  },
+  "retryPolicy": {
+    "inPlaceRetryPerformed": false,
+    "replacementAttemptAuthorized": false,
+    "replacementReason": "The provider turn completed with the exact sentinel and clean isolation evidence, but the local zsh wrapper used the reserved read-only variable status before it could persist the Codex subprocess exit code.",
+    "onlyCommandDelta": "Rename the local wrapper capture variable from status to exit_code; keep the provider, model, prompt, isolation overrides, retry limits, and workspaces unchanged."
+  },
+  "decision": "Attempt 01 does not satisfy the complete source-free precondition because the direct Codex subprocess exit code was not preserved. The correct response and clean trace are retained without reinterpretation or retry. Stage 1 remains unauthorized."
+}

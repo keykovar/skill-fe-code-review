@@ -1,0 +1,413 @@
+{
+  "schemaVersion": 1,
+  "candidate": "v0.4.0-finding-identity-candidate-07",
+  "frozenDate": "2026-08-25",
+  "status": "complete-no-go",
+  "predecessor": {
+    "candidate": "v0.4.0-finding-identity-candidate-06",
+    "plan": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-06-plan.json",
+    "planSha256": "e787829ec4ba540fc7b6c1af9c74e457a971f6394cc828d5d610598eafb42848",
+    "results": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-06-stage-1-results.json",
+    "resultsSha256": "26e9d89673c4ab40f82aee8972b84f18b5badbbc5430e4d328f4ac585581b3c3",
+    "decision": "No-Go; Stage 2 not run",
+    "mandatoryPassCount": 3,
+    "mandatoryRunCount": 4,
+    "failedRuns": ["D-ID-001 RUN-01"]
+  },
+  "sourcePolicy": {
+    "visibility": "public-synthetic-only",
+    "privateSourceAllowed": false,
+    "sourceTransmitted": true,
+    "externalRequestAuthorized": true,
+    "sourceBearingExternalRequestAuthorized": true,
+    "sourceBearingAuthorizedScope": "seven-public-synthetic-workspaces",
+    "privateSourceTransmitted": false,
+    "evaluatorOracleTransmitted": false
+  },
+  "oracleHashes": {
+    "evaluation/fixtures/url-regression/case.json": "b5b6c3a1a1ef67e3dd9fc2fff69110ea91fd140fc4d56f719e477d3bd4c282bc",
+    "evaluation/fixtures/independent-findings/case.json": "8ea9848d1f52aa92037b92332375aa64626da0d2aa2e499b737e524ac2d0c227",
+    "evaluation/fixtures/deep-session-ownership/case.json": "5604aaa4326f857f396f38bc79fb3ebfe71858c201feb44de6a14e6417d338d3",
+    "evaluation/fixtures/no-clear-issue/case.json": "a48fbb40fa6901fc2beba5edceda7ad4cce4f70a5fb866f76f690885fbcac6cb",
+    "evaluation/fixtures/url-regression/previous-findings.identity.md": "5d6a6261edbafc659b569bc25b8aba68d076ee1905b900290cbce9d8a098eb06"
+  },
+  "baselineInstructionHashes": {
+    "skills/fe-code-review/SKILL.md": "1ba585d2e31ef93e74981e26442cd07249939521c7bb627b8a1615aa12c3e0d4",
+    "skills/fe-code-review/references/quick-review.md": "ae658a358313a094c3ca77396c8cf4080f054c60b0205063de000df099cd106b",
+    "skills/fe-code-review/references/deep-review.md": "04fbeaa0daeecb80926f4f41dfef83532e5e6ded61d375c7c196a04cb953df3b",
+    "skills/fe-code-review/references/fix-review.md": "8380289a00f3c2f1a1ea740bc824b1a53813d6839b3957cae3c54c0e27757d33"
+  },
+  "baselineEnglishWords": {
+    "skillMd": 3725,
+    "quickReference": 650,
+    "deepReference": 703,
+    "fixReference": 519
+  },
+  "rootCause": {
+    "dId001MergeKey": "The repeated-ID rule was present in mode references but absent from the central Finding finalization sequence, so ID backfill completed without grouping visible ledger entries by final ID.",
+    "dId001Recommendation": "The Deep reference delegated to a shared recommendation matrix without stating the bounded-fix distinction directly, allowing a locally repairable finding to drift to the stricter recommendation.",
+    "candidate06AdjudicationCorrection": "Q-ID-002 is a Pass under the exact frozen oracle: account-cache-key-collision allows Blocking or Risk, and ignored-timeout-contract remained Risk. Candidate 06 is corrected from 2/4 to 3/4 without a model retry.",
+    "classification": {
+      "dId001MergeKey": "central-finalization-wording-gap",
+      "dId001Recommendation": "deep-reference-wording-gap",
+      "qId002": "evaluator-adjudication-error-corrected"
+    }
+  },
+  "instructionDelta": {
+    "skillMd": {
+      "old": "Backfill final IDs into the visible ledger and every cross-section reference. Reconcile every actionable statement outside severity sections: reference a final ID or remove it.",
+      "new": "Backfill final IDs into the visible ledger and cross-section references. Group ledger entries by final ID: repeated IDs require the same non-empty Merge key / 合并依据 on every entry; single IDs require none. Reconcile every actionable statement outside severity sections: reference a final ID or remove it."
+    },
+    "quickAndDeepRepeatedId": {
+      "old": "If an ID repeats, append the same non-empty Merge key / 合并依据 to every matching entry; omit it otherwise.",
+      "new": "Complete the repeated-ID ledger check in SKILL.md before responding."
+    },
+    "deepRecommendationAddition": "Use 修改后可以进入下一步 when bounded fixes within the current design address all findings; reserve 暂不建议进入下一步 for an unsafe approach, insufficient bounded fixes, or unavailable critical evidence."
+  },
+  "instructionBudgetRelativeToCandidate06": {
+    "skillMdNetWords": "<=20",
+    "quickAndDeepReferenceNetWords": "<=10",
+    "fixReferenceNetWords": "0",
+    "frontmatterNetWords": "0",
+    "newVisibleOutputFields": 0,
+    "validatorInstructionsLoadedAtRuntime": false
+  },
+  "implementation": {
+    "runtimeInstructionHashes": {
+      "skills/fe-code-review/SKILL.md": "08ca997f8667f5f84aaa3a51b95d31c81dc8faecd115df29b1866dff66cdf76f",
+      "skills/fe-code-review/references/quick-review.md": "3d8d775387ff91d7fffd5711957a0af13b2f9d52d4036f4214c1d208c0a58d17",
+      "skills/fe-code-review/references/deep-review.md": "9fef69f9db11cc846ad3cb2231f1ede1307227df83465ee8e3404cb5e6fcc276",
+      "skills/fe-code-review/references/fix-review.md": "8380289a00f3c2f1a1ea740bc824b1a53813d6839b3957cae3c54c0e27757d33"
+    },
+    "candidate07EnglishWords": {
+      "skillMd": 3745,
+      "quickReference": 643,
+      "deepReference": 719,
+      "fixReference": 519
+    },
+    "netEnglishWords": {
+      "skillMd": 20,
+      "quickAndDeepReferences": 9,
+      "fixReference": 0,
+      "frontmatter": 0
+    },
+    "visibleOutputTemplateFieldsAdded": 0,
+    "evaluatorChanged": false,
+    "fixReferenceUnchanged": true,
+    "frontmatterUnchanged": true
+  },
+  "staticValidation": {
+    "status": "pass",
+    "targetedVitest": "2/2 files; 44/44 tests",
+    "fullVitest": "9/9 files; 104/104 tests",
+    "repositoryValidator": "pass",
+    "officialSkillValidator": "pass",
+    "nodeSyntax": "3/3 scripts",
+    "jsonParse": "38/38 files",
+    "runtimeInstructionHashes": "4/4 recorded and matched",
+    "instructionBudget": "pass",
+    "sensitiveValueScan": "pass",
+    "gitDiffCheck": "pass"
+  },
+  "preparedWorkspaces": [
+    {
+      "sequence": 1,
+      "caseId": "D-ID-001",
+      "runId": "RUN-01",
+      "mode": "deep-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c07-d-id-001-run-01",
+      "branch": "candidate",
+      "head": "b3310cfe64e2bab8f1cf4c81f7a14e22abc456df",
+      "status": [],
+      "fileCount": 31,
+      "treeSha256": "e5b5ab92a8b55a530a23b828746c240917f2ee922ff2ba6069e996df9be365fe",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 2,
+      "caseId": "Q-ID-002",
+      "runId": "RUN-01",
+      "mode": "quick-independent",
+      "workspace": "/private/tmp/fe-code-review-v040-c07-q-id-002-run-01",
+      "branch": "main",
+      "head": "c4cb70ce9a659343d4783d698d56ffe79a886932",
+      "status": [" M src/cache-key.ts", " M src/request-options.ts"],
+      "fileCount": 31,
+      "treeSha256": "81ea42f0c43365034c1aae9ac955dd3aaacd7f7a49ccbbfb505f8328331840a5",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 3,
+      "caseId": "F-ID-001",
+      "runId": "RUN-01",
+      "mode": "fix-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c07-f-id-001-run-01",
+      "branch": "main",
+      "head": "c942357e2209f3322f5723ba208e36aa49b9e306",
+      "status": [" M src/url.ts"],
+      "fileCount": 31,
+      "treeSha256": "5a4af49df98f780083c5f9ed1338e899dee1e3779f394786dfe89b10a8d80efd",
+      "expectedTestExitCode": 0,
+      "actualTestExitCode": 0
+    },
+    {
+      "sequence": 4,
+      "caseId": "F-ID-001",
+      "runId": "RUN-02",
+      "mode": "fix-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c07-f-id-001-run-02",
+      "branch": "main",
+      "head": "c942357e2209f3322f5723ba208e36aa49b9e306",
+      "status": [" M src/url.ts"],
+      "fileCount": 31,
+      "treeSha256": "5a4af49df98f780083c5f9ed1338e899dee1e3779f394786dfe89b10a8d80efd",
+      "expectedTestExitCode": 0,
+      "actualTestExitCode": 0
+    },
+    {
+      "sequence": 5,
+      "caseId": "Q-ID-001",
+      "runId": "RUN-01",
+      "mode": "quick-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c07-q-id-001-run-01",
+      "branch": "main",
+      "head": "5aa3cc1e7f1179fa589893cf015794f2ba220483",
+      "status": [" M src/url.ts", "?? src/request-config.ts"],
+      "fileCount": 30,
+      "treeSha256": "3f915820df3cb768b51a33b56edb84d08497727cd6478989faacabb73d8bf2b2",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 6,
+      "caseId": "Q-ID-001",
+      "runId": "RUN-02",
+      "mode": "quick-identity",
+      "workspace": "/private/tmp/fe-code-review-v040-c07-q-id-001-run-02",
+      "branch": "main",
+      "head": "5aa3cc1e7f1179fa589893cf015794f2ba220483",
+      "status": [" M src/url.ts", "?? src/request-config.ts"],
+      "fileCount": 30,
+      "treeSha256": "3f915820df3cb768b51a33b56edb84d08497727cd6478989faacabb73d8bf2b2",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 7,
+      "caseId": "K-ID-001",
+      "runId": "RUN-01",
+      "mode": "quick-keep",
+      "workspace": "/private/tmp/fe-code-review-v040-c07-k-id-001-run-01",
+      "branch": "main",
+      "head": "25abf12d6b701b43f2ff7efd499b20f9f739cd7f",
+      "status": [" M src/label.ts"],
+      "fileCount": 28,
+      "treeSha256": "77bda4aa739b8b6d1da5208d05d44321a8df39cce355f259bf89d1010eb123aa",
+      "expectedTestExitCode": 0,
+      "actualTestExitCode": 0
+    }
+  ],
+  "repeatAssertions": [
+    {
+      "caseId": "Q-ID-001",
+      "runs": ["RUN-01", "RUN-02"],
+      "expectedHead": "5aa3cc1e7f1179fa589893cf015794f2ba220483",
+      "expectedTreeSha256": "3f915820df3cb768b51a33b56edb84d08497727cd6478989faacabb73d8bf2b2"
+    },
+    {
+      "caseId": "F-ID-001",
+      "runs": ["RUN-01", "RUN-02"],
+      "expectedHead": "c942357e2209f3322f5723ba208e36aa49b9e306",
+      "expectedTreeSha256": "5a4af49df98f780083c5f9ed1338e899dee1e3779f394786dfe89b10a8d80efd"
+    }
+  ],
+  "workspaceIntegrity": {
+    "expectedTestResultsMatched": "7/7",
+    "candidateSkillHashesMatched": "7/7",
+    "agentCursorSkillCopiesMatched": "7/7",
+    "agentCursorSkillTreesMatched": "14/14",
+    "quickDeepFixReferenceHashesMatched": "21/21",
+    "cursorAdapterCopiesMatched": "7/7",
+    "previousFindingsHashesMatched": "2/2",
+    "evaluatorValidatorCopiedIntoRuntime": false,
+    "cursorAdapterSha256": "f53777a997ce9ab7394782f4fd77c7b808072166fced45fbf0a4a85a515be0ff"
+  },
+  "clientWindow": {
+    "client": "Codex CLI 0.146.0",
+    "provider": "Joymeet",
+    "providerConfigId": "custom",
+    "model": "gpt-5.5",
+    "sandbox": "read-only",
+    "ephemeral": true,
+    "ignoreRules": true,
+    "featuresDisabled": [
+      "plugins",
+      "remote_plugin",
+      "apps",
+      "hooks",
+      "memories",
+      "multi_agent",
+      "multi_agent_v2"
+    ],
+    "webSearch": "disabled",
+    "mcpServersExplicitlyDisabled": [
+      "codegraph",
+      "computer-use",
+      "context7",
+      "mcp-deepwiki",
+      "node_repl",
+      "open-websearch",
+      "playwright",
+      "figma",
+      "sentry-kxmeet"
+    ],
+    "httpRetries": 0,
+    "sseRetries": 0,
+    "sourceFreeProbe": {
+      "workingDirectory": "/private/tmp",
+      "skipGitRepoCheck": true,
+      "prompt": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.",
+      "expectedDecodedResponse": "CLIENT_ISOLATION_OK",
+      "expectedAgentMessages": 1,
+      "expectedToolCalls": 0,
+      "expectedMcpCalls": 0,
+      "expectedUndisclosedEndpoints": 0,
+      "expectedRetrySignals": 0,
+      "retryPolicy": "no in-place retry"
+    }
+  },
+  "sourceFreeProbeAttempt01Result": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-07-probe-attempt-01-result.json",
+  "sourceFreeProbeAttempt02Result": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-07-probe-attempt-02-result.json",
+  "sourceFreeProbeDecision": {
+    "status": "pass",
+    "mandatoryGatePassed": true,
+    "responseGatePassed": true,
+    "traceGatePassed": true,
+    "workspaceIntegrity": "7/7",
+    "processExitEvidenceGatePassed": true,
+    "processExitCode": 0,
+    "sourceBearingStage1Authorized": false
+  },
+  "replacementProbe": {
+    "status": "complete-pass",
+    "attemptId": "source-free-probe-attempt-02",
+    "carryForwardAttempt01AsPass": false,
+    "onlyCommandDelta": "Rename the local wrapper capture variable from status to exit_code.",
+    "providerRequestParametersUnchanged": true,
+    "result": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-07-probe-attempt-02-result.json",
+    "sourceBearingAuthorized": false
+  },
+  "stage1Authorization": {
+    "status": "complete",
+    "authorizedDate": "2026-08-25",
+    "sourceScope": "one-public-synthetic-stage-1-workspace",
+    "workspace": "/private/tmp/fe-code-review-v040-c07-d-id-001-run-01",
+    "runOrder": ["D-ID-001 RUN-01"],
+    "publicSyntheticSourceTransmitted": true,
+    "privateSourceTransmitted": false,
+    "evaluatorOracleTransmitted": false
+  },
+  "stage1Result": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-07-stage-1-results.json",
+  "stage1Execution": {
+    "status": "complete-pass",
+    "runsExecuted": 1,
+    "runsRetried": 0,
+    "mandatoryPassCount": 1,
+    "mandatoryFailCount": 0,
+    "stage2RunsExecuted": 0,
+    "metrics": {
+      "mandatoryRuns": "1/1",
+      "independentFindingRecall": "1/1",
+      "findingIdCoverage": "1/1",
+      "severityAccuracy": "1/1",
+      "repeatedFindingIdMergeKeyCoverage": "2/2",
+      "structuralValidatorPass": "1/1",
+      "executionPass": "1/1",
+      "readOnlyIntegrityPass": "1/1",
+      "clientIsolationPass": "1/1"
+    },
+    "decision": "Pass; Stage 2 authorization pending"
+  },
+  "stage2Authorization": {
+    "status": "complete",
+    "authorizedDate": "2026-08-25",
+    "sourceScope": "six-public-synthetic-stage-2-workspaces",
+    "runOrder": [
+      "Q-ID-002 RUN-01",
+      "F-ID-001 RUN-01",
+      "F-ID-001 RUN-02",
+      "Q-ID-001 RUN-01",
+      "Q-ID-001 RUN-02",
+      "K-ID-001 RUN-01"
+    ],
+    "publicSyntheticSourceTransmitted": true,
+    "privateSourceTransmitted": false,
+    "evaluatorOracleTransmitted": false
+  },
+  "result": "evaluation/runtime-windows/v0.4.0-finding-identity-candidate-07-results.json",
+  "stage2Execution": {
+    "status": "complete-no-go",
+    "runsExecuted": 6,
+    "runsRetried": 0,
+    "mandatoryPassCount": 5,
+    "mandatoryFailCount": 1,
+    "failedRuns": ["Q-ID-001 RUN-02"],
+    "structuralValidatorPass": "6/6",
+    "executionPass": "6/6",
+    "readOnlyIntegrityPass": "6/6",
+    "decision": "No-Go; complete candidate result 6/7"
+  },
+  "completeResult": {
+    "mandatoryRuns": "6/7",
+    "independentFindingRecall": "8/9",
+    "initialRepeatIdentityStability": "2/3",
+    "fixClosureCoverage": "6/6",
+    "fixIdPreservation": "6/6",
+    "severityAccuracy": "9/9",
+    "structuralValidatorPass": "7/7",
+    "executionPass": "7/7",
+    "readOnlyIntegrityPass": "7/7",
+    "decision": "No-Go"
+  },
+  "nonGoals": [
+    "No severity-rule change; Candidate 06 Q-ID-002 already satisfies the frozen oracle.",
+    "No new visible section, field, mode, validator dependency, or hidden pass.",
+    "No change to Fix Review, collector discipline, read-only, browser, or external-documentation contracts.",
+    "No retry, replacement sample, second model, or favorable-sample selection."
+  ],
+  "prospectiveWindow": {
+    "sourceBearingRuns": 7,
+    "freshWorkspacesRequired": true,
+    "freshSourceFreeProbeRequired": true,
+    "freshSourceBearingAuthorizationRequired": true,
+    "carryForwardSourceBearingResults": false,
+    "failedRunRetryPolicy": "no-in-place-retry",
+    "stage1": {
+      "purpose": "Fail fast on the only corrected Candidate 06 failure class.",
+      "runOrder": ["D-ID-001 RUN-01"],
+      "continueOnlyIf": {
+        "mandatoryRuns": "1/1",
+        "structuralValidatorPass": "1/1",
+        "executionPass": "1/1",
+        "readOnlyIntegrityPass": "1/1",
+        "mcpToolCalls": 0,
+        "undisclosedEndpointSignals": 0
+      }
+    },
+    "stage2": {
+      "precondition": "Every Stage 1 gate passes against the frozen candidate.",
+      "runOrder": [
+        "Q-ID-002 RUN-01",
+        "F-ID-001 RUN-01",
+        "F-ID-001 RUN-02",
+        "Q-ID-001 RUN-01",
+        "Q-ID-001 RUN-02",
+        "K-ID-001 RUN-01"
+      ],
+      "relationshipToStage1": "Stage 1 and Stage 2 together form one seven-run promotion window."
+    }
+  },
+  "nextGate": "Retain Candidate 07 as No-Go at 6/7 without retry or replacement. Diagnose why Q-ID-001 RUN-02 semantically merged two independently passable contracts despite satisfying the repeated-ID merge-key structure; v0.3.0 remains stable."
+}

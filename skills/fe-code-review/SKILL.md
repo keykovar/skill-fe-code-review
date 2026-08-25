@@ -168,14 +168,26 @@ Evaluate Quick and Deep Review changes for the smallest justified complexity sur
 - In Quick Review, inspect the diff, its immediate owner, and directly affected callers. Report only clear, local, evidence-backed unnecessary complexity; do not perform a repository-wide abstraction audit solely for this section. If that bounded scope cannot establish whether complexity is justified, use `Cannot Verify` and state the missing evidence.
 - In Deep Review, inspect affected callers and consumers, existing repository capabilities, abstraction ownership, and runtime contracts. Compare the current design with a simpler viable alternative when one exists, and explain the correctness, stability, coupling, and maintenance tradeoff.
 
-Report each actionable design issue once in the applicable `Blocking`, `Risk`, or `Improve` finding section. Every `Simplify`, `Extract`, or `Redesign` decision must cite at least one such finding. In `Design / Simplify`, add only the decision context, required invariants, and tradeoffs; do not duplicate the full finding.
+Report each actionable design issue once in the applicable `Blocking`, `Risk`, or `Improve` finding section. Every `Simplify`, `Extract`, or `Redesign` decision must cite at least one such finding by ID. In `Design / Simplify`, add only the decision context, required invariants, and tradeoffs; do not duplicate the full finding.
 
 Design severity follows demonstrated impact. Local maintainability cost without demonstrated behavior risk is `Improve`; use `Risk` or `Blocking` only when evidence shows corresponding behavior, regression, or delivery risk.
 
 ## Finding Requirements
 
+Finalize findings with this sequence:
+
+1. During discovery, use short semantic keys, never `F-NNN` IDs.
+2. Give each candidate issue one atomic pass/fail acceptance sentence. Before merging candidates, test both counterfactuals: can the minimum safe repair for A pass while B still fails, and vice versa? If either can, split them. A shared function, diff hunk, patch, test, output, or broad contract label is not merge evidence. Merge only when one indivisible repair necessarily makes every acceptance sentence pass.
+3. Finalize severity, then sort by severity (`Blocking`, `Risk`, `Improve`) and first changed source location.
+4. Assign chain-local IDs (`F-001`, `F-002`, ...) only after sorting.
+5. Backfill final IDs into the visible ledger and cross-section references. Group ledger entries by final ID: repeated IDs require the same non-empty `Merge key` / `合并依据` on every entry; single IDs require none. Reconcile every actionable statement outside severity sections: reference a final ID or remove it.
+6. Scan rendered Finding headers in body order. If they are not exactly `F-001` through `F-NNN`, renumber every header and reference before responding. Emit no placeholder ID; Fix Review preserves supplied IDs.
+
+Render Quick/Deep Finding headers as `- [F-NNN] [file:line] title`; the location may be a Markdown link, never backtick-only. Begin `Blocking outcome` / `阻断结果` with its canonical English outcome name, followed by optional evidence after ` - `.
+
 Every Quick or Deep finding must include:
 
+- Finding ID.
 - Severity: Blocking, Risk, or Improve.
 - File path and line number when possible.
 - Trigger condition.
@@ -183,6 +195,7 @@ Every Quick or Deep finding must include:
 - Root cause or reasoning.
 - Suggested fix.
 - Verification method for Blocking and Risk findings.
+- Demonstrated Blocking outcome for Blocking findings; a local test failure alone is insufficient.
 - Confidence when evidence is incomplete.
 
 For Quick and Deep Review, `Cannot Verify` is an evidence disposition, not a severity, and missing evidence alone does not create a finding. Record an evidence-only gap under scope, `Test Gaps`, or `Evidence`. If static evidence supports an actionable finding, keep its demonstrated Blocking, Risk, or Improve severity and mark only the unverified runtime or external-semantics portion `Cannot Verify`. This does not change `Cannot Verify` as a `Design / Simplify` decision or as a Fix Review closure status.
@@ -218,11 +231,11 @@ Use `Recommendation Consistency` as the single authority for the closure recomme
 
 ## Severity Rules
 
-Use Blocking when an issue may cause a runtime error, white screen, infinite loop, broken main flow, payment failure, login/auth failure, data corruption, build failure, serious compatibility issue, or severe regression.
+Use Blocking only when evidence supports one canonical outcome: `Runtime Error`, `White Screen`, `Infinite Loop`, `Broken Main Flow`, `Payment Failure`, `Login/Auth Failure`, `Data Corruption`, `Build Failure`, `Serious Compatibility Issue`, or `Severe Regression`.
 
-Also use Blocking when a changed tracked file imports or references an untracked file that is not included in the submit scope.
+Use `Referenced Untracked File` when a changed tracked file imports or references an untracked file outside the submit scope.
 
-Use Risk when an issue may cause edge-case bugs, race conditions, state inconsistency, cache inconsistency, poor error handling, performance degradation, or demonstrated cross-module coupling or drift that creates behavior, regression, or delivery risk.
+Use Risk when an issue may cause edge-case bugs, race conditions, state inconsistency, cache inconsistency, poor error handling, performance degradation, or a local contract regression without evidence of a Blocking outcome, including demonstrated cross-module coupling or drift that creates behavior, regression, or delivery risk.
 
 Also use Risk when evidence shows analytics or telemetry will attribute a real production event to the wrong product, user action, state, or outcome. Do not reduce demonstrated business or diagnostic misattribution to Improve merely because the visible UI still works.
 
