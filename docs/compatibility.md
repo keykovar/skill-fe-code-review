@@ -44,10 +44,10 @@ v0.4.0 adds independent Findings with sequential IDs that remain stable through 
 | Client | Structural evidence | Candidate runtime evidence | Status |
 | --- | --- | --- | --- |
 | Codex CLI 0.146.0 | `109/109` repository tests, both Skill validators, Node syntax, JSON parsing, candidate hashes, and workspace integrity pass | Quick, Deep, Fix, and no-finding cases pass the frozen semantic and output gates; the saved Fix trace passes corrected execution auditing with zero model calls, network requests, source transmission, retries, or workspace changes | Runtime verified |
-| Cursor | Shared Skill and adapter contracts pass repository validation | No v0.4.0 runtime run was executed | Cannot Verify |
+| Cursor | Agent CLI 2026.08.11-e8db854 fresh public-tag adapter and repository contracts pass | Source-free isolation passed; one Ask-mode Quick output passed the complete `3 / 3` semantic and output oracle, but the client denied the required collector, attempted it three times, skipped client-side tests, and read temporary client session data outside the fixture | Cannot Verify |
 | Claude Code | Shared Skill and adapter contracts pass repository validation | Not executed because valid runtime credentials are unavailable | Cannot Verify |
 
-See [v0.4.0 Candidate Results](evaluation-results/v0.4.0-candidate.md) and the [v0.4.0 Evaluation Plan](v0.4.0-finding-identity-evaluation-plan.md) for the retained failures, source boundary, and promotion evidence.
+See [v0.4.0 Candidate Results](evaluation-results/v0.4.0-candidate.md), the [v0.4.0 Evaluation Plan](v0.4.0-finding-identity-evaluation-plan.md), and [v0.4.0 Post-release Smoke Results](evaluation-results/v0.4.0-post-release.md) for the retained failures, source boundary, and promotion evidence.
 
 ## Historical v0.3.0 Evidence
 
@@ -106,7 +106,7 @@ The shared core contract defines the following fallback for Codex, Claude Code, 
 
 ## Known Limitations
 
-- Cursor and Claude Code v0.4.0 runtime behavior remains `Cannot Verify`; only Codex CLI executed the release-candidate runtime matrix.
+- Cursor and Claude Code v0.4.0 runtime behavior remains `Cannot Verify`. Cursor's post-release Quick output passed its semantic and structural oracle, but the run failed mandatory collector and workspace-isolation trace gates; Claude Code was not executed.
 - The v0.4.0 runtime window uses public synthetic fixtures. It does not establish general model precision or verify private repositories, browser/WebView behavior, backend behavior, deployment, monitoring, or production systems.
 - Candidate 08's `7 / 7` includes one deterministic tooling-only trace replay; the original raw `6 / 7` and both false-positive violations remain recorded.
 - Cursor and Claude Code v0.3.0 runtime behavior is not claimed; the post-release Cursor runs failed one or more required gates, and v0.2.2 evidence remains historical evidence for that release only.
@@ -123,4 +123,4 @@ The shared core contract defines the following fallback for Codex, Claude Code, 
 - No v0.2.2 result claims browser runtime evidence; the release fixtures have no browser-observable product path.
 - The paired minimal-design oracle is a manual synthetic-fixture dataset. It verifies the recorded decisions and forbidden outcomes, not model quality in every repository.
 
-See [v0.4.0 Candidate Results](evaluation-results/v0.4.0-candidate.md) and the [v0.4.0 Evaluation Plan](v0.4.0-finding-identity-evaluation-plan.md) for current release evidence, [v0.3.0 Evaluation Results](evaluation-results/v0.3.0.md) and [v0.3.0 Post-release Smoke Results](evaluation-results/v0.3.0-post-release.md) for the previous stable release, and [v0.1.0 Evaluation Results](evaluation-results/v0.1.0.md) for the original runtime cases and metrics.
+See [v0.4.0 Candidate Results](evaluation-results/v0.4.0-candidate.md), the [v0.4.0 Evaluation Plan](v0.4.0-finding-identity-evaluation-plan.md), and [v0.4.0 Post-release Smoke Results](evaluation-results/v0.4.0-post-release.md) for current release evidence, [v0.3.0 Evaluation Results](evaluation-results/v0.3.0.md) and [v0.3.0 Post-release Smoke Results](evaluation-results/v0.3.0-post-release.md) for the previous stable release, and [v0.1.0 Evaluation Results](evaluation-results/v0.1.0.md) for the original runtime cases and metrics.

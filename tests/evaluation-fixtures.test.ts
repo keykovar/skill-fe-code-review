@@ -101,6 +101,7 @@ describe('reproducible evaluation fixtures', () => {
     expect(exists('docs/evaluation-results/v0.2.0-post-release.md')).toBe(true);
     expect(exists('docs/evaluation-results/v0.2.1.md')).toBe(true);
     expect(exists('docs/evaluation-results/v0.3.0-post-release.md')).toBe(true);
+    expect(exists('docs/evaluation-results/v0.4.0-post-release.md')).toBe(true);
   });
 
   test('prepares the Quick fixture with the seeded untracked dependency and behavior regression', () => {

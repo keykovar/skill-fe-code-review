@@ -116,10 +116,10 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 | 客户端 | v0.4.0 验证证据 | 状态 |
 | --- | --- | --- |
 | Codex CLI 0.146.0 | Candidate 08 的 Quick、Deep、Fix 和无问题七次冻结窗口在一次仅工具保存 trace 重放后达到 `7 / 7`；原始 `6 / 7` 仍保留 | 运行时已验证 |
-| Cursor | 共享 Skill 与适配器契约通过；未执行 v0.4.0 运行时验证 | `Cannot Verify：无法验证` |
+| Cursor | Agent CLI 2026.08.11-e8db854 全新 tag 的 Ask 模式 Quick 输出通过完整 `3 / 3` 语义与输出 oracle，但必需 collector 执行和工作区隔离 trace 门禁失败 | `Cannot Verify：无法验证` |
 | Claude Code | 结构与适配器契约通过；当前无可用运行时凭据 | `Cannot Verify：无法验证` |
 
-Cursor 与 Claude Code 的 v0.4.0 运行时验证仍为 `Cannot Verify：无法验证`，不会被描述为运行通过。Codex 的状态来自 Candidate 08 精确候选验收窗口，并将原始 trace auditor 失败与仅工具重放结果分开保留。详细证据和限制见[兼容性说明](docs/compatibility.md)、[v0.4.0 评测计划](docs/v0.4.0-finding-identity-evaluation-plan.md)与 [v0.4.0 候选结果](docs/evaluation-results/v0.4.0-candidate.md)；历史 v0.3.0 证据仍保留在 [v0.3.0 评测结果](docs/evaluation-results/v0.3.0.md)和 [v0.3.0 发布后冒烟结果](docs/evaluation-results/v0.3.0-post-release.md)。
+Cursor 与 Claude Code 的 v0.4.0 运行时验证仍为 `Cannot Verify：无法验证`，不会被描述为运行通过。Cursor 唯一一次全新 tag Quick 运行发现并独立编号了全部三个预置问题，但 Ask 模式拒绝必需 collector，并读取了 fixture 外的客户端会话数据。Codex 的状态来自 Candidate 08 精确候选验收窗口，并将原始 trace auditor 失败与仅工具重放结果分开保留。详细证据和限制见[兼容性说明](docs/compatibility.md)、[v0.4.0 评测计划](docs/v0.4.0-finding-identity-evaluation-plan.md)、[v0.4.0 候选结果](docs/evaluation-results/v0.4.0-candidate.md)与 [v0.4.0 发布后冒烟结果](docs/evaluation-results/v0.4.0-post-release.md)；历史 v0.3.0 证据仍保留在 [v0.3.0 评测结果](docs/evaluation-results/v0.3.0.md)和 [v0.3.0 发布后冒烟结果](docs/evaluation-results/v0.3.0-post-release.md)。
 
 ## 使用方式
 
@@ -232,6 +232,7 @@ Vitest 负责验证仓库结构、适配器、引用文件和必需审查契约�
 - [评测协议](docs/evaluation.md)
 - [v0.4.0 评测计划](docs/v0.4.0-finding-identity-evaluation-plan.md)
 - [v0.4.0 候选结果](docs/evaluation-results/v0.4.0-candidate.md)
+- [v0.4.0 发布后冒烟结果](docs/evaluation-results/v0.4.0-post-release.md)
 - [v0.3.0 真实项目评测计划](docs/v0.3.0-real-project-evaluation-plan.md)
 - [v0.3.0 评测结果](docs/evaluation-results/v0.3.0.md)
 - [v0.3.0 发布后冒烟结果](docs/evaluation-results/v0.3.0-post-release.md)

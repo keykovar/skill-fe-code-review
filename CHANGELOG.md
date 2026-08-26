@@ -6,6 +6,10 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 
 ## [Unreleased]
 
+### Added
+
+- Recorded fresh-tag v0.4.0 post-release validation: Codex Quick passed all semantic, output, collector, trace, and integrity gates; Cursor Ask-mode Quick passed the complete semantic and output oracle but retained collector-denial and outside-workspace trace failures without retry or mode replacement.
+
 ## [0.4.0] - 2026-08-25
 
 ### Added

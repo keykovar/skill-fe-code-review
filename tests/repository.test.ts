@@ -199,7 +199,9 @@ describe('repository release support', () => {
     expect(stable).toContain('independent Findings with sequential IDs');
     expect(stableCodexRow).toContain('saved Fix trace passes corrected execution auditing');
     expect(stableCodexRow).toMatch(/\| Runtime verified \|$/);
-    expect(stableCursorRow).toContain('No v0.4.0 runtime run was executed');
+    expect(stableCursorRow).toContain('Source-free isolation passed');
+    expect(stableCursorRow).toContain('passed the complete `3 / 3` semantic and output oracle');
+    expect(stableCursorRow).toContain('denied the required collector');
     expect(stableCursorRow).toMatch(/\| Cannot Verify \|$/);
     expect(historicalV030).toContain('materially extends changed-condition review');
     expect(historicalV022CursorRow).toContain('Candidate Deep/Fix and post-release Quick reviews');
@@ -213,6 +215,7 @@ describe('repository release support', () => {
     expect(stableClaudeRow).toContain('valid runtime credentials are unavailable');
     expect(stableClaudeRow).toMatch(/\| Cannot Verify \|$/);
     expect(limitations).toContain('Cursor and Claude Code v0.4.0 runtime behavior remains `Cannot Verify`');
+    expect(limitations).toContain('failed mandatory collector and workspace-isolation trace gates');
     expect(limitations).toContain('fresh-tag Quick smoke passed trace/read-only gates');
     expect(limitations).toContain('Codex v0.2.2 post-release runtime evidence covers the Quick fixture');
     expect(limitations).toContain('user-level Memory and plugin context');
@@ -2329,6 +2332,25 @@ describe('repository release support', () => {
     expect(results).toContain('Cursor remains `Cannot Verify`');
     expect(results).toContain('No failed run was retried in place or reclassified');
     expect(results).not.toContain('| Runtime pass |');
+    expect(results).not.toContain('13011235000@163.com');
+  });
+
+  test('publishes v0.4.0 post-release evidence without promoting the Cursor partial run', () => {
+    const results = readText('docs/evaluation-results/v0.4.0-post-release.md');
+
+    expect(results).toContain('# v0.4.0 Post-release Smoke Results');
+    expect(results).toContain('Release commit: `15682aa84f08e09860a2d5d627b30b28ef924535`');
+    expect(results).toContain('Feature commit: `8e7df9f510cd78e24a085baeb086616eee45f3f5`');
+    expect(results).toContain('`9 / 9` files and `109 / 109` tests passed');
+    expect(results).toContain('All `43 / 43` tracked JSON files');
+    expect(results).toContain('Codex CLI 0.146.0 Quick Review');
+    expect(results).toContain('Post-release smoke pass');
+    expect(results).toContain('Cursor Agent CLI 2026.08.11-e8db854 Quick Review');
+    expect(results).toContain('attempted three times');
+    expect(results).toContain('outside the fixture workspace');
+    expect(results).toContain('No source-bearing run was retried');
+    expect(results).toContain('Cursor remains `Cannot Verify`');
+    expect(results).not.toContain('| Cursor Agent CLI 2026.08.11-e8db854 Quick Review | Runtime pass |');
     expect(results).not.toContain('13011235000@163.com');
   });
 
