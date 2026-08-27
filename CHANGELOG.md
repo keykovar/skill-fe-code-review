@@ -9,6 +9,24 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 ### Added
 
 - Recorded fresh-tag v0.4.0 post-release validation: Codex Quick passed all semantic, output, collector, trace, and integrity gates; Cursor Ask-mode Quick passed the complete semantic and output oracle but retained collector-denial and outside-workspace trace failures without retry or mode replacement.
+- Retained post-v0.4.0 ledger-tally Candidate 01 as `No-Go` after its frozen Cursor Quick run passed execution and integrity gates but recalled only `2 / 3` required Findings and never exercised the repeated-ID target.
+- Froze Candidate 02 as a Prompt-only ledger-completeness experiment with a 60-word Skill budget, unchanged mode references, a two-run Quick stop gate, and no orchestrator, retry, replacement, private-source transfer, or external runtime authorization.
+- Implemented Candidate 02 within the frozen boundary at `28 / 60` net Skill words and passed `111 / 111` tests, both Skill validators, Node syntax, JSON parsing, and diff checks without starting a runtime request; restored the stable Skill after the later `No-Go` decision.
+- Prepared and integrity-froze all seven Candidate 02 public synthetic workspaces with matching expected tests, Agent/Cursor Skill copies, adapters, Git states, and repeat pairs before any isolated Cursor login or runtime request.
+- Corrected the isolated Cursor login contract to use file-backed credential storage after the macOS default keychain failed under the temporary HOME; no probe, model review, or source transfer occurred in the failed login attempt.
+- Passed Candidate 02's isolated Cursor source-free probe with exact sentinel output, zero tools, MCP, retries, endpoint signals, or stderr, valid trace auditing, and unchanged frozen workspaces.
+- Retained Candidate 02 as `No-Go` after the first Stage 1 Quick run passed the complete `3 / 3` semantic oracle and all execution, isolation, read-only, and integrity gates but omitted the shared merge key from one of two `F-003` ledger entries; stopped RUN-02 and Stage 2 without retry or replacement.
+- Selected an offline Finding-grouped ledger design that owns one merge basis per Finding group, rejects automatic semantic repair, and requires parser and validator proof before another candidate can be frozen; the stable Skill remains unchanged.
+- Added an evaluator-only grouped-ledger parser prototype with `14 / 14` targeted tests and an explicit semantic-boundary case; it is not connected to the stable validator or installed Skill and authorizes no runtime candidate.
+- Added seven hashed saved-output cases and a zero-model replay runner, then documented exact grouped-ledger prompt replacements, prospective hashes, word budgets, validator migration, staging, and rollback boundaries without freezing a candidate.
+- Implemented Post-v0.4.0 Grouped Ledger Candidate 03 with one group-owned merge basis per multi-condition Finding, promoted the deterministic parser into evaluator tooling, rejected legacy flat ledgers, and preserved Fix and all safety boundaries; runtime freezing and external model requests remain pending.
+- Runtime-froze Candidate 03 after all seven fresh public synthetic workspaces and the isolated Cursor source-free probe passed integrity, client-isolation, zero-tool, and zero-source-transfer gates; Stage 1 source-bearing review remains separately authorized.
+- Retained Candidate 03 as `No-Go` after shell interpolation corrupted the first source-bearing Prompt and injected out-of-scope main-worktree status, tracked diff, and test output into Cursor; stopped the remaining runs without retry, restored the public Skill and validator to stable v0.4.0, and kept the grouped implementation as evaluator-only evidence.
+
+### Fixed
+
+- Required retained grouped-ledger evaluator children to use concrete `[file:line]` locations, added a deterministic rejection case for arbitrary bracket labels, and kept the stricter parser disconnected from the stable public review-output validator.
+- Reconciled Candidate 01/02/03 probe, plan, replay, prototype, rollback, and separately authorized temporary-artifact cleanup evidence, and corrected the Candidate 02 source-free probe documentation link.
 
 ## [0.4.0] - 2026-08-25
 

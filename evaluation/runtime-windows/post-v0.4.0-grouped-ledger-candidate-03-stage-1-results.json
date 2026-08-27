@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-03",
+  "date": "2026-08-27",
+  "status": "no-go-stage-1-stopped-after-run-01-command-construction-scope-breach",
+  "run": {
+    "caseId": "D-ID-001",
+    "runId": "RUN-01",
+    "mode": "deep-identity",
+    "processExitCode": 0,
+    "elapsedSeconds": 121,
+    "apiDurationMilliseconds": 163034,
+    "traceEvents": 252,
+    "startedToolCalls": 21,
+    "toolKinds": { "read": 14, "glob": 3, "shell": 2, "grep": 2 },
+    "mcpCalls": 0,
+    "stderrBytes": 0,
+    "inputTokens": 45353,
+    "cacheReadTokens": 206464,
+    "outputTokens": 8744
+  },
+  "promptIntegrity": {
+    "status": "fail",
+    "expectedSha256": "f3f2833992dbf6794277ff6fcefd6bad9c44a08ecad1e6c0103ed38c81da6258",
+    "actualSha256": "3b2e3b1ad0cd6b71d77cb881f1ff068adc8636b3ef2149e4de6a2422ce202283",
+    "expectedCharacters": 549,
+    "actualCharacters": 52484,
+    "driftCharacters": 51935,
+    "leadingSkillInvocationAfterExpansion": "使用 -code-review",
+    "collectorCommandPresent": false,
+    "rootCause": "The shell command placed a prompt containing dollar expansion and backticks inside double quotes. The shell expanded $fe-code-review and executed the backtick-delimited command examples in the main repository before Cursor started."
+  },
+  "transferBoundary": {
+    "status": "fail-unauthorized-scope-expansion",
+    "authorized": [
+      "frozen D-ID-001 public synthetic workspace content read by Cursor",
+      "synthetic Git diff and declared test output",
+      "Candidate 03 Skill and Cursor rule"
+    ],
+    "unexpectedlyTransmitted": [
+      "skill-fe-code-review main-worktree git status including untracked path names",
+      "skill-fe-code-review tracked working-tree diff",
+      "skill-fe-code-review node --test stdout and local path diagnostics"
+    ],
+    "notTransmittedByObservedPrompt": [
+      "untracked file contents",
+      "Cursor credentials or login tokens",
+      "private application repository source",
+      "fixture semantic oracle contents"
+    ],
+    "sensitiveValuePatternMatches": 0,
+    "destination": "Cursor service used by the isolated Cursor Agent CLI login"
+  },
+  "executionAudit": {
+    "status": "fail",
+    "collectorCallCount": 0,
+    "requiredCollectorCallCount": 1,
+    "equivalentGitInventoryCommands": 1,
+    "declaredFixtureTests": 1,
+    "writeTools": 0,
+    "mcpCalls": 0,
+    "auditorValid": false,
+    "auditorViolationTypes": [
+      "context-collector-count",
+      "context-collector-equivalent-git-read"
+    ],
+    "workspaceStatusUnchanged": true,
+    "workspaceTreeSha256": "e7ffb2f312721de97ca0d044812b32a37acda11bf4b18df1562f8c2caa149ac3"
+  },
+  "reviewObservation": {
+    "scoredForPromotion": false,
+    "reason": "Prompt integrity and transfer-scope gates failed before model-quality scoring could authorize promotion.",
+    "outputSha256": "85e6e7bf0c79f6db255260ae1ee399bd9a4295412f9b666fad677e7ab9720791",
+    "outputCharacters": 5736,
+    "structuralValidator": "pass",
+    "coverageLedgerEntries": 5,
+    "findingIds": ["F-001"],
+    "semanticObservation": "The output found the expected stale-profile-token issue as F-001 Blocking, selected Simplify, and recommended 修改后可以进入下一步.",
+    "groupedLedgerObservation": "One F-001 group owned one non-empty merge basis and two located before-to-after conditions."
+  },
+  "runtimeWindow": {
+    "sourceBearingRunsExecuted": 1,
+    "remainingRunsExecuted": 0,
+    "retryExecuted": false,
+    "replacementExecuted": false,
+    "modeSwitchExecuted": false,
+    "decision": "No-Go; stop Candidate 03 after D-ID-001 RUN-01 without retry or reinterpretation."
+  },
+  "evidenceBoundary": "Raw credentials, session identifiers, request identifiers, and raw trace stay outside the repository. This file records only the sanitized transfer and execution summary.",
+  "nextGate": "Stable v0.4.0 runtime rollback and separately authorized temporary-artifact cleanup are complete. Review retained repository evidence before any commit."
+}

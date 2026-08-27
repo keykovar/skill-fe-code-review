@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "prototype": "post-v0.4.0-grouped-ledger-validator",
+  "cases": [
+    {
+      "id": "Q-ID-001-GROUPED-VALID",
+      "path": "grouped-ledger-cases/q-id-001-valid.zh-CN.md",
+      "sha256": "9ff6fe3a0ee74fb88af1bad7c3a341cb99f2ea87d646713ff42fee59f1660401",
+      "expectedStructuralValid": true,
+      "expectedErrorTypes": [],
+      "expectedFindingIds": ["F-001", "F-002", "F-003"],
+      "expectedActualFindingIds": ["F-001", "F-002", "F-003"],
+      "semanticOracleExpected": "Pass"
+    },
+    {
+      "id": "D-ID-001-GROUPED-VALID",
+      "path": "grouped-ledger-cases/d-id-001-valid.en.md",
+      "sha256": "fa338bd08362616ab6a86b019d2a4b18b91a675ba9cd07cc602afb1b714b64c4",
+      "expectedStructuralValid": true,
+      "expectedErrorTypes": [],
+      "expectedFindingIds": ["F-001"],
+      "expectedActualFindingIds": ["F-001"],
+      "semanticOracleExpected": "Pass"
+    },
+    {
+      "id": "Q-ID-001-SEMANTIC-MERGE-INVALID",
+      "path": "grouped-ledger-cases/q-id-001-semantic-invalid.en.md",
+      "sha256": "194ac0e26b78d141fea24cee0b453e648796ecd213c82ba8d7e4f295be3a9675",
+      "expectedStructuralValid": true,
+      "expectedErrorTypes": [],
+      "expectedFindingIds": ["F-001"],
+      "expectedActualFindingIds": ["F-001"],
+      "semanticOracleExpected": "Fail: independently repairable contracts were merged"
+    },
+    {
+      "id": "GROUPED-MISSING-BASIS",
+      "path": "grouped-ledger-cases/missing-basis.invalid.md",
+      "sha256": "890f71eddf6d3d05674e708cdb124b3ea97d88f77a6f67caa6c433e541c02667",
+      "expectedStructuralValid": false,
+      "expectedErrorTypes": ["multi-condition-merge-basis-count"],
+      "expectedFindingIds": ["F-001"],
+      "expectedActualFindingIds": ["F-001"],
+      "semanticOracleExpected": "Not Scored"
+    },
+    {
+      "id": "GROUPED-LEGACY-FLAT",
+      "path": "grouped-ledger-cases/legacy-flat.invalid.md",
+      "sha256": "c7bfa36a2cc74e590d66281ec966d037fb1ce3a2071ce4994a4ef4d1264e283e",
+      "expectedStructuralValid": false,
+      "expectedErrorTypes": [
+        "coverage-section-empty",
+        "finding-group-missing",
+        "group-header-invalid"
+      ],
+      "expectedFindingIds": ["F-001"],
+      "expectedActualFindingIds": [],
+      "semanticOracleExpected": "Not Scored"
+    },
+    {
+      "id": "GROUPED-UNEXPECTED-SINGLE-BASIS",
+      "path": "grouped-ledger-cases/unexpected-basis.invalid.md",
+      "sha256": "8ab5403753aab3eade5192d783861fa50c1b31a90875cba2413d867fd34342b5",
+      "expectedStructuralValid": false,
+      "expectedErrorTypes": ["single-condition-merge-basis-forbidden"],
+      "expectedFindingIds": ["F-001"],
+      "expectedActualFindingIds": ["F-001"],
+      "semanticOracleExpected": "Not Scored"
+    },
+    {
+      "id": "GROUPED-MISSING-FINDING",
+      "path": "grouped-ledger-cases/missing-finding.invalid.md",
+      "sha256": "a05dd3881ee54959f40bdab8c9d8f5c69f151cc1515c289cc2f12530eff7dd99",
+      "expectedStructuralValid": false,
+      "expectedErrorTypes": ["finding-group-missing"],
+      "expectedFindingIds": ["F-001", "F-002"],
+      "expectedActualFindingIds": ["F-001"],
+      "semanticOracleExpected": "Not Scored"
+    }
+  ]
+}

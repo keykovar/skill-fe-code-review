@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "replay": "post-v0.4.0-grouped-ledger-saved-cases",
+  "date": "2026-08-27",
+  "status": "pass",
+  "manifest": {
+    "path": "evaluation/prototypes/grouped-ledger-cases.json",
+    "sha256": "b8107b441bd10a21433e88f4b944cc87def9a373bfb84674b03c5b12957490e8"
+  },
+  "runner": {
+    "path": "evaluation/prototypes/replay-grouped-ledger-cases.mjs",
+    "sha256": "5a9f667ca670b04cd8f5e5e01585d52739b34014e03cc521ad1707c652e19336"
+  },
+  "command": "pnpm evaluation:grouped-ledger-replay",
+  "results": {
+    "passed": 7,
+    "failed": 0,
+    "total": 7,
+    "structurallyValidExpectedAndAccepted": 3,
+    "structurallyInvalidExpectedAndRejected": 4,
+    "semanticFailureAcceptedStructurally": 1
+  },
+  "cases": [
+    {
+      "id": "Q-ID-001-GROUPED-VALID",
+      "structural": "Pass",
+      "semanticOracleExpected": "Pass"
+    },
+    {
+      "id": "D-ID-001-GROUPED-VALID",
+      "structural": "Pass",
+      "semanticOracleExpected": "Pass"
+    },
+    {
+      "id": "Q-ID-001-SEMANTIC-MERGE-INVALID",
+      "structural": "Pass",
+      "semanticOracleExpected": "Fail: independently repairable contracts were merged"
+    },
+    {
+      "id": "GROUPED-MISSING-BASIS",
+      "structural": "Fail",
+      "expectedError": "multi-condition-merge-basis-count"
+    },
+    {
+      "id": "GROUPED-LEGACY-FLAT",
+      "structural": "Fail",
+      "expectedError": "group-header-invalid"
+    },
+    {
+      "id": "GROUPED-UNEXPECTED-SINGLE-BASIS",
+      "structural": "Fail",
+      "expectedError": "single-condition-merge-basis-forbidden"
+    },
+    {
+      "id": "GROUPED-MISSING-FINDING",
+      "structural": "Fail",
+      "expectedError": "finding-group-missing"
+    }
+  ],
+  "evidenceBoundary": {
+    "scope": "initial-saved-replay-execution-before-candidate-freeze",
+    "savedSyntheticMarkdownOnly": true,
+    "modelCalls": 0,
+    "networkRequests": 0,
+    "sourceTransmitted": false,
+    "automaticRepair": false,
+    "semanticScoringPerformedByRunner": false,
+    "runtimeCandidateCreatedDuringReplay": false
+  },
+  "migrationBrief": {
+    "path": "docs/post-v0.4.0-grouped-ledger-migration-brief.md",
+    "sha256": "d4db1a843c6f43a09a6bf5039610e3f0ff3bdcd5b24746565b800d0f7f5b32f8",
+    "hashScope": "current retained lifecycle document, including Candidate 03 No-Go, rollback, and cleanup",
+    "exactProspectiveHashesVerified": "3/3",
+    "wordBudgetVerified": "core +14/20; Quick and Deep +76/80; Fix 0/0"
+  },
+  "closureValidation": {
+    "scope": "initial-offline-replay-before-candidate-freeze",
+    "vitestFiles": "10/10",
+    "vitestTests": "126/126",
+    "savedReplay": "7/7",
+    "caseHashes": "7/7",
+    "repositorySkillValidator": "pass",
+    "officialSkillValidator": "pass",
+    "runtimeNodeSyntax": "4/4",
+    "prototypeNodeSyntax": "2/2",
+    "jsonFilesParsed": "49/49",
+    "gitDiffCheck": "pass",
+    "externalRequests": 0,
+    "sourceBearingRuns": 0
+  },
+  "retainedReplayValidation": {
+    "groupedLedgerValidatorSha256": "a0e429e9ea53dc94ff75d8e573b670e1cdcf30012d07ff31210a968515342998",
+    "requiresFileLineLocations": true,
+    "savedReplay": "7/7",
+    "modelCalls": 0,
+    "networkRequests": 0
+  },
+  "decision": "The initial saved-case structural replay passed. Candidate 03 was later frozen, stopped at No-Go after its first invalid source-bearing run, rolled back to stable v0.4.0, and cleaned; see the retained Candidate 03 plan and Stage 1 result."
+}

@@ -7,6 +7,7 @@
   "type": "module",
   "packageManager": "pnpm@11.7.0",
   "scripts": {
+    "evaluation:grouped-ledger-replay": "node evaluation/prototypes/replay-grouped-ledger-cases.mjs",
     "evaluation:review-output": "node scripts/validate-review-output.mjs",
     "evaluation:trace-audit": "node scripts/audit-runtime-trace.mjs",
     "fixture:prepare": "node scripts/prepare-evaluation-fixture.mjs",

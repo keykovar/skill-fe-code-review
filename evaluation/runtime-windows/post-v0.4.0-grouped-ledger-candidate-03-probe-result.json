@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-03",
+  "date": "2026-08-27",
+  "status": "pass-historical-source-free-precondition-superseded-by-candidate-no-go",
+  "client": {
+    "name": "Cursor Agent CLI 2026.08.11-e8db854",
+    "mode": "default-print",
+    "model": "Auto Balance",
+    "outputFormat": "stream-json",
+    "autoReview": true,
+    "sandbox": "enabled",
+    "credentialStore": "file"
+  },
+  "login": {
+    "status": "pass",
+    "isolatedHome": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-03-cursor-home",
+    "modelRequestsBeforeProbe": 0,
+    "sourceTransmitted": false
+  },
+  "probe": {
+    "workspace": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-03-source-free-probe",
+    "prompt": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.",
+    "processExitCode": 0,
+    "elapsedSeconds": 30,
+    "apiDurationMilliseconds": 4827,
+    "decodedResponse": "CLIENT_ISOLATION_OK",
+    "assistantMessages": 1,
+    "traceEvents": 6,
+    "toolCalls": 0,
+    "mcpCalls": 0,
+    "commandExecutions": 0,
+    "retrySignals": 0,
+    "pluginMarketplaceOrEndpointSignals": 0,
+    "stderrBytes": 0,
+    "inputTokens": 15576,
+    "cacheReadTokens": 1536,
+    "outputTokens": 77,
+    "auditorValid": true,
+    "auditorViolations": []
+  },
+  "integrity": {
+    "sourceFreeWorkspaceEmpty": true,
+    "preparedWorkspacesUnchanged": "7/7",
+    "sourceBearingRuns": 0,
+    "sourceTransmitted": false
+  },
+  "evidenceBoundary": "Raw credentials, login state, session identifiers, request identifiers, and the raw trace remain outside the repository.",
+  "decision": "The source-free client-isolation precondition passed and authorized no source transfer by itself. D-ID-001 RUN-01 was later authorized separately, invalidated by prompt-integrity and transfer-scope failures, and stopped Candidate 03 at No-Go; see the retained Stage 1 result."
+}

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "prototype": "post-v0.4.0-grouped-ledger-validator",
+  "date": "2026-08-27",
+  "status": "offline-prototype-promoted-to-retained-evaluator-candidate-03-no-go",
+  "scope": "synthetic-markdown-structure-only",
+  "implementation": {
+    "initialPrototype": {
+      "validator": "evaluation/prototypes/grouped-ledger-validator.mjs",
+      "validatorSha256": "2a2317fe70ecd96fa0a4caaa77d574d931341d6c362b8424417c563b710c1a55",
+      "tests": "tests/grouped-ledger-prototype.test.ts",
+      "testsSha256": "9046deddcd78e40a0287aa90c657de3a88b71ef16eb0ab22fe2f081dab593e59",
+      "sourcePathsRetained": false
+    },
+    "retainedEvaluator": {
+      "validator": "scripts/grouped-ledger-validator.mjs",
+      "validatorSha256": "a0e429e9ea53dc94ff75d8e573b670e1cdcf30012d07ff31210a968515342998",
+      "tests": "tests/grouped-ledger-validator.test.ts",
+      "testsSha256": "afbe4035c078ade23c5d75842f7346b87bf30d5c3cb15d633c640c3e2b74ff31",
+      "publicReviewOutputValidatorImportsModule": false,
+      "requiresFileLineLocations": true
+    },
+    "skillChanged": false,
+    "installedSkillChanged": false
+  },
+  "targetedValidation": {
+    "initialVitestFiles": "1/1",
+    "initialVitestTests": "14/14",
+    "retainedVitestFiles": "1/1",
+    "retainedVitestTests": "15/15",
+    "nodeSyntax": "1/1",
+    "gitDiffCheck": "pass"
+  },
+  "closureValidation": {
+    "scope": "initial-offline-prototype-before-candidate-freeze",
+    "vitestFiles": "10/10",
+    "vitestTests": "126/126",
+    "repositorySkillValidator": "pass",
+    "officialSkillValidator": "pass",
+    "runtimeNodeSyntax": "4/4",
+    "prototypeNodeSyntax": "2/2",
+    "jsonFilesParsed": "49/49",
+    "gitDiffCheck": "pass",
+    "externalRequests": 0,
+    "sourceBearingRuns": 0
+  },
+  "coverage": [
+    "Chinese and English coverage headings",
+    "single-condition Finding groups",
+    "multi-condition Finding groups",
+    "one Finding-owned merge basis",
+    "Behavior Preserving and Cannot Verify groups",
+    "Markdown-linked locations",
+    "missing, empty, extra, and forbidden merge bases",
+    "legacy flat entries and malformed nesting",
+    "empty, duplicate, non-sequential, missing, and unknown Finding groups",
+    "missing before-to-after transitions",
+    "structurally valid but semantically invalid merges remain outside parser authority"
+  ],
+  "savedReplay": {
+    "result": "evaluation/prototypes/grouped-ledger-replay-result.json",
+    "cases": "7/7",
+    "caseHashesMatched": "7/7",
+    "automaticRepair": false,
+    "semanticScoringPerformedByRunner": false
+  },
+  "evidenceBoundary": {
+    "scope": "initial-offline-prototype-execution",
+    "modelCalls": 0,
+    "networkRequests": 0,
+    "sourceTransmitted": false,
+    "runtimeCandidateCreated": false,
+    "semanticMergeValidityProven": false,
+    "modelOutputReliabilityProven": false,
+    "releaseReadinessProven": false
+  },
+  "stableSkill": {
+    "sha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "matchesV0_4_0": true
+  },
+  "decision": "The initial offline prototype and replay passed. Candidate 03 was later frozen, stopped at No-Go, and rolled back; the stricter file-line parser remains evaluator-only and is not imported by the stable public review-output validator."
+}
