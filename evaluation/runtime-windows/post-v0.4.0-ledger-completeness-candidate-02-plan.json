@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-ledger-completeness-candidate-02",
+  "frozenDate": "2026-08-26",
+  "status": "complete-no-go-stage-1-stopped-after-run-01",
+  "predecessor": {
+    "candidate": "post-v0.4.0-ledger-tally-candidate-01",
+    "decision": "No-Go",
+    "candidateSkillSha256": "696d0e3ef9aef56625602022c85ef9c92f3244ca8c38e20f96351dcfdc282c4f",
+    "sourceBearingRuns": 1,
+    "requiredFindingRecall": "2/3",
+    "targetExercised": false,
+    "reason": "The run omitted the referenced-untracked dependency and emitted no repeated Finding ID."
+  },
+  "baseline": {
+    "skillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "quickReferenceSha256": "3d8d775387ff91d7fffd5711957a0af13b2f9d52d4036f4214c1d208c0a58d17",
+    "deepReferenceSha256": "9fef69f9db11cc846ad3cb2231f1ede1307227df83465ee8e3404cb5e6fcc276",
+    "fixReferenceSha256": "8380289a00f3c2f1a1ea740bc824b1a53813d6839b3957cae3c54c0e27757d33"
+  },
+  "architectureDecision": {
+    "selected": "prompt-only",
+    "deferred": "validator-orchestrated-repair",
+    "reason": "Deterministic validation cannot identify omitted semantic defects without an evaluator oracle, and clients do not expose one uniform chat-response interception contract."
+  },
+  "allowedImplementation": {
+    "paths": [
+      "skills/fe-code-review/SKILL.md",
+      "tests/skill-content.test.ts"
+    ],
+    "behaviors": [
+      "Complete an internal affected-contract ledger across dependency/import resolution, input/parameter contracts, conditions/control flow, state writes, and return/output contracts before prioritization.",
+      "Mechanically group visible ledger entries by final Finding ID and require one shared non-empty semantic merge key on every repeated-ID entry."
+    ],
+    "maxNetSkillEnglishWords": 60,
+    "modeReferenceChanges": 0
+  },
+  "nonGoals": [
+    "No new review mode or output section.",
+    "No adapter, collector, fixture, validator, reference, or runtime-script change.",
+    "No second model, subagent, automatic repair round, output file, hosted service, or mandatory JSON output.",
+    "No private source or evaluator oracle transmission."
+  ],
+  "staticGates": [
+    "pnpm test",
+    "repository-local Skill validator",
+    "official Skill validator",
+    "Node syntax checks",
+    "all tracked JSON files parse",
+    "git diff --check",
+    "candidate hash and word budget match",
+    "Quick, Deep, and Fix reference hashes unchanged"
+  ],
+  "implementation": {
+    "candidateSkillSha256": "53c0d87668f2fe07e8cc69ebabf6dab37c9f1be4d2a01fb3daf542a9e7148eb0",
+    "baselineSkillEnglishWords": 3766,
+    "candidateSkillEnglishWords": 3794,
+    "netSkillEnglishWords": 28,
+    "maxNetSkillEnglishWords": 60,
+    "quickReferenceSha256": "3d8d775387ff91d7fffd5711957a0af13b2f9d52d4036f4214c1d208c0a58d17",
+    "deepReferenceSha256": "9fef69f9db11cc846ad3cb2231f1ede1307227df83465ee8e3404cb5e6fcc276",
+    "fixReferenceSha256": "8380289a00f3c2f1a1ea740bc824b1a53813d6839b3957cae3c54c0e27757d33",
+    "modeReferencesUnchanged": true,
+    "visibleOutputSectionsAdded": 0,
+    "secondModelRoundsAdded": 0
+  },
+  "staticValidation": {
+    "date": "2026-08-27",
+    "vitestFiles": "9/9",
+    "vitestTests": "111/111",
+    "repositorySkillValidator": "pass",
+    "officialSkillValidator": "pass",
+    "nodeSyntaxChecks": "4/4",
+    "jsonFilesParsed": "44/44",
+    "gitDiffCheck": "pass",
+    "externalRequests": 0,
+    "sourceBearingRuns": 0
+  },
+  "clientWindow": {
+    "client": "Cursor Agent CLI 2026.08.11-e8db854",
+    "mode": "default-print",
+    "model": "Auto",
+    "outputFormat": "stream-json",
+    "autoReview": true,
+    "sandbox": "enabled",
+    "trustWorkspace": true,
+    "credentialStore": "file",
+    "isolatedHome": "/private/tmp/post-v0.4.0-ledger-completeness-candidate-02-cursor-home",
+    "sourceFreeWorkspace": "/private/tmp/post-v0.4.0-ledger-completeness-candidate-02-source-free-probe",
+    "sourceFreeCommand": "HOME=/private/tmp/post-v0.4.0-ledger-completeness-candidate-02-cursor-home AGENT_CLI_CREDENTIAL_STORE=file cursor-agent --print --output-format stream-json --auto-review --sandbox enabled --trust --workspace /private/tmp/post-v0.4.0-ledger-completeness-candidate-02-source-free-probe Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.",
+    "stage1Prompt": "使用 $fe-code-review，Quick Review 当前完整未提交改动。使用简体中文，严格只读。评测约束：必须且只能执行一次 `node .cursor/skills/fe-code-review/scripts/collect-review-context.mjs --workspace \"$PWD\"`；该输出替代 `git status`、`git diff`、`git diff --cached`、未跟踪文件清单、`git diff --check`、HEAD 与仓库根目录等价读取，禁止单独或重复执行这些 Git inventory。允许且应执行一次声明的确定性测试 `node --test`。可按需读取 collector 已识别的变更文件、其 HEAD 基线、直接调用方和测试，但不得读取工作区外路径、Cursor 会话/日志、oracle、evaluation、examples/outputs 或历史 trace。不得调用写入、编辑、删除、计划写入或 MCP 工具，不得修改任何文件、Git 状态、分支或配置。任何命令失败或被拒绝都不得重试；请保留证据边界并输出最终 Quick Review。",
+    "sourceBearingRetryPolicy": "no retry, replacement, mode switch, or reinterpretation"
+  },
+  "loginAttempt01": {
+    "status": "failed-before-probe",
+    "credentialStore": "macOS-default",
+    "error": "Failed to store authentication tokens; SecItemCopyMatching -50",
+    "rootCause": "The isolated HOME has no default macOS keychain path.",
+    "modelRequests": 0,
+    "probeExecuted": false,
+    "sourceTransmitted": false,
+    "correction": "Set AGENT_CLI_CREDENTIAL_STORE=file for the corrected login and all frozen Cursor commands."
+  },
+  "loginAttempt02": {
+    "status": "pass",
+    "credentialStore": "file",
+    "probeExecuted": false,
+    "sourceTransmitted": false
+  },
+  "preparedWorkspaces": [
+    {
+      "sequence": 1,
+      "caseId": "Q-ID-001",
+      "runId": "RUN-01",
+      "mode": "quick-identity",
+      "workspaceId": "post-v0.4.0-ledger-completeness-candidate-02-q-id-001-run-01",
+      "branch": "main",
+      "head": "4d8a720582f561ac7033bebe376ea9c1953b0ef7",
+      "status": [" M src/url.ts", "?? src/request-config.ts"],
+      "fileCount": 30,
+      "treeSha256": "e334935d9928d57da019e3e3f09d45b21ac2db4821203bf2a999faf4b4334c8c",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 2,
+      "caseId": "Q-ID-001",
+      "runId": "RUN-02",
+      "mode": "quick-identity",
+      "workspaceId": "post-v0.4.0-ledger-completeness-candidate-02-q-id-001-run-02",
+      "branch": "main",
+      "head": "4d8a720582f561ac7033bebe376ea9c1953b0ef7",
+      "status": [" M src/url.ts", "?? src/request-config.ts"],
+      "fileCount": 30,
+      "treeSha256": "e334935d9928d57da019e3e3f09d45b21ac2db4821203bf2a999faf4b4334c8c",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 3,
+      "caseId": "Q-ID-002",
+      "runId": "RUN-01",
+      "mode": "quick-independent",
+      "workspaceId": "post-v0.4.0-ledger-completeness-candidate-02-q-id-002-run-01",
+      "branch": "main",
+      "head": "52aa0c43de7007c1fd44df5406346414140f57c8",
+      "status": [" M src/cache-key.ts", " M src/request-options.ts"],
+      "fileCount": 31,
+      "treeSha256": "7ba331c7434e937b1d93951e7737c818380209414b834f75f6dc88291447801f",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 4,
+      "caseId": "D-ID-001",
+      "runId": "RUN-01",
+      "mode": "deep-identity",
+      "workspaceId": "post-v0.4.0-ledger-completeness-candidate-02-d-id-001-run-01",
+      "branch": "candidate",
+      "head": "96ff141d281e712b4d388053b57dfece1367db51",
+      "status": [],
+      "fileCount": 31,
+      "treeSha256": "e2ff93151aded4acf4ce5728c773146f1619413eca7a570285ad9a6547dc0692",
+      "expectedTestExitCode": 1,
+      "actualTestExitCode": 1
+    },
+    {
+      "sequence": 5,
+      "caseId": "F-ID-001",
+      "runId": "RUN-01",
+      "mode": "fix-identity",
+      "workspaceId": "post-v0.4.0-ledger-completeness-candidate-02-f-id-001-run-01",
+      "branch": "main",
+      "head": "7f821ac13ac3ed3e1d83678fbdded0c72ed77277",
+      "status": [" M src/url.ts"],
+      "fileCount": 31,
+      "treeSha256": "393c5e48283d5eae54dc0ef3ff99d1bea8fb6caf626201bd8ae6a799ab8f013a",
+      "expectedTestExitCode": 0,
+      "actualTestExitCode": 0
+    },
+    {
+      "sequence": 6,
+      "caseId": "F-ID-001",
+      "runId": "RUN-02",
+      "mode": "fix-identity",
+      "workspaceId": "post-v0.4.0-ledger-completeness-candidate-02-f-id-001-run-02",
+      "branch": "main",
+      "head": "7f821ac13ac3ed3e1d83678fbdded0c72ed77277",
+      "status": [" M src/url.ts"],
+      "fileCount": 31,
+      "treeSha256": "393c5e48283d5eae54dc0ef3ff99d1bea8fb6caf626201bd8ae6a799ab8f013a",
+      "expectedTestExitCode": 0,
+      "actualTestExitCode": 0
+    },
+    {
+      "sequence": 7,
+      "caseId": "K-ID-001",
+      "runId": "RUN-01",
+      "mode": "quick-keep",
+      "workspaceId": "post-v0.4.0-ledger-completeness-candidate-02-k-id-001-run-01",
+      "branch": "main",
+      "head": "b36c6dd6162ca1a689056db130b32d83589e9f37",
+      "status": [" M src/label.ts"],
+      "fileCount": 28,
+      "treeSha256": "935a9a0e1b4fd630769daea0205886bed4de9f3c7a57fc5af928007c2aac1140",
+      "expectedTestExitCode": 0,
+      "actualTestExitCode": 0
+    }
+  ],
+  "workspaceIntegrity": {
+    "status": "pass",
+    "treeHashContract": "SHA-256 over sorted relative-path NUL file-content NUL records, excluding .git",
+    "expectedTestResultsMatched": "7/7",
+    "candidateSkillHashesMatched": "14/14",
+    "agentCursorSkillTreesMatched": "14/14",
+    "cursorAdapterCopiesMatched": "7/7",
+    "repeatPairsByteIdentical": "2/2",
+    "candidateSkillTreeSha256": "adf84b514e8b5a05c4686da930e8eff2a0cfe88be69d5164d758718b061ab996",
+    "cursorAdapterSha256": "f53777a997ce9ab7394782f4fd77c7b808072166fced45fbf0a4a85a515be0ff",
+    "fixPreviousFindingsSha256": "5d6a6261edbafc659b569bc25b8aba68d076ee1905b900290cbce9d8a098eb06",
+    "externalRequests": 0,
+    "sourceTransmitted": false
+  },
+  "sourceFreeProbe": {
+    "required": true,
+    "status": "pass",
+    "result": "evaluation/runtime-windows/post-v0.4.0-ledger-completeness-candidate-02-probe-result.json",
+    "response": "CLIENT_ISOLATION_OK",
+    "processExitCode": 0,
+    "elapsedSeconds": 33,
+    "assistantMessages": 1,
+    "traceEvents": 7,
+    "tools": 0,
+    "mcpCalls": 0,
+    "retries": 0,
+    "undisclosedEndpointSignals": 0,
+    "stderrBytes": 0,
+    "auditorValid": true,
+    "workspacesUnchanged": "7/7",
+    "authorizesSourceTransfer": false
+  },
+  "runtimeWindow": {
+    "totalSourceBearingRuns": 7,
+    "retryPolicy": "none",
+    "replacementPolicy": "none",
+    "stage1": {
+      "runOrder": [
+        "Q-ID-001 RUN-01",
+        "Q-ID-001 RUN-02"
+      ],
+      "continueOnlyIf": "2/2 mandatory passes, 6/6 required-finding recall, 3/3 repeat identity stability, and every structural, execution, read-only, isolation, and integrity gate passes"
+    },
+    "stage2": {
+      "runOrder": [
+        "Q-ID-002 RUN-01",
+        "D-ID-001 RUN-01",
+        "F-ID-001 RUN-01",
+        "F-ID-001 RUN-02",
+        "K-ID-001 RUN-01"
+      ],
+      "authorizedOnlyAfter": "Stage 1 passes 2/2"
+    }
+  },
+  "promotion": {
+    "requiredMandatoryPasses": "7/7",
+    "aggregateCompensation": false,
+    "candidate01EvidenceCarriesForward": false
+  },
+  "stage1Result": {
+    "result": "evaluation/runtime-windows/post-v0.4.0-ledger-completeness-candidate-02-stage-1-results.json",
+    "runsExecuted": 1,
+    "mandatoryPasses": "0/1",
+    "semanticOracle": "3/3",
+    "structuralValidator": "fail",
+    "failedRun": "Q-ID-001 RUN-01",
+    "failure": "F-003 repeated across two visible ledger entries, but only one entry carried 合并依据：base-url-contract.",
+    "decision": "No-Go; RUN-02 and Stage 2 not run"
+  },
+  "temporaryArtifactCleanup": {
+    "status": "complete",
+    "completedDate": "2026-08-27",
+    "pathPrefix": "/private/tmp/post-v0.4.0-ledger-completeness-candidate-02",
+    "itemsDeleted": 11,
+    "approximateSizeBeforeDeletion": "238 MB",
+    "remainingPrefixMatches": 0,
+    "sanitizedRepositoryEvidenceRetained": true
+  },
+  "nextGate": "Candidate 02 remains No-Go without retry or reinterpretation. Candidate 03 was evaluated separately and also retained No-Go; temporary Candidate 02 artifacts are deleted."
+}

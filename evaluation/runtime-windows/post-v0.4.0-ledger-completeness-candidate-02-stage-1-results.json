@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-ledger-completeness-candidate-02",
+  "plan": "evaluation/runtime-windows/post-v0.4.0-ledger-completeness-candidate-02-plan.json",
+  "planSha256BeforeStage1Results": "95c1e581d1c91ada4e99279a68a742478e0e11391ea95091babbb8cd272249f9",
+  "status": "complete-no-go-stage-1-stopped-after-run-01",
+  "sourceScope": "one-public-synthetic-q-id-001-workspace",
+  "publicSyntheticSourceTransmitted": true,
+  "privateSourceTransmitted": false,
+  "runsExecuted": 1,
+  "runsRetried": 0,
+  "mandatoryPassCount": 0,
+  "mandatoryFailCount": 1,
+  "stage1RunsNotExecuted": 1,
+  "stage2RunsExecuted": 0,
+  "runs": [
+    {
+      "caseId": "Q-ID-001",
+      "runId": "RUN-01",
+      "mandatoryResult": "Fail",
+      "semanticResult": "Pass",
+      "executionResult": "Pass",
+      "structuralValidatorResult": "Fail",
+      "requiredFindingRecall": "3/3",
+      "actualFindingIds": ["F-001", "F-002", "F-003"],
+      "conceptToId": {
+        "referenced-untracked-file": "F-001",
+        "removed-slash-normalization": "F-002",
+        "ignored-base-url-contract": "F-003"
+      },
+      "severityAccuracy": "3/3",
+      "expectedDesignDecision": "Simplify",
+      "actualDesignDecision": "Simplify",
+      "recommendation": "修改后提交",
+      "coverageLedgerEntries": 6,
+      "outputValidatorErrors": [
+        {
+          "findingId": "F-003",
+          "lines": [21, 22],
+          "type": "coverage-ledger-repeated-finding-id-merge-key-missing"
+        }
+      ],
+      "failure": "The semantic oracle passed, but the first F-003 ledger entry omitted 合并依据 while the second used base-url-contract. The repeated Finding ID therefore did not carry one shared non-empty merge key on every matching entry.",
+      "elapsedSeconds": 95,
+      "traceEvents": 110,
+      "toolCalls": 12,
+      "shellToolCalls": 2,
+      "collectorCalls": 1,
+      "declaredTestExecutions": 1,
+      "equivalentGitInventoryRereads": 0,
+      "inputTokens": 62833,
+      "cachedInputTokens": 58496,
+      "uncachedInputTokens": 4337,
+      "outputTokens": 4673,
+      "outputSha256": "85c8df2c265633446a0b5477129fb4fb380f0d4097cf4a7ebebcbc8d6cb1eff3",
+      "traceSha256": "51ab388d0d62687775760bbe96db26a39fa57ec45790254cae675e1fac4a841d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "statusBeforeSha256": "e1014afad52183dc386bc7d4623894a7bfc00ee4e4977cbd6ff96892065ffb4b",
+      "hashesBeforeSha256": "b09acae53829692f46cacb3bf542f2d34962133c2afc34f40a7e15559f38c29f"
+    }
+  ],
+  "metrics": {
+    "mandatoryRuns": "0/1",
+    "requiredFindingRecall": "3/3",
+    "findingIdCoverage": "3/3",
+    "severityAccuracy": "3/3",
+    "designDecisionAccuracy": "1/1",
+    "recommendationAccuracy": "1/1",
+    "structuralValidatorPass": "0/1",
+    "executionPass": "1/1",
+    "readOnlyIntegrityPass": "1/1"
+  },
+  "integrity": {
+    "workspaceStatusUnchanged": true,
+    "frozenFileHashesUnchanged": "30/30",
+    "candidateSkillSha256": "53c0d87668f2fe07e8cc69ebabf6dab37c9f1be4d2a01fb3daf542a9e7148eb0",
+    "contextCollectorCallsExactlyOnce": true,
+    "declaredTestExecutionsExactlyOnce": true,
+    "equivalentGitInventoryRereads": 0,
+    "mcpToolCalls": 0,
+    "auditorViolations": 0,
+    "stderrBytes": 0,
+    "sourceBearingRetries": 0,
+    "traceAuditorValid": true
+  },
+  "observedCost": {
+    "elapsedSeconds": 95,
+    "toolCalls": 12,
+    "inputTokens": 62833,
+    "cachedInputTokens": 58496,
+    "uncachedInputTokens": 4337,
+    "outputTokens": 4673,
+    "boundary": "These are Cursor client and model observations for one public synthetic run, not a Skill-only token or latency benchmark."
+  },
+  "failureAnalysis": {
+    "phase": "final-ledger-render-reconciliation",
+    "evidenceAccessFailure": false,
+    "semanticDiscoveryFailure": false,
+    "ruleUnderstandingFailure": false,
+    "observedBehavior": "The output applied slash-join consistently to all three F-002 entries and base-url-contract to only the later F-003 entry.",
+    "boundedConclusion": "The model demonstrated awareness of the repeated-ID rule but did not complete it across every rendered group. Prompt wording alone did not make the requested mechanical pass deterministic in this run.",
+    "causalityBoundary": "One run cannot establish whether the failure is systematic or caused by the Candidate 02 wording."
+  },
+  "closureValidation": {
+    "vitestFiles": "9/9",
+    "vitestTests": "111/111",
+    "repositorySkillValidator": "pass",
+    "officialSkillValidator": "pass",
+    "nodeSyntaxChecks": "4/4",
+    "jsonFilesParsed": "46/46",
+    "gitDiffCheck": "pass",
+    "externalRequests": 0,
+    "sourceBearingRuns": 0
+  },
+  "postDecisionCleanup": {
+    "candidateRuntimeInstructionsRetained": false,
+    "restoredSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "installedSkillPathType": "symlink-to-repository-skill",
+    "installedSkillRestoredToStable": true,
+    "sanitizedRepositoryEvidenceRetained": true,
+    "temporaryArtifactCleanupStatus": "complete",
+    "temporaryArtifactItemsDeleted": 11,
+    "temporaryArtifactRemainingPrefixMatches": 0
+  },
+  "stoppedRuns": [
+    "Q-ID-001 RUN-02",
+    "Q-ID-002 RUN-01",
+    "D-ID-001 RUN-01",
+    "F-ID-001 RUN-01",
+    "F-ID-001 RUN-02",
+    "K-ID-001 RUN-01"
+  ],
+  "decision": "No-Go; Stage 1 stopped after RUN-01; Stage 2 not run",
+  "decisionReason": "Candidate 02 requires every mandatory run and every structural gate to pass. Q-ID-001 RUN-01 found all three required issues with correct IDs, severities, design decision, and recommendation, but failed the repeated-ID merge-key validator for F-003. The frozen stop rule forbids RUN-02, Stage 2, retry, replacement, reinterpretation, or a mode switch after this failure."
+}

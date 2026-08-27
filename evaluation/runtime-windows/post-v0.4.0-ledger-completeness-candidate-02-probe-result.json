@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-ledger-completeness-candidate-02",
+  "date": "2026-08-27",
+  "status": "pass-historical-source-free-precondition-superseded-by-candidate-no-go",
+  "client": {
+    "name": "Cursor Agent CLI 2026.08.11-e8db854",
+    "mode": "default-print",
+    "model": "Auto",
+    "outputFormat": "stream-json",
+    "autoReview": true,
+    "sandbox": "enabled",
+    "credentialStore": "file"
+  },
+  "login": {
+    "firstAttempt": "failed-before-probe-macos-default-keychain-unavailable-under-isolated-home",
+    "correctedAttempt": "pass-file-backed-credential-store",
+    "modelRequestsBeforeProbe": 0,
+    "sourceTransmitted": false
+  },
+  "probe": {
+    "prompt": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.",
+    "processExitCode": 0,
+    "elapsedSeconds": 33,
+    "decodedResponse": "CLIENT_ISOLATION_OK",
+    "assistantMessages": 1,
+    "traceEvents": 7,
+    "toolCalls": 0,
+    "mcpCalls": 0,
+    "commandExecutions": 0,
+    "retrySignals": 0,
+    "pluginMarketplaceOrEndpointSignals": 0,
+    "stderrBytes": 0,
+    "auditorValid": true,
+    "auditorViolations": []
+  },
+  "integrity": {
+    "sourceFreeWorkspaceEmpty": true,
+    "preparedWorkspacesUnchanged": "7/7",
+    "sourceBearingRuns": 0,
+    "sourceTransmitted": false
+  },
+  "evidenceBoundary": "Raw login state, credentials, session identifiers, request identifiers, and local trace paths remained outside the repository and were later deleted after separate authorization.",
+  "decision": "The source-free client-isolation precondition passed and authorized no source transfer by itself. Q-ID-001 RUN-01 was later authorized separately, failed the repeated-ID structural gate, and stopped Candidate 02 at No-Go; see the retained Stage 1 result."
+}
