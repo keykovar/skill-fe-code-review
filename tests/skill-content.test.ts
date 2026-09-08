@@ -381,6 +381,8 @@ describe('skill content', () => {
     expect(findingRequirements).toContain('never backtick-only');
     expect(quickReview).toContain('Keep discovery keys and acceptance sentences internal');
     expect(quickReview).toContain('expose the ledger only after final IDs are backfilled');
+    expect(quickReview).toContain('单次 ID 不填写 `Merge key`');
+    expect(deepReview).toContain('单次 ID 不填写 `Merge key`');
     expect(fixRules).toContain('Evaluate every previous finding with exactly one status');
 
     for (const mode of [quickReview, deepReview]) {
@@ -392,7 +394,8 @@ describe('skill content', () => {
       expect(mode).toContain('Cannot Verify：无法验证');
       expect(mode).toContain('- 阻断结果：');
       expect(mode).toContain('return-value contract, or observable behavior');
-      expect(mode).toContain('Never summarize independent changes.');
+      expect(mode).toContain('Never emit a colon-only status');
+      expect(mode).toContain('or summarize independent changes.');
       expect(mode).toContain('Complete the repeated-ID ledger check in `SKILL.md`');
       expect(mode).toContain('expose the ledger only after final IDs are backfilled');
     }

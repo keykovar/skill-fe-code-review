@@ -12,7 +12,7 @@ Do not start Playwright or other browser automation by default. When the conditi
 
 Apply the Quick/Fix evidence discipline in `SKILL.md`. After the initial inventory, inspect the diff, its immediate owner, and only the callers, consumers, contracts, or tests needed to classify changed conditions and findings. Expand beyond that bounded path only when concrete evidence exposes a wider affected contract; do not perform broad file inventories or repeat searches as a substitute for an unresolved hypothesis.
 
-Apply the `Finding Requirements` finalization sequence before rendering. Keep discovery keys and acceptance sentences internal; expose the ledger only after final IDs are backfilled. Render each independently assessable changed condition, return-value contract, or observable behavior in its own `before -> after` entry, ending in one final Finding ID, `Behavior Preserving`, or `Cannot Verify`. Never summarize independent changes. Complete the repeated-ID ledger check in `SKILL.md` before responding.
+Apply the `Finding Requirements` finalization sequence before rendering. Keep discovery keys and acceptance sentences internal; expose the ledger only after final IDs are backfilled. Render every independently assessable changed condition, return-value contract, or observable behavior as exactly `- [file:line] <condition>: <before> -> <after>; Disposition: <one final disposition>` on one physical line. Use exactly one `[F-NNN]`, `Behavior Preserving`, or `Cannot Verify`; repeated Finding IDs also require the same non-empty `Merge key` on every occurrence. Never emit a colon-only status, omit either side of the arrow, put disposition on another line, use nested bullets, or summarize independent changes. Before responding, inspect each physical Coverage line and rewrite any line that fails this grammar. Complete the repeated-ID ledger check in `SKILL.md` before responding.
 
 In Quick Review, `Cannot Verify` describes evidence status, not finding severity. Missing runtime or external evidence alone is not a finding. When local static evidence supports a finding, keep its demonstrated Blocking, Risk, or Improve severity and mark only the unverified evidence portion `Cannot Verify`. This does not change the `Design / Simplify` decision vocabulary.
 
@@ -43,6 +43,10 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 ## Changed-Condition Coverage：变更条件覆盖
 
 - [file:line] 条件：修改前 -> 修改后；结论：[F-001] / Behavior Preserving：行为保持 / Cannot Verify：无法验证；合并依据：<仅重复 ID 时填写同一简短键>
+
+合法示例：`- [src/session.ts:9] token source: getSession() -> cachedToken; Disposition: [F-001]`
+非法示例：`- [src/session.ts:9] token source: cachedToken; Disposition: Behavior Preserving`（缺少 `before -> after`）
+非法示例：`- [src/session.ts:9] token source: getSession() -> cachedToken; Disposition: [F-001]; Merge key: stale-session-owner`（单次 ID 不填写 `Merge key`）
 
 ## Blocking：必须修改
 

@@ -200,6 +200,9 @@ Proceed after changes.
     expect(result.errors).toContainEqual(
       expect.objectContaining({ type: 'coverage-ledger-invalid-disposition' }),
     );
+    expect(
+      result.errors.filter(({ type }) => type === 'coverage-ledger-invalid-disposition'),
+    ).toHaveLength(1);
   });
 
   test('requires one identical merge key when ledger entries share a Finding ID', () => {
@@ -238,6 +241,23 @@ Proceed after changes.
       expect.objectContaining({
         findingId: 'F-001',
         type: 'coverage-ledger-repeated-finding-id-merge-key-mismatch',
+      }),
+    );
+  });
+
+  test('rejects a merge key when a Finding ID appears only once', () => {
+    const result = validateReviewOutput(
+      quickReport.replace(
+        '结论：[F-001]',
+        '结论：[F-001]；合并依据：single-condition',
+      ),
+      'quick',
+    );
+
+    expect(result.errors).toContainEqual(
+      expect.objectContaining({
+        findingId: 'F-001',
+        type: 'coverage-ledger-single-finding-id-merge-key-unexpected',
       }),
     );
   });

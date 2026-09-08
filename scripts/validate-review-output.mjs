@@ -4,6 +4,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
+import { inspectStrictCoverage } from './validate-review-output-strict.mjs';
+
 const supportedModes = new Set(['quick', 'deep', 'fix']);
 const coverageHeadings = new Set([
   'Changed-Condition Coverage',
@@ -214,6 +216,15 @@ function inspectCoverageLedger(lines, headings, findingIds, errors) {
   }
 
   for (const [findingId, references] of findingReferences) {
+    if (references.length === 1 && references[0].mergeKey !== null) {
+      errors.push({
+        findingId,
+        line: references[0].line,
+        type: 'coverage-ledger-single-finding-id-merge-key-unexpected',
+      });
+      continue;
+    }
+
     if (references.length < 2) {
       continue;
     }
@@ -385,6 +396,11 @@ export function validateReviewOutput(markdown, mode) {
     findingIdSet,
     errors,
   );
+  for (const error of inspectStrictCoverage(markdown)) {
+    if (!errors.some((current) => current.type === error.type && current.line === error.line)) {
+      errors.push(error);
+    }
+  }
 
   return {
     blockingFindingCount: findings.filter(({ severity }) => severity === 'blocking').length,

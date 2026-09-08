@@ -178,12 +178,14 @@ Finalize findings with this sequence:
 
 1. During discovery, use short semantic keys, never `F-NNN` IDs.
 2. Give each candidate issue one atomic pass/fail acceptance sentence. Before merging candidates, test both counterfactuals: can the minimum safe repair for A pass while B still fails, and vice versa? If either can, split them. A shared function, diff hunk, patch, test, output, or broad contract label is not merge evidence. Merge only when one indivisible repair necessarily makes every acceptance sentence pass.
-3. Finalize severity, then sort by severity (`Blocking`, `Risk`, `Improve`) and first changed source location.
+3. Finalize severity, then perform a Blocking proof pass before sorting: for every Blocking finding, name one canonical outcome from `Severity Rules` and cite evidence that the outcome occurs or is unavoidable. If the evidence establishes only a changed parameter, direct-caller mismatch, local contract regression, or local test failure, classify the finding as Risk unless separate evidence demonstrates a canonical Blocking outcome. Then sort by severity (`Blocking`, `Risk`, `Improve`) and first changed source location.
 4. Assign chain-local IDs (`F-001`, `F-002`, ...) only after sorting.
 5. Backfill final IDs into the visible ledger and cross-section references. Group ledger entries by final ID: repeated IDs require the same non-empty `Merge key` / `合并依据` on every entry; single IDs require none. Reconcile every actionable statement outside severity sections: reference a final ID or remove it.
 6. Scan rendered Finding headers in body order. If they are not exactly `F-001` through `F-NNN`, renumber every header and reference before responding. Emit no placeholder ID; Fix Review preserves supplied IDs.
 
 Render Quick/Deep Finding headers as `- [F-NNN] [file:line] title`; the location may be a Markdown link, never backtick-only. Begin `Blocking outcome` / `阻断结果` with its canonical English outcome name, followed by optional evidence after ` - `.
+
+Render every Changed-Condition Coverage entry as exactly one physical Markdown list item with this exact shape: `- [file:line] <condition>: <before> -> <after>; Disposition: <one final disposition>`. Keep the location, condition, `before -> after`, and final `Disposition` on that same line. The disposition must be exactly one `[F-NNN]`, `Behavior Preserving`, or `Cannot Verify`; repeated Finding IDs also end with the same non-empty `Merge key`. Do not use a colon-only status such as `condition: unchanged` or `condition: old, new`, and do not split a coverage entry into nested bullets or child lines. Before sending the final response, inspect every physical Coverage line for one location, one transition arrow, and one valid disposition; rewrite any failing line before responding.
 
 Every Quick or Deep finding must include:
 
@@ -232,6 +234,8 @@ Use `Recommendation Consistency` as the single authority for the closure recomme
 ## Severity Rules
 
 Use Blocking only when evidence supports one canonical outcome: `Runtime Error`, `White Screen`, `Infinite Loop`, `Broken Main Flow`, `Payment Failure`, `Login/Auth Failure`, `Data Corruption`, `Build Failure`, `Serious Compatibility Issue`, or `Severe Regression`.
+
+`Severe Regression` means a demonstrated loss of an established critical path or broad supported-environment behavior whose impact is equivalent to another Blocking outcome. It is not a synonym for any regression and cannot be established solely by a changed parameter, direct-caller mismatch, local contract regression, or failing local test.
 
 Use `Referenced Untracked File` when a changed tracked file imports or references an untracked file outside the submit scope.
 

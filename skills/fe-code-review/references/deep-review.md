@@ -16,7 +16,7 @@ When the conditional browser evidence gate in `SKILL.md` is satisfied and browse
 
 In Deep Review, `Cannot Verify` describes evidence status, not finding severity. Missing runtime or external evidence alone is not a finding. When local static evidence supports a finding, keep its demonstrated Blocking, Risk, or Improve severity and mark only the unverified evidence portion `Cannot Verify`. This does not change the `Design / Simplify` decision vocabulary.
 
-Apply the `Finding Requirements` finalization sequence before rendering. Keep discovery keys and acceptance sentences internal; expose the ledger only after final IDs are backfilled. Render each independently assessable changed condition, return-value contract, or observable behavior in its own `before -> after` entry, ending in one final Finding ID, `Behavior Preserving`, or `Cannot Verify`. Never summarize independent changes. Complete the repeated-ID ledger check in `SKILL.md` before responding.
+Apply the `Finding Requirements` finalization sequence before rendering. Keep discovery keys and acceptance sentences internal; expose the ledger only after final IDs are backfilled. Render every independently assessable changed condition, return-value contract, or observable behavior as exactly `- [file:line] <condition>: <before> -> <after>; Disposition: <one final disposition>` on one physical line. Use exactly one `[F-NNN]`, `Behavior Preserving`, or `Cannot Verify`; repeated Finding IDs also require the same non-empty `Merge key` on every occurrence. Never emit a colon-only status, omit either side of the arrow, put disposition on another line, use nested bullets, or summarize independent changes. Before responding, inspect each physical Coverage line and rewrite any line that fails this grammar. Complete the repeated-ID ledger check in `SKILL.md` before responding.
 
 Apply the recommendation matrix in `SKILL.md` after classifying findings. Use `修改后可以进入下一步` when bounded fixes within the current design address all findings; reserve `暂不建议进入下一步` for an unsafe approach, insufficient bounded fixes, or unavailable critical evidence. An Improve-only review uses `可以进入下一步` and describes improvements as optional and non-blocking. If a Risk is accepted rather than made a gate, state the residual risk and why proceeding is justified.
 
@@ -64,6 +64,11 @@ Use every top-level section exactly once. In `Design / Simplify`, use `Keep` whe
 ## Changed-Condition Coverage：变更条件覆盖
 
 - [file:line] 条件：修改前 -> 修改后；结论：[F-001] / Behavior Preserving：行为保持 / Cannot Verify：无法验证；合并依据：<仅重复 ID 时填写同一简短键>
+
+合法示例：`- [src/session.ts:9] token source: getSession() -> cachedToken; Disposition: [F-001]`
+合法示例（无法确认）：`- [src/runtime.ts:8] deployed owner: frozen source -> unavailable; Disposition: Cannot Verify`
+非法示例：`- [src/session.ts:9] token source: cachedToken; Disposition: Behavior Preserving`（缺少 `before -> after`）
+非法示例：`- [src/session.ts:9] token source: getSession() -> cachedToken; Disposition: [F-001]; Merge key: stale-session-owner`（单次 ID 不填写 `Merge key`）
 
 ## Findings：问题列表
 
