@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-04",
+  "date": "2026-08-27",
+  "status": "pass-historical-precondition-superseded-by-candidate-no-go",
+  "client": {
+    "name": "Cursor Agent CLI 2026.08.11-e8db854",
+    "mode": "default-print",
+    "model": "Auto Balance",
+    "outputFormat": "stream-json",
+    "autoReview": true,
+    "sandbox": "enabled",
+    "credentialStore": "file"
+  },
+  "authorization": {
+    "externalRequestsAuthorized": 1,
+    "externalRequestsExecuted": 1,
+    "scope": "source-free sentinel only",
+    "sourceBearingAuthorized": false,
+    "privateSourceAllowed": false
+  },
+  "login": {
+    "status": "pass",
+    "isolatedHome": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-cursor-home-01",
+    "modelRequestsBeforeProbe": 0,
+    "sourceTransmitted": false,
+    "temporaryCredentialsRetained": true
+  },
+  "probe": {
+    "workspace": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-source-free-probe-01",
+    "prompt": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.\n",
+    "promptCharacters": 71,
+    "promptSha256": "95cb2fe6e0fd8c835d1e0b5af232f97e6b5e22f3d1455eca2dbeaf6149d52c49",
+    "runnerSha256": "43e7c69ed17622c6ca449b071c54792036e8bc8ad8f1b210e938d76241e0d05e",
+    "processExitCode": 0,
+    "elapsedSeconds": 68,
+    "apiDurationMilliseconds": 5822,
+    "decodedResponse": "CLIENT_ISOLATION_OK",
+    "decodedResponseBytes": 19,
+    "assistantMessages": 1,
+    "traceEvents": 6,
+    "toolCalls": 0,
+    "mcpCalls": 0,
+    "commandExecutions": 0,
+    "retrySignals": 0,
+    "pluginMarketplaceOrEndpointSignals": 0,
+    "stderrBytes": 0,
+    "inputTokens": 15638,
+    "cacheReadTokens": 1536,
+    "outputTokens": 98,
+    "auditorValid": true,
+    "auditorViolations": []
+  },
+  "integrity": {
+    "sourceFreeWorkspaceEmpty": true,
+    "preparedWorkspacesUnchanged": "7/7",
+    "sourceBearingRuns": 0,
+    "sourceTransmitted": false,
+    "candidateRuntimeFilesApplied": false
+  },
+  "artifacts": {
+    "promptSha256": "95cb2fe6e0fd8c835d1e0b5af232f97e6b5e22f3d1455eca2dbeaf6149d52c49",
+    "traceSha256": "f2ba4cba677eb087cb2aad480dc06c8b7a5776f9fef4cf92391abec6ef14ae96",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rawArtifactsRetainedOutsideRepository": true
+  },
+  "postRecordValidation": {
+    "vitestFiles": "12/12",
+    "vitestTests": "134/134",
+    "groupedReplay": "7/7",
+    "repositorySkillValidator": "pass",
+    "officialSkillValidator": "pass",
+    "pythonDependencyBoundary": "cached PyYAML 6.0.3 through process-local PYTHONPATH; no install",
+    "jsonFilesParsed": "120/120",
+    "markdownLocalLinks": "26/26 files; no missing targets",
+    "targetedSensitiveIdentifierScan": "pass-no-matches",
+    "gitDiffCheck": "pass",
+    "stableSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "installedSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "stablePublicReviewOutputValidatorSha256": "8ca475ad2c6d9184a19716bbad76b483a00c9a6ac85c591088431ef61771ccf3"
+  },
+  "evidenceBoundary": "Raw credentials, login state, session identifiers, request identifiers, and the raw trace remain outside the repository. Endpoint-signal conclusions are bounded to the retained Cursor trace and stderr.",
+  "decision": "The Candidate 04 source-free client-isolation precondition passed and sent no source. The later authorized D-ID-001 RUN-01 stopped in evaluator preflight before Cursor started; Candidate 04 is No-Go without a source-bearing model request or source transmission."
+}

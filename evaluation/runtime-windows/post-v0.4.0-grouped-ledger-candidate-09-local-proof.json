@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-09",
+  "date": "2026-08-28",
+  "status": "pass-local-seatbelt-and-transport-tooling-proof",
+  "platform": {
+    "operatingSystem": "macOS",
+    "productVersion": "15.2",
+    "sandboxExecutable": "/usr/bin/sandbox-exec",
+    "sandboxExecutableSha256": "7fc7dcd7782e1abd52b11f6c512bdfb0c09d2502b619c483fdfce554c472352e"
+  },
+  "tooling": {
+    "runner": {
+      "path": "scripts/run-cursor-evaluation-v5.mjs",
+      "sha256": "c3b6d558c98365f887c1a1917253e0c610a1e663f53ed769ee226caf149bc549"
+    },
+    "probeAuditor": {
+      "path": "scripts/audit-cursor-plan-probe.mjs",
+      "sha256": "240aa0ba782f6acd0b273490435c09310c533be4e3b4ec4e667a42eb39705967"
+    },
+    "seatbeltProfile": {
+      "path": "evaluation/profiles/cursor-workspace-read-only.sb",
+      "sha256": "6ed882cbbd2605d3192502484407641d48dd15a1bc0e1b77f0682844d092ed40"
+    }
+  },
+  "seatbeltDirectProof": {
+    "readExistingWorkspaceFile": "pass",
+    "createWorkspaceFile": "blocked-operation-not-permitted",
+    "modifyWorkspaceFile": "blocked-operation-not-permitted",
+    "createProtectedRootFile": "blocked-operation-not-permitted",
+    "deleteAttemptExecuted": false,
+    "networkAccessed": false
+  },
+  "runnerIntegrationProof": {
+    "status": "pass",
+    "client": "local fake Cursor only",
+    "workspace": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-09-runner-proof-01/workspace",
+    "trace": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-09-runner-proof-01/control/trace-v2.jsonl",
+    "traceSha256": "04671815bfca01dc0c2871c1a1b0d92900bcb2eabcfa38547545af8dc5f71da5",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "processExitCode": 0,
+    "publicFileRead": true,
+    "workspaceWriteAttemptBlocked": true,
+    "workspaceStatusSha256Before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "workspaceStatusSha256After": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "workspaceTreeSha256Before": "6b917648d5a719687ffbbf30911812f9737e7c6719dfe71cc4ce7cb69b715df8",
+    "workspaceTreeSha256After": "6b917648d5a719687ffbbf30911812f9737e7c6719dfe71cc4ce7cb69b715df8",
+    "networkAccessed": false,
+    "externalModelRequests": 0,
+    "sourceTransmitted": false
+  },
+  "transportReplay": {
+    "source": "Candidate 08 frozen source-free trace",
+    "candidate08DecisionChanged": false,
+    "candidate08ResultReinterpreted": false,
+    "finalAssistantResponseExact": true,
+    "resultEventMatchesOrderedAssistantAggregate": true,
+    "shellToolCalls": 1,
+    "commandExecutions": 1,
+    "mcpCalls": 0,
+    "workspaceTreeUnchanged": true,
+    "candidate09ProbeAuditorValid": true,
+    "externalModelRequests": 0
+  },
+  "applicationBoundary": {
+    "publicSkillChanged": false,
+    "installedSkillChanged": false,
+    "candidate09ExternalRequestExecuted": false,
+    "candidate09LoginCreated": false,
+    "commitCreated": false,
+    "pushExecuted": false
+  },
+  "evidenceBoundary": "This is an offline local tooling proof. It does not establish real Cursor Plan-mode runtime behavior, model review quality, or cross-platform isolation, and it does not reinterpret Candidate 08.",
+  "nextGate": "Pass full static closure, then obtain separate authorization before one fresh isolated Candidate 09 source-free capability probe."
+}

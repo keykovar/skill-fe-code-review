@@ -1,0 +1,4 @@
+(version 1)
+(allow default)
+(deny file-write* (subpath (param "WORKSPACE")))
+(deny file-write* (subpath (param "PROTECTED_ROOT")))

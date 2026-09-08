@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-14",
+  "date": "2026-09-04",
+  "status": "no-go-q-id-002-run-01-outside-workspace-read-and-tool-retry",
+  "run": {
+    "caseId": "Q-ID-002",
+    "mode": "quick-independent",
+    "runId": "RUN-01",
+    "order": 1,
+    "executed": true,
+    "runnerExitCode": 0,
+    "stderrBytes": 0,
+    "traceSha256": "98b958a2c3f7f300c6abacc2403178b4b2da241e7378d08cfe0a4ccee1f5212f",
+    "traceBytes": 63202,
+    "outputSha256": "c940aef2037dee52f290cafef92694ca4793a43cd20da3d01609448dee053f70",
+    "outputBytes": 4687,
+    "durationMs": 82456,
+    "assistantMessages": 2,
+    "toolCalls": 13,
+    "readToolCalls": 11,
+    "globToolCalls": 1,
+    "grepToolCalls": 1,
+    "shellCalls": 0,
+    "mcpCalls": 0,
+    "contextCollectorCalls": 0,
+    "testCalls": 0,
+    "outsideWorkspaceReads": 1,
+    "failedReadCalls": 1,
+    "toolRetryAfterFailure": true,
+    "workspaceMutationObserved": false,
+    "workspaceTreeUnchanged": true,
+    "statusUnchanged": true,
+    "findingIds": [
+      "F-001",
+      "F-002"
+    ],
+    "findingConcepts": [
+      "account-cache-key-collision",
+      "ignored-timeout-contract"
+    ],
+    "findingSeverities": [
+      "Blocking",
+      "Risk"
+    ],
+    "independentFindingCount": 2,
+    "blockingFindingCount": 1,
+    "coverageLedgerEntries": 2,
+    "recommendation": "修改后提交"
+  },
+  "runtimeAudit": {
+    "valid": false,
+    "eventCount": 125,
+    "resultEventCount": 1,
+    "resultIsError": false,
+    "finalResponseSha256": "c940aef2037dee52f290cafef92694ca4793a43cd20da3d01609448dee053f70",
+    "finalResponseSource": "cursor-assistant",
+    "resultResponseMatchesFinal": false,
+    "resultAggregationNote": "Cursor result concatenated progress messages with the final assistant response; the deterministic auditor selected the last assistant text as the review output.",
+    "contextCollectorCalls": 0,
+    "equivalentGitReads": [],
+    "violations": [
+      {
+        "type": "outside-workspace-read",
+        "observedPath": "<temporary-root>/freeze-workspaces/q-id-002-run-01/tests/contracts.test.mjs",
+        "expectedWorkspace": "<temporary-root>/freeze/workspaces/q-id-002-run-01",
+        "result": "File not found",
+        "followedByCorrectedRead": true
+      }
+    ]
+  },
+  "outputValidator": {
+    "mode": "quick",
+    "valid": true,
+    "errors": [],
+    "findingIds": [
+      "F-001",
+      "F-002"
+    ],
+    "blockingFindingCount": 1,
+    "coverageLedgerEntries": 2,
+    "singleFindingMergeKeyAbsent": true
+  },
+  "semanticOracle": {
+    "valid": true,
+    "independentFindingsPreserved": true,
+    "sequentialFindingIds": true,
+    "severityContractValid": true,
+    "recommendationAllowed": true,
+    "forbiddenRecommendationAbsent": true,
+    "coverageBeforeAfterValid": true,
+    "coverageDispositionValid": true,
+    "singleFindingMergeKeyAbsent": true,
+    "errors": []
+  },
+  "integrity": {
+    "head": "9b41449538e8f691440ff4e79b0611fd2d791cdc",
+    "branch": "main",
+    "statusSha256": "b34f0c929992956b36d3712dd4677f77e83166eafd66a292def0ab008337395c",
+    "workspaceTreeSha256": "57b9b105fe787db33241f9a277c5bcec329165db3a293d59c79021413c886ed2",
+    "candidateSkillTreeSha256": "beca476371288fc96b28fc5f58d619dca81fbf3b336d5125e7fc64979ba16fcb",
+    "promptSha256": "31004f76bbbe969986f1755d7efa4e319563a9985cad32b6b49adcc58b827c67",
+    "runnerSha256": "c3b6d558c98365f887c1a1917253e0c610a1e663f53ed769ee226caf149bc549",
+    "seatbeltProfileSha256": "6ed882cbbd2605d3192502484407641d48dd15a1bc0e1b77f0682844d092ed40"
+  },
+  "tokenUsage": {
+    "inputTokens": 58991,
+    "uncachedInputTokens": 0,
+    "cachedInputTokens": 108160,
+    "cacheWriteInputTokens": 0,
+    "outputTokens": 4545,
+    "reasoningOutputTokens": null
+  },
+  "transferPolicy": {
+    "externalModelRequests": 1,
+    "sourceTransmitted": true,
+    "sourceVisibility": "public-synthetic-only",
+    "privateSourceTransmitted": false,
+    "workspaceFilesTransmitted": 31,
+    "credentialContentsReadOrRecordedByEvaluator": false,
+    "oracleTransmitted": false,
+    "historicalTraceTransmitted": false
+  },
+  "executionPolicy": {
+    "runtimeRetry": false,
+    "replacement": false,
+    "modeSwitch": false,
+    "reinterpreted": false,
+    "remainingRunsCancelled": true
+  },
+  "decision": {
+    "run": "No-Go",
+    "candidate": "No-Go",
+    "reason": "The model attempted one outside-workspace read with a misspelled path, received File not found, and then retried the read with the corrected path. This violates mandatory isolation and no-retry gates even though the final review passed output and semantic checks.",
+    "nextGate": "Stop Candidate 14. Do not execute the Deep or Codex smoke runs. Any further work starts with offline diagnosis and a separately defined candidate window."
+  },
+  "evidenceBoundary": "Only the frozen 31-file public-synthetic Q-ID-002/RUN-01 workspace was sent. No private project source, customer data, production source, credential, account identity, evaluator oracle, historical trace, raw trace, request identifier, or session identifier was sent or recorded."
+}

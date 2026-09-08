@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-04",
+  "date": "2026-08-28",
+  "status": "no-go-stopped-before-source-bearing-client-start",
+  "attempt": {
+    "caseId": "D-ID-001",
+    "runId": "RUN-01",
+    "mode": "deep-identity",
+    "authorized": true,
+    "failureStage": "evaluator preflight before runner invocation",
+    "failure": "The zsh loop variable path replaced the special path array and therefore PATH, so the following git command failed with command not found.",
+    "hashChecksCompletedBeforeFailure": true,
+    "freshOutputPathCheckCompletedBeforeFailure": true,
+    "runnerInvoked": false,
+    "cursorProcessStarted": false,
+    "externalModelRequests": 0,
+    "sourceTransmitted": false,
+    "traceCreated": false,
+    "stderrArtifactCreated": false,
+    "controlDirectoryCreated": false,
+    "retryExecuted": false,
+    "replacementExecuted": false,
+    "modeSwitchExecuted": false
+  },
+  "verifiedFrozenInputs": {
+    "runnerSha256": "43e7c69ed17622c6ca449b071c54792036e8bc8ad8f1b210e938d76241e0d05e",
+    "promptSha256": "fbe8fcea786c666b60391ef5ab57c669603384f5fcc5b6dd6ecf8d3ea6204032",
+    "skillSha256": "a8b81157abe92c944143a28386ffd9f86c25711ee7ab40d17e2ea0b6a514cb7e",
+    "deepReferenceSha256": "44d1fb20cfc2f3b9814943d5254e2349387a8b17832eab27b618a2a2a3bedc36"
+  },
+  "postStopIntegrity": {
+    "dId001Head": "7bb874af85bd9f5fe6a5165397e61896476f3587",
+    "dId001Status": "clean",
+    "preparedWorkspaceTreesUnchanged": "7/7",
+    "publicSkillChanged": false,
+    "sourceBearingRunsExecuted": 0,
+    "sourceTransmitted": false,
+    "temporaryCursorCredentialsRetained": true
+  },
+  "rootCauseEvidence": {
+    "shell": "zsh",
+    "specialParameter": "path",
+    "behavior": "Assigning the lowercase path array also rewrites PATH.",
+    "observedPathAfterLoop": "/private/tmp/example",
+    "gitLookupAfterLoop": "not found"
+  },
+  "postRecordValidation": {
+    "vitestFiles": "12/12",
+    "vitestTests": "134/134",
+    "groupedReplay": "7/7",
+    "repositorySkillValidator": "pass",
+    "officialSkillValidator": "pass",
+    "pythonDependencyBoundary": "cached PyYAML 6.0.3 through process-local PYTHONPATH; no install",
+    "nodeSyntax": "4/4 changed evaluator scripts",
+    "jsonFilesParsed": "121/121",
+    "markdownLocalLinks": "26/26 files; no missing targets",
+    "targetedSensitiveIdentifierScan": "pass-no-matches",
+    "gitDiffCheck": "pass",
+    "stableSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "installedSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "stablePublicReviewOutputValidatorSha256": "8ca475ad2c6d9184a19716bbad76b483a00c9a6ac85c591088431ef61771ccf3"
+  },
+  "decision": "Candidate 04 is No-Go under its frozen zero-retry and zero-replacement policy. The failure is evaluator tooling only and does not invalidate the offline grouped-ledger implementation, but no Candidate 04 source-bearing model-quality evidence exists. A future candidate must use a separately reviewed preflight implementation and a new authorization window."
+}

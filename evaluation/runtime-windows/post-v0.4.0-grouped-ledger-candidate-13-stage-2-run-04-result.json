@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-13",
+  "date": "2026-09-04",
+  "status": "f-id-001-run-01-pass-repeat-authorization-pending",
+  "run": {
+    "caseId": "F-ID-001",
+    "mode": "fix-identity",
+    "runId": "RUN-01",
+    "order": 5,
+    "executed": true,
+    "runnerExitCode": 0,
+    "stderrBytes": 0,
+    "traceSha256": "2955075485710fc1fc9cfab2fc461d66f8b2fe9eee6c48243e19bd520ed0682e",
+    "traceBytes": 70593,
+    "outputSha256": "6546a074ab7134c3ae6d7d89fc32ee6ba4427451f4d912cff4b2877398f83352",
+    "outputBytes": 6498,
+    "durationMs": 106391,
+    "assistantMessages": 4,
+    "toolCalls": 14,
+    "readToolCalls": 10,
+    "globToolCalls": 2,
+    "grepToolCalls": 2,
+    "shellCalls": 0,
+    "mcpCalls": 0,
+    "contextCollectorCalls": 0,
+    "testCalls": 0,
+    "outsideWorkspaceReads": 0,
+    "workspaceMutationObserved": false,
+    "workspaceTreeUnchanged": true,
+    "statusUnchanged": true,
+    "findingIds": ["F-001", "F-002", "F-003"],
+    "blockingFindingCount": 0,
+    "coverageLedgerEntries": 0,
+    "recommendation": "可以关闭"
+  },
+  "runtimeAudit": {
+    "valid": true,
+    "eventCount": 137,
+    "resultEventCount": 1,
+    "resultIsError": false,
+    "finalResponseSha256": "6546a074ab7134c3ae6d7d89fc32ee6ba4427451f4d912cff4b2877398f83352",
+    "finalResponseSource": "cursor-assistant",
+    "resultResponseMatchesFinal": false,
+    "resultAggregationNote": "Cursor result concatenated progress messages with the final assistant response; the deterministic auditor selected the last assistant text as the review output.",
+    "contextCollectorCalls": 0,
+    "equivalentGitReads": [],
+    "violations": []
+  },
+  "outputValidator": {
+    "mode": "fix",
+    "valid": true,
+    "errors": [],
+    "findingIds": ["F-001", "F-002", "F-003"],
+    "blockingFindingCount": 0,
+    "coverageLedgerEntries": 0
+  },
+  "fixOracle": {
+    "valid": true,
+    "findingStatuses": {
+      "F-001": {
+        "concept": "referenced-untracked-file",
+        "originalSeverity": "Blocking",
+        "status": "Resolved"
+      },
+      "F-002": {
+        "concept": "removed-slash-normalization",
+        "originalSeverity": "Blocking",
+        "status": "Resolved"
+      },
+      "F-003": {
+        "concept": "ignored-base-url-contract",
+        "originalSeverity": "Risk",
+        "status": "Resolved"
+      }
+    },
+    "resolvedCount": 3,
+    "partialCount": 0,
+    "unresolvedCount": 0,
+    "cannotVerifyCount": 0,
+    "newRegression": "none",
+    "recommendation": "可以关闭",
+    "fullDeepReviewExpansionObserved": false,
+    "errors": []
+  },
+  "integrity": {
+    "head": "11b87a99d438ad99013ad6bd605611ef56202647",
+    "branch": "main",
+    "statusSha256": "43915c2da896e437bf50266d161ab5b34a13a3a0a1b8cb6fe0d79fb989a61ede",
+    "workspaceTreeSha256": "c83d06a926248c96a13509c0ba3c24e59ae492282705b245a58579f4b88f1816",
+    "candidateSkillTreeSha256": "57cbd739d4c7ad942617d348e1cdd642323840831c3c3ef62e5648c5eb339b23",
+    "promptSha256": "765bec14f8835277853a0f15f38ee2a65e5be4ef8e002f90d9e69483740fa7b5",
+    "runnerSha256": "c3b6d558c98365f887c1a1917253e0c610a1e663f53ed769ee226caf149bc549",
+    "seatbeltProfileSha256": "6ed882cbbd2605d3192502484407641d48dd15a1bc0e1b77f0682844d092ed40"
+  },
+  "tokenUsage": {
+    "inputTokens": 80102,
+    "uncachedInputTokens": 21222,
+    "cachedInputTokens": 58880,
+    "cacheWriteInputTokens": 0,
+    "outputTokens": 5673,
+    "reasoningOutputTokens": null
+  },
+  "transferPolicy": {
+    "externalModelRequests": 1,
+    "sourceTransmitted": true,
+    "sourceVisibility": "public-synthetic-only",
+    "privateSourceTransmitted": false,
+    "workspaceFilesTransmitted": 31,
+    "credentialContentsReadOrRecordedByEvaluator": false,
+    "oracleTransmitted": false,
+    "historicalTraceTransmitted": false
+  },
+  "executionPolicy": {
+    "runtimeRetry": false,
+    "modeSwitch": false,
+    "replacement": false,
+    "reinterpreted": false
+  },
+  "decision": {
+    "run": "Pass",
+    "candidate": "Continue pending separate authorization",
+    "nextGate": "Request explicit authorization before executing the frozen byte-identical F-ID-001/RUN-02. Do not execute the no-finding control unless RUN-02 also passes every gate."
+  },
+  "evidenceBoundary": "Only the frozen public-synthetic F-ID-001/RUN-01 workspace was sent. No private project source, customer data, production source, credential, account identity, evaluator oracle, or historical trace was sent or recorded."
+}

@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-15",
+  "date": "2026-09-07",
+  "status": "no-go-stage-1-severity-oracle-failure",
+  "predecessor": {
+    "candidate": "post-v0.4.0-grouped-ledger-candidate-14",
+    "decision": "No-Go",
+    "reason": "Candidate 14 passed output and semantic gates but attempted one misspelled absolute path outside the workspace and retried after the read failed.",
+    "historicalRuntimeResultReused": false
+  },
+  "boundedDelta": "Add an evaluator-only workspace-relative file-tool path contract and stop all tool calls after the first failure or refusal; keep the public Skill, runner, auditor, Seatbelt profile, fixtures, and review-output contract unchanged.",
+  "temporaryRoot": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-15-offline-freeze-01",
+  "client": {
+    "version": "2026.08.11-e8db854"
+  },
+  "skill": {
+    "entrypointSha256": "b6124c8866992d5c720a4c9183740b6e19fdacea4beafb76d2da5952f5fc845e",
+    "treeSha256": "beca476371288fc96b28fc5f58d619dca81fbf3b336d5125e7fc64979ba16fcb",
+    "fileCount": 12,
+    "changedFromCandidate14": false
+  },
+  "runner": {
+    "path": "scripts/run-cursor-evaluation-v5.mjs",
+    "sha256": "c3b6d558c98365f887c1a1917253e0c610a1e663f53ed769ee226caf149bc549",
+    "changedFromCandidate14": false
+  },
+  "seatbeltProfile": {
+    "path": "evaluation/profiles/cursor-workspace-read-only.sb",
+    "sha256": "6ed882cbbd2605d3192502484407641d48dd15a1bc0e1b77f0682844d092ed40",
+    "changedFromCandidate14": false
+  },
+  "evaluatorPrompt": {
+    "profile": "workspace-relative-stop-on-failure",
+    "fileToolPaths": "workspace-relative-only",
+    "forbiddenPathForms": [
+      "absolute-workspace-path",
+      "parent-traversal",
+      "home-relative",
+      "file-uri",
+      "workspace-placeholder"
+    ],
+    "failureBehavior": "stop-all-tools-and-report-evidence-limit",
+    "retryAllowed": false
+  },
+  "runs": [
+    {
+      "order": 1,
+      "caseId": "Q-ID-002",
+      "runId": "RUN-01",
+      "mode": "quick-independent",
+      "workspace": "<temporary-root>/freeze/workspaces/q-id-002-run-01",
+      "branch": "main",
+      "head": "9b41449538e8f691440ff4e79b0611fd2d791cdc",
+      "statusSha256": "b34f0c929992956b36d3712dd4677f77e83166eafd66a292def0ab008337395c",
+      "workspaceFileCount": 31,
+      "workspaceTreeSha256": "57b9b105fe787db33241f9a277c5bcec329165db3a293d59c79021413c886ed2",
+      "skillTreeSha256": "beca476371288fc96b28fc5f58d619dca81fbf3b336d5125e7fc64979ba16fcb",
+      "promptCharacters": 2030,
+      "promptSha256": "dd72904d2cb9fbf5ad6dc79977fbbdd369d4507231601be3232f63442a07ca93",
+      "collectorCallsExecutedLocally": 1,
+      "collectorCallsExpectedFromClient": 0,
+      "collectorRawSha256": "8c0d8b130b57b94cd2474be7874aa50f8bb744eb6c4279cacbc3e5f8bc3907d0",
+      "testCommand": "node --test",
+      "testExitCode": 1,
+      "expectedTestExitCode": 1,
+      "testStdoutSha256": "46fbebf61db6541259289af91d13b6916a586f32d380890c265c636b37d461f0",
+      "testStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "order": 2,
+      "caseId": "D-ID-001",
+      "runId": "RUN-01",
+      "mode": "deep-identity",
+      "workspace": "<temporary-root>/freeze/workspaces/d-id-001-run-01",
+      "branch": "candidate",
+      "head": "7625ff113fcb42e1b1e6f9e75a709cbe490e72ea",
+      "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "workspaceFileCount": 31,
+      "workspaceTreeSha256": "81009e7b3304b363323b72e89ecbf72b2be9e3c74dff307703f26398ff9c4fba",
+      "skillTreeSha256": "beca476371288fc96b28fc5f58d619dca81fbf3b336d5125e7fc64979ba16fcb",
+      "promptCharacters": 1175,
+      "promptSha256": "91fbad0e741080e1c9e81363895bf2fcb791cbc7a62f8687013723be554b52e0",
+      "collectorCallsExecutedLocally": 0,
+      "collectorCallsExpectedFromClient": 0,
+      "testCommand": "node --test",
+      "testExitCode": 1,
+      "expectedTestExitCode": 1,
+      "testStdoutSha256": "ddcefb95680d24f11add329e6d92d5ac933605916a80ca0b6ea7b855935ec7d2",
+      "testStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "offlineValidation": {
+    "vitest": "32/32 files and 194/194 tests",
+    "jsonDocuments": "99/99",
+    "nodeSyntax": "34/34",
+    "repositorySkillValidator": "pass with isolated PyYAML 6.0.3",
+    "officialSkillValidator": "pass with isolated PyYAML 6.0.3",
+    "declaredTestExitsMatched": "2/2",
+    "promptPolicyMatched": "2/2",
+    "promptTemporaryRootAbsent": "2/2",
+    "secondPassPromptHashMatched": "2/2",
+    "secondPassGitStatusMatched": "2/2",
+    "secondPassWorkspaceTreeMatched": "2/2",
+    "secondPassSkillTreeMatched": "2/2",
+    "sourceFreeProbeAudit": "pass",
+    "sourceFreeProbeReadToolCalls": "1/1 started/completed",
+    "sourceFreeProbeRelativePath": "probe.txt",
+    "sourceFreeProbeShellCalls": 0,
+    "sourceFreeProbeMcpCalls": 0,
+    "sourceFreeProbeOutsideWorkspaceReads": 0,
+    "sourceFreeProbeRetries": 0,
+    "sourceFreeProbeWorkspaceMutation": false,
+    "sensitiveIdentifierMatches": 0,
+    "gitDiffCheck": "pass",
+    "stagingArea": "empty"
+  },
+  "sourcePolicy": {
+    "externalModelRequests": 1,
+    "sourceFreeProbeAuthorized": true,
+    "sourceFreeProbePassed": true,
+    "sourceFreeExternalRequestsExecuted": 1,
+    "sourceBearingRequestsAuthorized": 1,
+    "sourceBearingRunsExecuted": 1,
+    "sourceBearingAuthorized": true,
+    "sourceTransmitted": true,
+    "privateSourceTransmitted": false,
+    "visibility": "public-synthetic-only"
+  },
+  "runtimeWindow": {
+    "sourceFreeProbe": "Pass",
+    "stage1Quick": "No-Go: severity oracle failure",
+    "stage2Deep": "Cancelled",
+    "codexQuickSmoke": "Cancelled",
+    "retryExecuted": false,
+    "replacementExecuted": false,
+    "modeSwitchExecuted": false
+  },
+  "manifestSha256": "7762093bfa212a52be0a9e4ffa592c7194df058ea4a3c0a05c74c4fde8ccd0cb",
+  "probeResult": "evaluation/runtime-windows/post-v0.4.0-grouped-ledger-candidate-15-probe-result.json",
+  "stage1Result": "evaluation/runtime-windows/post-v0.4.0-grouped-ledger-candidate-15-stage-1-result.json",
+  "nextGate": "Stop Candidate 15. Do not execute the Deep or Codex smoke runs; any further work requires offline diagnosis and a separately defined candidate window."
+}

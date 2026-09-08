@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-07",
+  "date": "2026-08-28",
+  "status": "no-go-stage-1-stopped-after-run-01-execution-and-structure-failure",
+  "run": {
+    "caseId": "D-ID-001",
+    "runId": "RUN-01",
+    "mode": "deep-identity",
+    "clientProcessExitCode": 0,
+    "assistantMessages": 5,
+    "startedToolCalls": 27,
+    "traceEvents": 245,
+    "stderrBytes": 0
+  },
+  "authorization": {
+    "sourceBearingAttemptAuthorized": true,
+    "remainingSourceBearingRunsAuthorized": false,
+    "privateSourceAllowed": false
+  },
+  "transferBoundary": {
+    "externalModelRequests": 1,
+    "publicSyntheticSourceTransmitted": true,
+    "privateSourceTransmitted": false,
+    "workspace": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-07-offline-freeze-01/workspaces/d-id-001-run-01"
+  },
+  "atomicPreflight": {
+    "status": "pass",
+    "branch": "candidate",
+    "head": "b781585f81039c20e00eb9b6e58cce3e2a138008",
+    "promptSha256": "fbe8fcea786c666b60391ef5ab57c669603384f5fcc5b6dd6ecf8d3ea6204032",
+    "runnerSha256": "067b4a9d25a44a062bed5a25a44266c4001949fe30211be583fc116cb6715e07",
+    "skillTreeSha256": "49fd77c07ccb214b4fe464b5019888ac496ca59fd52ba3c04cf8390e8627211d",
+    "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "workspaceTreeSha256": "f55aed15175f5cca5225958f383fab724cf4b3e21871653b1dc805af8a7a8d40"
+  },
+  "clientContract": {
+    "status": "fail-trace-permission-denied",
+    "requestedMode": "ask",
+    "processExitCode": 0,
+    "stderrWarningObserved": false,
+    "permissionFallbackObserved": false,
+    "modeSwitchObserved": false,
+    "shellAttempts": 1,
+    "shellPermissionDenied": 1,
+    "retried": false,
+    "earliestBlockingFailure": "Ask mode denied the single read-only Git inventory command, so the declared deterministic node --test execution never started."
+  },
+  "executionAudit": {
+    "status": "fail",
+    "auditorValid": true,
+    "auditorViolations": [],
+    "declaredFixtureTestCallsExpected": 1,
+    "declaredFixtureTestCallsObserved": 0,
+    "collectorCallsExpected": 0,
+    "collectorCallsObserved": 0,
+    "commandExecutionsObserved": 0,
+    "mcpCallsObserved": 0,
+    "workspaceStatusUnchanged": true,
+    "preparedWorkspaceTreesUnchanged": "7/7"
+  },
+  "reviewObservation": {
+    "scoredForPromotion": false,
+    "semanticOracleObservation": {
+      "status": "pass-unscored-observation",
+      "findingId": "F-001",
+      "findingKey": "stale-profile-token-after-logout",
+      "severity": "Blocking",
+      "designDecision": "Simplify",
+      "recommendation": "修改后可以进入下一步"
+    },
+    "candidateStructuralValidator": {
+      "status": "fail",
+      "mode": "deep",
+      "findingIds": ["F-001"],
+      "blockingFindingCount": 1,
+      "coverageLedgerEntries": 12,
+      "errorCount": 16,
+      "errorTypes": [
+        "coverage-ledger-missing-before-after",
+        "coverage-ledger-missing-disposition"
+      ]
+    },
+    "responseExtraction": {
+      "assistantMessages": 5,
+      "finalAssistantCharacters": 6195,
+      "finalAssistantSha256": "39938e04e2dfb3ddcb09bc75fafcf20484b32db27231a03862b4c81e4a521e71",
+      "resultCharacters": 6400,
+      "resultSha256": "8fe3d047e509ee1483d901c60d3a3f5689f215466a6eba0ca7ff105cd82f2b3d",
+      "resultContainsFinalAssistant": true,
+      "resultMatchesFinalAssistant": false,
+      "selectedResponse": "last Cursor assistant message"
+    }
+  },
+  "artifacts": {
+    "trace": {
+      "path": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-07-d-id-001-run-01.trace.jsonl",
+      "sha256": "7044422ed10f2ccee20589b7a37bd2e433579769b0e407673bd7c0038badc6c6"
+    },
+    "stderr": {
+      "path": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-07-d-id-001-run-01.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "finalResponse": {
+      "path": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-07-d-id-001-run-01.final.md",
+      "sha256": "39938e04e2dfb3ddcb09bc75fafcf20484b32db27231a03862b4c81e4a521e71"
+    },
+    "audit": {
+      "path": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-07-d-id-001-run-01.audit.json",
+      "sha256": "207a68f239b34ee7dbd1688793bad1ce89a1f08a5a85a873ac8554384e5acfa0"
+    },
+    "structuralValidation": {
+      "path": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-07-d-id-001-run-01.validation.json",
+      "sha256": "0fe1dfd80b8b75533c651065ee924de66cd0c0bb9474aebab881d92f488dd577"
+    }
+  },
+  "integrity": {
+    "reviewedWorkspaceUnchanged": true,
+    "preparedWorkspaceTreesUnchanged": "7/7",
+    "publicSkillChanged": false,
+    "installedSkillChanged": false,
+    "privateSourceTransmitted": false
+  },
+  "runtimeWindow": {
+    "sourceFreeExternalRequests": 1,
+    "sourceBearingExternalRequests": 1,
+    "sourceBearingRunsExecuted": 1,
+    "remainingRunsExecuted": 0,
+    "retryExecuted": false,
+    "replacementExecuted": false,
+    "modeSwitchExecuted": false
+  },
+  "decision": "Candidate 07 is No-Go. D-ID-001 RUN-01 was semantically correct as an unscored observation, but failed the declared test-execution gate and grouped-ledger structural validator. Stop without retry or additional source-bearing requests.",
+  "nextGate": "Retain Candidate 07 as No-Go. A future candidate requires a newly frozen client/execution contract and rendering contract with separate authorization."
+}

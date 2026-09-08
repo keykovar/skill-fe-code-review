@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-13",
+  "date": "2026-09-04",
+  "status": "q-id-001-run-01-pass-next-run-authorization-pending",
+  "run": {
+    "caseId": "Q-ID-001",
+    "mode": "quick-identity",
+    "runId": "RUN-01",
+    "order": 2,
+    "executed": true,
+    "runnerExitCode": 0,
+    "stderrBytes": 0,
+    "traceSha256": "556171e7e4c61bd8a8ab1644509d344338fa2731f954feefe7a777261dcceea4",
+    "traceBytes": 77135,
+    "outputSha256": "f1ebe10490cce201b2d80c17f5e85e36afe921a6df111bdf9f98fc74cd89813e",
+    "outputBytes": 7000,
+    "durationMs": 115847,
+    "assistantMessages": 4,
+    "toolCalls": 13,
+    "readToolCalls": 9,
+    "globToolCalls": 2,
+    "grepToolCalls": 2,
+    "shellCalls": 0,
+    "mcpCalls": 0,
+    "contextCollectorCalls": 0,
+    "testCalls": 0,
+    "outsideWorkspaceReads": 0,
+    "workspaceMutationObserved": false,
+    "workspaceTreeUnchanged": true,
+    "statusUnchanged": true,
+    "findingIds": ["F-001", "F-002", "F-003"],
+    "findingConcepts": [
+      "referenced-untracked-file",
+      "removed-slash-normalization",
+      "ignored-base-url-contract"
+    ],
+    "findingSeverities": ["Blocking", "Blocking", "Risk"],
+    "independentFindingCount": 3,
+    "blockingFindingCount": 2,
+    "coverageLedgerEntries": 3,
+    "recommendation": "修改后提交"
+  },
+  "runtimeAudit": {
+    "valid": true,
+    "eventCount": 171,
+    "resultEventCount": 1,
+    "resultIsError": false,
+    "finalResponseSha256": "f1ebe10490cce201b2d80c17f5e85e36afe921a6df111bdf9f98fc74cd89813e",
+    "finalResponseSource": "cursor-assistant",
+    "resultResponseMatchesFinal": false,
+    "resultAggregationNote": "Cursor result concatenated three progress messages with the final assistant response; the deterministic auditor selected the last assistant text as the review output.",
+    "contextCollectorCalls": 0,
+    "equivalentGitReads": [],
+    "violations": []
+  },
+  "outputValidator": {
+    "mode": "quick",
+    "valid": true,
+    "errors": [],
+    "findingIds": ["F-001", "F-002", "F-003"],
+    "blockingFindingCount": 2,
+    "coverageLedgerEntries": 3
+  },
+  "semanticOracle": {
+    "valid": true,
+    "independentFindingsPreserved": true,
+    "sequentialFindingIds": true,
+    "severityContractValid": true,
+    "recommendationAllowed": true,
+    "forbiddenRecommendationAbsent": true,
+    "coverageBeforeAfterValid": true,
+    "coverageDispositionValid": true,
+    "repeatedFindingMergeKeyRequired": false,
+    "errors": []
+  },
+  "integrity": {
+    "head": "b34ce6f87d8fc421968a8d5b13aad2f14a12a46c",
+    "branch": "main",
+    "statusSha256": "e1014afad52183dc386bc7d4623894a7bfc00ee4e4977cbd6ff96892065ffb4b",
+    "workspaceTreeSha256": "4c020f324533bcf1584182421be50516f8a7f2c7efa1a757220036387a5e1bae",
+    "candidateSkillTreeSha256": "57cbd739d4c7ad942617d348e1cdd642323840831c3c3ef62e5648c5eb339b23",
+    "promptSha256": "d329f83ef51bbc486374ed50ea43862c2238b2ca08d42ca03df6d1dcfe2a5a72",
+    "runnerSha256": "c3b6d558c98365f887c1a1917253e0c610a1e663f53ed769ee226caf149bc549",
+    "seatbeltProfileSha256": "6ed882cbbd2605d3192502484407641d48dd15a1bc0e1b77f0682844d092ed40"
+  },
+  "tokenUsage": {
+    "inputTokens": 80143,
+    "uncachedInputTokens": 23567,
+    "cachedInputTokens": 56576,
+    "cacheWriteInputTokens": 0,
+    "outputTokens": 6333,
+    "reasoningOutputTokens": null
+  },
+  "transferPolicy": {
+    "externalModelRequests": 1,
+    "sourceTransmitted": true,
+    "sourceVisibility": "public-synthetic-only",
+    "privateSourceTransmitted": false,
+    "workspaceFilesTransmitted": 30,
+    "credentialContentsReadOrRecordedByEvaluator": false,
+    "oracleTransmitted": false,
+    "historicalTraceTransmitted": false
+  },
+  "executionPolicy": {
+    "runtimeRetry": false,
+    "modeSwitch": false,
+    "replacement": false,
+    "reinterpreted": false
+  },
+  "decision": {
+    "run": "Pass",
+    "candidate": "Continue pending separate authorization",
+    "nextGate": "Request explicit authorization before executing the frozen byte-identical Q-ID-001/RUN-02. Do not execute later runs unless RUN-02 also passes every gate."
+  },
+  "evidenceBoundary": "Only the frozen public-synthetic Q-ID-001/RUN-01 workspace was sent. No private project source, customer data, production source, credential, account identity, evaluator oracle, or historical trace was sent or recorded."
+}

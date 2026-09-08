@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-13",
+  "date": "2026-09-03",
+  "status": "offline-contract-fix-complete-source-free-probe-pending",
+  "predecessor": {
+    "candidate": "post-v0.4.0-grouped-ledger-candidate-12",
+    "decision": "No-Go",
+    "reason": "D-ID-001/RUN-01 contained one Changed-Condition Coverage line without before -> after.",
+    "retried": false,
+    "reinterpreted": false
+  },
+  "boundedDelta": {
+    "skillOnly": true,
+    "groupedValidatorChanged": false,
+    "reviewOutputValidatorChanged": false,
+    "reviewSemanticsChanged": false,
+    "runnerChanged": false,
+    "seatbeltChanged": false,
+    "collectorChanged": false,
+    "sourcePolicyChanged": false,
+    "publicSkillChanged": false,
+    "installedSkillChanged": false
+  },
+  "candidateSkill": {
+    "path": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-13-skill-01",
+    "fileCount": 12,
+    "skillSha256": "b6124c8866992d5c720a4c9183740b6e19fdacea4beafb76d2da5952f5fc845e",
+    "treeSha256": "57cbd739d4c7ad942617d348e1cdd642323840831c3c3ef62e5648c5eb339b23"
+  },
+  "fixtures": {
+    "runner": "node scripts/replay-review-output-candidate-13.mjs",
+    "externalModelRequests": 0,
+    "sourceTransmitted": false,
+    "cases": [
+      {
+        "file": "evaluation/prototypes/review-output-candidate-13/valid.md",
+        "sha256": "d96334f69d61d4d4f5647c06d8b574958044910743e600759fccfad950877f69",
+        "expected": "valid",
+        "coverageLedgerEntries": 2
+      },
+      {
+        "file": "evaluation/prototypes/review-output-candidate-13/colon-only.invalid.md",
+        "sha256": "b81730d1949734e11ebaaadeebcb39192d11514fa3dae6f4c90acaf20d7892aa",
+        "expected": "invalid",
+        "requiredError": "coverage-ledger-missing-before-after"
+      },
+      {
+        "file": "evaluation/prototypes/review-output-candidate-13/nested.invalid.md",
+        "sha256": "ee05f5cafa9831bba0df11d6c44beb1287ec05e78e8978fbba21335a7095450c",
+        "expected": "invalid",
+        "requiredErrors": [
+          "coverage-ledger-missing-before-after",
+          "coverage-ledger-missing-disposition"
+        ]
+      }
+    ],
+    "result": "3/3"
+  },
+  "sourcePolicy": {
+    "externalModelRequests": 0,
+    "sourceTransmitted": false,
+    "privateSourceTransmitted": false,
+    "visibility": "public-synthetic-only"
+  },
+  "nextGate": "Request separate authorization for a fresh Candidate 13 source-free Cursor probe; source-bearing execution remains unauthorized."
+}

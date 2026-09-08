@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-07",
+  "date": "2026-08-28",
+  "status": "offline-freeze-complete-source-free-probe-not-authorized",
+  "predecessor": {
+    "candidate": "post-v0.4.0-grouped-ledger-candidate-06",
+    "decision": "No-Go",
+    "reason": "The single authorized isolated login exited before the source-free probe.",
+    "retried": false,
+    "reinterpreted": false
+  },
+  "runtimeCandidate": {
+    "deltaComparedWithCandidate06": "byte-identical",
+    "skillSha256": "a7145a6d305647c32ed47873b1284575152ff12c7ab61002cea108672dedfae1",
+    "skillTreeSha256": "49fd77c07ccb214b4fe464b5019888ac496ca59fd52ba3c04cf8390e8627211d",
+    "skillTreeFileCount": 12,
+    "runnerSha256": "067b4a9d25a44a062bed5a25a44266c4001949fe30211be583fc116cb6715e07"
+  },
+  "tooling": {
+    "preparer": "scripts/prepare-grouped-ledger-candidate-07.mjs",
+    "preparerSha256": "767271e637433b4c078dd6fc175da61d15ca26b2ef341c0e1fcd913f0391104c",
+    "immutablePreparationEngine": "scripts/prepare-grouped-ledger-candidate-06.mjs",
+    "immutablePreparationEngineSha256": "26988c8d58ee7ce94e9f42fdd48c487505aee96c37bbec28a701ce67203f0b78",
+    "manifestSha256": "8f1533161b92778f2aeee9c4ec26ba0e8f89cee45b737fe572907bd25ba020e5",
+    "preparationEngineManifestSha256": "b166112c00fae597eeeb415c729758f2f2547fb2b1c2d2b641039308794f7912"
+  },
+  "client": {
+    "version": "2026.08.11-e8db854",
+    "mode": "ask",
+    "sandbox": "enabled",
+    "permissionFallbackAllowed": false,
+    "forbiddenFlags": ["--auto-review", "--force", "--yolo", "--approve-mcps"]
+  },
+  "temporaryRoot": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-07-offline-freeze-01",
+  "generationBoundary": {
+    "freshOutputDirectory": true,
+    "runtimeResultsCarriedForward": false,
+    "sourceFreeResultCarriedForward": false,
+    "sourceBearingResultCarriedForward": false
+  },
+  "expectedTestResultsMatched": "7/7",
+  "preparedRuns": [
+    {
+      "caseId": "D-ID-001",
+      "runId": "RUN-01",
+      "expectedTestExitCode": 1,
+      "head": "b781585f81039c20e00eb9b6e58cce3e2a138008",
+      "promptSha256": "fbe8fcea786c666b60391ef5ab57c669603384f5fcc5b6dd6ecf8d3ea6204032",
+      "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "workspaceTreeSha256": "f55aed15175f5cca5225958f383fab724cf4b3e21871653b1dc805af8a7a8d40"
+    },
+    {
+      "caseId": "Q-ID-001",
+      "runId": "RUN-01",
+      "expectedTestExitCode": 1,
+      "head": "1e0e7dcc5795afa8be9c0fc2a9a5c1e180a3cce5",
+      "promptSha256": "c966e9fc6c445a37581bb4df6481d4ad537b908dba8a9837fe2721bf613baa29",
+      "statusSha256": "e1014afad52183dc386bc7d4623894a7bfc00ee4e4977cbd6ff96892065ffb4b",
+      "workspaceTreeSha256": "8981dcbc8c5e525df14b9aa831e03448412fa47666de0b07bb4e1de0b78d0128"
+    },
+    {
+      "caseId": "Q-ID-001",
+      "runId": "RUN-02",
+      "expectedTestExitCode": 1,
+      "head": "1e0e7dcc5795afa8be9c0fc2a9a5c1e180a3cce5",
+      "promptSha256": "c966e9fc6c445a37581bb4df6481d4ad537b908dba8a9837fe2721bf613baa29",
+      "statusSha256": "e1014afad52183dc386bc7d4623894a7bfc00ee4e4977cbd6ff96892065ffb4b",
+      "workspaceTreeSha256": "8981dcbc8c5e525df14b9aa831e03448412fa47666de0b07bb4e1de0b78d0128"
+    },
+    {
+      "caseId": "Q-ID-002",
+      "runId": "RUN-01",
+      "expectedTestExitCode": 1,
+      "head": "62f8d1f9c443d2f77c562c12b04f5f8dbb26875d",
+      "promptSha256": "c966e9fc6c445a37581bb4df6481d4ad537b908dba8a9837fe2721bf613baa29",
+      "statusSha256": "b34f0c929992956b36d3712dd4677f77e83166eafd66a292def0ab008337395c",
+      "workspaceTreeSha256": "3e45e6baf69ab613807f83e9e43755758fa4a365c00a4a6d4cce4ef3e38c53b8"
+    },
+    {
+      "caseId": "F-ID-001",
+      "runId": "RUN-01",
+      "expectedTestExitCode": 0,
+      "head": "96c3fc0bd185bcc7a262adc0cefd1f59d6daeaa6",
+      "promptSha256": "5e316a6038fbbaf44f3d81dd7d3e2f876cb3f5308783c2ebf3dfbf40cebbb7f8",
+      "statusSha256": "43915c2da896e437bf50266d161ab5b34a13a3a0a1b8cb6fe0d79fb989a61ede",
+      "workspaceTreeSha256": "8663d2ab8586f8ca8423d6bbfa2c29c61927ac7cdf15dcfb451a5303ce75462f"
+    },
+    {
+      "caseId": "F-ID-001",
+      "runId": "RUN-02",
+      "expectedTestExitCode": 0,
+      "head": "96c3fc0bd185bcc7a262adc0cefd1f59d6daeaa6",
+      "promptSha256": "5e316a6038fbbaf44f3d81dd7d3e2f876cb3f5308783c2ebf3dfbf40cebbb7f8",
+      "statusSha256": "43915c2da896e437bf50266d161ab5b34a13a3a0a1b8cb6fe0d79fb989a61ede",
+      "workspaceTreeSha256": "8663d2ab8586f8ca8423d6bbfa2c29c61927ac7cdf15dcfb451a5303ce75462f"
+    },
+    {
+      "caseId": "K-ID-001",
+      "runId": "RUN-01",
+      "expectedTestExitCode": 0,
+      "head": "dba4fc955214b8d0041892a3a0b8e0615d950eab",
+      "promptSha256": "c966e9fc6c445a37581bb4df6481d4ad537b908dba8a9837fe2721bf613baa29",
+      "statusSha256": "8181edf86c12194f3b4d73ba32b721c479f8a74231f9ffea0ad463ca8429083a",
+      "workspaceTreeSha256": "4c9a0564bf76d0306bc50a2bf45375ee1c3e7154f8dd1f59698f1ce433e75f8b"
+    }
+  ],
+  "repeatAssertions": [
+    {
+      "caseId": "Q-ID-001",
+      "runs": ["RUN-01", "RUN-02"],
+      "status": "byte-identical"
+    },
+    {
+      "caseId": "F-ID-001",
+      "runs": ["RUN-01", "RUN-02"],
+      "status": "byte-identical"
+    }
+  ],
+  "lateLoginObservation": {
+    "userReportedBrowserLoginComplete": true,
+    "recordedAsCandidate06RuntimeEvidence": false,
+    "recordedAsCandidate07RuntimeEvidence": false,
+    "reason": "The Candidate 06 CLI process had already exited, and Candidate 07 requires a fresh isolated HOME and login flow."
+  },
+  "sourcePolicy": {
+    "visibility": "public-synthetic-only",
+    "privateSourceAllowed": false,
+    "externalModelRequests": 0,
+    "sourceFreeProbeAuthorized": false,
+    "sourceBearingAuthorized": false,
+    "sourceTransmitted": false
+  },
+  "nextGate": "Run full static closure, then obtain separate authorization for one fresh isolated Candidate 07 login and one source-free sentinel probe."
+}

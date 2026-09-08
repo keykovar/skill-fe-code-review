@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -82,13 +83,14 @@ const mcpPathArgumentKeys = new Set([
 ]);
 
 function usage() {
-  return 'Usage: node scripts/audit-runtime-trace.mjs --workspace <directory> [--baseline-status <file>] [--elapsed-seconds <number>] [--require-context-collector] [--allow-mcp <server/tool>]... <trace.jsonl>';
+  return 'Usage: node scripts/audit-runtime-trace.mjs --workspace <directory> [--baseline-status <file>] [--elapsed-seconds <number>] [--expected-response-sha256 <sha256>] [--require-context-collector] [--allow-mcp <server/tool>]... <trace.jsonl>';
 }
 
 function parseArguments(argv) {
   const normalizedArguments = argv[0] === '--' ? argv.slice(1) : argv;
   let baselineStatusPath;
   let elapsedSeconds;
+  let expectedResponseSha256;
   let requireContextCollector = false;
   let tracePath;
   let workspacePath;
@@ -105,6 +107,7 @@ function parseArguments(argv) {
       argument === '--workspace' ||
       argument === '--baseline-status' ||
       argument === '--elapsed-seconds' ||
+      argument === '--expected-response-sha256' ||
       argument === '--allow-mcp'
     ) {
       const value = normalizedArguments[index + 1];
@@ -121,6 +124,11 @@ function parseArguments(argv) {
           throw new Error(usage());
         }
         allowedMcpTools.add(value);
+      } else if (argument === '--expected-response-sha256') {
+        if (!/^[a-f0-9]{64}$/u.test(value)) {
+          throw new Error(usage());
+        }
+        expectedResponseSha256 = value;
       } else {
         elapsedSeconds = Number(value);
         if (!Number.isFinite(elapsedSeconds) || elapsedSeconds < 0) {
@@ -145,6 +153,7 @@ function parseArguments(argv) {
     allowedMcpTools,
     baselineStatusPath,
     elapsedSeconds: elapsedSeconds ?? null,
+    expectedResponseSha256: expectedResponseSha256 ?? null,
     requireContextCollector,
     tracePath,
     workspace: fs.realpathSync(path.resolve(workspacePath)),
@@ -1119,23 +1128,30 @@ function inspectWorkspaceStatus(workspace, baselineStatusPath, violations) {
 }
 
 function readTokenUsage(event) {
-  if (event.type !== 'turn.completed' || !event.usage || typeof event.usage !== 'object') {
+  const codexUsage = event.type === 'turn.completed' ? event.usage : null;
+  const cursorUsage = event.type === 'result' ? event.usage : null;
+  const usage = codexUsage ?? cursorUsage;
+  if (!usage || typeof usage !== 'object') {
     return null;
   }
 
   const readNumber = (key) => {
-    const value = event.usage[key];
+    const value = usage[key];
     return Number.isFinite(value) ? value : null;
   };
-  const inputTokens = readNumber('input_tokens');
-  const cachedInputTokens = readNumber('cached_input_tokens');
+  const inputTokens = readNumber(codexUsage ? 'input_tokens' : 'inputTokens');
+  const cachedInputTokens = readNumber(
+    codexUsage ? 'cached_input_tokens' : 'cacheReadTokens',
+  );
 
   return {
-    cacheWriteInputTokens: readNumber('cache_write_input_tokens'),
+    cacheWriteInputTokens: readNumber(
+      codexUsage ? 'cache_write_input_tokens' : 'cacheWriteTokens',
+    ),
     cachedInputTokens,
     inputTokens,
-    outputTokens: readNumber('output_tokens'),
-    reasoningOutputTokens: readNumber('reasoning_output_tokens'),
+    outputTokens: readNumber(codexUsage ? 'output_tokens' : 'outputTokens'),
+    reasoningOutputTokens: codexUsage ? readNumber('reasoning_output_tokens') : null,
     uncachedInputTokens:
       inputTokens === null || cachedInputTokens === null
         ? null
@@ -1143,11 +1159,27 @@ function readTokenUsage(event) {
   };
 }
 
+function readCursorAssistantResponse(event) {
+  if (event.type !== 'assistant' || !Array.isArray(event.message?.content)) {
+    return null;
+  }
+
+  const textParts = event.message.content
+    .filter((item) => item?.type === 'text' && typeof item.text === 'string')
+    .map((item) => item.text);
+  return textParts.length > 0 ? textParts.join('') : null;
+}
+
+function sha256(value) {
+  return crypto.createHash('sha256').update(value).digest('hex');
+}
+
 function auditTrace(
   tracePath,
   workspace,
   baselineStatusPath,
   elapsedSeconds,
+  expectedResponseSha256,
   allowedMcpTools,
   requireContextCollector,
 ) {
@@ -1155,8 +1187,13 @@ function auditTrace(
   const violations = [];
   let eventCount = 0;
   let commandExecutionCount = 0;
-  let finalResponse = '';
+  let assistantMessageCount = 0;
+  let finalResponse = null;
+  let finalResponseSource = null;
   let legacyToolCallCount = 0;
+  let resultEventCount = 0;
+  let resultIsError = null;
+  let resultResponse = null;
   const mcpToolCalls = new Map();
   const commands = [];
   const seenCommands = new Set();
@@ -1202,7 +1239,30 @@ function auditTrace(
     );
 
     if (event.type === 'item.completed' && event.item?.type === 'agent_message') {
-      finalResponse = typeof event.item.text === 'string' ? event.item.text : '';
+      assistantMessageCount += 1;
+      if (typeof event.item.text === 'string') {
+        finalResponse = event.item.text;
+        finalResponseSource = 'codex-item';
+      }
+    }
+
+    const cursorAssistantResponse = readCursorAssistantResponse(event);
+    if (event.type === 'assistant') {
+      assistantMessageCount += 1;
+      if (cursorAssistantResponse !== null) {
+        finalResponse = cursorAssistantResponse;
+        finalResponseSource = 'cursor-assistant';
+      }
+    }
+
+    if (event.type === 'result') {
+      resultEventCount += 1;
+      resultIsError = typeof event.is_error === 'boolean' ? event.is_error : null;
+      resultResponse = typeof event.result === 'string' ? event.result : null;
+      if (finalResponse === null && resultResponse !== null) {
+        finalResponse = resultResponse;
+        finalResponseSource = 'cursor-result';
+      }
     }
 
     tokenUsage = readTokenUsage(event) ?? tokenUsage;
@@ -1222,19 +1282,35 @@ function auditTrace(
     requireContextCollector,
     violations,
   );
+  const finalResponseSha256 = finalResponse === null ? null : sha256(finalResponse);
+  if (expectedResponseSha256 && finalResponseSha256 !== expectedResponseSha256) {
+    violations.push({
+      actual: finalResponseSha256,
+      expected: expectedResponseSha256,
+      type: 'final-response-sha256-mismatch',
+    });
+  }
 
   return {
     allowedMcpTools: [...allowedMcpTools].sort(),
+    assistantMessageCount,
     commandExecutionCount,
     contextCollector,
     elapsedSeconds,
+    expectedResponseSha256,
     eventCount,
-    finalResponseCharacters: finalResponse ? finalResponse.length : null,
-    finalResponseLines: finalResponse ? finalResponse.split(/\r?\n/u).length : null,
+    finalResponseCharacters: finalResponse === null ? null : finalResponse.length,
+    finalResponseLines: finalResponse === null ? null : finalResponse.split(/\r?\n/u).length,
+    finalResponseSha256,
+    finalResponseSource,
     legacyToolCallCount,
     mcpToolCallCount: mcpToolCallSummaries.length,
     mcpToolCalls: mcpToolCallSummaries,
     mcpToolFailureCount,
+    resultEventCount,
+    resultIsError,
+    resultResponseMatchesFinal:
+      resultResponse === null || finalResponse === null ? null : resultResponse === finalResponse,
     toolCallCount:
       legacyToolCallCount + commandExecutionCount + mcpToolCallSummaries.length,
     tokenUsage,
@@ -1251,6 +1327,7 @@ try {
     allowedMcpTools,
     baselineStatusPath,
     elapsedSeconds,
+    expectedResponseSha256,
     requireContextCollector,
     tracePath,
     workspace,
@@ -1260,6 +1337,7 @@ try {
     workspace,
     baselineStatusPath,
     elapsedSeconds,
+    expectedResponseSha256,
     allowedMcpTools,
     requireContextCollector,
   );

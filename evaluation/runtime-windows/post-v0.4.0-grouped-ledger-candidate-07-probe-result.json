@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-07",
+  "date": "2026-08-28",
+  "status": "pass-source-free-precondition-source-bearing-authorization-pending",
+  "authorization": {
+    "isolatedLoginAuthorized": true,
+    "sourceFreeExternalRequestAuthorized": true,
+    "sourceFreeExternalRequestsExecuted": 1,
+    "sourceBearingAuthorized": false,
+    "privateSourceAllowed": false
+  },
+  "login": {
+    "status": "pass",
+    "processExitCode": 0,
+    "isolatedHome": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-07-cursor-home-01",
+    "freshHome": true,
+    "loginFlowStarted": true,
+    "browserAuthenticationCompleted": true,
+    "accountIdentifierRecorded": false,
+    "loginUrlRecorded": false,
+    "challengeRecorded": false,
+    "sessionIdentifierRecorded": false,
+    "retryExecuted": false,
+    "replacementExecuted": false
+  },
+  "probe": {
+    "status": "pass",
+    "processExitCode": 0,
+    "workspace": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-07-source-free-probe-01",
+    "trace": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-07-source-free-probe-01.trace.jsonl",
+    "traceSha256": "a84bf5bee519734a41c6fcb44fa3a7e83d5a3d29d742148126f261071337c5e5",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderrBytes": 0,
+    "prompt": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.\n",
+    "promptSha256": "95cb2fe6e0fd8c835d1e0b5af232f97e6b5e22f3d1455eca2dbeaf6149d52c49",
+    "decodedResponse": "CLIENT_ISOLATION_OK",
+    "responseCharacters": 19,
+    "responseSha256": "08d172bf341a620dbf1b9e55887d785beb2d93f92c73a17728f97012e1ef62ba",
+    "assistantMessages": 1,
+    "resultEvents": 1,
+    "resultIsError": false,
+    "resultResponseMatchesFinal": true,
+    "toolCalls": 0,
+    "commandExecutions": 0,
+    "mcpCalls": 0,
+    "retryExecuted": false,
+    "modeSwitchExecuted": false,
+    "permissionFallbackObserved": false,
+    "capabilityWarningObserved": false,
+    "forbiddenEndpointSignalMatches": 0,
+    "workspaceEntriesAfterProbe": 0,
+    "sourceTransmitted": false
+  },
+  "audit": {
+    "status": "pass",
+    "path": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-07-source-free-probe-01.audit.json",
+    "sha256": "4b7041cbaa32f24bdd5b8f0d80cd50767f7275d7225e01708e1fbd2c1505b374",
+    "eventCount": 8,
+    "valid": true,
+    "violations": []
+  },
+  "integrity": {
+    "preparedWorkspaceTreesUnchanged": "7/7",
+    "sourceFreeWorkspaceUnchanged": true,
+    "publicSkillChanged": false,
+    "installedSkillChanged": false,
+    "privateSourceTransmitted": false,
+    "publicSyntheticSourceTransmitted": false
+  },
+  "runtimeWindow": {
+    "sourceFreeProbeAttemptsExecuted": 1,
+    "sourceBearingRunsExecuted": 0,
+    "retryExecuted": false,
+    "replacementExecuted": false,
+    "modeSwitchExecuted": false,
+    "decision": "Source-free precondition passed; source-bearing authorization remains pending."
+  },
+  "evidenceBoundary": "No account, login URL, challenge, session, request credential, authentication token, or Cursor state-file content is recorded. No packet-level network capture was performed.",
+  "nextGate": "Obtain separate authorization before sending the public-synthetic D-ID-001 RUN-01 fixture for Deep Review."
+}

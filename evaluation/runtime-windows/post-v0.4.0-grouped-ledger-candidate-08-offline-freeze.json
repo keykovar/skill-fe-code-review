@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-08",
+  "date": "2026-08-28",
+  "status": "offline-freeze-complete-source-free-plan-capability-probe-not-authorized",
+  "predecessor": {
+    "candidate": "post-v0.4.0-grouped-ledger-candidate-07",
+    "decision": "No-Go",
+    "earliestFailure": "Cursor Ask mode denied the single read-only Git inventory command, so the declared deterministic test never started.",
+    "structuralFailure": "Ledger child locations used line ranges or omitted a line number.",
+    "retried": false,
+    "reinterpreted": false
+  },
+  "runtimeCandidate": {
+    "skillInstruction": "Ledger child locations must be exactly `[file:line]` with one line number; ranges and locationless labels are invalid.",
+    "netSkillEnglishWords": 18,
+    "skillSha256": "7c48a782f0580ce44d754bd2de11ab6195af47cce16752f1b0251971b632cf35",
+    "skillTreeSha256": "d25f55a5e11dd59c2eb8f16f3d4650924e61d1bee05c6b19b6545c83b61ef18f",
+    "skillTreeFileCount": 12,
+    "quickReferenceSha256": "91fe031195f6018ecbf29c48aab5fc26477f9262b40eb7dd4d149b2294c7a9ed",
+    "deepReferenceSha256": "44d1fb20cfc2f3b9814943d5254e2349387a8b17832eab27b618a2a2a3bedc36",
+    "fixReferenceSha256": "8380289a00f3c2f1a1ea740bc824b1a53813d6839b3957cae3c54c0e27757d33",
+    "groupedValidatorSha256": "a0e429e9ea53dc94ff75d8e573b670e1cdcf30012d07ff31210a968515342998",
+    "reviewOutputValidatorSha256": "0293481ada8e2c722730f02f2663244d3c446e4d0a46dd9c9bc63ed030e81b8f",
+    "validatorBehaviorChanged": false,
+    "newVisibleOutputFields": 0
+  },
+  "tooling": {
+    "builder": {
+      "path": "scripts/build-grouped-ledger-candidate-08.mjs",
+      "sha256": "ce0e77db04e33155944d9d620936005ecf8b8b27cfedc1f880aad1d8ff93a00a"
+    },
+    "runner": {
+      "path": "scripts/run-cursor-evaluation-v4.mjs",
+      "sha256": "347e161863240606f312f285eb7dac080768faec234a12f39008db28c5b77244"
+    },
+    "preparer": {
+      "path": "scripts/prepare-grouped-ledger-candidate-08.mjs",
+      "sha256": "0896c91cb82ab848bf7041bdca1bbcdde15271f59d5300033f995de90bd2f372"
+    },
+    "manifestSha256": "df946c921d34b4f9284d9da685e80961693d5465491e2ec93be78203be5feef7"
+  },
+  "clientContract": {
+    "version": "2026.08.11-e8db854",
+    "mode": "plan",
+    "sandbox": "enabled",
+    "argumentsBeforePrompt": [
+      "--print",
+      "--output-format",
+      "stream-json",
+      "--mode",
+      "plan",
+      "--sandbox",
+      "enabled",
+      "--trust",
+      "--workspace",
+      "<workspace>"
+    ],
+    "forbiddenFlags": ["--auto-review", "--force", "--yolo", "--approve-mcps"],
+    "permissionFallbackAllowed": false,
+    "stderrWarningAllowed": false
+  },
+  "testEvidenceContract": {
+    "executionOwner": "offline evaluator before workspace freeze",
+    "executionsPerWorkspace": 1,
+    "expectedResultsMatched": "7/7",
+    "cursorTestCallsExpected": 0,
+    "promptReceives": ["actual exit code"],
+    "localManifestRetains": ["stdout SHA-256", "stderr SHA-256"],
+    "rawTestOutputTransmitted": false
+  },
+  "temporaryRoot": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-08-offline-freeze-01",
+  "generationBoundary": {
+    "freshOutputDirectory": true,
+    "runtimeResultsCarriedForward": false,
+    "sourceFreeResultCarriedForward": false,
+    "sourceBearingResultCarriedForward": false
+  },
+  "preparedRuns": [
+    {
+      "caseId": "D-ID-001",
+      "runId": "RUN-01",
+      "actualTestExitCode": 1,
+      "expectedCursorTestCalls": 0,
+      "head": "278c0c11674caeaf207e98e7bdffa112eafb221e",
+      "promptSha256": "004bbc5c42fc75c7556e666dc26fa4e438495cb8214937589acd4dfb11d9cf33",
+      "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "workspaceTreeSha256": "0c30b1570b9ff85549da186a69e68483b12f2ef68b73e532ec73ac7188be3848"
+    },
+    {
+      "caseId": "Q-ID-001",
+      "runId": "RUN-01",
+      "actualTestExitCode": 1,
+      "expectedCursorTestCalls": 0,
+      "head": "f2b9dad85aa356a2a7fad66680dddf1d5915fddb",
+      "promptSha256": "d77db5737f3cdba7020e5fb7e0948486dcfdb88b73c4d7b0f796002499f2e3bb",
+      "statusSha256": "e1014afad52183dc386bc7d4623894a7bfc00ee4e4977cbd6ff96892065ffb4b",
+      "workspaceTreeSha256": "49dc6e92a773845e62299d7877fafe2e9388c7f4013ecfa38dbeb384fb38a2da"
+    },
+    {
+      "caseId": "Q-ID-001",
+      "runId": "RUN-02",
+      "actualTestExitCode": 1,
+      "expectedCursorTestCalls": 0,
+      "head": "f2b9dad85aa356a2a7fad66680dddf1d5915fddb",
+      "promptSha256": "d77db5737f3cdba7020e5fb7e0948486dcfdb88b73c4d7b0f796002499f2e3bb",
+      "statusSha256": "e1014afad52183dc386bc7d4623894a7bfc00ee4e4977cbd6ff96892065ffb4b",
+      "workspaceTreeSha256": "49dc6e92a773845e62299d7877fafe2e9388c7f4013ecfa38dbeb384fb38a2da"
+    },
+    {
+      "caseId": "Q-ID-002",
+      "runId": "RUN-01",
+      "actualTestExitCode": 1,
+      "expectedCursorTestCalls": 0,
+      "head": "b93aefee67ad840471c783d5ed1fc78f8742f0b1",
+      "promptSha256": "d77db5737f3cdba7020e5fb7e0948486dcfdb88b73c4d7b0f796002499f2e3bb",
+      "statusSha256": "b34f0c929992956b36d3712dd4677f77e83166eafd66a292def0ab008337395c",
+      "workspaceTreeSha256": "4af286d9eab0b0a84ba18f3b6a606365b5b0a57c098a1fa916ae8fae37633946"
+    },
+    {
+      "caseId": "F-ID-001",
+      "runId": "RUN-01",
+      "actualTestExitCode": 0,
+      "expectedCursorTestCalls": 0,
+      "head": "ed843967437e6c06c3aa78e052540c4aaa5785d4",
+      "promptSha256": "99e85d1622d24e85f05d9deecad2734752659d488b0ac19fc9d5baaf52aa565a",
+      "statusSha256": "43915c2da896e437bf50266d161ab5b34a13a3a0a1b8cb6fe0d79fb989a61ede",
+      "workspaceTreeSha256": "2b13b64f8a7308aee43b65b4dfd2503aa211b9eadcbe33f10e0e0d0627ae26a3"
+    },
+    {
+      "caseId": "F-ID-001",
+      "runId": "RUN-02",
+      "actualTestExitCode": 0,
+      "expectedCursorTestCalls": 0,
+      "head": "ed843967437e6c06c3aa78e052540c4aaa5785d4",
+      "promptSha256": "99e85d1622d24e85f05d9deecad2734752659d488b0ac19fc9d5baaf52aa565a",
+      "statusSha256": "43915c2da896e437bf50266d161ab5b34a13a3a0a1b8cb6fe0d79fb989a61ede",
+      "workspaceTreeSha256": "2b13b64f8a7308aee43b65b4dfd2503aa211b9eadcbe33f10e0e0d0627ae26a3"
+    },
+    {
+      "caseId": "K-ID-001",
+      "runId": "RUN-01",
+      "actualTestExitCode": 0,
+      "expectedCursorTestCalls": 0,
+      "head": "2009ee2bdd009df37898409d34adea7fb41ebc71",
+      "promptSha256": "742024e1d5814829bc3354ade4adc9acae6897f7980d3d8089da27e16b30a671",
+      "statusSha256": "8181edf86c12194f3b4d73ba32b721c479f8a74231f9ffea0ad463ca8429083a",
+      "workspaceTreeSha256": "eb0ed571ca9edcc1b79fd52016e32a7c6414a8ac551c52c9d6aa129feaf69922"
+    }
+  ],
+  "repeatAssertions": [
+    {
+      "caseId": "Q-ID-001",
+      "runs": ["RUN-01", "RUN-02"],
+      "status": "byte-identical-by-head-prompt-and-workspace-tree"
+    },
+    {
+      "caseId": "F-ID-001",
+      "runs": ["RUN-01", "RUN-02"],
+      "status": "byte-identical-by-head-prompt-and-workspace-tree"
+    }
+  ],
+  "sourcePolicy": {
+    "visibility": "public-synthetic-only",
+    "privateSourceAllowed": false,
+    "externalModelRequests": 0,
+    "sourceFreeProbeAuthorized": false,
+    "sourceBearingAuthorized": false,
+    "sourceTransmitted": false
+  },
+  "nextGate": "Pass full static closure, then obtain separate authorization for one fresh isolated Candidate 08 Plan-mode source-free capability probe."
+}

@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-15",
+  "date": "2026-09-07",
+  "status": "no-go-q-id-002-run-01-severity-oracle-failure",
+  "run": {
+    "caseId": "Q-ID-002",
+    "mode": "quick-independent",
+    "runId": "RUN-01",
+    "order": 1,
+    "executed": true,
+    "runnerExitCode": 0,
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "traceSha256": "d7740ed5258700e4e645bb2f5cbb614f53c92e8c75d610e9b5c27dcd5ac4665b",
+    "traceBytes": 66670,
+    "outputSha256": "3e42ed0ac22dff2d83b32025c7a57849aba3de7efc08f5ceac76e11e6b66b6e6",
+    "outputBytes": 5179,
+    "durationMs": 101222,
+    "assistantMessages": 5,
+    "toolCalls": 13,
+    "readToolCalls": 9,
+    "globToolCalls": 3,
+    "grepToolCalls": 1,
+    "shellCalls": 0,
+    "mcpCalls": 0,
+    "contextCollectorCalls": 0,
+    "testCalls": 0,
+    "outsideWorkspaceReads": 0,
+    "failedToolCalls": 0,
+    "toolRetryAfterFailure": false,
+    "workspaceMutationObserved": false,
+    "workspaceTreeUnchanged": true,
+    "statusUnchanged": true,
+    "findingIds": ["F-001", "F-002"],
+    "findingConcepts": [
+      "account-cache-key-collision",
+      "ignored-timeout-contract"
+    ],
+    "findingSeverities": ["Blocking", "Blocking"],
+    "independentFindingCount": 2,
+    "blockingFindingCount": 2,
+    "coverageLedgerEntries": 2,
+    "recommendation": "修改后提交"
+  },
+  "runtimeAudit": {
+    "valid": true,
+    "eventCount": 136,
+    "resultEventCount": 1,
+    "resultIsError": false,
+    "finalResponseSha256": "3e42ed0ac22dff2d83b32025c7a57849aba3de7efc08f5ceac76e11e6b66b6e6",
+    "finalResponseSource": "cursor-assistant",
+    "resultResponseMatchesFinal": false,
+    "resultAggregationNote": "Cursor result concatenated progress messages with the final assistant response; the deterministic auditor selected the last assistant text as the review output.",
+    "contextCollectorCalls": 0,
+    "equivalentGitReads": [],
+    "violations": []
+  },
+  "pathSafety": {
+    "valid": true,
+    "workspaceRelativeReadPaths": "9/9",
+    "workspaceRelativeGlobPatterns": "3/3",
+    "workspaceRelativeGrepGlobs": "1/1",
+    "forbiddenPathForms": 0,
+    "outsideWorkspaceReads": 0,
+    "failedToolCalls": 0,
+    "toolCallsAfterFailure": 0
+  },
+  "outputValidator": {
+    "mode": "quick",
+    "valid": true,
+    "errors": [],
+    "findingIds": ["F-001", "F-002"],
+    "blockingFindingCount": 2,
+    "coverageLedgerEntries": 2,
+    "singleFindingMergeKeyAbsent": true
+  },
+  "semanticOracle": {
+    "valid": false,
+    "independentFindingsPreserved": true,
+    "sequentialFindingIds": true,
+    "severityContractValid": false,
+    "recommendationAllowed": true,
+    "forbiddenRecommendationAbsent": true,
+    "coverageBeforeAfterValid": true,
+    "coverageDispositionValid": true,
+    "singleFindingMergeKeyAbsent": true,
+    "errors": [
+      "F-002 ignored-timeout-contract must use the frozen Risk severity; the output escalated it to Blocking without evidence of a broken main flow or another listed Blocking outcome."
+    ]
+  },
+  "integrity": {
+    "head": "9b41449538e8f691440ff4e79b0611fd2d791cdc",
+    "branch": "main",
+    "statusSha256": "b34f0c929992956b36d3712dd4677f77e83166eafd66a292def0ab008337395c",
+    "workspaceTreeSha256": "57b9b105fe787db33241f9a277c5bcec329165db3a293d59c79021413c886ed2",
+    "candidateSkillTreeSha256": "beca476371288fc96b28fc5f58d619dca81fbf3b336d5125e7fc64979ba16fcb",
+    "promptSha256": "dd72904d2cb9fbf5ad6dc79977fbbdd369d4507231601be3232f63442a07ca93",
+    "runnerSha256": "c3b6d558c98365f887c1a1917253e0c610a1e663f53ed769ee226caf149bc549",
+    "seatbeltProfileSha256": "6ed882cbbd2605d3192502484407641d48dd15a1bc0e1b77f0682844d092ed40"
+  },
+  "tokenUsage": {
+    "inputTokens": 69817,
+    "uncachedInputTokens": 2745,
+    "cachedInputTokens": 67072,
+    "cacheWriteInputTokens": 0,
+    "outputTokens": 5039,
+    "reasoningOutputTokens": null
+  },
+  "transferPolicy": {
+    "externalModelRequests": 1,
+    "sourceTransmitted": true,
+    "sourceVisibility": "public-synthetic-only",
+    "privateSourceTransmitted": false,
+    "workspaceFilesTransmitted": 31,
+    "credentialContentsReadOrRecordedByEvaluator": false,
+    "oracleTransmitted": false,
+    "historicalTraceTransmitted": false
+  },
+  "setup": {
+    "outerSandboxLaunchFailure": "The first local launcher attempt could not apply nested sandbox-exec and exited before Cursor started.",
+    "modelRequestStartedBeforeRelaunch": false,
+    "runtimeRetry": false,
+    "replacement": false,
+    "modeSwitch": false,
+    "reinterpreted": false
+  },
+  "decision": {
+    "run": "No-Go",
+    "candidate": "No-Go",
+    "reason": "The runtime, path-safety, read-only, integrity, and output-structure gates passed, but F-002 violated the frozen severity oracle by escalating a Risk-only local timeout regression to Blocking.",
+    "nextGate": "Stop Candidate 15. Do not execute the Deep or Codex smoke runs. Any further work starts with offline diagnosis and a separately defined candidate window."
+  },
+  "evidenceBoundary": "Only the frozen 31-file public-synthetic Q-ID-002/RUN-01 workspace was sent. No private project source, customer data, production source, credential, account identity, evaluator oracle, historical trace, raw trace, request identifier, or session identifier was sent or recorded."
+}

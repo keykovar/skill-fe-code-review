@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-11",
+  "status": "no-go-stopped-after-first-source-bearing-run",
+  "run": {
+    "caseId": "D-ID-001",
+    "mode": "deep-identity",
+    "runId": "RUN-01",
+    "order": 1,
+    "executed": true,
+    "runnerExitCode": 0,
+    "stderrBytes": 0,
+    "traceSha256": "6de85a2d3cdeb711ec410e1e299de6f2ab9b49516b705e25d3fef9e25a53126f",
+    "outputSha256": "651536dd82be0d4e7187c6d3aa037fc65a547c17c404fdf2fe5bee6ee5dd5fa9",
+    "toolCalls": 22,
+    "mcpCalls": 0,
+    "shellCalls": 0,
+    "outsideWorkspaceReads": 0,
+    "workspaceMutationObserved": false,
+    "workspaceTreeUnchanged": true,
+    "statusUnchanged": true,
+    "findingIds": ["F-001"],
+    "blockingFindingCount": 1,
+    "coverageLedgerEntries": 10
+  },
+  "outputValidator": {
+    "mode": "deep",
+    "valid": false,
+    "errors": [
+      {"line":41,"type":"coverage-ledger-missing-before-after"},
+      {"line":41,"type":"coverage-ledger-missing-disposition"},
+      {"line":42,"type":"coverage-ledger-missing-before-after"},
+      {"line":42,"type":"coverage-ledger-missing-disposition"},
+      {"line":43,"type":"coverage-ledger-missing-disposition"},
+      {"line":44,"type":"coverage-ledger-missing-disposition"},
+      {"line":45,"type":"coverage-ledger-missing-disposition"},
+      {"line":46,"type":"coverage-ledger-missing-before-after"},
+      {"line":46,"type":"coverage-ledger-missing-disposition"},
+      {"line":47,"type":"coverage-ledger-missing-disposition"},
+      {"line":48,"type":"coverage-ledger-missing-disposition"},
+      {"line":49,"type":"coverage-ledger-missing-before-after"},
+      {"line":49,"type":"coverage-ledger-missing-disposition"},
+      {"line":50,"type":"coverage-ledger-missing-disposition"}
+    ]
+  },
+  "transferPolicy": {
+    "externalModelRequests": 1,
+    "sourceTransmitted": true,
+    "sourceVisibility": "public-synthetic-only",
+    "privateSourceTransmitted": false,
+    "sourceBearingAuthorized": true
+  },
+  "stopDecision": {
+    "decision": "No-Go",
+    "reason": "The first source-bearing Deep output failed the frozen grouped ledger structural contract.",
+    "remainingRunsExecuted": 0,
+    "retryExecuted": false,
+    "replacementExecuted": false,
+    "modeSwitchExecuted": false,
+    "reinterpreted": false
+  },
+  "integrity": {
+    "runnerSha256": "c3b6d558c98365f887c1a1917253e0c610a1e663f53ed769ee226caf149bc549",
+    "seatbeltProfileSha256": "6ed882cbbd2605d3192502484407641d48dd15a1bc0e1b77f0682844d092ed40",
+    "skillTreeSha256": "d25f55a5e11dd59c2eb8f16f3d4650924e61d1bee05c6b19b6545c83b61ef18f"
+  }
+}

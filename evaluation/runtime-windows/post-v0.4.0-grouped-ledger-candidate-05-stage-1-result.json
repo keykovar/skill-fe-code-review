@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-05",
+  "date": "2026-08-28",
+  "status": "no-go-stage-1-stopped-after-run-01-client-contract-failure",
+  "run": {
+    "caseId": "D-ID-001",
+    "runId": "RUN-01",
+    "mode": "deep-identity",
+    "authorized": true,
+    "processExitCode": 0,
+    "durationMilliseconds": 48829,
+    "traceEvents": 123,
+    "assistantMessages": 2,
+    "resultEvents": 1,
+    "startedToolCalls": 18,
+    "toolKinds": {
+      "read": 8,
+      "shell": 6,
+      "glob": 2,
+      "grep": 2
+    },
+    "mcpCalls": 0,
+    "stderrBytes": 133,
+    "inputTokens": 52429,
+    "cacheReadTokens": 134944,
+    "outputTokens": 5614
+  },
+  "clientContract": {
+    "status": "fail",
+    "failureStage": "client capability negotiation before promotion scoring",
+    "requestedMode": "auto-review",
+    "effectiveMode": "Allowlist fallback",
+    "observedWarning": "Auto-review is unavailable for this session because it requires a classifier-capable model and team permission; Cursor fell back to Allowlist.",
+    "reason": "The effective client mode did not match the frozen autoReview=true contract.",
+    "earliestBlockingFailure": true,
+    "retryExecuted": false,
+    "replacementExecuted": false,
+    "modeSwitchExecuted": false
+  },
+  "transferBoundary": {
+    "status": "pass-public-synthetic-only",
+    "destination": "Cursor service used by the isolated Cursor Agent CLI login",
+    "promptSha256": "fbe8fcea786c666b60391ef5ab57c669603384f5fcc5b6dd6ecf8d3ea6204032",
+    "workspaceFileCount": 31,
+    "publicSyntheticSourceTransmitted": true,
+    "privateSourceTransmitted": false,
+    "credentialsTransmittedByRecordedPrompt": false,
+    "semanticOracleTransmitted": false,
+    "externalModelRequests": 1
+  },
+  "executionAudit": {
+    "status": "pass",
+    "auditorValid": true,
+    "auditorViolations": [],
+    "collectorCallCount": 0,
+    "expectedCollectorCallCount": 0,
+    "declaredFixtureTestCalls": 1,
+    "writeTools": 0,
+    "mcpCalls": 0,
+    "workspaceStatusUnchanged": true,
+    "workspaceTreeSha256": "5e91534e62b452b474161acd8ff709426d9c099c524afce009908b424ecde538",
+    "finalResponseSha256": "e54bcc1a93fbfa35621b7867dfb57e8128c45c6c2c57b0259313b35c22a7ff3d",
+    "resultResponseSha256": "ad0691d30a0f7906317c4139ac437246665485073eea23589a4d584c9083b3fd",
+    "resultResponseMatchesFinal": false,
+    "resultAggregationExplanation": "The Cursor result event concatenated one progress assistant message with the final review; the auditor selected the last assistant message as the final review. This diagnostic did not supersede the earlier client-contract failure."
+  },
+  "reviewObservation": {
+    "scoredForPromotion": false,
+    "reason": "The client-contract gate failed before model-quality scoring.",
+    "semanticObservation": "The unscored output found the expected stale-profile-token regression as F-001 Blocking, selected Simplify, and recommended not proceeding.",
+    "candidateStructuralValidator": "fail",
+    "candidateStructuralErrors": {
+      "group-header-invalid": 3,
+      "content-outside-group": 8,
+      "coverage-ledger-empty": 1
+    },
+    "findingIdsRecognizedByValidator": [],
+    "structuralObservation": "The changed-condition groups and Finding rows used bold wrappers instead of the frozen canonical grouped-ledger grammar."
+  },
+  "artifactBoundary": {
+    "traceSha256": "ffc4d7cf1ff44fff2dff7e127c1cecd8179b501f4030b861fc1e7a9a67c94f97",
+    "stderrSha256": "d2b36c2d28d9706015397cd23ea4ee5fd467acd7680c756de72ee0fa49a6c56f",
+    "finalReviewSha256": "e54bcc1a93fbfa35621b7867dfb57e8128c45c6c2c57b0259313b35c22a7ff3d",
+    "rawArtifactsRetainedOutsideRepository": true,
+    "accountIdentifierRecorded": false,
+    "sessionIdentifierRecorded": false,
+    "requestIdentifierRecorded": false,
+    "credentialsRecorded": false,
+    "temporaryCursorCredentialsRetained": true
+  },
+  "runtimeWindow": {
+    "sourceBearingRunsExecuted": 1,
+    "remainingRunsExecuted": 0,
+    "retryExecuted": false,
+    "replacementExecuted": false,
+    "modeSwitchExecuted": false,
+    "decision": "No-Go; Candidate 05 closed after D-ID-001 RUN-01 without retry or reinterpretation."
+  },
+  "postStopIntegrity": {
+    "preparedWorkspaceTreesUnchanged": "7/7",
+    "publicSkillChanged": false,
+    "candidateRuntimeFilesApplied": false,
+    "sourceBearingRunsExecuted": 1,
+    "publicSyntheticSourceTransmitted": true,
+    "privateSourceTransmitted": false
+  },
+  "postRecordValidation": {
+    "vitestFiles": "14/14",
+    "vitestTests": "141/141",
+    "groupedReplay": "7/7",
+    "repositorySkillValidator": "pass",
+    "officialSkillValidator": "pass",
+    "pythonDependencyBoundary": "cached PyYAML 6.0.3 in an isolated temporary environment; no install",
+    "nodeSyntax": "3/3 affected evaluator scripts",
+    "jsonFilesParsed": "125/125",
+    "markdownLocalLinks": "163/163 across 55 repository Markdown files",
+    "targetedSensitiveIdentifierScan": "pass-no-matches",
+    "preparedWorkspaceTreesUnchanged": "7/7",
+    "gitDiffCheck": "pass",
+    "stableSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "installedSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "stablePublicReviewOutputValidatorSha256": "8ca475ad2c6d9184a19716bbad76b483a00c9a6ac85c591088431ef61771ccf3",
+    "externalModelRequests": 0,
+    "sourceTransmitted": false
+  },
+  "evidenceBoundary": "Raw credentials, account, session and request identifiers, raw trace, stderr, and extracted output remain outside the repository. This file records only sanitized hashes, counts, boundaries, and decisions.",
+  "decision": "Candidate 05 is No-Go under its frozen zero-retry and zero-replacement policy. The atomic Node preflight passed, but Cursor did not honor the frozen auto-review client mode. The unscored output also failed the grouped-ledger structural validator. No remaining run is authorized.",
+  "nextGate": "Candidate 05 is closed No-Go. Do not retry or reinterpret D-ID-001 RUN-01. A future candidate requires a new frozen client contract, fresh workspaces, a fresh source-free probe, and separate source-bearing authorization."
+}

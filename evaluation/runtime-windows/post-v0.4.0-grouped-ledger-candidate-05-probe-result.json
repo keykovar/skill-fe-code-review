@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-05",
+  "date": "2026-08-28",
+  "status": "pass-source-free-precondition-source-bearing-authorization-pending",
+  "client": {
+    "name": "Cursor Agent CLI",
+    "version": "2026.08.11-e8db854",
+    "mode": "default-print",
+    "outputFormat": "stream-json",
+    "autoReview": true,
+    "sandbox": "enabled",
+    "credentialStore": "file"
+  },
+  "authorization": {
+    "externalRequestsAuthorized": 1,
+    "externalRequestsExecuted": 1,
+    "scope": "source-free sentinel only",
+    "sourceBearingAuthorized": false,
+    "privateSourceAllowed": false
+  },
+  "login": {
+    "status": "pass",
+    "isolatedHome": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-05-cursor-home-01",
+    "accountIdentifierRecorded": false,
+    "modelRequestsBeforeProbe": 0,
+    "sourceTransmitted": false,
+    "temporaryCredentialsRetained": true
+  },
+  "probe": {
+    "workspace": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-05-source-free-probe-01",
+    "workspaceAllowedContent": [
+      "Git metadata",
+      "public Candidate 05 Cursor Skill required by runner v2 preflight"
+    ],
+    "reviewedSourcePresent": false,
+    "privateSourcePresent": false,
+    "prompt": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.\n",
+    "promptCharacters": 71,
+    "promptSha256": "95cb2fe6e0fd8c835d1e0b5af232f97e6b5e22f3d1455eca2dbeaf6149d52c49",
+    "runnerSha256": "8d45c08beef54a86220ff7f995c3a2b8c88bbafa38382a9339d06137bb31e322",
+    "processExitCode": 0,
+    "totalDurationMilliseconds": 5555,
+    "apiDurationMilliseconds": 5555,
+    "decodedResponse": "CLIENT_ISOLATION_OK",
+    "decodedResponseBytes": 19,
+    "assistantMessages": 1,
+    "resultEvents": 1,
+    "traceEvents": 9,
+    "toolCalls": 0,
+    "mcpCalls": 0,
+    "commandExecutions": 0,
+    "retrySignals": 0,
+    "undisclosedEndpointSignals": 0,
+    "stderrBytes": 0,
+    "inputTokens": 14727,
+    "cacheReadTokens": 2688,
+    "cacheWriteTokens": 0,
+    "outputTokens": 114,
+    "auditorValid": true,
+    "auditorViolations": [],
+    "auditorResponseExtraction": "cursor-assistant",
+    "auditorExpectedResponseSha256": "08d172bf341a620dbf1b9e55887d785beb2d93f92c73a17728f97012e1ef62ba",
+    "auditorFinalResponseSha256": "08d172bf341a620dbf1b9e55887d785beb2d93f92c73a17728f97012e1ef62ba",
+    "auditorResultEventCount": 1,
+    "auditorResultResponseMatchesFinal": true,
+    "initialSupplementalResponseParser": {
+      "assistantMessages": 1,
+      "assistantResponseExact": true,
+      "resultEvents": 1,
+      "resultResponseExact": true,
+      "resultIsError": false
+    }
+  },
+  "toolingReplay": {
+    "status": "pass",
+    "auditor": "scripts/audit-runtime-trace.mjs",
+    "auditorSha256": "db701d66786321997d94f25b79904c0c180e681ec963a1e37963ce1c6cfba21f",
+    "expectedResponseSha256": "08d172bf341a620dbf1b9e55887d785beb2d93f92c73a17728f97012e1ef62ba",
+    "finalResponseSha256": "08d172bf341a620dbf1b9e55887d785beb2d93f92c73a17728f97012e1ef62ba",
+    "finalResponseSource": "cursor-assistant",
+    "assistantMessages": 1,
+    "resultEvents": 1,
+    "resultIsError": false,
+    "resultResponseMatchesFinal": true,
+    "inputTokens": 14727,
+    "cacheReadTokens": 2688,
+    "cacheWriteTokens": 0,
+    "outputTokens": 114,
+    "auditorValid": true,
+    "auditorViolations": [],
+    "workspaceUnchanged": true,
+    "externalModelRequests": 0,
+    "sourceTransmitted": false
+  },
+  "integrity": {
+    "workspaceStatusUnchanged": true,
+    "workspaceTreeSha256": "fd6e66a90889783493f09164a30281166007ec3eb9935b4334c49c0f1aece3a2",
+    "skillTreeSha256": "8d03446b6063ba0cca4931462be8ccd06edbf6d3db985e028b8fa4a45d48f55d",
+    "preparedWorkspacesUnchanged": "7/7",
+    "sourceBearingRuns": 0,
+    "sourceTransmitted": false,
+    "candidateRuntimeFilesApplied": false
+  },
+  "artifacts": {
+    "promptSha256": "95cb2fe6e0fd8c835d1e0b5af232f97e6b5e22f3d1455eca2dbeaf6149d52c49",
+    "traceSha256": "8e53ba864fa3f68d5640b9690f11c8e4d31f5edb5640c2aaa07ae11ae2b374c0",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rawArtifactsRetainedOutsideRepository": true
+  },
+  "evidenceBoundary": "Raw credentials, account identifier, session identifier, request identifier, and raw trace remain outside the repository. Endpoint-signal conclusions are limited to the retained Cursor trace and stderr; no packet-level network capture was performed.",
+  "decision": "The Candidate 05 source-free client-isolation precondition passed and sent no reviewed or private source. It provides no model-quality evidence and does not authorize a source-bearing run."
+}

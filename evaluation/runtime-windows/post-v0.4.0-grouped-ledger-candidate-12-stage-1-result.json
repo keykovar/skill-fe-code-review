@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-12",
+  "status": "no-go-stopped-after-first-source-bearing-run",
+  "run": {
+    "caseId": "D-ID-001",
+    "mode": "deep-identity",
+    "runId": "RUN-01",
+    "order": 1,
+    "executed": true,
+    "runnerExitCode": 0,
+    "stderrBytes": 0,
+    "traceSha256": "951e22206bdb4130c62026e4c80e85fbf50573354f03dc28b3396451edb28802",
+    "traceBytes": 104680,
+    "outputSha256": "c26b39627ef69e02298938a98bc9783ab8af18025ad7a3bdd1dc34e3175ad272",
+    "outputBytes": 12376,
+    "toolCalls": 13,
+    "mcpCalls": 0,
+    "shellCalls": 0,
+    "outsideWorkspaceReads": 0,
+    "workspaceMutationObserved": false,
+    "workspaceTreeUnchanged": true,
+    "statusUnchanged": true,
+    "findingIds": ["F-001", "F-002"],
+    "blockingFindingCount": 1,
+    "coverageLedgerEntries": 6
+  },
+  "outputValidator": {
+    "mode": "deep",
+    "valid": false,
+    "errors": [
+      {"line": 53, "type": "coverage-ledger-missing-before-after"}
+    ]
+  },
+  "runtimeAudit": {
+    "valid": true,
+    "assistantMessages": 3,
+    "eventCount": 236,
+    "resultEventCount": 1,
+    "resultIsError": false,
+    "finalResponseSha256": "c26b39627ef69e02298938a98bc9783ab8af18025ad7a3bdd1dc34e3175ad272",
+    "workspaceStatusUnchanged": true,
+    "workspaceTreeUnchanged": true
+  },
+  "transferPolicy": {
+    "externalModelRequests": 1,
+    "sourceTransmitted": true,
+    "sourceVisibility": "public-synthetic-only",
+    "privateSourceTransmitted": false,
+    "sourceBearingAuthorized": true
+  },
+  "stopDecision": {
+    "decision": "No-Go",
+    "reason": "The first source-bearing Deep output failed the frozen Candidate 12 Changed-Condition Coverage contract because one entry lacked before -> after.",
+    "executedRuns": "1/7",
+    "remainingRunsExecuted": 0,
+    "retryExecuted": false,
+    "replacementExecuted": false,
+    "modeSwitchExecuted": false,
+    "reinterpreted": false
+  },
+  "integrity": {
+    "runnerSha256": "c3b6d558c98365f887c1a1917253e0c610a1e663f53ed769ee226caf149bc549",
+    "seatbeltProfileSha256": "6ed882cbbd2605d3192502484407641d48dd15a1bc0e1b77f0682844d092ed40",
+    "skillTreeSha256": "a3e4c860e6c5f7b926e3b51dc22f7be795746b9a7b1d577d8cbaa276f35cda6b"
+  },
+  "nextGate": "Candidate 12 is closed No-Go. Do not execute the remaining six runs or retry D-ID-001/RUN-01; a future candidate requires a new frozen window and explicit authorization."
+}

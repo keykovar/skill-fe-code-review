@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-13",
+  "date": "2026-09-04",
+  "status": "stage-1-pass-remaining-source-bearing-authorization-pending",
+  "run": {
+    "caseId": "D-ID-001",
+    "mode": "deep-identity",
+    "runId": "RUN-01",
+    "order": 1,
+    "executed": true,
+    "runnerExitCode": 0,
+    "stderrBytes": 0,
+    "traceSha256": "bcd5bf83d8b74c100d984f9417c26a36c69b81c603c048664733eacc9e644cd2",
+    "traceBytes": 112549,
+    "outputSha256": "fa5c30adfdf53c6f8e626c52d28cbdd2d0245bb7e91922c33c1dbea8f35826c4",
+    "outputBytes": 12085,
+    "durationMs": 161907,
+    "assistantMessages": 4,
+    "toolCalls": 17,
+    "readToolCalls": 12,
+    "readToolCallEvents": 24,
+    "globToolCalls": 2,
+    "globToolCallEvents": 4,
+    "grepToolCalls": 3,
+    "grepToolCallEvents": 6,
+    "shellCalls": 0,
+    "mcpCalls": 0,
+    "outsideWorkspaceReads": 0,
+    "workspaceMutationObserved": false,
+    "workspaceTreeUnchanged": true,
+    "statusUnchanged": true,
+    "findingIds": ["F-001", "F-002"],
+    "blockingFindingCount": 1,
+    "coverageLedgerEntries": 6
+  },
+  "runtimeAudit": {
+    "valid": true,
+    "eventCount": 237,
+    "resultEventCount": 1,
+    "resultIsError": false,
+    "finalResponseSha256": "fa5c30adfdf53c6f8e626c52d28cbdd2d0245bb7e91922c33c1dbea8f35826c4",
+    "contextCollectorCalls": 0,
+    "equivalentGitReads": [],
+    "violations": []
+  },
+  "outputValidator": {
+    "mode": "deep",
+    "valid": true,
+    "errors": [],
+    "findingIds": ["F-001", "F-002"],
+    "blockingFindingCount": 1,
+    "coverageLedgerEntries": 6
+  },
+  "integrity": {
+    "head": "8546aa13feb1b4472d40bbf883eee4983c102451",
+    "branch": "candidate",
+    "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "workspaceTreeSha256": "1b41dc3623e58c07e40f34f4426143b3708ec3a793ffe9e8c5fc33d65857ee92",
+    "candidateSkillTreeSha256": "57cbd739d4c7ad942617d348e1cdd642323840831c3c3ef62e5648c5eb339b23",
+    "runnerSha256": "c3b6d558c98365f887c1a1917253e0c610a1e663f53ed769ee226caf149bc549",
+    "seatbeltProfileSha256": "6ed882cbbd2605d3192502484407641d48dd15a1bc0e1b77f0682844d092ed40"
+  },
+  "transferPolicy": {
+    "externalModelRequests": 1,
+    "sourceTransmitted": true,
+    "sourceVisibility": "public-synthetic-only",
+    "privateSourceTransmitted": false,
+    "fixtureFilesTransmitted": 31
+  },
+  "setup": {
+    "initialRunnerPreflightFailure": "control output directory did not exist",
+    "modelRequestStartedBeforeCorrection": false,
+    "runtimeRetry": false,
+    "modeSwitch": false,
+    "replacement": false,
+    "reinterpreted": false
+  },
+  "decision": {
+    "stage1": "Pass",
+    "candidate": "Continue pending separate authorization",
+    "nextGate": "Request explicit authorization before executing Q-ID-001/RUN-01; remaining six source-bearing runs are not authorized by this record. Stop at the first failure without retry, replacement, reinterpretation, or mode switch."
+  },
+  "evidenceBoundary": "Only the frozen public synthetic D-ID-001 workspace was sent. No private project source, customer data, production source, credential, account identity, raw session state, evaluator oracle, or historical trace was sent or recorded."
+}

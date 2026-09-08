@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-13",
+  "date": "2026-09-04",
+  "status": "final-no-finding-control-pass-candidate-go",
+  "run": {
+    "caseId": "K-ID-001",
+    "mode": "quick-keep",
+    "runId": "RUN-01",
+    "order": 7,
+    "executed": true,
+    "runnerExitCode": 0,
+    "stderrBytes": 0,
+    "traceSha256": "695675023793fd5052ba92becb6fb0ff97472552b9e9dbd1112d53e8427a6bce",
+    "traceBytes": 48664,
+    "outputSha256": "7699ead50e427f3e8f717b1d48968b57d07abecc6665e2fc71715223e4ca2ff6",
+    "outputBytes": 3230,
+    "durationMs": 59246,
+    "assistantMessages": 3,
+    "toolCalls": 10,
+    "readToolCalls": 7,
+    "globToolCalls": 2,
+    "grepToolCalls": 1,
+    "shellCalls": 0,
+    "mcpCalls": 0,
+    "contextCollectorCalls": 0,
+    "testCalls": 0,
+    "outsideWorkspaceReads": 0,
+    "workspaceMutationObserved": false,
+    "workspaceTreeUnchanged": true,
+    "statusUnchanged": true,
+    "findingIds": [],
+    "blockingFindingCount": 0,
+    "coverageLedgerEntries": 4,
+    "designDecision": "Keep",
+    "recommendation": "可以提交"
+  },
+  "runtimeAudit": {
+    "valid": true,
+    "eventCount": 86,
+    "resultEventCount": 1,
+    "resultIsError": false,
+    "finalResponseSha256": "7699ead50e427f3e8f717b1d48968b57d07abecc6665e2fc71715223e4ca2ff6",
+    "finalResponseSource": "cursor-assistant",
+    "resultResponseMatchesFinal": false,
+    "resultAggregationNote": "Cursor result concatenated progress messages with the final assistant response; the deterministic auditor selected the last assistant text as the review output.",
+    "contextCollectorCalls": 0,
+    "equivalentGitReads": [],
+    "violations": []
+  },
+  "outputValidator": {
+    "mode": "quick",
+    "valid": true,
+    "errors": [],
+    "findingIds": [],
+    "blockingFindingCount": 0,
+    "coverageLedgerEntries": 4
+  },
+  "noFindingOracle": {
+    "valid": true,
+    "expectedFindingCount": 0,
+    "actualFindingCount": 0,
+    "falsePositiveCount": 0,
+    "designDecision": "Keep",
+    "coverageDisposition": "Behavior Preserving",
+    "recommendation": "可以提交",
+    "forbiddenRecommendationAbsent": true,
+    "errors": []
+  },
+  "integrity": {
+    "head": "e385cfc851c6040fc9183ffaec7eb0d47ae7d917",
+    "branch": "main",
+    "statusSha256": "8181edf86c12194f3b4d73ba32b721c479f8a74231f9ffea0ad463ca8429083a",
+    "workspaceTreeSha256": "da72b1cf9657c0815974d8f6e94761cf175b18c99b65d03b624256f8eb79836e",
+    "candidateSkillTreeSha256": "57cbd739d4c7ad942617d348e1cdd642323840831c3c3ef62e5648c5eb339b23",
+    "promptSha256": "9bc0aca41afc33077bfe8cdd67635c1614d5edcd08a9c03d61e78ceaf7afdf27",
+    "runnerSha256": "c3b6d558c98365f887c1a1917253e0c610a1e663f53ed769ee226caf149bc549",
+    "seatbeltProfileSha256": "6ed882cbbd2605d3192502484407641d48dd15a1bc0e1b77f0682844d092ed40"
+  },
+  "tokenUsage": {
+    "inputTokens": 28003,
+    "uncachedInputTokens": 0,
+    "cachedInputTokens": 77184,
+    "cacheWriteInputTokens": 0,
+    "outputTokens": 3264,
+    "reasoningOutputTokens": null
+  },
+  "transferPolicy": {
+    "externalModelRequests": 1,
+    "sourceTransmitted": true,
+    "sourceVisibility": "public-synthetic-only",
+    "privateSourceTransmitted": false,
+    "workspaceFilesTransmitted": 28,
+    "credentialContentsReadOrRecordedByEvaluator": false,
+    "oracleTransmitted": false,
+    "historicalTraceTransmitted": false
+  },
+  "executionPolicy": {
+    "runtimeRetry": false,
+    "modeSwitch": false,
+    "replacement": false,
+    "reinterpreted": false
+  },
+  "decision": {
+    "run": "Pass",
+    "candidate": "Go",
+    "nextGate": "Perform final local repository validation and review the bounded Candidate 13 delta before applying it to the public and installed Skill."
+  },
+  "evidenceBoundary": "Only the frozen public-synthetic K-ID-001/RUN-01 workspace was sent. No private project source, customer data, production source, credential, account identity, evaluator oracle, or historical trace was sent or recorded."
+}

@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-08",
+  "date": "2026-08-28",
+  "status": "no-go-source-free-plan-capability-probe-output-and-read-only-contract-failure",
+  "predecessor": {
+    "candidate": "post-v0.4.0-grouped-ledger-candidate-07",
+    "decision": "No-Go",
+    "failedRun": "D-ID-001 RUN-01",
+    "retried": false,
+    "reinterpreted": false
+  },
+  "offlineDiagnosis": {
+    "candidate07FinalResponseSha256": "39938e04e2dfb3ddcb09bc75fafcf20484b32db27231a03862b4c81e4a521e71",
+    "stableFlatValidator": {
+      "sha256": "8ca475ad2c6d9184a19716bbad76b483a00c9a6ac85c591088431ef61771ccf3",
+      "errorCount": 16,
+      "applicableToCandidate07": false
+    },
+    "frozenGroupedValidator": {
+      "sha256": "0293481ada8e2c722730f02f2663244d3c446e4d0a46dd9c9bc63ed030e81b8f",
+      "errorCount": 7,
+      "errorTypes": ["group-child-invalid", "group-empty"],
+      "rootCause": "Behavior-preserving children used line ranges; Cannot Verify children omitted a line number.",
+      "applicableToCandidate07": true
+    },
+    "executionRootCause": "Cursor Ask mode denied the single read-only Shell inventory command. Offline preparation had already executed node --test once, so requiring a second Cursor-owned test execution was redundant.",
+    "externalModelRequests": 0,
+    "sourceTransmitted": false
+  },
+  "candidateDelta": {
+    "skill": {
+      "classification": "one child-location rendering constraint",
+      "instruction": "Ledger child locations must be exactly `[file:line]` with one line number; ranges and locationless labels are invalid.",
+      "netEnglishWords": 18,
+      "maximumNetEnglishWords": 20,
+      "skillSha256": "7c48a782f0580ce44d754bd2de11ab6195af47cce16752f1b0251971b632cf35",
+      "skillTreeSha256": "d25f55a5e11dd59c2eb8f16f3d4650924e61d1bee05c6b19b6545c83b61ef18f",
+      "quickReferenceChanged": false,
+      "deepReferenceChanged": false,
+      "fixReferenceChanged": false,
+      "validatorBehaviorChanged": false,
+      "newVisibleOutputFields": 0
+    },
+    "client": {
+      "classification": "one explicit read-only mode replacement",
+      "candidate07Mode": "ask",
+      "candidate08Mode": "plan",
+      "planModeAdvertisedContract": "read-only/planning (analyze, propose plans, no edits)",
+      "sandbox": "enabled",
+      "permissionFallbackAllowed": false,
+      "forbiddenFlags": ["--auto-review", "--force", "--yolo", "--approve-mcps"]
+    },
+    "testEvidence": {
+      "classification": "remove redundant model-owned execution",
+      "offlineExecutionsPerWorkspace": 1,
+      "cursorExecutionsExpected": 0,
+      "promptReceives": ["actual exit code"],
+      "localManifestRetains": ["stdout SHA-256", "stderr SHA-256"],
+      "rawTestOutputTransmitted": false
+    }
+  },
+  "offlineFreeze": {
+    "status": "pass",
+    "result": "evaluation/runtime-windows/post-v0.4.0-grouped-ledger-candidate-08-offline-freeze.json",
+    "resultSha256": "461821da80eb54b75defce78509b921b1b573992f0b0878ae90e6bfdc7a3668f",
+    "temporaryRoot": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-08-offline-freeze-01",
+    "preparedWorkspaces": "7/7",
+    "expectedTestResultsMatched": "7/7",
+    "repeatPairsByteIdentical": "2/2",
+    "cursorTestCallsExpected": 0,
+    "externalModelRequests": 0,
+    "sourceTransmitted": false
+  },
+  "staticValidation": {
+    "status": "pass",
+    "vitest": "21/21 files and 160/160 tests",
+    "groupedLedgerReplay": "7/7",
+    "candidateSkillValidators": "2/2",
+    "candidateNodeSyntax": "3/3",
+    "jsonDocuments": "134/134",
+    "markdownLocalLinks": "166/166 across 58 files",
+    "sensitiveIdentifiers": 0,
+    "frozenWorkspaceHashesUnchanged": "7/7",
+    "gitDiffCheck": "pass",
+    "externalModelRequests": 0,
+    "sourceTransmitted": false
+  },
+  "sourceFreeCapabilityProbe": {
+    "status": "fail-output-and-read-only-contract",
+    "authorized": true,
+    "executed": true,
+    "freshIsolatedHomeRequired": true,
+    "freshWorkspaceRequired": true,
+    "mode": "plan",
+    "prompt": "Use the read-only Shell tool exactly once to run `/usr/bin/git status --short --untracked-files=all` in the current workspace, then return exactly PLAN_READ_ONLY_OK. Do not read files, use other tools, or modify anything.\n",
+    "expectedResponse": "PLAN_READ_ONLY_OK",
+    "expectedToolCalls": 1,
+    "expectedCommandExecutions": 1,
+    "expectedMcpCalls": 0,
+    "expectedWorkspaceMutation": false,
+    "actualToolCalls": 1,
+    "actualCommandExecutions": 1,
+    "actualMcpCalls": 0,
+    "actualWorkspaceMutation": false,
+    "finalAssistantResponseExact": true,
+    "resultEventResponseExact": false,
+    "requestedSandboxPolicy": "TYPE_WORKSPACE_READWRITE",
+    "strictReadOnlyEnforcementProven": false,
+    "retryExecuted": false,
+    "result": "evaluation/runtime-windows/post-v0.4.0-grouped-ledger-candidate-08-probe-result.json",
+    "resultSha256": "0661bc65c5027aeaa3f995dc77f409ea004d528c30b2a34423073ab834a32044",
+    "sourceBearingAllowed": false,
+    "externalModelRequestsExecuted": 1
+  },
+  "prospectiveRuntimeWindow": {
+    "status": "closed-no-go-before-source-bearing",
+    "retryPolicy": "none",
+    "replacementPolicy": "none",
+    "modeSwitchPolicy": "none",
+    "stage1": ["D-ID-001 RUN-01", "Q-ID-001 RUN-01", "Q-ID-001 RUN-02"],
+    "stage2": ["Q-ID-002 RUN-01", "F-ID-001 RUN-01", "F-ID-001 RUN-02", "K-ID-001 RUN-01"],
+    "continueOnlyIf": "Static closure, source-free Plan-mode capability probe, and every prior source-bearing gate pass. Each external request requires separate authorization."
+  },
+  "applicationBoundary": {
+    "publicSkillChanged": false,
+    "installedSkillChanged": false,
+    "publicValidatorChanged": false,
+    "releaseChanged": false,
+    "commitCreated": false,
+    "pushExecuted": false
+  },
+  "sourcePolicy": {
+    "visibility": "public-synthetic-only",
+    "privateSourceAllowed": false,
+    "sourceFreeProbeAuthorized": true,
+    "sourceBearingAuthorized": false,
+    "externalModelRequests": 1,
+    "sourceTransmitted": false
+  },
+  "postStopClosure": {
+    "status": "pass",
+    "vitest": "21/21 files and 160/160 tests",
+    "groupedLedgerReplay": "7/7",
+    "candidateSkillValidators": "2/2",
+    "candidateNodeSyntax": "3/3",
+    "jsonDocuments": "135/135",
+    "markdownLocalLinks": "167/167 across 58 files",
+    "sensitiveIdentifiers": 0,
+    "frozenWorkspaceHashesUnchanged": "7/7",
+    "sourceFreeWorkspaceUnchanged": true,
+    "publicSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "installedSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "gitDiffCheck": "pass",
+    "sourceBearingRunsExecuted": 0,
+    "externalModelRequests": 1,
+    "sourceTransmitted": false,
+    "retryExecuted": false,
+    "replacementExecuted": false,
+    "modeSwitchExecuted": false
+  },
+  "stopRule": "Stop at the first static, client-contract, Prompt-integrity, transfer-scope, semantic, structural, execution, read-only, isolation, integrity, hash, fixture, replay, or client warning failure without retry, replacement, reinterpretation, or mode switch.",
+  "nextGate": "Candidate 08 is closed No-Go. Do not execute a retry, replacement probe, mode switch, or source-bearing request."
+}

@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-13",
+  "date": "2026-09-04",
+  "status": "complete-go",
+  "decision": "Go",
+  "boundedDelta": "Require every Changed-Condition Coverage entry to render one location, one before-to-after transition, and one final disposition on a single physical line; repeated Finding IDs require a consistent non-empty merge key.",
+  "offline": {
+    "fixtureReplay": "3/3",
+    "frozenRuns": 7,
+    "declaredTestExitsMatched": "7/7",
+    "workspaceIntegrityMatched": "7/7",
+    "sourceFreeProbe": "Pass"
+  },
+  "sourceBearing": {
+    "runsPlanned": 7,
+    "runsExecuted": 7,
+    "runsPassed": 7,
+    "runtimeAuditsPassed": "7/7",
+    "outputValidatorsPassed": "7/7",
+    "semanticOrClosureOraclesPassed": "7/7",
+    "workspaceIntegrityPassed": "7/7",
+    "runnerExitZero": "7/7",
+    "stderrEmpty": "7/7",
+    "runtimeRetries": 0,
+    "replacements": 0,
+    "modeSwitches": 0,
+    "shellCalls": 0,
+    "mcpCalls": 0,
+    "contextCollectorCalls": 0,
+    "testCalls": 0,
+    "outsideWorkspaceReads": 0,
+    "workspaceMutations": 0,
+    "toolCalls": 97,
+    "durationMs": 790722
+  },
+  "quality": {
+    "deepReview": "Pass",
+    "deepFindingRecall": "2/2",
+    "quickIndependentFindingRecall": "8/8",
+    "quickRepeatFindingRecall": "6/6",
+    "quickConceptToIdStability": "3/3",
+    "fixClosureRecall": "6/6",
+    "fixConceptToIdStability": "3/3",
+    "fixOriginalSeverityStable": true,
+    "fixResolvedStatusStable": true,
+    "fixNewRegressionStable": true,
+    "noFindingFalsePositiveCount": 0,
+    "noFindingDesignDecision": "Keep",
+    "coverageLedgerEntries": 19
+  },
+  "reportedTokenCounters": {
+    "inputTokens": 418013,
+    "cachedInputTokens": 518784,
+    "outputTokens": 44056,
+    "caveat": "These are raw Cursor per-run counters summed for observability. Some runs report cache-read tokens greater than inputTokens, so the totals are not interpreted as billing or additive context size."
+  },
+  "runs": [
+    {
+      "order": 1,
+      "caseId": "D-ID-001",
+      "runId": "RUN-01",
+      "result": "post-v0.4.0-grouped-ledger-candidate-13-stage-1-result.json",
+      "status": "Pass"
+    },
+    {
+      "order": 2,
+      "caseId": "Q-ID-001",
+      "runId": "RUN-01",
+      "result": "post-v0.4.0-grouped-ledger-candidate-13-stage-2-run-01-result.json",
+      "status": "Pass"
+    },
+    {
+      "order": 3,
+      "caseId": "Q-ID-001",
+      "runId": "RUN-02",
+      "result": "post-v0.4.0-grouped-ledger-candidate-13-stage-2-run-02-result.json",
+      "status": "Pass"
+    },
+    {
+      "order": 4,
+      "caseId": "Q-ID-002",
+      "runId": "RUN-01",
+      "result": "post-v0.4.0-grouped-ledger-candidate-13-stage-2-run-03-result.json",
+      "status": "Pass"
+    },
+    {
+      "order": 5,
+      "caseId": "F-ID-001",
+      "runId": "RUN-01",
+      "result": "post-v0.4.0-grouped-ledger-candidate-13-stage-2-run-04-result.json",
+      "status": "Pass"
+    },
+    {
+      "order": 6,
+      "caseId": "F-ID-001",
+      "runId": "RUN-02",
+      "result": "post-v0.4.0-grouped-ledger-candidate-13-stage-2-run-05-result.json",
+      "status": "Pass"
+    },
+    {
+      "order": 7,
+      "caseId": "K-ID-001",
+      "runId": "RUN-01",
+      "result": "post-v0.4.0-grouped-ledger-candidate-13-stage-2-run-06-result.json",
+      "status": "Pass"
+    }
+  ],
+  "transferPolicy": {
+    "externalModelRequests": 7,
+    "sourceVisibility": "public-synthetic-only",
+    "privateSourceTransmitted": false,
+    "credentialContentsReadOrRecordedByEvaluator": false,
+    "oracleTransmitted": false,
+    "historicalTraceTransmitted": false
+  },
+  "setupNotes": [
+    "D-ID-001 had one local control-directory preflight correction before Cursor started.",
+    "Q-ID-002 had one truncated evaluator-supplied expected HEAD rejected locally before Cursor started.",
+    "Neither preflight correction started a model request, transmitted source, created a replacement run, or changed the frozen client contract."
+  ],
+  "nextGate": "Perform final local repository validation and a bounded-delta review before applying Candidate 13 to the public and installed Skill. No commit, push, tag, release, temporary-data cleanup, or Skill installation is authorized by this result."
+}

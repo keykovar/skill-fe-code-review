@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-06",
+  "preparedDate": "2026-08-28",
+  "status": "offline-freeze-complete-source-free-probe-not-authorized",
+  "temporaryRoot": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-06-offline-freeze-01",
+  "manifestSha256": "f45b58f034a72e72fa7caebe3df5dfc781ea66696bbd5f1e80d3e8babf6cdfa7",
+  "artifacts": {
+    "skillSha256": "a7145a6d305647c32ed47873b1284575152ff12c7ab61002cea108672dedfae1",
+    "skillTreeSha256": "49fd77c07ccb214b4fe464b5019888ac496ca59fd52ba3c04cf8390e8627211d",
+    "quickSha256": "91fe031195f6018ecbf29c48aab5fc26477f9262b40eb7dd4d149b2294c7a9ed",
+    "deepSha256": "44d1fb20cfc2f3b9814943d5254e2349387a8b17832eab27b618a2a2a3bedc36",
+    "fixSha256": "8380289a00f3c2f1a1ea740bc824b1a53813d6839b3957cae3c54c0e27757d33",
+    "reviewOutputValidatorSha256": "0293481ada8e2c722730f02f2663244d3c446e4d0a46dd9c9bc63ed030e81b8f",
+    "groupedValidatorSha256": "a0e429e9ea53dc94ff75d8e573b670e1cdcf30012d07ff31210a968515342998",
+    "skillEnglishWords": 3805,
+    "netSkillEnglishWords": 25
+  },
+  "client": {
+    "executable": "local Cursor Agent CLI",
+    "version": "2026.08.11-e8db854"
+  },
+  "runner": {
+    "path": "scripts/run-cursor-evaluation-v3.mjs",
+    "sha256": "067b4a9d25a44a062bed5a25a44266c4001949fe30211be583fc116cb6715e07"
+  },
+  "preparer": {
+    "path": "scripts/prepare-grouped-ledger-candidate-06.mjs",
+    "sha256": "26988c8d58ee7ce94e9f42fdd48c487505aee96c37bbec28a701ce67203f0b78"
+  },
+  "clientContract": {
+    "argumentsBeforePrompt": [
+      "--print",
+      "--output-format",
+      "stream-json",
+      "--mode",
+      "ask",
+      "--sandbox",
+      "enabled",
+      "--trust",
+      "--workspace",
+      "<workspace>"
+    ],
+    "forbiddenFlags": ["--auto-review", "--force", "--yolo", "--approve-mcps"],
+    "permissionFallbackAllowed": false,
+    "stderrWarningAllowed": false
+  },
+  "preflightContract": {
+    "implementation": "single Node process with absolute Git and Cursor executables",
+    "shell": false,
+    "adHocShellPreflightAllowed": false,
+    "zshPathIndependent": true,
+    "checks": [
+      "runner SHA-256",
+      "Prompt SHA-256",
+      "Cursor version",
+      "Git HEAD",
+      "Git branch",
+      "Git status SHA-256",
+      "workspace tree SHA-256",
+      "Cursor Skill tree SHA-256",
+      "fresh output paths outside workspace"
+    ]
+  },
+  "generationBoundary": {
+    "freshOutputDirectory": true,
+    "runtimeResultsCarriedForward": false,
+    "sourceFreeResultCarriedForward": false,
+    "sourceBearingResultCarriedForward": false
+  },
+  "expectedTestResultsMatched": "7/7",
+  "preparedRuns": [
+    {
+      "caseId": "D-ID-001",
+      "mode": "deep-identity",
+      "runId": "RUN-01",
+      "expectedTestExitCode": 1,
+      "branch": "candidate",
+      "head": "b781585f81039c20e00eb9b6e58cce3e2a138008",
+      "promptSha256": "fbe8fcea786c666b60391ef5ab57c669603384f5fcc5b6dd6ecf8d3ea6204032",
+      "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "workspaceTreeSha256": "f55aed15175f5cca5225958f383fab724cf4b3e21871653b1dc805af8a7a8d40",
+      "skillTreeSha256": "49fd77c07ccb214b4fe464b5019888ac496ca59fd52ba3c04cf8390e8627211d",
+      "collectorRequired": false,
+      "expectedCollectorCalls": 0
+    },
+    {
+      "caseId": "Q-ID-001",
+      "mode": "quick-identity",
+      "runId": "RUN-01",
+      "expectedTestExitCode": 1,
+      "branch": "main",
+      "head": "1e0e7dcc5795afa8be9c0fc2a9a5c1e180a3cce5",
+      "promptSha256": "c966e9fc6c445a37581bb4df6481d4ad537b908dba8a9837fe2721bf613baa29",
+      "statusSha256": "e1014afad52183dc386bc7d4623894a7bfc00ee4e4977cbd6ff96892065ffb4b",
+      "workspaceTreeSha256": "8981dcbc8c5e525df14b9aa831e03448412fa47666de0b07bb4e1de0b78d0128",
+      "skillTreeSha256": "49fd77c07ccb214b4fe464b5019888ac496ca59fd52ba3c04cf8390e8627211d",
+      "collectorRequired": true,
+      "expectedCollectorCalls": 1
+    },
+    {
+      "caseId": "Q-ID-001",
+      "mode": "quick-identity",
+      "runId": "RUN-02",
+      "expectedTestExitCode": 1,
+      "branch": "main",
+      "head": "1e0e7dcc5795afa8be9c0fc2a9a5c1e180a3cce5",
+      "promptSha256": "c966e9fc6c445a37581bb4df6481d4ad537b908dba8a9837fe2721bf613baa29",
+      "statusSha256": "e1014afad52183dc386bc7d4623894a7bfc00ee4e4977cbd6ff96892065ffb4b",
+      "workspaceTreeSha256": "8981dcbc8c5e525df14b9aa831e03448412fa47666de0b07bb4e1de0b78d0128",
+      "skillTreeSha256": "49fd77c07ccb214b4fe464b5019888ac496ca59fd52ba3c04cf8390e8627211d",
+      "collectorRequired": true,
+      "expectedCollectorCalls": 1
+    },
+    {
+      "caseId": "Q-ID-002",
+      "mode": "quick-independent",
+      "runId": "RUN-01",
+      "expectedTestExitCode": 1,
+      "branch": "main",
+      "head": "62f8d1f9c443d2f77c562c12b04f5f8dbb26875d",
+      "promptSha256": "c966e9fc6c445a37581bb4df6481d4ad537b908dba8a9837fe2721bf613baa29",
+      "statusSha256": "b34f0c929992956b36d3712dd4677f77e83166eafd66a292def0ab008337395c",
+      "workspaceTreeSha256": "3e45e6baf69ab613807f83e9e43755758fa4a365c00a4a6d4cce4ef3e38c53b8",
+      "skillTreeSha256": "49fd77c07ccb214b4fe464b5019888ac496ca59fd52ba3c04cf8390e8627211d",
+      "collectorRequired": true,
+      "expectedCollectorCalls": 1
+    },
+    {
+      "caseId": "F-ID-001",
+      "mode": "fix-identity",
+      "runId": "RUN-01",
+      "expectedTestExitCode": 0,
+      "branch": "main",
+      "head": "96c3fc0bd185bcc7a262adc0cefd1f59d6daeaa6",
+      "promptSha256": "5e316a6038fbbaf44f3d81dd7d3e2f876cb3f5308783c2ebf3dfbf40cebbb7f8",
+      "statusSha256": "43915c2da896e437bf50266d161ab5b34a13a3a0a1b8cb6fe0d79fb989a61ede",
+      "workspaceTreeSha256": "8663d2ab8586f8ca8423d6bbfa2c29c61927ac7cdf15dcfb451a5303ce75462f",
+      "skillTreeSha256": "49fd77c07ccb214b4fe464b5019888ac496ca59fd52ba3c04cf8390e8627211d",
+      "collectorRequired": true,
+      "expectedCollectorCalls": 1
+    },
+    {
+      "caseId": "F-ID-001",
+      "mode": "fix-identity",
+      "runId": "RUN-02",
+      "expectedTestExitCode": 0,
+      "branch": "main",
+      "head": "96c3fc0bd185bcc7a262adc0cefd1f59d6daeaa6",
+      "promptSha256": "5e316a6038fbbaf44f3d81dd7d3e2f876cb3f5308783c2ebf3dfbf40cebbb7f8",
+      "statusSha256": "43915c2da896e437bf50266d161ab5b34a13a3a0a1b8cb6fe0d79fb989a61ede",
+      "workspaceTreeSha256": "8663d2ab8586f8ca8423d6bbfa2c29c61927ac7cdf15dcfb451a5303ce75462f",
+      "skillTreeSha256": "49fd77c07ccb214b4fe464b5019888ac496ca59fd52ba3c04cf8390e8627211d",
+      "collectorRequired": true,
+      "expectedCollectorCalls": 1
+    },
+    {
+      "caseId": "K-ID-001",
+      "mode": "quick-keep",
+      "runId": "RUN-01",
+      "expectedTestExitCode": 0,
+      "branch": "main",
+      "head": "dba4fc955214b8d0041892a3a0b8e0615d950eab",
+      "promptSha256": "c966e9fc6c445a37581bb4df6481d4ad537b908dba8a9837fe2721bf613baa29",
+      "statusSha256": "8181edf86c12194f3b4d73ba32b721c479f8a74231f9ffea0ad463ca8429083a",
+      "workspaceTreeSha256": "4c9a0564bf76d0306bc50a2bf45375ee1c3e7154f8dd1f59698f1ce433e75f8b",
+      "skillTreeSha256": "49fd77c07ccb214b4fe464b5019888ac496ca59fd52ba3c04cf8390e8627211d",
+      "collectorRequired": true,
+      "expectedCollectorCalls": 1
+    }
+  ],
+  "repeatAssertions": [
+    {
+      "caseId": "Q-ID-001",
+      "runs": ["RUN-01", "RUN-02"],
+      "head": "1e0e7dcc5795afa8be9c0fc2a9a5c1e180a3cce5",
+      "promptSha256": "c966e9fc6c445a37581bb4df6481d4ad537b908dba8a9837fe2721bf613baa29",
+      "workspaceTreeSha256": "8981dcbc8c5e525df14b9aa831e03448412fa47666de0b07bb4e1de0b78d0128"
+    },
+    {
+      "caseId": "F-ID-001",
+      "runs": ["RUN-01", "RUN-02"],
+      "head": "96c3fc0bd185bcc7a262adc0cefd1f59d6daeaa6",
+      "promptSha256": "5e316a6038fbbaf44f3d81dd7d3e2f876cb3f5308783c2ebf3dfbf40cebbb7f8",
+      "workspaceTreeSha256": "8663d2ab8586f8ca8423d6bbfa2c29c61927ac7cdf15dcfb451a5303ce75462f"
+    }
+  ],
+  "sourcePolicy": {
+    "externalModelRequests": 0,
+    "privateSourceAllowed": false,
+    "sourceBearingAuthorized": false,
+    "sourceFreeProbeAuthorized": false,
+    "sourceTransmitted": false,
+    "visibility": "public-synthetic-only"
+  }
+}

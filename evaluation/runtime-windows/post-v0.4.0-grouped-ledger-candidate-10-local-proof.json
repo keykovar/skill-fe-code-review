@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-10",
+  "date": "2026-08-28",
+  "status": "pass-host-level-seatbelt-and-offline-tooling-proof",
+  "tooling": {
+    "runner": {
+      "path": "scripts/run-cursor-evaluation-v6.mjs",
+      "sha256": "6144c30a7495a6e0f4e52ba0d78745ab35bc8af09f93f2d87a9ab7f7ba7abc10",
+      "clientSandbox": "disabled",
+      "outerSeatbeltRequired": true
+    },
+    "probeAuditor": {
+      "path": "scripts/audit-cursor-plan-probe-v2.mjs",
+      "sha256": "1c8003ab5bc6c67c25e518595a8878a205d1e3c45d347244a24312468a821c80",
+      "successAndFailureShapesDistinguished": true
+    },
+    "seatbeltProfile": {
+      "path": "evaluation/profiles/cursor-workspace-read-only.sb",
+      "sha256": "6ed882cbbd2605d3192502484407641d48dd15a1bc0e1b77f0682844d092ed40",
+      "changedComparedWithCandidate09": false
+    }
+  },
+  "codexSandboxAttempt": {
+    "classification": "invalid-host-context-preflight",
+    "cursorExecuted": false,
+    "networkAccessed": false,
+    "externalModelRequests": 0,
+    "gitStatusExitCode": 71,
+    "workspaceWriteExitCode": 71,
+    "protectedRootWriteExitCode": 71,
+    "reason": "The current Codex sandbox prevented the outer sandbox-exec process itself from applying the Seatbelt profile. This attempt did not test Candidate 10 Cursor behavior and is retained rather than presented as runtime evidence."
+  },
+  "hostLevelSeatbeltProof": {
+    "status": "pass",
+    "workspace": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-10-local-proof-01/workspace",
+    "protectedRoot": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-10-local-proof-01/protected",
+    "gitStatusExitCode": 0,
+    "gitStatusStdoutBytes": 0,
+    "gitStatusStderrBytes": 0,
+    "workspaceWrite": "blocked-operation-not-permitted",
+    "workspaceMarkerCreated": false,
+    "protectedRootWrite": "blocked-operation-not-permitted",
+    "protectedRootMarkerCreated": false,
+    "workspaceTreeSha256Before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "workspaceTreeSha256After": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "workspaceTreeUnchanged": true,
+    "networkAccessed": false,
+    "cursorExecuted": false,
+    "externalModelRequests": 0
+  },
+  "testEvidence": {
+    "targetedVitestFiles": "2/2",
+    "targetedVitestTests": "9/9",
+    "runnerUsesClientSandboxDisabled": true,
+    "runnerStillUsesOuterSeatbelt": true,
+    "auditorAcceptsSuccessfulCommand": true,
+    "auditorRejectsFailureWithActualCommandAndExitCode": true
+  },
+  "integrity": {
+    "candidateSkillChanged": false,
+    "publicSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "installedSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "publicSkillChanged": false,
+    "installedSkillChanged": false
+  },
+  "evidenceBoundary": "This is offline macOS host-level Seatbelt and evaluator-tooling evidence. It does not establish real Cursor Plan-mode capability, model review quality, source-bearing isolation, or cross-platform behavior.",
+  "nextGate": "Pass full static closure, then obtain separate authorization before any fresh Candidate 10 login or source-free external request."
+}

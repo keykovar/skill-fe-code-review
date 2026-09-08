@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-06",
+  "date": "2026-08-28",
+  "status": "no-go-stopped-before-source-free-probe-login-failure",
+  "authorization": {
+    "loginAuthorized": true,
+    "sourceFreeExternalRequestAuthorized": true,
+    "sourceFreeExternalRequestsExecuted": 0,
+    "sourceBearingAuthorized": false,
+    "privateSourceAllowed": false
+  },
+  "login": {
+    "status": "fail",
+    "processExitCode": 1,
+    "observedMessage": "Login failed or timed out. Please try again.",
+    "isolatedHome": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-06-cursor-home-01",
+    "loginFlowStarted": true,
+    "browserAuthenticationCompleted": false,
+    "accountIdentifierRecorded": false,
+    "loginUrlRecorded": false,
+    "challengeRecorded": false,
+    "sessionIdentifierRecorded": false,
+    "stateAndCacheFileCount": 10,
+    "temporaryStateRetained": true,
+    "retryExecuted": false,
+    "replacementExecuted": false
+  },
+  "probe": {
+    "status": "not-executed",
+    "workspace": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-06-source-free-probe-01",
+    "workspaceCreated": false,
+    "traceCreated": false,
+    "prompt": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.\n",
+    "promptSha256": "95cb2fe6e0fd8c835d1e0b5af232f97e6b5e22f3d1455eca2dbeaf6149d52c49",
+    "clientProcessStarted": false,
+    "modelRequests": 0,
+    "sourceTransmitted": false,
+    "toolCalls": 0,
+    "mcpCalls": 0,
+    "commandExecutions": 0,
+    "retrySignals": 0
+  },
+  "integrity": {
+    "preparedWorkspaceTreesUnchanged": "7/7",
+    "publicSkillChanged": false,
+    "installedSkillChanged": false,
+    "privateSourceTransmitted": false,
+    "publicSyntheticSourceTransmitted": false
+  },
+  "runtimeWindow": {
+    "sourceFreeProbeAttemptsExecuted": 0,
+    "sourceBearingRunsExecuted": 0,
+    "retryExecuted": false,
+    "replacementExecuted": false,
+    "modeSwitchExecuted": false,
+    "decision": "No-Go; Candidate 06 closed before source-free probe because the single authorized isolated login failed."
+  },
+  "evidenceBoundary": "No account, login URL, challenge, session, request, credential, or Cursor state-file content is recorded. No packet-level network capture was performed.",
+  "decision": "Candidate 06 is No-Go under its frozen zero-retry and zero-replacement policy. The isolated login failed before any source-free or source-bearing model request, so no runtime Skill-quality evidence was produced."
+}

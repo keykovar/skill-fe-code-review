@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-11",
+  "date": "2026-09-01",
+  "status": "no-go-stopped-after-first-source-bearing-run",
+  "predecessor": {
+    "candidate": "post-v0.4.0-grouped-ledger-candidate-10",
+    "decision": "No-Go",
+    "failedGate": "source-free Plan-mode Shell capability probe",
+    "failure": "Cursor completed the exact Git command as result.rejected with isReadonly false and zero executions",
+    "retried": false,
+    "reinterpreted": false
+  },
+  "retainedEvidenceMatrix": [
+    {
+      "contract": "auto-review",
+      "result": "unavailable-fell-back-to-allowlist",
+      "candidate": "post-v0.4.0-grouped-ledger-candidate-05"
+    },
+    {
+      "contract": "ask-mode-shell",
+      "result": "read-only-git-inventory-denied",
+      "candidate": "post-v0.4.0-grouped-ledger-candidate-07"
+    },
+    {
+      "contract": "plan-shell-client-sandbox-enabled-under-outer-seatbelt",
+      "result": "nested-sandbox-application-failed",
+      "candidate": "post-v0.4.0-grouped-ledger-candidate-09"
+    },
+    {
+      "contract": "plan-shell-client-sandbox-disabled-under-outer-seatbelt",
+      "result": "command-rejected-before-execution",
+      "candidate": "post-v0.4.0-grouped-ledger-candidate-10"
+    }
+  ],
+  "frozenDelta": {
+    "classification": "evaluation-contract-and-read-probe-auditor-only",
+    "skill": {
+      "deltaComparedWithCandidate10": "byte-identical",
+      "skillSha256": "7c48a782f0580ce44d754bd2de11ab6195af47cce16752f1b0251971b632cf35",
+      "skillTreeSha256": "d25f55a5e11dd59c2eb8f16f3d4650924e61d1bee05c6b19b6545c83b61ef18f",
+      "validatorBehaviorChanged": false,
+      "newVisibleOutputFields": 0
+    },
+    "runner": {
+      "path": "scripts/run-cursor-evaluation-v5.mjs",
+      "sha256": "c3b6d558c98365f887c1a1917253e0c610a1e663f53ed769ee226caf149bc549",
+      "changed": false,
+      "mode": "plan",
+      "clientSandbox": "enabled",
+      "outerSeatbeltRequired": true
+    },
+    "readProbeAuditor": {
+      "path": "scripts/audit-cursor-read-probe.mjs",
+      "sha256": "808ddc737b1dff77895e923b93502b466607c09f3888bea6dad8c31cf486291e",
+      "status": "implemented-and-locally-validated",
+      "exactReadToolCalls": 1,
+      "shellCalls": 0,
+      "mcpCalls": 0,
+      "otherToolCalls": 0,
+      "pathEscapeAllowed": false,
+      "workspaceMutationAllowed": false
+    },
+    "seatbeltProfile": {
+      "path": "evaluation/profiles/cursor-workspace-read-only.sb",
+      "sha256": "6ed882cbbd2605d3192502484407641d48dd15a1bc0e1b77f0682844d092ed40",
+      "changed": false
+    }
+  },
+  "offlineClosure": {
+    "status": "pass",
+    "targetedReadProbeAuditorTests": "7/7",
+    "fullVitest": "27/27 files and 188/188 tests",
+    "groupedLedgerReplay": "7/7",
+    "candidateSkillValidators": "2/2 using existing isolated PyYAML 6.0.3 environment",
+    "nodeSyntax": "23/23",
+    "jsonDocuments": "144/144",
+    "markdownLocalLinks": "172/172 across 61 files",
+    "sensitiveIdentifiers": 0,
+    "gitDiffCheck": "pass",
+    "runnerSha256": "c3b6d558c98365f887c1a1917253e0c610a1e663f53ed769ee226caf149bc549",
+    "readProbeAuditorSha256": "808ddc737b1dff77895e923b93502b466607c09f3888bea6dad8c31cf486291e",
+    "seatbeltProfileSha256": "6ed882cbbd2605d3192502484407641d48dd15a1bc0e1b77f0682844d092ed40",
+    "candidateSkillTreeSha256": "d25f55a5e11dd59c2eb8f16f3d4650924e61d1bee05c6b19b6545c83b61ef18f",
+    "publicSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "installedSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "externalModelRequests": 0,
+    "sourceTransmitted": false
+  },
+  "offlineFreeze": {
+    "status": "complete",
+    "result": "evaluation/runtime-windows/post-v0.4.0-grouped-ledger-candidate-11-offline-freeze.json",
+    "resultSha256": "54164bdc7ac0a9855ac47cfa44275482df37428b37b8f1a1ca45217582e790e8",
+    "workspaces": "7/7",
+    "nonDeepEvaluatorCollectors": "6/6",
+    "deepEvaluatorInventories": "1/1",
+    "repeatAssertions": "2/2",
+    "cursorShellCallsExpected": 0,
+    "cursorMcpCallsExpected": 0,
+    "cursorCollectorCallsExpected": 0,
+    "cursorTestCallsExpected": 0,
+    "externalModelRequests": 0,
+    "sourceTransmitted": false,
+    "sourceBearingAuthorized": false
+  },
+  "sourceBearingWindow": {
+    "authorized": true,
+    "status": "no-go-stopped-after-first-source-bearing-run",
+    "result": "evaluation/runtime-windows/post-v0.4.0-grouped-ledger-candidate-11-stage-1-result.json",
+    "resultSha256": "1d3a423a9574b5326be5983ad7840dc0d5c55d099bddbb0baf107058dd1d7eea",
+    "executedRuns": "1/7",
+    "remainingRunsExecuted": 0,
+    "firstRun": "D-ID-001/RUN-01",
+    "outputValidator": "failed: grouped ledger coverage entries missing before/after and disposition fields",
+    "externalModelRequests": 1,
+    "sourceTransmitted": true,
+    "privateSourceTransmitted": false,
+    "retryExecuted": false,
+    "replacementExecuted": false,
+    "modeSwitchExecuted": false,
+    "stopRuleApplied": true
+  },
+  "prospectiveSourceFreeProbe": {
+    "authorized": true,
+    "status": "pass",
+    "result": "evaluation/runtime-windows/post-v0.4.0-grouped-ledger-candidate-11-probe-result.json",
+    "resultSha256": "63358cb00cf665f090a62c275e77437d2577cceeaa0f728f7a186181b55d395b",
+    "freshIsolatedHomeRequired": true,
+    "freshWorkspaceRequired": true,
+    "candidate10HomeReuseAllowed": false,
+    "candidate10WorkspaceReuseAllowed": false,
+    "workspaceContents": "Git metadata, Candidate Skill, and public probe.txt only",
+    "mode": "plan",
+    "clientSandbox": "enabled",
+    "outerSeatbeltRequired": true,
+    "expectedReadToolCalls": 1,
+    "expectedShellCalls": 0,
+    "expectedMcpCalls": 0,
+    "expectedOtherToolCalls": 0,
+    "expectedWorkspaceMutation": false,
+    "sourceBearingAllowed": false,
+    "externalModelRequestsExecuted": 1,
+    "runnerProcessExitCode": 0,
+    "traceBytes": 4211,
+    "traceSha256": "5f055d474ac6e52966d4320d96822bbf1040a19a48b076102cd70f78311af5ed",
+    "runnerStderrBytes": 0,
+    "readToolCallsStarted": 1,
+    "readToolCallsCompleted": 1,
+    "shellCalls": 0,
+    "mcpCalls": 0,
+    "otherToolCalls": 0,
+    "finalResponseExact": true,
+    "workspaceMutationObserved": false
+  },
+  "prospectiveSourceBearingContract": {
+    "authorized": false,
+    "publicSyntheticOnly": true,
+    "privateSourceAllowed": false,
+    "evaluatorOwnsGitInventory": true,
+    "evaluatorOwnsContextCollector": true,
+    "evaluatorOwnsDeclaredTests": true,
+    "cursorShellCallsExpected": 0,
+    "cursorCollectorCallsExpected": 0,
+    "cursorTestCallsExpected": 0,
+    "cursorReadToolsInsideWorkspaceAllowed": true,
+    "freshSevenWorkspaceFreezeRequired": true
+  },
+  "authorization": {
+    "offlineImplementationAuthorized": true,
+    "isolatedLoginAuthorized": true,
+    "sourceFreeExternalRequestAuthorized": true,
+    "sourceBearingAuthorized": true,
+    "commitAuthorized": false,
+    "pushAuthorized": false,
+    "temporaryCleanupAuthorized": false
+  },
+  "stopRule": "Stop at the first static, transport, client-contract, Prompt-integrity, transfer-scope, read-path, tool-count, execution, read-only, isolation, integrity, hash, fixture, replay, or warning failure without retry, replacement, reinterpretation, or mode switch.",
+  "nextGate": "Candidate 11 is closed No-Go. Do not execute the remaining six runs or retry D-ID-001/RUN-01. Retain the temporary HOME, raw trace, output, and frozen workspaces until separate cleanup authorization; any future candidate requires a new frozen window and explicit source-bearing authorization."
+}

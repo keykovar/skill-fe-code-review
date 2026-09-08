@@ -1,0 +1,287 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-12",
+  "date": "2026-09-03",
+  "status": "no-go-stopped-after-first-source-bearing-run",
+  "predecessor": {
+    "candidate": "post-v0.4.0-grouped-ledger-candidate-11",
+    "decision": "No-Go",
+    "failedAt": "D-ID-001/RUN-01",
+    "failure": "Deep output used nested coverage bullets without same-line before/after and disposition fields",
+    "reusedRuntimeInput": false
+  },
+  "delta": {
+    "classification": "output-contract-instruction-only",
+    "publicSkillChanged": false,
+    "installedSkillChanged": false,
+    "validatorChanged": false,
+    "runnerChanged": false,
+    "seatbeltChanged": false,
+    "collectorChanged": false,
+    "newVisibleReviewFields": 0,
+    "candidateSkillTreeSha256": "a3e4c860e6c5f7b926e3b51dc22f7be795746b9a7b1d577d8cbaa276f35cda6b",
+    "candidateSkillFileCount": 12,
+    "candidateSkillPath": "external-temporary-copy"
+  },
+  "renderingContract": {
+    "coverageEntryPhysicalLines": 1,
+    "beforeAfterRequiredOnSameLine": true,
+    "dispositionRequiredOnSameLine": true,
+    "allowedDispositions": [
+      "[F-NNN]",
+      "Behavior Preserving",
+      "Cannot Verify"
+    ],
+    "nestedCoverageBulletsAllowed": false,
+    "repeatedFindingMergeKeyRequired": true,
+    "singleFindingMergeKeyAllowed": false
+  },
+  "offlineFixtureResult": {
+    "status": "pass",
+    "positiveSingleLine": {
+      "valid": true,
+      "coverageLedgerEntries": 1
+    },
+    "negativeNestedMultiLine": {
+      "valid": false,
+      "errorTypes": [
+        "coverage-ledger-missing-before-after",
+        "coverage-ledger-missing-disposition"
+      ]
+    }
+  },
+  "offlineAcceptance": {
+    "positiveFixtureRequired": true,
+    "negativeNestedFixtureRequired": true,
+    "freshSevenWorkspaceFreezeRequired": true,
+    "freshSourceFreeProbeRequired": true,
+    "externalModelRequests": 0,
+    "sourceTransmitted": false,
+    "privateSourceAllowed": false,
+    "freshSourceFreeProbePassed": true
+  },
+  "runtimeContract": {
+    "authorized": true,
+    "runOrder": [
+      "D-ID-001/RUN-01",
+      "Q-ID-001/RUN-01",
+      "Q-ID-001/RUN-02",
+      "Q-ID-002/RUN-01",
+      "F-ID-001/RUN-01",
+      "F-ID-001/RUN-02",
+      "K-ID-001/RUN-01"
+    ],
+    "stopAtFirstFailure": true,
+    "retryAllowed": false,
+    "replacementAllowed": false,
+    "modeSwitchAllowed": false
+  },
+  "nextGate": "Candidate 12 is closed No-Go. Do not execute the remaining six runs or retry D-ID-001/RUN-01; a future candidate requires a new frozen window and explicit authorization.",
+  "offlineFreeze": {
+    "status": "complete-source-free-probe-passed",
+    "manifest": "../../../../../../private/tmp/post-v0.4.0-grouped-ledger-candidate-12-offline-freeze-01/control/freeze-manifest.json",
+    "manifestSha256": "35abb15fb64d3f2665e3685befbffa65be39b62603d66cdc03c97e592378933d",
+    "result": "post-v0.4.0-grouped-ledger-candidate-12-offline-freeze.json",
+    "resultSha256": "546bcdd5cb980a9515ef4c3bb09096fbd7e4223077f9be69986329722ce7c4fe",
+    "workspaces": "7/7",
+    "nonDeepEvaluatorCollectors": "6/6",
+    "deepEvaluatorInventories": "1/1",
+    "repeatAssertions": "2/2",
+    "cursorShellCallsExpected": 0,
+    "cursorMcpCallsExpected": 0,
+    "cursorCollectorCallsExpected": 0,
+    "cursorTestCallsExpected": 0,
+    "externalModelRequests": 0,
+    "sourceTransmitted": false,
+    "sourceBearingAuthorized": false,
+    "sourceFreeProbe": {
+      "status": "pass",
+      "result": "post-v0.4.0-grouped-ledger-candidate-12-probe-result.json",
+      "resultSha256": "1de3d983ea4e50a1869564ffa47c5610b3c04a410fc9309f5a5afb1bffb8664c",
+      "externalModelRequests": 1,
+      "sourceTransmitted": false,
+      "sourceBearingAuthorized": false,
+      "readToolCalls": 1,
+      "shellCalls": 0,
+      "mcpCalls": 0,
+      "workspaceUnchanged": true
+    }
+  },
+  "preparedRuns": [
+    {
+      "caseId": "D-ID-001",
+      "mode": "deep-identity",
+      "runId": "RUN-01",
+      "branch": "candidate",
+      "head": "4fd1fa7c7dbb11f534d7b284cf91d32a2a4daf0b",
+      "statusSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "workspaceTreeSha256": "a3db12af10f413f6b6359cab6649f008964a19595eb0308366c7fa5daed9f1d5",
+      "promptSha256": "4603b1bb8c32f1e6f299784593e722c0ef8a6321187540830e1cccfb7ffd78c6",
+      "testCommand": "node --test",
+      "testExitCode": 1,
+      "testStdoutSha256": "9184ec0d12d826d740134b26068697f66b3af08b181b33fa4de72e33886f92cc",
+      "testStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expectedTestExitCode": 1,
+      "collectorCallsExecuted": 0,
+      "collectorExpectedByCursor": 0
+    },
+    {
+      "caseId": "Q-ID-001",
+      "mode": "quick-identity",
+      "runId": "RUN-01",
+      "branch": "main",
+      "head": "b9f3e3b40331e3189771ca4062b8386e547a7539",
+      "statusSha256": "e1014afad52183dc386bc7d4623894a7bfc00ee4e4977cbd6ff96892065ffb4b",
+      "workspaceTreeSha256": "8cae1d23c8102a8a396c8ec97074dd153454a0b897a539ac9f71c62ff762aec8",
+      "promptSha256": "17b4b962377212dfd80dcf20918349ea7042369ab68fd4167274e0a51180421e",
+      "testCommand": "node --test",
+      "testExitCode": 1,
+      "testStdoutSha256": "bed8d72f2514b76ec26a296e4b6768a40aca6a7c5919f3249f5bc4c749a639f2",
+      "testStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expectedTestExitCode": 1,
+      "collectorCallsExecuted": 1,
+      "collectorExpectedByCursor": 0
+    },
+    {
+      "caseId": "Q-ID-001",
+      "mode": "quick-identity",
+      "runId": "RUN-02",
+      "branch": "main",
+      "head": "b9f3e3b40331e3189771ca4062b8386e547a7539",
+      "statusSha256": "e1014afad52183dc386bc7d4623894a7bfc00ee4e4977cbd6ff96892065ffb4b",
+      "workspaceTreeSha256": "8cae1d23c8102a8a396c8ec97074dd153454a0b897a539ac9f71c62ff762aec8",
+      "promptSha256": "17b4b962377212dfd80dcf20918349ea7042369ab68fd4167274e0a51180421e",
+      "testCommand": "node --test",
+      "testExitCode": 1,
+      "testStdoutSha256": "e735f465f8e4dbef37d10612c7bdf16a99ef72d6ecf301ef2e5707de6377c671",
+      "testStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expectedTestExitCode": 1,
+      "collectorCallsExecuted": 1,
+      "collectorExpectedByCursor": 0
+    },
+    {
+      "caseId": "Q-ID-002",
+      "mode": "quick-independent",
+      "runId": "RUN-01",
+      "branch": "main",
+      "head": "84475cb33a8bd70fb826e7fb0b3012349abf5923",
+      "statusSha256": "b34f0c929992956b36d3712dd4677f77e83166eafd66a292def0ab008337395c",
+      "workspaceTreeSha256": "f4cdc5834cedfe8ef9b7a5681ecc558d377b32a9e43d6b2f601a81e1f1df3d97",
+      "promptSha256": "a1c4be92445d51be81f05a6a8ecbaf77b408c0c5bd0c64f26f2b7e14724536b4",
+      "testCommand": "node --test",
+      "testExitCode": 1,
+      "testStdoutSha256": "d145cb2e680a7a428c578b95ea012670dd17ba5f23a779750a637ab61d594d19",
+      "testStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expectedTestExitCode": 1,
+      "collectorCallsExecuted": 1,
+      "collectorExpectedByCursor": 0
+    },
+    {
+      "caseId": "F-ID-001",
+      "mode": "fix-identity",
+      "runId": "RUN-01",
+      "branch": "main",
+      "head": "f6b49441ec653e9ae2f7ede23cd83c69151b1902",
+      "statusSha256": "43915c2da896e437bf50266d161ab5b34a13a3a0a1b8cb6fe0d79fb989a61ede",
+      "workspaceTreeSha256": "955bf04c897e0aaa9d156cc626242d77390ca429cb7d34a8617a53859bdc1c6b",
+      "promptSha256": "22d4083d33ce9d686ee40f765032dc7bcd56da680e231ddce35471b429654d5a",
+      "testCommand": "node --test",
+      "testExitCode": 0,
+      "testStdoutSha256": "1bd115007b11ec8d692a6b4c1ba513d6e27450d1d2232a3223b76a4baef8f18e",
+      "testStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expectedTestExitCode": 0,
+      "collectorCallsExecuted": 1,
+      "collectorExpectedByCursor": 0
+    },
+    {
+      "caseId": "F-ID-001",
+      "mode": "fix-identity",
+      "runId": "RUN-02",
+      "branch": "main",
+      "head": "f6b49441ec653e9ae2f7ede23cd83c69151b1902",
+      "statusSha256": "43915c2da896e437bf50266d161ab5b34a13a3a0a1b8cb6fe0d79fb989a61ede",
+      "workspaceTreeSha256": "955bf04c897e0aaa9d156cc626242d77390ca429cb7d34a8617a53859bdc1c6b",
+      "promptSha256": "22d4083d33ce9d686ee40f765032dc7bcd56da680e231ddce35471b429654d5a",
+      "testCommand": "node --test",
+      "testExitCode": 0,
+      "testStdoutSha256": "de3bf240403fe41d406a35e1f01cad52582863a0c359fc440d84301f096e221d",
+      "testStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expectedTestExitCode": 0,
+      "collectorCallsExecuted": 1,
+      "collectorExpectedByCursor": 0
+    },
+    {
+      "caseId": "K-ID-001",
+      "mode": "quick-keep",
+      "runId": "RUN-01",
+      "branch": "main",
+      "head": "10e9d875ba05e824b86d0a637f04edffc367b516",
+      "statusSha256": "8181edf86c12194f3b4d73ba32b721c479f8a74231f9ffea0ad463ca8429083a",
+      "workspaceTreeSha256": "9bb0f9d23225380cdbb1a56e39dd9083a74c0031c0ce1c465392406a36a71810",
+      "promptSha256": "33e0bee096db7a3235f496f60ac1f355f9cf04d853b872c5d9b06790194e3370",
+      "testCommand": "node --test",
+      "testExitCode": 0,
+      "testStdoutSha256": "b23b8589d85f72e1ac98d34d8eba748b90bebdc675ec031f6add1f0ba622d7eb",
+      "testStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "expectedTestExitCode": 0,
+      "collectorCallsExecuted": 1,
+      "collectorExpectedByCursor": 0
+    }
+  ],
+  "repeatAssertions": [
+    {
+      "caseId": "Q-ID-001",
+      "runs": [
+        "RUN-01",
+        "RUN-02"
+      ],
+      "head": "b9f3e3b40331e3189771ca4062b8386e547a7539",
+      "promptSha256": "17b4b962377212dfd80dcf20918349ea7042369ab68fd4167274e0a51180421e",
+      "statusSha256": "e1014afad52183dc386bc7d4623894a7bfc00ee4e4977cbd6ff96892065ffb4b",
+      "workspaceTreeSha256": "8cae1d23c8102a8a396c8ec97074dd153454a0b897a539ac9f71c62ff762aec8"
+    },
+    {
+      "caseId": "F-ID-001",
+      "runs": [
+        "RUN-01",
+        "RUN-02"
+      ],
+      "head": "f6b49441ec653e9ae2f7ede23cd83c69151b1902",
+      "promptSha256": "22d4083d33ce9d686ee40f765032dc7bcd56da680e231ddce35471b429654d5a",
+      "statusSha256": "43915c2da896e437bf50266d161ab5b34a13a3a0a1b8cb6fe0d79fb989a61ede",
+      "workspaceTreeSha256": "955bf04c897e0aaa9d156cc626242d77390ca429cb7d34a8617a53859bdc1c6b"
+    }
+  ],
+  "sourcePolicy": {
+    "externalModelRequests": 0,
+    "sourceBearingAuthorized": false,
+    "sourceFreeProbePassed": true,
+    "sourceTransmitted": false,
+    "visibility": "public-synthetic-only"
+  },
+  "sourceFreeProbe": {
+    "status": "pass",
+    "result": "post-v0.4.0-grouped-ledger-candidate-12-probe-result.json",
+    "resultSha256": "1de3d983ea4e50a1869564ffa47c5610b3c04a410fc9309f5a5afb1bffb8664c",
+    "externalModelRequests": 1,
+    "sourceTransmitted": false,
+    "sourceBearingAuthorized": false
+  },
+  "sourceBearingWindow": {
+    "authorized": true,
+    "status": "no-go-stopped-after-first-source-bearing-run",
+    "result": "post-v0.4.0-grouped-ledger-candidate-12-stage-1-result.json",
+    "resultSha256": "69700bca8e2b5d44046c471d90b8c8b0ea4d782775200d2b539ae3229c4c24a0",
+    "executedRuns": "1/7",
+    "remainingRunsExecuted": 0,
+    "firstRun": "D-ID-001/RUN-01",
+    "outputValidator": "failed: one Changed-Condition Coverage entry missing before -> after",
+    "externalModelRequests": 1,
+    "sourceTransmitted": true,
+    "privateSourceTransmitted": false,
+    "retryExecuted": false,
+    "replacementExecuted": false,
+    "modeSwitchExecuted": false,
+    "stopRuleApplied": true
+  }
+}

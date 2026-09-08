@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-16",
+  "date": "2026-09-08",
+  "status": "pass-source-free-relative-path-probe-source-bearing-not-authorized",
+  "authorization": {
+    "sourceFreeProbeAuthorized": true,
+    "sourceFreeExternalRequestsExecuted": 1,
+    "sourceBearingAuthorized": false,
+    "privateSourceAllowed": false
+  },
+  "client": {
+    "name": "Cursor Agent CLI",
+    "version": "2026.08.11-e8db854",
+    "mode": "plan",
+    "sandbox": "enabled",
+    "outerSeatbelt": true,
+    "credentialStore": "file",
+    "freshHomePath": true
+  },
+  "probe": {
+    "workspace": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-16-source-free-probe-01",
+    "trace": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-16-source-free-control-01/runner.trace.jsonl",
+    "traceSha256": "8d6cca43a40d329344b8dba955cc2d69128e98a934279ea41c7047050d3cb7d7",
+    "traceBytes": 5319,
+    "runnerStderrBytes": 0,
+    "runnerStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "promptSha256": "e495deed3838f52351243a59934ee9f348567cc815ce44a3ba8161931740251e",
+    "expectedResponseSha256": "f6c61099ab766b04fc79d81a1ac724d44946fd41772f7ec71492f1ec9c10b321",
+    "finalAssistantResponseSha256": "f6c61099ab766b04fc79d81a1ac724d44946fd41772f7ec71492f1ec9c10b321",
+    "finalAssistantResponseExact": true,
+    "aggregateResponseMatchesAssistantMessages": true,
+    "assistantMessages": 2,
+    "eventCount": 22,
+    "resultEvents": 1,
+    "readToolCallsStarted": 1,
+    "readToolCallsCompleted": 1,
+    "readPath": "probe.txt",
+    "readResultKind": "success",
+    "readPathInsideWorkspace": true,
+    "shellCalls": 0,
+    "otherToolCalls": 0,
+    "mcpCalls": 0,
+    "workspaceMutationObserved": false,
+    "retryExecuted": false,
+    "replacementExecuted": false,
+    "modeSwitchExecuted": false
+  },
+  "integrity": {
+    "head": "a6ba3b9b72aaad873ce01f59e050fa7db44c15fa",
+    "branch": "main",
+    "statusSha256Before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "statusSha256After": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "workspaceTreeSha256Before": "ac16b558bb171c1f6ef090129adfe9960fb3d81e79f540617a2851a0c72b5d4c",
+    "workspaceTreeSha256After": "ac16b558bb171c1f6ef090129adfe9960fb3d81e79f540617a2851a0c72b5d4c",
+    "candidateSkillTreeSha256": "148cf6ebae8c5cba674f5fe0fe9f1399f405287b5057d815867662faa1721480",
+    "runnerSha256": "c3b6d558c98365f887c1a1917253e0c610a1e663f53ed769ee226caf149bc549",
+    "seatbeltProfileSha256": "6ed882cbbd2605d3192502484407641d48dd15a1bc0e1b77f0682844d092ed40"
+  },
+  "audit": {
+    "valid": true,
+    "violations": []
+  },
+  "transferPolicy": {
+    "externalModelRequests": 1,
+    "sourceTransmitted": false,
+    "workspaceVisibleToClient": "public Candidate Skill, public probe.txt, and fixed probe Prompt only",
+    "projectSourceTransmitted": false,
+    "fixtureSourceTransmitted": false,
+    "privateSourceTransmitted": false,
+    "credentialContentsReadOrRecordedByEvaluator": false
+  },
+  "decision": {
+    "sourceFreeProbe": "Pass",
+    "sourceBearing": "Not authorized",
+    "nextGate": "Request separate authorization before running the frozen Candidate 16 Q-ID-002/RUN-01 public-synthetic Quick Review."
+  },
+  "evidenceBoundary": "Only the public Candidate Skill, public probe.txt, and fixed source-free Prompt were sent. No fixture, customer, production, private, repository project source, evaluator oracle, raw trace content, login URL, account detail, session identifier, or credential content is recorded in this sanitized result."
+}

@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-06",
+  "date": "2026-08-28",
+  "status": "no-go-stopped-before-source-free-probe-login-failure",
+  "predecessor": {
+    "candidate": "post-v0.4.0-grouped-ledger-candidate-05",
+    "decision": "No-Go",
+    "failedRun": "D-ID-001 RUN-01",
+    "earliestFailure": "Cursor could not honor the frozen auto-review mode and fell back to Allowlist.",
+    "unscoredStructuralObservation": "Bold-wrapped ledger groups and Finding rows did not match the canonical grouped-ledger grammar.",
+    "retried": false,
+    "reinterpreted": false
+  },
+  "stableBaseline": {
+    "release": "v0.4.0",
+    "skillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "publicReviewOutputValidatorSha256": "8ca475ad2c6d9184a19716bbad76b483a00c9a6ac85c591088431ef61771ccf3"
+  },
+  "candidate05RuntimeBaseline": {
+    "skillSha256": "a8b81157abe92c944143a28386ffd9f86c25711ee7ab40d17e2ea0b6a514cb7e",
+    "quickReferenceSha256": "91fe031195f6018ecbf29c48aab5fc26477f9262b40eb7dd4d149b2294c7a9ed",
+    "deepReferenceSha256": "44d1fb20cfc2f3b9814943d5254e2349387a8b17832eab27b618a2a2a3bedc36",
+    "fixReferenceSha256": "8380289a00f3c2f1a1ea740bc824b1a53813d6839b3957cae3c54c0e27757d33",
+    "reviewOutputValidatorSha256": "0293481ada8e2c722730f02f2663244d3c446e4d0a46dd9c9bc63ed030e81b8f"
+  },
+  "runtimeSkillDelta": {
+    "classification": "one core rendering constraint only",
+    "target": "skills/fe-code-review/SKILL.md Finding Requirements",
+    "exactInstruction": "Render these prefixes literally, without bold, italics, or code wrappers: ledger groups start `- [F-NNN]`, `- Behavior Preserving`, or `- Cannot Verify`; Finding rows start `- [F-NNN] [file:line]`.",
+    "skillMdMaximumNetEnglishWords": 30,
+    "quickReferenceNetWords": 0,
+    "deepReferenceNetWords": 0,
+    "fixReferenceNetWords": 0,
+    "frontmatterNetWords": 0,
+    "adapterNetWords": 0,
+    "newVisibleOutputFields": 0,
+    "validatorBehaviorChanged": false,
+    "normalizerAdded": false,
+    "prospectiveHashesRecordedAfterImplementation": true,
+    "candidateSkillSha256": "a7145a6d305647c32ed47873b1284575152ff12c7ab61002cea108672dedfae1",
+    "candidateSkillTreeSha256": "49fd77c07ccb214b4fe464b5019888ac496ca59fd52ba3c04cf8390e8627211d",
+    "candidateSkillEnglishWords": 3805,
+    "baselineSkillEnglishWords": 3780,
+    "actualNetSkillEnglishWords": 25
+  },
+  "clientContractDelta": {
+    "classification": "evaluator-only explicit read-only Cursor mode",
+    "candidate05ArgumentsBeforePrompt": [
+      "--print",
+      "--output-format",
+      "stream-json",
+      "--auto-review",
+      "--sandbox",
+      "enabled",
+      "--trust",
+      "--workspace",
+      "<workspace>"
+    ],
+    "candidate06ArgumentsBeforePrompt": [
+      "--print",
+      "--output-format",
+      "stream-json",
+      "--mode",
+      "ask",
+      "--sandbox",
+      "enabled",
+      "--trust",
+      "--workspace",
+      "<workspace>"
+    ],
+    "autoReviewRequested": false,
+    "explicitMode": "ask",
+    "sandbox": "enabled",
+    "permissionFallbackAllowed": false,
+    "stderrWarningAllowed": false,
+    "forbiddenFlags": ["--auto-review", "--force", "--yolo", "--approve-mcps"],
+    "unchanged": [
+      "literal final Prompt argv",
+      "shell=false",
+      "absolute Git and Cursor executables",
+      "Prompt hash",
+      "Cursor version",
+      "Git state",
+      "workspace tree",
+      "Skill tree",
+      "fresh output isolation"
+    ],
+    "runner": {
+      "path": "scripts/run-cursor-evaluation-v3.mjs",
+      "sha256": "067b4a9d25a44a062bed5a25a44266c4001949fe30211be583fc116cb6715e07"
+    }
+  },
+  "implementationGate": {
+    "status": "pass-offline-runtime-not-authorized",
+    "required": [
+      "apply the exact one-sentence Skill delta to an offline candidate only",
+      "change only the frozen Cursor argument contract in evaluator tooling",
+      "add regression tests for exact ask-mode arguments and forbidden permission flags",
+      "add regression cases showing bold-wrapped group and Finding prefixes remain invalid",
+      "record prospective hashes and English word counts",
+      "pass full static validation before any external request"
+    ],
+    "publicSkillApplicationAllowed": false,
+    "installedSkillApplicationAllowed": false,
+    "externalModelRequestAllowed": false,
+    "artifacts": {
+      "builder": {
+        "path": "scripts/build-grouped-ledger-candidate-06.mjs",
+        "sha256": "2431278ab2c14f0085e9eb37fe1a32fc7ed7f7699cb66b7e6f9bcd46bcd71ffd"
+      },
+      "runner": {
+        "path": "scripts/run-cursor-evaluation-v3.mjs",
+        "sha256": "067b4a9d25a44a062bed5a25a44266c4001949fe30211be583fc116cb6715e07"
+      },
+      "candidateSkillSha256": "a7145a6d305647c32ed47873b1284575152ff12c7ab61002cea108672dedfae1",
+      "candidateSkillTreeSha256": "49fd77c07ccb214b4fe464b5019888ac496ca59fd52ba3c04cf8390e8627211d",
+      "offlineBuildRoot": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-06-offline-build-02"
+    },
+    "validation": {
+      "vitestFiles": "16/16",
+      "vitestTests": "151/151",
+      "groupedReplay": "7/7",
+      "repositorySkillValidator": "pass",
+      "officialSkillValidator": "pass",
+      "nodeSyntax": "2/2 Candidate 06 scripts",
+      "jsonFilesParsed": "127/127",
+      "markdownLocalLinks": "164/164 across 56 repository Markdown files",
+      "targetedSensitiveIdentifierScan": "pass-no-matches",
+      "candidate05PreparedWorkspaceTrees": "7/7 unchanged",
+      "stablePublicAndInstalledSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+      "gitDiffCheck": "pass",
+      "externalModelRequests": 0,
+      "sourceTransmitted": false
+    }
+  },
+  "offlineFreeze": {
+    "status": "pass-source-free-probe-not-authorized",
+    "result": "evaluation/runtime-windows/post-v0.4.0-grouped-ledger-candidate-06-offline-freeze.json",
+    "resultSha256": "46921892fb1f977558aa985d605354a925135d9b304134e9853019967ef61c22",
+    "temporaryRoot": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-06-offline-freeze-01",
+    "manifestSha256": "f45b58f034a72e72fa7caebe3df5dfc781ea66696bbd5f1e80d3e8babf6cdfa7",
+    "preparerSha256": "26988c8d58ee7ce94e9f42fdd48c487505aee96c37bbec28a701ce67203f0b78",
+    "preparedWorkspaces": "7/7",
+    "expectedTestResultsMatched": "7/7",
+    "repeatPairsByteIdentical": "2/2 by HEAD, Prompt SHA-256, and complete workspace tree SHA-256",
+    "workspaceTreesVerifiedAfterPreparation": "7/7",
+    "clientVersion": "2026.08.11-e8db854",
+    "externalModelRequests": 0,
+    "sourceTransmitted": false,
+    "cursorLoginCreated": false,
+    "sourceFreeProbeExecuted": false,
+    "sourceBearingRunsExecuted": 0,
+    "validation": {
+      "vitestFiles": "17/17",
+      "vitestTests": "152/152",
+      "groupedReplay": "7/7",
+      "repositorySkillValidator": "pass",
+      "officialSkillValidator": "pass",
+      "candidate06NodeSyntax": "3/3",
+      "jsonFilesParsed": "128/128",
+      "markdownLocalLinks": "164/164 across 56 repository Markdown files",
+      "targetedSensitiveIdentifierScan": "pass-no-matches",
+      "preparedWorkspaceTrees": "7/7 unchanged",
+      "stablePublicAndInstalledSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+      "gitDiffCheck": "pass"
+    }
+  },
+  "sourceFreeProbe": {
+    "status": "no-go-stopped-before-source-free-probe-login-failure",
+    "result": "evaluation/runtime-windows/post-v0.4.0-grouped-ledger-candidate-06-probe-result.json",
+    "resultSha256": "3abb35a9bcb000ffc56b6b2052bde885b06fa41da0bf7762fa2576ae0b204f1b",
+    "loginAuthorized": true,
+    "loginFlowStarted": true,
+    "loginProcessExitCode": 1,
+    "browserAuthenticationCompleted": false,
+    "sourceFreeExternalRequestAuthorized": true,
+    "sourceFreeExternalRequestsExecuted": 0,
+    "sourceFreeProbeExecuted": false,
+    "sourceBearingRunsExecuted": 0,
+    "sourceTransmitted": false,
+    "retryExecuted": false,
+    "replacementExecuted": false,
+    "modeSwitchExecuted": false,
+    "preparedWorkspaceTreesUnchanged": "7/7"
+  },
+  "postStopClosure": {
+    "status": "pass",
+    "vitestFiles": "17/17",
+    "vitestTests": "152/152",
+    "groupedReplay": "7/7",
+    "skillValidators": "2/2 with isolated PyYAML 6.0.3; no install",
+    "candidate06NodeSyntax": "3/3",
+    "jsonFilesParsed": "128/128",
+    "markdownLocalLinks": "164/164 across 56 repository Markdown files",
+    "targetedSensitiveIdentifierScan": "pass-no-matches",
+    "preparedWorkspaceTrees": "7/7 unchanged",
+    "candidateSkillTreeSha256": "49fd77c07ccb214b4fe464b5019888ac496ca59fd52ba3c04cf8390e8627211d",
+    "stablePublicAndInstalledSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "gitDiffCheck": "pass",
+    "externalModelRequests": 0,
+    "sourceTransmitted": false
+  },
+  "prospectiveRuntimeWindow": {
+    "freshWorkspaceCount": 7,
+    "freshWorkspacePreparationComplete": true,
+    "freshIsolatedHomeRequired": true,
+    "freshCursorLoginRequired": true,
+    "freshSourceFreeProbeRequired": true,
+    "carryForwardCandidate05RuntimeResults": false,
+    "retryPolicy": "none",
+    "replacementPolicy": "none",
+    "modeSwitchPolicy": "none",
+    "status": "closed-no-go-before-source-free-probe",
+    "stage1": {
+      "runOrder": ["D-ID-001 RUN-01", "Q-ID-001 RUN-01", "Q-ID-001 RUN-02"],
+      "continueOnlyIf": "Every prior run passes client-contract, structural, semantic, severity, recommendation, execution, read-only, and integrity gates."
+    },
+    "stage2": {
+      "runOrder": ["Q-ID-002 RUN-01", "F-ID-001 RUN-01", "F-ID-001 RUN-02", "K-ID-001 RUN-01"],
+      "authorizedOnlyAfter": "Stage 1 passes 3/3."
+    }
+  },
+  "sourcePolicy": {
+    "visibility": "public-synthetic-only",
+    "privateSourceAllowed": false,
+    "externalModelRequestAuthorized": false,
+    "sourceFreeProbeAttemptAuthorized": true,
+    "sourceFreeExternalRequestsExecuted": 0,
+    "sourceFreeProbeAuthorized": false,
+    "sourceBearingAuthorized": false,
+    "sourceTransmitted": false
+  },
+  "stopRule": "Stop at the first implementation, static, client-contract, Prompt-integrity, transfer-scope, semantic, structural, severity, recommendation, collector, read-only, isolation, integrity, hash, budget, fixture, or replay failure without retry, replacement, reinterpretation, or mode switch.",
+  "nextGate": "Candidate 06 is closed No-Go. Do not retry or replace the failed login, execute the source-free probe, or start any source-bearing run. A future candidate requires a newly frozen runtime window and separate authorization. Temporary Candidate 05/06 state remains retained until separately authorized cleanup."
+}

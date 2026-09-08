@@ -54,7 +54,7 @@ const modeConfig = {
 };
 
 function usage() {
-  return `Usage: node scripts/prepare-evaluation-fixture.mjs <${Object.keys(modeConfig).join('|')}> [--output <directory>]`;
+  return `Usage: node scripts/prepare-evaluation-fixture.mjs <${Object.keys(modeConfig).join('|')}> [--output <directory>] [--skill-source <directory>]`;
 }
 
 function parseArguments(argv) {
@@ -64,17 +64,23 @@ function parseArguments(argv) {
     throw new Error(usage());
   }
 
-  let outputDir;
+  const options = {};
   for (let index = 0; index < rest.length; index += 1) {
-    if (rest[index] !== '--output' || !rest[index + 1] || index + 2 !== rest.length) {
+    const name = rest[index];
+    const value = rest[index + 1];
+    if (!['--output', '--skill-source'].includes(name) || !value || Object.hasOwn(options, name)) {
       throw new Error(usage());
     }
 
-    outputDir = path.resolve(rest[index + 1]);
+    options[name] = path.resolve(value);
     index += 1;
   }
 
-  return { mode, outputDir };
+  return {
+    mode,
+    outputDir: options['--output'],
+    skillSource: options['--skill-source'],
+  };
 }
 
 function createTarget(mode, requestedOutput) {
@@ -120,8 +126,13 @@ function runGit(targetDir, args) {
   return result.stdout.replace(/\r?\n$/u, '');
 }
 
-function installSkill(targetDir) {
-  const skillSource = path.join(rootDir, 'skills', 'fe-code-review');
+function installSkill(targetDir, requestedSkillSource) {
+  const skillSource = fs.realpathSync(
+    requestedSkillSource ?? path.join(rootDir, 'skills', 'fe-code-review'),
+  );
+  if (!fs.statSync(skillSource).isDirectory() || !fs.existsSync(path.join(skillSource, 'SKILL.md'))) {
+    throw new Error(`Skill source must contain SKILL.md: ${skillSource}`);
+  }
   const codexTarget = path.join(targetDir, '.agents', 'skills', 'fe-code-review');
   const cursorTarget = path.join(targetDir, '.cursor', 'skills', 'fe-code-review');
   const cursorRuleTarget = path.join(targetDir, '.cursor', 'rules', 'fe-code-review.mdc');
@@ -147,9 +158,9 @@ function commitAll(targetDir, message) {
   runGit(targetDir, ['commit', '-m', message]);
 }
 
-function initializeRepository(targetDir, caseDir, previousFindings) {
+function initializeRepository(targetDir, caseDir, previousFindings, skillSource) {
   copyOverlay(path.join(caseDir, 'baseline'), targetDir);
-  installSkill(targetDir);
+  installSkill(targetDir, skillSource);
 
   if (previousFindings) {
     const findingsTarget = path.join(targetDir, '.evaluation', 'previous-findings.md');
@@ -181,13 +192,13 @@ function prepareMode(targetDir, caseDir, workflow) {
   commitAll(targetDir, 'test: introduce cross-module session ownership regression');
 }
 
-const { mode, outputDir } = parseArguments(process.argv.slice(2));
+const { mode, outputDir, skillSource } = parseArguments(process.argv.slice(2));
 const config = modeConfig[mode];
 const caseDir = path.join(fixturesDir, config.caseName);
 const caseDefinition = JSON.parse(fs.readFileSync(path.join(caseDir, 'case.json'), 'utf8'));
 const targetDir = createTarget(mode, outputDir);
 
-initializeRepository(targetDir, caseDir, config.previousFindings);
+initializeRepository(targetDir, caseDir, config.previousFindings, skillSource);
 prepareMode(targetDir, caseDir, config.workflow);
 
 const status = runGit(targetDir, ['status', '--short']);
@@ -203,6 +214,9 @@ process.stdout.write(
       branch,
       status: status ? status.split('\n') : [],
       prompt: modeOracle.prompt,
+      skillSource: fs.realpathSync(
+        skillSource ?? path.join(rootDir, 'skills', 'fe-code-review'),
+      ),
       oracle: modeOracle,
       testCommand: 'node --test',
       expectedTestResult: config.expectedTestResult,

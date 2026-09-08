@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-04",
+  "preparedDate": "2026-08-27",
+  "status": "offline-freeze-complete-runtime-not-authorized",
+  "outputDir": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-offline-freeze-01",
+  "artifacts": {
+    "hashes": {
+      "deep": "44d1fb20cfc2f3b9814943d5254e2349387a8b17832eab27b618a2a2a3bedc36",
+      "fix": "8380289a00f3c2f1a1ea740bc824b1a53813d6839b3957cae3c54c0e27757d33",
+      "groupedValidator": "a0e429e9ea53dc94ff75d8e573b670e1cdcf30012d07ff31210a968515342998",
+      "quick": "91fe031195f6018ecbf29c48aab5fc26477f9262b40eb7dd4d149b2294c7a9ed",
+      "reviewOutputValidator": "0293481ada8e2c722730f02f2663244d3c446e4d0a46dd9c9bc63ed030e81b8f",
+      "skill": "a8b81157abe92c944143a28386ffd9f86c25711ee7ab40d17e2ea0b6a514cb7e"
+    },
+    "outputDir": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-offline-freeze-01/candidate",
+    "skillDir": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-offline-freeze-01/candidate/skill/fe-code-review",
+    "validatorDir": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-offline-freeze-01/candidate/validators",
+    "words": {
+      "deep": 757,
+      "fix": 519,
+      "quick": 681,
+      "skill": 3780
+    },
+    "skillTreeSha256": "8d03446b6063ba0cca4931462be8ccd06edbf6d3db985e028b8fa4a45d48f55d"
+  },
+  "client": {
+    "executable": "$HOME/.local/share/cursor-agent/versions/2026.08.11-e8db854/cursor-agent",
+    "version": "2026.08.11-e8db854"
+  },
+  "promptContract": {
+    "deep": "normal read-only main...HEAD Git evidence; collector forbidden and expected 0 times",
+    "quickFix": "supported --workspace-only collector required exactly once"
+  },
+  "runner": {
+    "path": "$REPOSITORY_ROOT/scripts/run-cursor-evaluation.mjs",
+    "sha256": "43e7c69ed17622c6ca449b071c54792036e8bc8ad8f1b210e938d76241e0d05e"
+  },
+  "fixedGitDate": "2026-08-27T00:00:00Z",
+  "preparedRuns": [
+    {
+      "caseId": "D-ID-001",
+      "mode": "deep-identity",
+      "runId": "RUN-01",
+      "actualTestExitCode": 1,
+      "branch": "candidate",
+      "collectorRequired": false,
+      "expectedCollectorCalls": 0,
+      "expectedTestExitCode": 1,
+      "head": "7bb874af85bd9f5fe6a5165397e61896476f3587",
+      "promptCharacters": 407,
+      "promptPath": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-offline-freeze-01/control/prompts/d-id-001-run-01.txt",
+      "promptSha256": "fbe8fcea786c666b60391ef5ab57c669603384f5fcc5b6dd6ecf8d3ea6204032",
+      "skillTreeSha256": "8d03446b6063ba0cca4931462be8ccd06edbf6d3db985e028b8fa4a45d48f55d",
+      "status": [],
+      "testStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "testStdoutSha256": "090d583fc89ba0dba593676b79ee0ff9a5df0e8c5edb8fa42f52b80864a7bbb6",
+      "workspace": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-offline-freeze-01/workspaces/d-id-001-run-01",
+      "workspaceFileCount": 31,
+      "workspaceTreeSha256": "5e91534e62b452b474161acd8ff709426d9c099c524afce009908b424ecde538"
+    },
+    {
+      "caseId": "Q-ID-001",
+      "mode": "quick-identity",
+      "runId": "RUN-01",
+      "actualTestExitCode": 1,
+      "branch": "main",
+      "collectorRequired": true,
+      "expectedCollectorCalls": 1,
+      "expectedTestExitCode": 1,
+      "head": "4193b2b39fdf83172891d29229d7e85f223f72ba",
+      "promptCharacters": 491,
+      "promptPath": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-offline-freeze-01/control/prompts/q-id-001-run-01.txt",
+      "promptSha256": "c966e9fc6c445a37581bb4df6481d4ad537b908dba8a9837fe2721bf613baa29",
+      "skillTreeSha256": "8d03446b6063ba0cca4931462be8ccd06edbf6d3db985e028b8fa4a45d48f55d",
+      "status": [
+        " M src/url.ts",
+        "?? src/request-config.ts"
+      ],
+      "testStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "testStdoutSha256": "39e2f38e803cd74bd6b8496ff9a240170722a9acd018ecd1c7db2d867a830365",
+      "workspace": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-offline-freeze-01/workspaces/q-id-001-run-01",
+      "workspaceFileCount": 30,
+      "workspaceTreeSha256": "7def959c8a3aa9dc0eb2cb07c557cd4e99808691732c48ad12b5c058ed9692e9"
+    },
+    {
+      "caseId": "Q-ID-001",
+      "mode": "quick-identity",
+      "runId": "RUN-02",
+      "actualTestExitCode": 1,
+      "branch": "main",
+      "collectorRequired": true,
+      "expectedCollectorCalls": 1,
+      "expectedTestExitCode": 1,
+      "head": "4193b2b39fdf83172891d29229d7e85f223f72ba",
+      "promptCharacters": 491,
+      "promptPath": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-offline-freeze-01/control/prompts/q-id-001-run-02.txt",
+      "promptSha256": "c966e9fc6c445a37581bb4df6481d4ad537b908dba8a9837fe2721bf613baa29",
+      "skillTreeSha256": "8d03446b6063ba0cca4931462be8ccd06edbf6d3db985e028b8fa4a45d48f55d",
+      "status": [
+        " M src/url.ts",
+        "?? src/request-config.ts"
+      ],
+      "testStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "testStdoutSha256": "df665f0238c364af57b301eb740a3021cf62ad89b089878cdf95b2d98062837b",
+      "workspace": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-offline-freeze-01/workspaces/q-id-001-run-02",
+      "workspaceFileCount": 30,
+      "workspaceTreeSha256": "7def959c8a3aa9dc0eb2cb07c557cd4e99808691732c48ad12b5c058ed9692e9"
+    },
+    {
+      "caseId": "Q-ID-002",
+      "mode": "quick-independent",
+      "runId": "RUN-01",
+      "actualTestExitCode": 1,
+      "branch": "main",
+      "collectorRequired": true,
+      "expectedCollectorCalls": 1,
+      "expectedTestExitCode": 1,
+      "head": "05771ea67bad67f2b7f3ffc449cd77fadeff70f0",
+      "promptCharacters": 491,
+      "promptPath": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-offline-freeze-01/control/prompts/q-id-002-run-01.txt",
+      "promptSha256": "c966e9fc6c445a37581bb4df6481d4ad537b908dba8a9837fe2721bf613baa29",
+      "skillTreeSha256": "8d03446b6063ba0cca4931462be8ccd06edbf6d3db985e028b8fa4a45d48f55d",
+      "status": [
+        " M src/cache-key.ts",
+        " M src/request-options.ts"
+      ],
+      "testStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "testStdoutSha256": "73705363367efea30d22a07969937b3ada2a1686626b1dc1259516c1a5563955",
+      "workspace": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-offline-freeze-01/workspaces/q-id-002-run-01",
+      "workspaceFileCount": 31,
+      "workspaceTreeSha256": "190f0f343c135d251f91a90f6db724ca194106bfc2906572d68d8475cbb8f251"
+    },
+    {
+      "caseId": "F-ID-001",
+      "mode": "fix-identity",
+      "runId": "RUN-01",
+      "actualTestExitCode": 0,
+      "branch": "main",
+      "collectorRequired": true,
+      "expectedCollectorCalls": 1,
+      "expectedTestExitCode": 0,
+      "head": "77874549691df99f646ee89b19f3311d9050387d",
+      "promptCharacters": 550,
+      "promptPath": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-offline-freeze-01/control/prompts/f-id-001-run-01.txt",
+      "promptSha256": "5e316a6038fbbaf44f3d81dd7d3e2f876cb3f5308783c2ebf3dfbf40cebbb7f8",
+      "skillTreeSha256": "8d03446b6063ba0cca4931462be8ccd06edbf6d3db985e028b8fa4a45d48f55d",
+      "status": [
+        " M src/url.ts"
+      ],
+      "testStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "testStdoutSha256": "b49feba27a6de43cb64dbef3466b367767c3d251cd0c2a2192057a37651948a8",
+      "workspace": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-offline-freeze-01/workspaces/f-id-001-run-01",
+      "workspaceFileCount": 31,
+      "workspaceTreeSha256": "0514dcd9847002511fca97d3c9092d68bbac46bf5eb4add5ef5acfab1844c5e4"
+    },
+    {
+      "caseId": "F-ID-001",
+      "mode": "fix-identity",
+      "runId": "RUN-02",
+      "actualTestExitCode": 0,
+      "branch": "main",
+      "collectorRequired": true,
+      "expectedCollectorCalls": 1,
+      "expectedTestExitCode": 0,
+      "head": "77874549691df99f646ee89b19f3311d9050387d",
+      "promptCharacters": 550,
+      "promptPath": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-offline-freeze-01/control/prompts/f-id-001-run-02.txt",
+      "promptSha256": "5e316a6038fbbaf44f3d81dd7d3e2f876cb3f5308783c2ebf3dfbf40cebbb7f8",
+      "skillTreeSha256": "8d03446b6063ba0cca4931462be8ccd06edbf6d3db985e028b8fa4a45d48f55d",
+      "status": [
+        " M src/url.ts"
+      ],
+      "testStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "testStdoutSha256": "5f0800de556329d0305a1b303f7ce6963f6d42d1538ce125328a41a2144b3e49",
+      "workspace": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-offline-freeze-01/workspaces/f-id-001-run-02",
+      "workspaceFileCount": 31,
+      "workspaceTreeSha256": "0514dcd9847002511fca97d3c9092d68bbac46bf5eb4add5ef5acfab1844c5e4"
+    },
+    {
+      "caseId": "K-ID-001",
+      "mode": "quick-keep",
+      "runId": "RUN-01",
+      "actualTestExitCode": 0,
+      "branch": "main",
+      "collectorRequired": true,
+      "expectedCollectorCalls": 1,
+      "expectedTestExitCode": 0,
+      "head": "cd6b640a6d5799bc3d4f430317011939599a8290",
+      "promptCharacters": 491,
+      "promptPath": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-offline-freeze-01/control/prompts/k-id-001-run-01.txt",
+      "promptSha256": "c966e9fc6c445a37581bb4df6481d4ad537b908dba8a9837fe2721bf613baa29",
+      "skillTreeSha256": "8d03446b6063ba0cca4931462be8ccd06edbf6d3db985e028b8fa4a45d48f55d",
+      "status": [
+        " M src/label.ts"
+      ],
+      "testStderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "testStdoutSha256": "79427804d064f1a23b5d3409d7965072115b5a681e2d35e088e49d6b97757674",
+      "workspace": "/private/tmp/post-v0.4.0-grouped-ledger-candidate-04-offline-freeze-01/workspaces/k-id-001-run-01",
+      "workspaceFileCount": 28,
+      "workspaceTreeSha256": "7c2f24359011c5cb58b10f3c917b87d70d62bbe433183f0c98c57dd1ccb176b4"
+    }
+  ],
+  "repeatAssertions": [
+    {
+      "caseId": "Q-ID-001",
+      "head": "4193b2b39fdf83172891d29229d7e85f223f72ba",
+      "promptSha256": "c966e9fc6c445a37581bb4df6481d4ad537b908dba8a9837fe2721bf613baa29",
+      "runs": [
+        "RUN-01",
+        "RUN-02"
+      ],
+      "workspaceTreeSha256": "7def959c8a3aa9dc0eb2cb07c557cd4e99808691732c48ad12b5c058ed9692e9"
+    },
+    {
+      "caseId": "F-ID-001",
+      "head": "77874549691df99f646ee89b19f3311d9050387d",
+      "promptSha256": "5e316a6038fbbaf44f3d81dd7d3e2f876cb3f5308783c2ebf3dfbf40cebbb7f8",
+      "runs": [
+        "RUN-01",
+        "RUN-02"
+      ],
+      "workspaceTreeSha256": "0514dcd9847002511fca97d3c9092d68bbac46bf5eb4add5ef5acfab1844c5e4"
+    }
+  ],
+  "sourcePolicy": {
+    "externalModelRequests": 0,
+    "privateSourceAllowed": false,
+    "sourceBearingAuthorized": false,
+    "sourceFreeProbeAuthorized": false,
+    "sourceTransmitted": false,
+    "visibility": "public-synthetic-only"
+  }
+}

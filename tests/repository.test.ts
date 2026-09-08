@@ -2332,7 +2332,7 @@ describe('repository release support', () => {
     expect(results).toContain('Cursor remains `Cannot Verify`');
     expect(results).toContain('No failed run was retried in place or reclassified');
     expect(results).not.toContain('| Runtime pass |');
-    expect(results).not.toContain('13011235000@163.com');
+    expect(results).not.toMatch(/\b\d{11}@163\.com\b/);
   });
 
   test('publishes v0.4.0 post-release evidence without promoting the Cursor partial run', () => {
@@ -2351,7 +2351,7 @@ describe('repository release support', () => {
     expect(results).toContain('No source-bearing run was retried');
     expect(results).toContain('Cursor remains `Cannot Verify`');
     expect(results).not.toContain('| Cursor Agent CLI 2026.08.11-e8db854 Quick Review | Runtime pass |');
-    expect(results).not.toContain('13011235000@163.com');
+    expect(results).not.toMatch(/\b\d{11}@163\.com\b/);
   });
 
   test('publishes the exact v0.3.0 release window without promoting synthetic evidence', () => {

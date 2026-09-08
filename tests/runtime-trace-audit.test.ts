@@ -1,3 +1,4 @@
+import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -8,6 +9,7 @@ import { rootDir } from './test-utils';
 
 interface AuditResult {
   allowedMcpTools: string[];
+  assistantMessageCount: number;
   commandExecutionCount: number;
   contextCollector: {
     collectorCallCount: number;
@@ -18,6 +20,8 @@ interface AuditResult {
   elapsedSeconds: number | null;
   finalResponseCharacters: number | null;
   finalResponseLines: number | null;
+  finalResponseSha256: string | null;
+  finalResponseSource: string | null;
   mcpToolCallCount: number;
   mcpToolCalls: Array<{
     error: { message: string } | null;
@@ -26,6 +30,9 @@ interface AuditResult {
     tool: string;
   }>;
   mcpToolFailureCount: number;
+  resultEventCount: number;
+  resultIsError: boolean | null;
+  resultResponseMatchesFinal: boolean | null;
   toolCallCount: number;
   tokenUsage: {
     cacheWriteInputTokens: number | null;
@@ -37,10 +44,10 @@ interface AuditResult {
   } | null;
   valid: boolean;
   violations: Array<{
-    actual?: number;
+    actual?: number | string | null;
     added?: string[];
     command?: string;
-    expected?: number;
+    expected?: number | string;
     line?: number;
     removed?: string[];
     type: string;
@@ -119,6 +126,7 @@ function audit(
   elapsedSeconds?: number,
   allowedMcpTools: string[] = [],
   requireContextCollector = false,
+  expectedResponseSha256?: string,
 ) {
   return spawnSync(
     process.execPath,
@@ -130,6 +138,9 @@ function audit(
       ...(baselineStatusPath ? ['--baseline-status', baselineStatusPath] : []),
       ...(elapsedSeconds === undefined ? [] : ['--elapsed-seconds', String(elapsedSeconds)]),
       ...(requireContextCollector ? ['--require-context-collector'] : []),
+      ...(expectedResponseSha256
+        ? ['--expected-response-sha256', expectedResponseSha256]
+        : []),
       ...allowedMcpTools.flatMap((tool) => ['--allow-mcp', tool]),
       tracePath,
     ],
@@ -551,6 +562,10 @@ describe('runtime evaluation trace audit', () => {
     expect(report.elapsedSeconds).toBe(18.5);
     expect(report.finalResponseCharacters).toBe(finalResponse.length);
     expect(report.finalResponseLines).toBe(3);
+    expect(report.finalResponseSha256).toBe(
+      crypto.createHash('sha256').update(finalResponse).digest('hex'),
+    );
+    expect(report.finalResponseSource).toBe('codex-item');
     expect(report.tokenUsage).toEqual({
       cacheWriteInputTokens: 12,
       cachedInputTokens: 700,
@@ -559,6 +574,102 @@ describe('runtime evaluation trace audit', () => {
       reasoningOutputTokens: 80,
       uncachedInputTokens: 300,
     });
+  });
+
+  test('reports and verifies Cursor assistant/result responses and token usage', () => {
+    const workspace = makeWorkspace();
+    const finalResponse = 'CLIENT_ISOLATION_OK';
+    const expectedResponseSha256 = crypto
+      .createHash('sha256')
+      .update(finalResponse)
+      .digest('hex');
+    const tracePath = writeTrace(workspace, [
+      {
+        message: {
+          content: [{ text: finalResponse, type: 'text' }],
+          role: 'assistant',
+        },
+        type: 'assistant',
+      },
+      {
+        is_error: false,
+        result: finalResponse,
+        type: 'result',
+        usage: {
+          cacheReadTokens: 2688,
+          cacheWriteTokens: 0,
+          inputTokens: 14727,
+          outputTokens: 114,
+        },
+      },
+    ]);
+
+    const result = audit(
+      workspace,
+      tracePath,
+      false,
+      undefined,
+      undefined,
+      [],
+      false,
+      expectedResponseSha256,
+    );
+    const report = JSON.parse(result.stdout) as AuditResult;
+
+    expect(result.status, result.stderr).toBe(0);
+    expect(report.valid).toBe(true);
+    expect(report.assistantMessageCount).toBe(1);
+    expect(report.resultEventCount).toBe(1);
+    expect(report.resultIsError).toBe(false);
+    expect(report.resultResponseMatchesFinal).toBe(true);
+    expect(report.finalResponseCharacters).toBe(19);
+    expect(report.finalResponseLines).toBe(1);
+    expect(report.finalResponseSha256).toBe(expectedResponseSha256);
+    expect(report.finalResponseSource).toBe('cursor-assistant');
+    expect(report.tokenUsage).toEqual({
+      cacheWriteInputTokens: 0,
+      cachedInputTokens: 2688,
+      inputTokens: 14727,
+      outputTokens: 114,
+      reasoningOutputTokens: null,
+      uncachedInputTokens: 12039,
+    });
+    expect(report.violations).toEqual([]);
+  });
+
+  test('rejects a Cursor response that does not match the expected SHA-256', () => {
+    const workspace = makeWorkspace();
+    const tracePath = writeTrace(workspace, [
+      {
+        message: {
+          content: [{ text: 'unexpected', type: 'text' }],
+          role: 'assistant',
+        },
+        type: 'assistant',
+      },
+    ]);
+
+    const result = audit(
+      workspace,
+      tracePath,
+      false,
+      undefined,
+      undefined,
+      [],
+      false,
+      crypto.createHash('sha256').update('expected').digest('hex'),
+    );
+    const report = JSON.parse(result.stdout) as AuditResult;
+
+    expect(result.status).toBe(1);
+    expect(report.valid).toBe(false);
+    expect(report.violations).toEqual([
+      {
+        actual: crypto.createHash('sha256').update('unexpected').digest('hex'),
+        expected: crypto.createHash('sha256').update('expected').digest('hex'),
+        type: 'final-response-sha256-mismatch',
+      },
+    ]);
   });
 
   test('reports unavailable efficiency metrics without inventing values', () => {
@@ -572,6 +683,8 @@ describe('runtime evaluation trace audit', () => {
     expect(report.elapsedSeconds).toBeNull();
     expect(report.finalResponseCharacters).toBeNull();
     expect(report.finalResponseLines).toBeNull();
+    expect(report.finalResponseSha256).toBeNull();
+    expect(report.finalResponseSource).toBeNull();
     expect(report.tokenUsage).toBeNull();
   });
 

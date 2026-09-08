@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-11",
+  "preparedDate": "2026-09-01",
+  "status": "offline-freeze-complete-source-free-probe-passed-source-bearing-not-authorized",
+  "sourcePolicy": {
+    "externalModelRequests": 0,
+    "sourceBearingAuthorized": false,
+    "sourceFreeProbePassed": true,
+    "sourceTransmitted": false,
+    "visibility": "public-synthetic-only"
+  },
+  "evaluatorContract": {
+    "deterministicTests": "node --test executed once locally per workspace; Cursor test calls expected 0",
+    "nonDeepCollector": "executed once locally per non-Deep workspace; normalized output embedded in literal Prompt; Cursor collector calls expected 0",
+    "deepInventory": "main...HEAD branch, HEAD, status, changed files, diff stat, and diff check frozen locally; Cursor Git calls expected 0",
+    "cursorAllowedTools": "workspace-local read-only file tools only",
+    "cursorShellCallsExpected": 0,
+    "cursorMcpCallsExpected": 0,
+    "privateSourceAllowed": false
+  },
+  "skill": {
+    "treeSha256": "d25f55a5e11dd59c2eb8f16f3d4650924e61d1bee05c6b19b6545c83b61ef18f",
+    "fileCount": 12
+  },
+  "runner": {
+    "sha256": "c3b6d558c98365f887c1a1917253e0c610a1e663f53ed769ee226caf149bc549",
+    "argumentsBeforePrompt": ["--print", "--output-format", "stream-json", "--mode", "plan", "--sandbox", "enabled", "--trust", "--workspace", "<workspace>"]
+  },
+  "seatbeltProfile": {
+    "sha256": "6ed882cbbd2605d3192502484407641d48dd15a1bc0e1b77f0682844d092ed40"
+  },
+  "runs": [
+    {"caseId":"D-ID-001","mode":"deep-identity","runId":"RUN-01","branch":"candidate","head":"278c0c11674caeaf207e98e7bdffa112eafb221e","statusSha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","workspaceTreeSha256":"0c30b1570b9ff85549da186a69e68483b12f2ef68b73e532ec73ac7188be3848","promptSha256":"abd6617078c699d0b8333d94b377c884348380bcaa204bd0e3ad82d862b0fc10","testCommand":"node --test","testExitCode":1,"testStdoutSha256":"d16b51fcd34f9a2fcab1e0ef7a5a20d2ef21df69d035734d0d0db4b9baf73038","testStderrSha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","expectedTestExitCode":1,"collectorCallsExecuted":0,"collectorExpectedByCursor":0},
+    {"caseId":"Q-ID-001","mode":"quick-identity","runId":"RUN-01","branch":"main","head":"f2b9dad85aa356a2a7fad66680dddf1d5915fddb","statusSha256":"e1014afad52183dc386bc7d4623894a7bfc00ee4e4977cbd6ff96892065ffb4b","workspaceTreeSha256":"49dc6e92a773845e62299d7877fafe2e9388c7f4013ecfa38dbeb384fb38a2da","promptSha256":"8a2d13dcc1fdcfb1e7372d4610415fc092175bf8d53214356ee55ab169a4e12e","testCommand":"node --test","testExitCode":1,"testStdoutSha256":"490d11030ab5bc3189e207f970ca683f0d80270855b0b81e77e5f54f1c408a76","testStderrSha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","expectedTestExitCode":1,"collectorCallsExecuted":1,"collectorExpectedByCursor":0},
+    {"caseId":"Q-ID-001","mode":"quick-identity","runId":"RUN-02","branch":"main","head":"f2b9dad85aa356a2a7fad66680dddf1d5915fddb","statusSha256":"e1014afad52183dc386bc7d4623894a7bfc00ee4e4977cbd6ff96892065ffb4b","workspaceTreeSha256":"49dc6e92a773845e62299d7877fafe2e9388c7f4013ecfa38dbeb384fb38a2da","promptSha256":"8a2d13dcc1fdcfb1e7372d4610415fc092175bf8d53214356ee55ab169a4e12e","testCommand":"node --test","testExitCode":1,"testStdoutSha256":"3482a2411b58b4ffa85b3c5388d94b7f04e2f9f682bbc832a356ca8f87e65336","testStderrSha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","expectedTestExitCode":1,"collectorCallsExecuted":1,"collectorExpectedByCursor":0},
+    {"caseId":"Q-ID-002","mode":"quick-independent","runId":"RUN-01","branch":"main","head":"b93aefee67ad840471c783d5ed1fc78f8742f0b1","statusSha256":"b34f0c929992956b36d3712dd4677f77e83166eafd66a292def0ab008337395c","workspaceTreeSha256":"4af286d9eab0b0a84ba18f3b6a606365b5b0a57c098a1fa916ae8fae37633946","promptSha256":"6bf990c9f4c8891c27a5188778bd091f4451cd49cf02d80bdfa0ced08a9f373d","testCommand":"node --test","testExitCode":1,"testStdoutSha256":"f74f8dce323c6ae042c0d6be5300939a36a753c40ec2a8f33df59ef920646382","testStderrSha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","expectedTestExitCode":1,"collectorCallsExecuted":1,"collectorExpectedByCursor":0},
+    {"caseId":"F-ID-001","mode":"fix-identity","runId":"RUN-01","branch":"main","head":"ed843967437e6c06c3aa78e052540c4aaa5785d4","statusSha256":"43915c2da896e437bf50266d161ab5b34a13a3a0a1b8cb6fe0d79fb989a61ede","workspaceTreeSha256":"2b13b64f8a7308aee43b65b4dfd2503aa211b9eadcbe33f10e0e0d0627ae26a3","promptSha256":"51a9617020237f32f0288cb2c775c39b19a2d1796e3b671bacd9124647420d44","testCommand":"node --test","testExitCode":0,"testStdoutSha256":"242e74132789031ba3a5f6365241f62b8577978b87a2d5ce8293e2d8ebecd818","testStderrSha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","expectedTestExitCode":0,"collectorCallsExecuted":1,"collectorExpectedByCursor":0},
+    {"caseId":"F-ID-001","mode":"fix-identity","runId":"RUN-02","branch":"main","head":"ed843967437e6c06c3aa78e052540c4aaa5785d4","statusSha256":"43915c2da896e437bf50266d161ab5b34a13a3a0a1b8cb6fe0d79fb989a61ede","workspaceTreeSha256":"2b13b64f8a7308aee43b65b4dfd2503aa211b9eadcbe33f10e0e0d0627ae26a3","promptSha256":"51a9617020237f32f0288cb2c775c39b19a2d1796e3b671bacd9124647420d44","testCommand":"node --test","testExitCode":0,"testStdoutSha256":"e30416f775096a8faf1a07aef1aa7a31c825dc5832139a726de4488325fcbc85","testStderrSha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","expectedTestExitCode":0,"collectorCallsExecuted":1,"collectorExpectedByCursor":0},
+    {"caseId":"K-ID-001","mode":"quick-keep","runId":"RUN-01","branch":"main","head":"2009ee2bdd009df37898409d34adea7fb41ebc71","statusSha256":"8181edf86c12194f3b4d73ba32b721c479f8a74231f9ffea0ad463ca8429083a","workspaceTreeSha256":"eb0ed571ca9edcc1b79fd52016e32a7c6414a8ac551c52c9d6aa129feaf69922","promptSha256":"4f0a01639460d9d0937192161a5a6d7c4a595e06a5472dea11a1430ba7e57547","testCommand":"node --test","testExitCode":0,"testStdoutSha256":"c2e0090ea505351a56ef570626562748e3f49925af19b4c4cec2dfb5e228619b","testStderrSha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855","expectedTestExitCode":0,"collectorCallsExecuted":1,"collectorExpectedByCursor":0}
+  ],
+  "repeatAssertions": [
+    {"caseId":"Q-ID-001","runs":["RUN-01","RUN-02"],"head":"f2b9dad85aa356a2a7fad66680dddf1d5915fddb","promptSha256":"8a2d13dcc1fdcfb1e7372d4610415fc092175bf8d53214356ee55ab169a4e12e","statusSha256":"e1014afad52183dc386bc7d4623894a7bfc00ee4e4977cbd6ff96892065ffb4b","workspaceTreeSha256":"49dc6e92a773845e62299d7877fafe2e9388c7f4013ecfa38dbeb384fb38a2da"},
+    {"caseId":"F-ID-001","runs":["RUN-01","RUN-02"],"head":"ed843967437e6c06c3aa78e052540c4aaa5785d4","promptSha256":"51a9617020237f32f0288cb2c775c39b19a2d1796e3b671bacd9124647420d44","statusSha256":"43915c2da896e437bf50266d161ab5b34a13a3a0a1b8cb6fe0d79fb989a61ede","workspaceTreeSha256":"2b13b64f8a7308aee43b65b4dfd2503aa211b9eadcbe33f10e0e0d0627ae26a3"}
+  ],
+  "externalModelRequests": 0,
+  "sourceTransmitted": false,
+  "sourceBearingAuthorized": false
+}

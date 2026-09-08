@@ -1,0 +1,161 @@
+{
+  "schemaVersion": 1,
+  "candidate": "post-v0.4.0-grouped-ledger-candidate-10",
+  "date": "2026-08-28",
+  "status": "complete-no-go-source-free-plan-capability-probe-command-rejected",
+  "predecessor": {
+    "candidate": "post-v0.4.0-grouped-ledger-candidate-09",
+    "decision": "No-Go",
+    "failedGate": "source-free Plan-mode capability probe",
+    "failure": "Cursor inner sandbox application failed inside the mandatory outer Seatbelt wrapper",
+    "retried": false,
+    "reinterpreted": false
+  },
+  "frozenDelta": {
+    "classification": "evaluation-tooling-only",
+    "skill": {
+      "deltaComparedWithCandidate09": "byte-identical",
+      "validatorBehaviorChanged": false,
+      "newVisibleOutputFields": 0
+    },
+    "runner": {
+      "path": "scripts/run-cursor-evaluation-v6.mjs",
+      "sha256": "6144c30a7495a6e0f4e52ba0d78745ab35bc8af09f93f2d87a9ab7f7ba7abc10",
+      "base": "scripts/run-cursor-evaluation-v5.mjs",
+      "clientArgumentDelta": {
+        "from": ["--sandbox", "enabled"],
+        "to": ["--sandbox", "disabled"]
+      },
+      "outerSandboxRequired": "/usr/bin/sandbox-exec",
+      "mode": "plan",
+      "preAndPostGitStatusRequired": true,
+      "preAndPostWorkspaceTreeRequired": true
+    },
+    "probeAuditor": {
+      "path": "scripts/audit-cursor-plan-probe-v2.mjs",
+      "sha256": "1c8003ab5bc6c67c25e518595a8878a205d1e3c45d347244a24312468a821c80",
+      "base": "scripts/audit-cursor-plan-probe.mjs",
+      "successShapeRequired": true,
+      "failureShapeMustReportActualCommandAndExit": true,
+      "historicalResultsChanged": false
+    },
+    "seatbeltProfile": {
+      "path": "evaluation/profiles/cursor-workspace-read-only.sb",
+      "changed": false,
+      "workspaceWriteDenied": true,
+      "protectedRootWriteDenied": true
+    }
+  },
+  "localProof": {
+    "status": "pass",
+    "result": "evaluation/runtime-windows/post-v0.4.0-grouped-ledger-candidate-10-local-proof.json",
+    "resultSha256": "904b6bd480ae4c690b437f9bb823e4e5647316db96d70c4d38643cb490e7a6fc",
+    "codexSandboxAttemptRetainedAsInvalidHostContext": true,
+    "hostLevelGitStatusExitCode": 0,
+    "hostLevelWorkspaceWriteDenied": true,
+    "hostLevelProtectedRootWriteDenied": true,
+    "workspaceTreeUnchanged": true,
+    "cursorExecuted": false,
+    "externalModelRequests": 0
+  },
+  "platformBoundary": {
+    "evaluationHost": "macOS only",
+    "seatbeltIsSkillRuntimeDependency": false,
+    "wholeMachineWriteDenyClaimed": false,
+    "crossPlatformRuntimeClaimed": false
+  },
+  "authorization": {
+    "offlineImplementationAuthorized": true,
+    "isolatedLoginAuthorized": true,
+    "sourceFreeExternalRequestAuthorized": true,
+    "sourceBearingAuthorized": false,
+    "privateSourceAllowed": false,
+    "commitAuthorized": false,
+    "pushAuthorized": false,
+    "temporaryCleanupAuthorized": false
+  },
+  "staticValidation": {
+    "status": "pass",
+    "targetedVitest": "3/3 files and 30/30 tests",
+    "fullVitest": "25/25 files and 179/179 tests",
+    "groupedLedgerReplay": "7/7",
+    "candidateSkillValidators": "2/2 using existing isolated PyYAML 6.0.3 environment",
+    "candidateNodeSyntax": "2/2",
+    "jsonDocuments": "140/140",
+    "markdownLocalLinks": "170/170 across 60 files",
+    "sensitiveIdentifiers": 0,
+    "gitDiffCheck": "pass",
+    "runnerSha256": "6144c30a7495a6e0f4e52ba0d78745ab35bc8af09f93f2d87a9ab7f7ba7abc10",
+    "probeAuditorSha256": "1c8003ab5bc6c67c25e518595a8878a205d1e3c45d347244a24312468a821c80",
+    "seatbeltProfileSha256": "6ed882cbbd2605d3192502484407641d48dd15a1bc0e1b77f0682844d092ed40",
+    "publicSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "installedSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "externalModelRequests": 0,
+    "sourceTransmitted": false
+  },
+  "sourceFreeProbeResult": {
+    "status": "no-go",
+    "result": "evaluation/runtime-windows/post-v0.4.0-grouped-ledger-candidate-10-probe-result.json",
+    "resultSha256": "2dc575b62326f13429012aa3bd410f43d5ae4241e0474d1fe1367f289d789ad6",
+    "isolatedLoginCompleted": true,
+    "externalModelRequests": 1,
+    "sourceBearingRuns": 0,
+    "finalAssistantResponseExact": true,
+    "resultEventMatchesOrderedAssistantAggregate": true,
+    "shellToolCalls": 1,
+    "commandExecutions": 0,
+    "commandRejected": true,
+    "rejectedCommandReadonly": false,
+    "mcpCalls": 0,
+    "workspaceUnchanged": true,
+    "reviewedSourceTransmitted": false,
+    "privateSourceTransmitted": false,
+    "retryExecuted": false,
+    "replacementExecuted": false,
+    "modeSwitchExecuted": false
+  },
+  "postStopValidation": {
+    "status": "pass",
+    "targetedVitest": "3/3 files and 30/30 tests",
+    "fullVitest": "25/25 files and 179/179 tests",
+    "groupedLedgerReplay": "7/7",
+    "candidateSkillValidators": "2/2 using existing isolated PyYAML 6.0.3 environment",
+    "candidateNodeSyntax": "2/2",
+    "jsonDocuments": "141/141",
+    "markdownLocalLinks": "171/171 across 60 files",
+    "sensitiveIdentifiers": 0,
+    "gitDiffCheck": "pass",
+    "sourceFreeWorkspaceTreeSha256": "66f2cfad5a7df999c8e43c405d3550e77526f649b20fee6534cdd9f67782d4a4",
+    "candidateSkillTreeSha256": "d25f55a5e11dd59c2eb8f16f3d4650924e61d1bee05c6b19b6545c83b61ef18f",
+    "publicSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "installedSkillSha256": "6f1eaba1e61d5f3581713e2814e6fa351fa0bcae68413e02ac1f282565aec286",
+    "externalModelRequestsTotal": 1,
+    "sourceBearingRunsTotal": 0
+  },
+  "prospectiveSourceFreeProbe": {
+    "freshIsolatedHomeRequired": true,
+    "freshWorkspaceRequired": true,
+    "candidate09HomeReuseAllowed": false,
+    "candidate09WorkspaceReuseAllowed": false,
+    "mode": "plan",
+    "clientSandbox": "disabled",
+    "outerSeatbeltRequired": true,
+    "expectedShellToolCalls": 1,
+    "expectedCommandExecutions": 1,
+    "expectedMcpCalls": 0,
+    "expectedWorkspaceMutation": false,
+    "sourceBearingAllowed": false,
+    "externalModelRequestsExecuted": 1
+  },
+  "applicationBoundary": {
+    "publicSkillChanged": false,
+    "installedSkillChanged": false,
+    "releaseChanged": false,
+    "candidate10LoginCreated": true,
+    "candidate10ExternalRequestExecuted": true,
+    "commitCreatedInRepository": false,
+    "pushExecuted": false
+  },
+  "stopRule": "Stop at the first static, Seatbelt, transport, client-contract, Prompt-integrity, transfer-scope, execution, read-only, isolation, integrity, hash, fixture, replay, or warning failure without retry, replacement, reinterpretation, or mode switch.",
+  "nextGate": "Candidate 10 is closed No-Go. Do not execute a retry, replacement probe, mode switch, or source-bearing request."
+}
