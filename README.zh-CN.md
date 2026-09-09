@@ -202,6 +202,7 @@ Playwright 或等价浏览器工具只提供可选运行时证据，不是 Skill
 
 完整输出示例：
 
+- [Quick Review 英文示例](examples/outputs/quick-review.md)
 - [Quick Review 中文示例](examples/outputs/quick-review.zh-CN.md)
 - [Deep Review 示例](examples/outputs/deep-review.md)
 - [Fix Review 中文示例](examples/outputs/fix-review.zh-CN.md)
@@ -224,6 +225,14 @@ pnpm test
 ```
 
 Vitest 负责验证仓库结构、适配器、引用文件和必需审查契约。AI 审查质量使用[人工评测协议](docs/evaluation.md)验证，不使用确定性单元测试伪造模型质量结论。
+
+通过实际输出校验 CLI 检查合成示例（需要 Node.js，不会调用模型）：
+
+```bash
+node "scripts/validate-review-output.mjs" --mode quick "examples/outputs/quick-review.zh-CN.md"
+```
+
+CLI 返回 JSON；退出码 `0` 表示结构检查通过，`1` 表示报告被拒绝，`2` 表示参数或读取错误。`validate-review-output-strict.mjs` 是内部模块，不是第二个 CLI。示例仅用于说明格式，不是实际运行证据；校验字段和语义边界见[输出校验边界](docs/evaluation.md#output-validator-boundaries)。
 
 ## 项目文档
 

@@ -2,6 +2,18 @@
 
 The roadmap is evidence-driven. Items move into a release only when real review runs show that they solve a repeated problem.
 
+## Current Next Steps
+
+Stable release: `v0.5.0`. The earlier candidate sections below retain their chronological decisions and historical pending gates; they are not the current task queue. Frozen Prompts, hashes, results, and `No-Go` decisions must not be rewritten as later successes.
+
+1. Local maintenance implemented and Vitest checks passed: public examples match the existing output validator, direct execution of its internal strict module is rejected, positive/negative example tests exercise the real CLI/API, and installation-evidence wording is corrected. Both Skill shape validators passed using PyYAML 6.0.3 installed offline into a temporary target from a cached wheel whose SHA-256 matches official PyPI metadata; the distributable Skill is unchanged. This is a possible v0.5.1 maintenance scope, not a version bump or a Skill behavior change.
+2. Completed on 2026-09-09: independent Node dependency installation passed in a new local `v0.5.0` tag clone with a fresh HOME/cache/store, `45` downloaded and `0` reused packages, `36/36` Vitest files, `198/198` tests, and both Skill validators passing. The earlier blocked installation and dependency-reuse check remain historical evidence; PyYAML was reused, and neither a new GitHub download nor client runtime behavior was verified. See [Independent Node Dependency Installation](evaluation-results/v0.5.0-candidate.md#independent-node-dependency-installation).
+3. Pending separate authorization: obtain current-release Codex source-free and Quick/Deep/Fix/no-finding evidence. Cursor retains its scoped accepted evidence; Claude Code remains `Cannot Verify` until valid credentials and applicable runtime results exist.
+4. Proposed v0.6.0 scope, not implemented: make problem origin and occurrence characteristics explicit. Distinguish new, amplified, retained, and unknown origins using baseline evidence; report trigger conditions and observed reproduction counts without inventing production probabilities. Preserve Quick/Deep/Fix scope, severity, read-only, and localized-output contracts.
+5. Deferred behavior work: large-diff file coverage, instruction-conflict handling, additional real-project regression cases, and evidence-backed efficiency work. Quality and safety gates take precedence over token or elapsed-time reductions.
+
+Temporary-data cleanup for the earlier authorized Candidate 15/16 and v0.5.0 directory set is complete. The new independent-installation workspace and temporary PyYAML validation target are retained for separately authorized cleanup. The public npm downloads above completed under their bounded authorization; external model requests, source transfers, further dependency installation, commits, pushes, tags, and releases remain outside this local maintenance step.
+
 ## Historical v0.1.x Maintenance
 
 - Correct installation and adapter documentation as clients evolve.
@@ -89,7 +101,7 @@ The scoped pre-commit review found one evaluation-only Risk: rerunning Candidate
 
 The Candidate 16 application and its evaluation evidence are committed, pushed, tagged, and published as v0.5.0. The first exact-current-tree Fix release request produced correct closure and remained read-only, but its frozen evaluator Prompt simultaneously required `.evaluation/previous-findings.md` and prohibited `evaluation` reads, so it is retained as `Cannot Score` rather than promoted. A fresh replacement workspace used a self-consistent single-file exception and passed: all three previous Findings retained their severities and became `Resolved`, New Regression was none, the recommendation was `可以关闭`, all tools were workspace-relative and read-only, and Git plus complete workspace hashes remained unchanged.
 
-The current 12-file distributable tree `148cf6ebae8c5cba674f5fe0fe9f1399f405287b5057d815867662faa1721480` now has exact-current-tree Cursor source-free, Quick, Deep, and Fix acceptance. Stable installation is pinned to v0.5.0. Codex and Claude Code remain `Cannot Verify` for v0.5.0 unless separately authorized current-tree runtime evidence is completed. Clean-tag installation smoke passed the repository tests and both Skill validators. See [v0.5.0 Candidate Results](evaluation-results/v0.5.0-candidate.md).
+The current 12-file distributable tree `148cf6ebae8c5cba674f5fe0fe9f1399f405287b5057d815867662faa1721480` now has exact-current-tree Cursor source-free, Quick, Deep, and Fix acceptance. Stable installation is pinned to v0.5.0. Codex and Claude Code remain `Cannot Verify` for v0.5.0 unless separately authorized current-tree runtime evidence is completed. The earlier clean-tag deterministic checks reused local dependencies; independent Node dependency installation passed later in a new local tag clone, with the tag's tests and both Skill validators passing. No client status changed. See [v0.5.0 Candidate Results](evaluation-results/v0.5.0-candidate.md).
 
 ## v0.3.0 Real-project Evaluation Baseline
 

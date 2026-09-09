@@ -47,7 +47,9 @@ v0.5.0 groups changed-condition evidence by Finding, requires complete transitio
 | Codex | Shared Skill and adapter contracts pass repository validation | No v0.5.0 current-tree runtime run has been executed | Cannot Verify |
 | Claude Code | Shared Skill and adapter contracts pass repository validation | Not executed because valid runtime credentials are unavailable | Cannot Verify |
 
-The first current-tree Fix request remains `Cannot Score` because its evaluator Prompt simultaneously required and generically prohibited the previous-Finding read. Its correct output is not promoted or discarded. A fresh replacement window corrected only that control-plane contradiction and passed every declared gate. Post-release installation smoke also passed against a clean `v0.5.0` checkout; the dependency install itself was not repeated because the network sandbox blocked registry access. See [v0.5.0 Candidate Results](evaluation-results/v0.5.0-candidate.md) and the [Candidate 16 Evaluation Plan](post-v0.4.0-grouped-ledger-candidate-16-evaluation-plan.md).
+The first current-tree Fix request remains `Cannot Score` because its evaluator Prompt simultaneously required and generically prohibited the previous-Finding read. Its correct output is not promoted or discarded. A fresh replacement window corrected only that control-plane contradiction and passed every declared gate. The earlier clean `v0.5.0` checkout passed deterministic checks using reused local dependencies after `pnpm install --frozen-lockfile` was blocked by the network sandbox. That check remains dependency-reuse evidence, not independent installation or client runtime evidence.
+
+Independent Node dependency installation passed on 2026-09-09 in a new local tag clone with a fresh HOME/cache/store: `45` packages downloaded, `0` reused, `36/36` Vitest files and `198/198` tests passed, and both Skill validators passed. PyYAML was reused from a separately validated temporary target. This closes only the Node dependency installation gap; no new GitHub download or client runtime acceptance is claimed, and the client statuses above are unchanged. See [v0.5.0 Candidate Results](evaluation-results/v0.5.0-candidate.md) and the [Candidate 16 Evaluation Plan](post-v0.4.0-grouped-ledger-candidate-16-evaluation-plan.md).
 
 ## Historical v0.4.0 Evidence
 
@@ -121,7 +123,7 @@ The shared core contract defines the following fallback for Codex, Claude Code, 
 ## Known Limitations
 
 - Codex and Claude Code v0.5.0 runtime behavior remains `Cannot Verify`; stable runtime acceptance is verified only for Cursor.
-- The v0.5.0 acceptance chain and post-release smoke use public synthetic fixtures and do not establish general model precision or verify private repositories, browser/WebView behavior, backend behavior, deployment, monitoring, or production systems.
+- The v0.5.0 runtime acceptance chain uses public synthetic fixtures. Post-release checks were deterministic only. Neither establishes general model precision or verifies private repositories, browser/WebView behavior, backend behavior, deployment, monitoring, or production systems.
 - One current-tree Fix request is retained as `Cannot Score` because its evaluator Prompt was self-contradictory; only the separately frozen replacement result is promoted.
 - Cursor and Claude Code v0.4.0 runtime behavior remains `Cannot Verify`. Cursor's post-release Quick output passed its semantic and structural oracle, but the run failed mandatory collector and workspace-isolation trace gates; Claude Code was not executed.
 - The v0.4.0 runtime window uses public synthetic fixtures. It does not establish general model precision or verify private repositories, browser/WebView behavior, backend behavior, deployment, monitoring, or production systems.

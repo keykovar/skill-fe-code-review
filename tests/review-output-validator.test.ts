@@ -356,5 +356,35 @@ Proceed after changes.
     expect(result.status, result.stderr).toBe(0);
     expect(JSON.parse(result.stdout)).toMatchObject({ mode: 'quick', valid: true });
     expect(fs.readFileSync(reportPath, 'utf8')).toBe(quickReport);
+
+    const invalidReport = quickReport.replace('## Changed-Condition Coverage', '## Missing Coverage');
+    fs.writeFileSync(reportPath, invalidReport);
+    const invalid = spawnSync(
+      process.execPath,
+      [validatorScript, '--mode', 'quick', reportPath],
+      { encoding: 'utf8' },
+    );
+    expect(invalid.status).toBe(1);
+    expect(JSON.parse(invalid.stdout)).toMatchObject({ valid: false });
+    expect(fs.readFileSync(reportPath, 'utf8')).toBe(invalidReport);
+
+    const missing = spawnSync(process.execPath, [
+      validatorScript, '--mode', 'quick', path.join(directory, 'missing.md'),
+    ], { encoding: 'utf8' });
+    expect(missing.status).toBe(2);
+    expect(missing.stdout).toBe('');
+    expect(missing.stderr).toContain('ENOENT');
+  });
+
+  test('fails explicitly when the internal strict module is invoked as a CLI', () => {
+    const result = spawnSync(process.execPath, [
+      path.join(rootDir, 'scripts', 'validate-review-output-strict.mjs'),
+      '--mode', 'quick', path.join(rootDir, 'examples/outputs/quick-review.md'),
+    ], { encoding: 'utf8' });
+
+    expect(result.status).toBe(2);
+    expect(result.stdout).toBe('');
+    expect(result.stderr).toContain('not a CLI');
+    expect(result.stderr).toContain('validate-review-output.mjs --mode');
   });
 });

@@ -255,6 +255,21 @@ describe('repository release support', () => {
     expect(readme).toContain('The conclusion and final recommendation are one decision contract');
   });
 
+  test('documents the real output-validation entrypoint and its evidence boundary', () => {
+    const readme = readText('README.md');
+    const chineseReadme = readText('README.zh-CN.md');
+    const evaluation = readText('docs/evaluation.md');
+
+    expect(readme).toContain('node "scripts/validate-review-output.mjs" --mode quick');
+    expect(chineseReadme).toContain('node "scripts/validate-review-output.mjs" --mode quick');
+    expect(evaluation).toContain('## Output Validator Boundaries');
+    expect(evaluation).toContain('only public review-output CLI');
+    expect(evaluation).toContain('partial structural validator');
+    expect(evaluation).toContain('not execution records');
+    expect(evaluation).toContain('not the retained nested-group prototype');
+    expect(evaluation).toContain('retain their original labels');
+  });
+
   test('documents permitted documentation evidence and conditional browser evidence', () => {
     const readme = readText('README.md');
     const chineseReadme = readText('README.zh-CN.md');

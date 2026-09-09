@@ -1,6 +1,7 @@
 # Deep Review Output Example
 
-```md
+Illustrative report only. Paths, tests, and browser observations below are synthetic examples of evidence reporting, not retained execution results.
+
 ## Overall Conclusion
 
 Merge/submit recommendation: proceed after changes
@@ -9,8 +10,8 @@ Risk level: medium
 Main reasons:
 
 1. The feature touches shared route state and WebView bridge callbacks.
-2. Rollback is simple, but callback cleanup needs verification.
-3. Test coverage does not include app background/foreground return.
+2. F-001's callback cleanup and focused regression test are merge gates; the existing ownership design can be retained.
+3. Device timing remains unverified. The defined merge scope accepts that residual risk because Native wiring is unchanged; device acceptance remains a separate release step.
 
 ## Change Understanding
 
@@ -37,20 +38,27 @@ Main reasons:
 - Shared module impact: all consumers of the shared resume hook.
 - Config or dependency impact: none.
 
+## Changed-Condition Coverage
+
+- [src/shared/bridge/useAppResume.ts:63] unmount cleanup: page removes resume callback -> shared hook leaves callback registered; Disposition: [F-001]; Merge key: resume-subscription-lifecycle
+- [src/shared/bridge/useAppResume.ts:64] callback after unmount: stopped by page cleanup -> can refresh departed route; Disposition: [F-001]; Merge key: resume-subscription-lifecycle
+- [src/shared/bridge/useAppResume.ts:35] Native resume event wiring: existing bridge event -> same bridge event; Disposition: Behavior Preserving
+
 ## Findings
 
 ### Blocking
 
-- None.
+No clear issue.
 
 ### Risk
 
-- [src/shared/bridge/useAppResume.ts:63] Resume callback can run after page unmount
+- [F-001] [src/shared/bridge/useAppResume.ts:63] Resume callback can run after page unmount
   - Trigger: User leaves the page before native resume callback fires.
   - Impact: State can update after unmount or refresh the wrong route.
   - Root cause: Callback registration is cleaned up on route change but not on component unmount.
   - Suggested fix: Tie registration cleanup to the owning effect and guard late callbacks with the current route/session id.
   - Verification: Add a test or manual case for background app, navigate away, then resume.
+  - Merge basis: Both changed conditions arise from the same missing subscription cleanup and are closed by the same lifecycle repair and late-callback assertion.
 
 ### Improve
 
@@ -58,12 +66,12 @@ Main reasons:
 
 ## Requirement Gaps
 
-- The expected behavior after navigating away before resume is not documented.
+- No clear issue. The existing page lifecycle establishes that leaving the page stops that route's refresh; F-001 violates that preserved requirement.
 
 ## Design / Simplify
 
 - Decision: Keep
-- Related finding: Risk, `src/shared/bridge/useAppResume.ts:63`
+- Related finding: [F-001] Risk, `src/shared/bridge/useAppResume.ts:63`
 - Required behavior and invariants: One active route/session owns the resume callback; cleanup must prevent late callbacks.
 - Existing capability reuse: The existing route hook and bridge lifecycle remain the correct owners, but the current implementation still needs the missing cleanup and late-callback guard.
 - Overdesign / redundant flow: No extra layer, state owner, or speculative compatibility path was introduced.
@@ -105,5 +113,4 @@ Main reasons:
 
 ## Final Recommendation
 
-Add callback cleanup and late-callback verification before merge.
-```
+Proceed after changes: resolve F-001 with callback cleanup and focused late-callback verification before merge. Real-device timing remains the explicitly accepted merge-scope limitation and requires separate release validation.

@@ -1,3 +1,6 @@
+import path from 'node:path';
+import { pathToFileURL } from 'node:url';
+
 const coverageHeadings = new Set([
   'Changed-Condition Coverage',
   'Changed-Condition Coverage：变更条件覆盖',
@@ -65,4 +68,11 @@ export function inspectStrictCoverage(markdown) {
   }
 
   return errors;
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  process.stderr.write(
+    'This is an internal validation module, not a CLI. Use: node scripts/validate-review-output.mjs --mode <quick|deep|fix> <review.md>\n',
+  );
+  process.exitCode = 2;
 }

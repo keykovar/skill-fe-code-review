@@ -6,6 +6,28 @@ For the v0.3.0 real-project baseline, use the [Real-project Evaluation Plan](v0.
 
 The bundled `skills/fe-code-review/scripts/collect-review-context.mjs` helper combines the stable read-only Git/CodeGraph inventory into one model tool invocation. Deterministic tests must prove its output before runtime evaluation. When invoked, it can reduce client round trips; it does not reduce the required review scope or replace post-run trace and workspace-integrity auditing. Record collector adoption from the trace instead of assuming that an available script was used: model guidance alone does not guarantee invocation.
 
+## Output Validator Boundaries
+
+Skill shape validation and review-output validation are different checks. The repository-local and official `quick_validate.py` scripts validate Skill metadata/structure and require PyYAML in their Python environment. Neither proves that a model review or its findings are correct.
+
+The only public review-output CLI is `scripts/validate-review-output.mjs`, also exposed as `pnpm evaluation:review-output`. It calls `validateReviewOutput(markdown, mode)`, which includes the internal `inspectStrictCoverage` helper. Directly executing `validate-review-output-strict.mjs` does not run a report check and is rejected with exit code `2`; do not treat an import-only module exiting successfully in an older version as validation evidence.
+
+Run the standalone synthetic examples from the repository root:
+
+```bash
+node "scripts/validate-review-output.mjs" --mode quick "examples/outputs/quick-review.md"
+node "scripts/validate-review-output.mjs" --mode quick "examples/outputs/quick-review.zh-CN.md"
+node "scripts/validate-review-output.mjs" --mode deep "examples/outputs/deep-review.md"
+node "scripts/validate-review-output.mjs" --mode fix "examples/outputs/fix-review.zh-CN.md"
+```
+
+The CLI is read-only and returns JSON with `valid`, `errors`, `findingIds`, and coverage counts. Exit `0` means the implemented structural checks passed, `1` means the report failed them, and `2` means an argument or file-read error. These examples are manually authored illustrations; their described tests and browser observations are not execution records.
+
+- Quick/Deep checks cover ledger presence, one-line `before -> after` transitions, dispositions, recognized Finding locations and sequential IDs, repeated-ID merge keys, and canonical Blocking-outcome labels. In the stable v0.5.0 grammar, grouping means flat entries reconciled by the same Finding ID and merge key, not the retained nested-group prototype.
+- Fix checks cover one Issue Verification section, nonempty unique prior IDs, exactly one supported status per prior ID, and absence of the Quick/Deep ledger. They do not establish that a prior issue is actually resolved or that all supplied issues were included.
+- This is a partial structural validator, not a complete Markdown, template, or semantic validator. A pass cannot prove recall, severity correctness, valid merge reasoning, factual evidence, recommendation consistency, New Regression accuracy, or read-only model execution. These still require the applicable semantic oracle and trace/integrity checks.
+- `tests/output-examples.test.ts` runs all four public examples through the real CLI and API and rejects targeted malformed variants. Historical prototypes and fixtures retain their original labels and require their matching replay runner; a file named `valid.md` is not automatically valid under the current contract.
+
 ## Scope
 
 Evaluate the skill with real repository diffs, not only synthetic examples.

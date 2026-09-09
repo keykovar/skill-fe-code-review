@@ -1,6 +1,7 @@
 # Quick Review 中文输出示例
 
-```md
+本报告仅为合成输出示例。下文路径、命令结果和证据用于说明格式，不是实际项目或模型运行的验收记录。
+
 ## 总体结论
 
 提交建议：修改后提交
@@ -18,14 +19,19 @@
 - 已执行验证：`pnpm run type-check` 通过
 - 未验证项：未做页面运行时手测
 
+## Changed-Condition Coverage：变更条件覆盖
+
+- [src/themes/lovent/pages/home/store/index.ts:4] 类型依赖：模块内类型 -> 未纳入提交范围的共享类型文件；结论：[F-001]
+
 ## Blocking：必须修改
 
-- [src/themes/lovent/pages/home/store/index.ts:4] 已跟踪文件依赖未跟踪类型文件
+- [F-001] [src/themes/lovent/pages/home/store/index.ts:4] 已跟踪文件依赖未跟踪类型文件
   - 触发场景：只提交已跟踪文件，漏掉 `src/core/home/types.ts`
   - 影响：CI 或其他开发者 clean checkout 后无法解析 `@core/home/types`
+  - 阻断结果：Referenced Untracked File - tracked import 引用仍在提交范围之外的 `src/core/home/types.ts`
   - 根因：已有 tracked 文件 import 了仍处于 untracked 状态的新文件
   - 建议方案：提交时包含 `src/core/home/types.ts`，或移除该 import
-  - 验证方式：确认 `git status --short` 不再显示 `?? src/core/home/types.ts`，并重新运行 type-check
+  - 验证方式：确认该类型文件实际进入拟提交 diff，或 import 已移除；验证候选提交的干净检出能够通过 type-check，不能只凭本地文件存在或不再显示 `??` 判断。
 
 ## Risk：建议修改
 
@@ -67,5 +73,4 @@
 
 ## 最终建议
 
-先把 `src/core/home/types.ts` 纳入提交范围，再进入提交步骤。
-```
+修改后提交：将 `src/core/home/types.ts` 纳入提交范围（或移除该 import），并按 F-001 的验收条件验证候选提交。

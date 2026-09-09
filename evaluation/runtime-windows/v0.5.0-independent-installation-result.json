@@ -1,0 +1,76 @@
+{
+  "record": "v0.5.0-independent-node-installation",
+  "observedDate": "2026-09-09",
+  "status": "pass",
+  "scope": "clean-local-tag-node-dependency-installation",
+  "baseline": {
+    "tag": "v0.5.0",
+    "commit": "0b236c45d0f469f784f1ea77b1a94e79de5e8059",
+    "source": "local-repository-clone",
+    "remoteTagDownloadVerified": false
+  },
+  "environment": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "node": "24.4.1",
+    "pnpm": "11.7.0",
+    "python": "3.14.6",
+    "pyyaml": "6.0.3"
+  },
+  "isolation": {
+    "freshCheckout": true,
+    "freshHome": true,
+    "freshStore": true,
+    "freshCache": true,
+    "nodeModulesInitiallyAbsent": true,
+    "nodeModulesRootIsSymlink": false,
+    "vitestResolvedInsideCheckout": true,
+    "packageImportMethod": "copy"
+  },
+  "install": {
+    "command": "pnpm install --frozen-lockfile --store-dir <fresh-store> --cache-dir <fresh-cache> --registry=https://registry.npmjs.org/ --package-import-method=copy --fetch-retries=0 --fetch-timeout=30000 --reporter=append-only",
+    "registry": "https://registry.npmjs.org/",
+    "networkSandbox": "outside-for-install-only",
+    "exitCode": 0,
+    "elapsedMs": 7693,
+    "resolved": 45,
+    "downloaded": 45,
+    "added": 45,
+    "reused": 0,
+    "vitest": "4.1.10"
+  },
+  "verification": {
+    "vitest": {
+      "command": "pnpm test",
+      "exitCode": 0,
+      "filesPassed": 36,
+      "filesTotal": 36,
+      "testsPassed": 198,
+      "testsTotal": 198
+    },
+    "repositorySkillValidator": "pass",
+    "officialSkillValidator": "pass",
+    "pythonDependency": "reused-separately-validated-temporary-pyyaml",
+    "freshPythonDependencyInstallVerified": false
+  },
+  "integrity": {
+    "baselineTrackedFileCount": 290,
+    "lockfileSha256": "4424546d2638cf723d93a838d6999218b20af65d2ceedbbb61ab506c6aa6e728",
+    "lockfileUnchanged": true,
+    "checkoutTrackedAndUntrackedUnchanged": true,
+    "sourceInventoryUnchanged": true
+  },
+  "transfer": {
+    "publicPackageRegistryAccess": true,
+    "externalModelRequests": 0,
+    "sourceTransmitted": false
+  },
+  "boundaries": {
+    "earlierBlockedInstallRetained": true,
+    "earlierDependencyReuseNotPromoted": true,
+    "clientRuntimeAcceptanceAdded": false,
+    "skillBehaviorChanged": false,
+    "globalDependenciesChanged": false,
+    "temporaryDataCleanupExecuted": false
+  }
+}

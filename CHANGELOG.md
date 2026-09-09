@@ -6,6 +6,15 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 
 ## [Unreleased]
 
+### Maintenance
+
+- Aligned all four public output examples with the existing Finding-ID, changed-condition coverage, Blocking-outcome, and Fix closure contracts; labeled their illustrative evidence and added actual CLI/API regression checks.
+- Reject direct execution of the internal strict validation module with a nonzero exit and guidance to the existing public CLI, without changing report-validation rules.
+- Corrected earlier v0.5.0 post-release evidence: deterministic checks reused local dependencies and did not prove independent installation, and import-only strict-module execution was not an output-validation pass. Separated the current roadmap from retained candidate history and recorded the earlier authorized temporary-data cleanup.
+- Recorded a separate successful v0.5.0 independent Node dependency installation in a new local tag clone with a fresh HOME/cache/store, `45` downloaded and `0` reused packages, all `198/198` tag tests, and both Skill validators passing. Retained the earlier blocked installation, reused-PyYAML limitation, and unchanged client runtime statuses; no new GitHub download or model acceptance is claimed.
+
+The candidate notes below retain historical experiment states, not outstanding maintenance tasks; see the current roadmap for next actions.
+
 ### Added
 
 - Recorded fresh-tag v0.4.0 post-release validation: Codex Quick passed all semantic, output, collector, trace, and integrity gates; Cursor Ask-mode Quick passed the complete semantic and output oracle but retained collector-denial and outside-workspace trace failures without retry or mode replacement.

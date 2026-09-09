@@ -202,6 +202,7 @@ Record the environment and URL type, entry point, browser and viewport, initial 
 
 Full output examples:
 
+- [Quick Review, English](examples/outputs/quick-review.md)
 - [Quick Review, Simplified Chinese](examples/outputs/quick-review.zh-CN.md)
 - [Deep Review](examples/outputs/deep-review.md)
 - [Fix Review, Simplified Chinese](examples/outputs/fix-review.zh-CN.md)
@@ -224,6 +225,14 @@ pnpm test
 ```
 
 Vitest checks the repository structure, adapters, references, and required review contracts. AI review quality is evaluated with the manual protocol in [Evaluation](docs/evaluation.md), not asserted by deterministic unit tests.
+
+Validate a synthetic output example with the actual review-output CLI (Node.js; no model request):
+
+```bash
+node "scripts/validate-review-output.mjs" --mode quick "examples/outputs/quick-review.md"
+```
+
+The CLI returns JSON and exit code `0` for a structural pass, `1` for a rejected report, or `2` for an invocation/read error. `validate-review-output-strict.mjs` is an internal module, not a second CLI. Output examples are illustrative, not retained runtime evidence. See [Output Validator Boundaries](docs/evaluation.md#output-validator-boundaries) for the checked fields and unverified semantics.
 
 ## Project Documents
 

@@ -57,6 +57,6 @@ Before `1.0.0`, minor releases may still evolve the contract. Breaking behavior 
 
 - Stable: `v0.5.0`
 - Previous stable: `v0.4.0`
-- v0.5.0 status: published stable release; exact-current-tree Cursor source-free, Quick, Deep, and Fix gates pass, and clean-tag installation smoke passes; Codex and Claude Code remain `Cannot Verify`
+- v0.5.0 status: published stable release; exact-current-tree Cursor source-free, Quick, Deep, and Fix gates pass; independent Node dependency installation passed in a new local tag clone on 2026-09-09, with the tag's tests and both Skill validators passing. The earlier blocked installation/dependency-reuse check is retained, PyYAML was reused, and no new client runtime acceptance was added; Codex and Claude Code remain `Cannot Verify`. See [installation evidence and limits](evaluation-results/v0.5.0-candidate.md#independent-node-dependency-installation).
 - v0.4.0 status: historical stable release; Candidate 08 passed `7 / 7` after a tooling-only preserved-trace replay, with the raw `6 / 7` auditor result retained
 - v0.3.0 status: historical exact-candidate Quick, Deep, and prospective Fix acceptance passed; its post-release limitations remain recorded
