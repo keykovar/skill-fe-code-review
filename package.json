@@ -1,6 +1,6 @@
 {
   "name": "skill-fe-code-review",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Reusable frontend and hybrid app code review skill for coding agents.",
   "license": "MIT",
   "private": true,
@@ -29,6 +29,7 @@
     "evaluation:prepare-grouped-candidate-14": "node scripts/prepare-grouped-ledger-candidate-14.mjs",
     "evaluation:prepare-grouped-candidate-15": "node scripts/prepare-grouped-ledger-candidate-15.mjs",
     "evaluation:prepare-grouped-candidate-16": "node scripts/prepare-grouped-ledger-candidate-16.mjs",
+    "evaluation:prepare-v0.5.0-release-acceptance": "node scripts/prepare-v0.5.0-release-acceptance.mjs",
     "evaluation:review-output": "node scripts/validate-review-output.mjs",
     "evaluation:trace-audit": "node scripts/audit-runtime-trace.mjs",
     "fixture:prepare": "node scripts/prepare-evaluation-fixture.mjs",

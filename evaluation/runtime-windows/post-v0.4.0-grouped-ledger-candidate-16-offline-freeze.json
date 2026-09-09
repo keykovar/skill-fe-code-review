@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "candidate": "post-v0.4.0-grouped-ledger-candidate-16",
   "date": "2026-09-08",
-  "status": "candidate-applied-locally-pre-commit-review-passed-not-committed",
+  "status": "candidate-applied-committed-pushed-current-tree-fix-gate-passed-release-preparation-pending",
   "predecessor": {
     "candidate": "post-v0.4.0-grouped-ledger-candidate-15",
     "decision": "No-Go",
@@ -168,13 +168,16 @@
       "targetedVitest": "6/6 files and 6/6 tests",
       "fullVitest": "34/34 files and 196/196 tests"
     },
-    "commitCreated": false,
-    "pushExecuted": false,
+    "commitCreated": true,
+    "skillCommit": "1b498ddce6ce1ca6d619257b38e8fa5e810519a8",
+    "evidenceCommit": "26ab7537b1eb81f2a1456f926eb035d87d5d95d0",
+    "pushExecuted": true,
     "temporaryDataCleaned": false
   },
   "manifestSha256": "ec385ac8b34a20a79c435dfefabcff399fd1bf046a286e1f9f63ecaca9f52b4d",
   "probeResult": "evaluation/runtime-windows/post-v0.4.0-grouped-ledger-candidate-16-probe-result.json",
   "stage1Result": "evaluation/runtime-windows/post-v0.4.0-grouped-ledger-candidate-16-stage-1-result.json",
   "stage2Result": "evaluation/runtime-windows/post-v0.4.0-grouped-ledger-candidate-16-stage-2-result.json",
-  "nextGate": "Prepare the Candidate 16 application and evaluation changes for a scoped commit. Creating a commit, pushing, tagging, releasing, sending private source, or cleaning temporary data requires separate authorization."
+  "currentTreeFixAcceptanceResult": "evaluation/runtime-windows/v0.5.0-current-tree-fix-acceptance-result.json",
+  "nextGate": "Complete v0.5.0 release-candidate metadata and deterministic validation. Committing, pushing, tagging, releasing, sending private source, or cleaning temporary data requires separate authorization."
 }

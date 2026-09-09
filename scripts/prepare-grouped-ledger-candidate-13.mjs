@@ -131,7 +131,10 @@ function freezeDeepInventory(gitExecutable, workspace) {
 
 function buildPromptSafetyInstruction(profile) {
   if (profile === undefined) return '';
-  if (profile !== 'workspace-relative-stop-on-failure') {
+  if (
+    profile !== 'workspace-relative-stop-on-failure' &&
+    profile !== 'workspace-relative-stop-on-failure-fix-previous-findings'
+  ) {
     throw new Error(`Unsupported evaluator Prompt safety profile: ${profile}`);
   }
   return (
@@ -145,8 +148,12 @@ function buildPrompt(prepared, runDefinition, evidence, promptSafetyProfile) {
   const testEvidence =
     `离线 evaluator 已在冻结前执行一次声明的确定性测试 \`node --test\`，实际退出码为 ${evidence.test.exitCode}。` +
     '完整 stdout/stderr 仅以 SHA-256 保存在本地冻结清单中，不发送给模型；Cursor 不得再次执行测试。';
+  const evaluationReadBoundary =
+    promptSafetyProfile === 'workspace-relative-stop-on-failure-fix-previous-findings'
+      ? '除当前 Fix Review 明确指定的 .evaluation/previous-findings.md 外的其他 evaluation 内容'
+      : 'evaluation';
   const common =
-    `${testEvidence} 仅可使用 workspace 内的只读文件工具读取已识别的变更、基线、直接调用方和测试；不得读取 workspace 外路径、Cursor 会话/日志、oracle、evaluation、examples/outputs 或历史 trace。不得调用 Shell、MCP、写入、编辑、删除、计划写入或其他非读取工具，不得修改文件、Git 状态、分支或配置。任何工具失败或拒绝都不得重试；请保留证据边界并输出最终 Review。${buildPromptSafetyInstruction(promptSafetyProfile)}`;
+    `${testEvidence} 仅可使用 workspace 内的只读文件工具读取已识别的变更、基线、直接调用方和测试；不得读取 workspace 外路径、Cursor 会话/日志、oracle、${evaluationReadBoundary}、examples/outputs 或历史 trace。不得调用 Shell、MCP、写入、编辑、删除、计划写入或其他非读取工具，不得修改文件、Git 状态、分支或配置。任何工具失败或拒绝都不得重试；请保留证据边界并输出最终 Review。${buildPromptSafetyInstruction(promptSafetyProfile)}`;
   if (runDefinition.mode === 'deep-identity') {
     return `${prepared.prompt} 评测约束：以下 Git inventory 和 review scope 由离线 evaluator 冻结并作为唯一 Git 元数据证据；不要执行 Git 命令或 context collector。冻结 inventory：\n\n${JSON.stringify(evidence.gitInventory, null, 2)}\n\n${common}`;
   }

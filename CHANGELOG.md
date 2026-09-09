@@ -57,6 +57,7 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 - Offline-froze Candidate 14 as the bounded runtime acceptance window for the corrected tree: one public-synthetic Quick single-ID case and one Deep repeated-ID case matched their declared local tests and independent status/tree/Skill integrity checks. Preparation made zero model requests and transmitted no source. The separately authorized Cursor source-free probe passed, but Stage 1 stopped `No-Go`: the Quick output and semantic oracle passed, while Cursor attempted one misspelled outside-workspace read, received `File not found`, and retried the corrected path. The Deep and Codex smoke runs were cancelled without retry, replacement, reinterpretation, or mode switch.
 - Retained Candidate 15 as `No-Go` after its relative-path source-free probe and path-safe Quick run passed, but the Quick result escalated the Risk-only ignored-timeout contract to Blocking; no Deep run followed.
 - Completed Candidate 16 with a fresh source-free probe plus one public-synthetic Quick and one Deep run. The Quick run kept the ignored-timeout contract at Risk, while the Deep counter-regression retained a demonstrated `Login/Auth Failure` as Blocking; all output, isolation, read-only, path-safety, and workspace-integrity gates passed without retry or replacement.
+- Completed the exact-current-tree Fix release gate after retaining one semantically correct but unscored run whose evaluator Prompt contradicted its required previous-Finding read. A fresh replacement workspace used a self-consistent, single-file exception and passed closure, output, trace, path-safety, read-only, and integrity gates without private-source transfer.
 
 ### Changed
 
@@ -64,6 +65,7 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 
 ### Fixed
 
+- Added a reproducible Fix release-acceptance preparer whose read boundary permits only the explicitly required `.evaluation/previous-findings.md` file instead of combining that requirement with a generic `evaluation` prohibition.
 - Preserved Candidate 15's frozen Skill identity after Candidate 16 application and normalized both logical and real macOS workspace paths before embedding Quick collector evidence, preventing historical-candidate relabeling and `/var` versus `/private/var` Prompt drift.
 - Stopped the trace auditor from treating HTTP(S) URL literals inside read-only `node -e` assertions as shell filesystem paths while preserving direct, aliased, and post-eval outside-workspace read detection; replayed the unchanged Fix traces without new model calls.
 - Stopped the trace auditor from treating relative import text inside a confirmed `rg` search pattern as filesystem access while continuing to reject external `rg` path operands, `rg --files` paths, pattern files, and non-`rg` shell reads.

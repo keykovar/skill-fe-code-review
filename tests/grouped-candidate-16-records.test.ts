@@ -25,7 +25,7 @@ describe('Candidate 16 records', () => {
     };
 
     expect(record).toMatchObject({
-      status: 'candidate-applied-locally-pre-commit-review-passed-not-committed',
+      status: 'candidate-applied-committed-pushed-current-tree-fix-gate-passed-release-preparation-pending',
       sourceSkill: {
         modified: true,
         matchesCandidate: true,
@@ -64,8 +64,10 @@ describe('Candidate 16 records', () => {
           targetedVitest: '6/6 files and 6/6 tests',
           fullVitest: '34/34 files and 196/196 tests',
         },
-        commitCreated: false,
-        pushExecuted: false,
+        commitCreated: true,
+        skillCommit: '1b498ddce6ce1ca6d619257b38e8fa5e810519a8',
+        evidenceCommit: '26ab7537b1eb81f2a1456f926eb035d87d5d95d0',
+        pushExecuted: true,
         temporaryDataCleaned: false,
       },
     });
@@ -130,6 +132,9 @@ describe('Candidate 16 records', () => {
     expect(plan).toContain('one evaluation-only Risk');
     expect(plan).toContain('normalizes both the logical and real workspace paths');
     expect(plan).toContain('staging area remains empty');
+    expect(plan).toContain('## Current-tree Fix Release Gate');
+    expect(plan).toContain('retained as `Cannot Score`');
+    expect(plan).toContain('all three were `Resolved`');
     expect(probe).toMatchObject({
       authorization: {
         sourceFreeProbeAuthorized: true,

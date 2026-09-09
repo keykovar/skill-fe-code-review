@@ -136,13 +136,13 @@ describe('repository release support', () => {
     expect(validator).not.toContain('writeFile');
   });
 
-  test('documents the v0.4.0 stable bilingual installation evidence', () => {
+  test('documents the v0.5.0 candidate and v0.4.0 stable bilingual installation evidence', () => {
     const packageJson = JSON.parse(readText('package.json')) as { version: string };
     const readme = readText('README.md');
     const chineseReadme = readText('README.zh-CN.md');
     const compatibility = readText('docs/compatibility.md');
 
-    expect(packageJson.version).toBe('0.4.0');
+    expect(packageJson.version).toBe('0.5.0');
     expect(readme).toContain('README.zh-CN.md');
     expect(readme).toContain('--branch v0.4.0');
     expect(readme).toContain('Runtime verified');
@@ -157,7 +157,8 @@ describe('repository release support', () => {
     expect(chineseReadme).toContain('属于稳定版 `v0.2.0`');
     expect(compatibility).toContain('Structural verified');
     expect(compatibility).toContain('Stable evidence baseline: [`v0.4.0`]');
-    expect(compatibility).toContain('Release contract: `v0.4.0`');
+    expect(compatibility).toContain('Candidate under test: `v0.5.0`');
+    expect(compatibility).toContain('## v0.5.0 Release Candidate Evidence');
     expect(compatibility).toContain('## Stable v0.4.0 Evidence');
     expect(compatibility).toContain('## Historical v0.3.0 Evidence');
     expect(compatibility).toContain('a66e26e60e27f643f35b402c6660038c7070e759');
@@ -169,12 +170,19 @@ describe('repository release support', () => {
     const roadmap = readText('docs/roadmap.md');
     const results = readText('docs/evaluation-results/v0.2.0.md');
     const historical = markdownSection(compatibility, '## Historical v0.1.1 Evidence');
+    const candidate = markdownSection(compatibility, '## v0.5.0 Release Candidate Evidence');
     const stable = markdownSection(compatibility, '## Stable v0.4.0 Evidence');
     const historicalV030 = markdownSection(compatibility, '## Historical v0.3.0 Evidence');
     const historicalV022 = markdownSection(compatibility, '## Historical v0.2.2 Evidence');
     const limitations = markdownSection(compatibility, '## Known Limitations');
     const historicalClaudeRow = markdownTableRow(historical, 'Claude Code');
     const historicalCursorRow = markdownTableRow(historical, 'Cursor');
+    const candidateCursorRow = markdownTableRow(
+      candidate,
+      'Cursor Agent CLI `2026.08.11-e8db854`',
+    );
+    const candidateCodexRow = markdownTableRow(candidate, 'Codex');
+    const candidateClaudeRow = markdownTableRow(candidate, 'Claude Code');
     const stableCodexRow = markdownTableRow(stable, 'Codex CLI 0.146.0');
     const stableCursorRow = markdownTableRow(stable, 'Cursor');
     const stableClaudeRow = markdownTableRow(stable, 'Claude Code');
@@ -195,6 +203,11 @@ describe('repository release support', () => {
     expect(historicalCursorRow).toContain('v0.1.0 Quick Review');
     expect(historicalCursorRow).toMatch(/\| Runtime verified \|$/);
     expect(historicalCursorRow).not.toContain('Deep');
+    expect(candidateCursorRow).toContain('source-free, Quick, Deep, and Fix gates pass');
+    expect(candidateCursorRow).toMatch(/\| Runtime verified \|$/);
+    expect(candidateCodexRow).toContain('No v0.5.0 current-tree runtime run');
+    expect(candidateCodexRow).toMatch(/\| Cannot Verify \|$/);
+    expect(candidateClaudeRow).toMatch(/\| Cannot Verify \|$/);
     expect(historicalCursorRow).not.toContain('Fix');
     expect(stable).toContain('independent Findings with sequential IDs');
     expect(stableCodexRow).toContain('saved Fix trace passes corrected execution auditing');
@@ -214,6 +227,8 @@ describe('repository release support', () => {
     expect(roadmap).not.toContain('final Deep Review against an immutable commit candidate after commit approval');
     expect(stableClaudeRow).toContain('valid runtime credentials are unavailable');
     expect(stableClaudeRow).toMatch(/\| Cannot Verify \|$/);
+    expect(limitations).toContain('Codex and Claude Code v0.5.0 runtime behavior remains `Cannot Verify`');
+    expect(limitations).toContain('self-contradictory');
     expect(limitations).toContain('Cursor and Claude Code v0.4.0 runtime behavior remains `Cannot Verify`');
     expect(limitations).toContain('failed mandatory collector and workspace-isolation trace gates');
     expect(limitations).toContain('fresh-tag Quick smoke passed trace/read-only gates');
@@ -360,6 +375,7 @@ describe('repository release support', () => {
     expect(versioning).toContain('Cannot Verify');
     expect(versioning).toContain('Stable: `v0.4.0`');
     expect(versioning).toContain('Previous stable: `v0.3.0`');
+    expect(versioning).toContain('Release candidate: `v0.5.0`');
     expect(versioning).not.toContain('Release candidate: `v0.4.0`');
   });
 

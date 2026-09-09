@@ -1,6 +1,6 @@
 # Post-v0.4.0 Grouped Ledger Candidate 16 Evaluation Plan
 
-Status: Candidate 16 applied locally; scoped pre-commit review passed after one evaluation-only fix; not committed
+Status: Candidate 16 applied, committed, and pushed; scoped current-tree Fix release gate passed after one retained unscored control conflict; v0.5.0 release preparation pending
 
 Date: 2026-09-08
 
@@ -78,7 +78,15 @@ The scoped review found one evaluation-only Risk and no Candidate 16 Skill-behav
 
 The bounded fix reuses the Candidate 16 inverse transform after copying Candidate 15's source and replaces the dynamic tree assertion with the frozen Candidate 15 tree and Prompt hashes. During verification, the Quick Prompt also exposed a macOS path-canonicalization edge: a logical `/var/folders/...` workspace can be returned by the collector as `/private/var/folders/...`, leaving `/private<workspace>` after partial replacement. The shared preparer now normalizes both the logical and real workspace paths before embedding collector evidence.
 
-The affected Candidate 13-16 preparer and record tests pass `6/6`, and the complete suite passes `34/34` files and `196/196` tests. Candidate 16's public, installed, and accepted Skill tree remains unchanged. No external model request, source transmission, staging, commit, push, tag, release, or temporary-data cleanup occurred during the review and fix.
+The affected Candidate 13-16 preparer and record tests pass `6/6`, and the complete suite passes `34/34` files and `196/196` tests. Candidate 16's public, installed, and accepted Skill tree remains unchanged. No external model request or source transmission occurred during the review and fix. The Skill application was later committed as `1b498dd` and its retained evaluation evidence as `26ab753`; both commits were pushed to `origin/main`. No tag, release, or temporary-data cleanup has occurred.
+
+## Current-tree Fix Release Gate
+
+The release policy requires Quick, Deep, and Fix acceptance on one primary client. Candidate 13's Fix result used an earlier Skill hash, so it was not carried forward as current-tree evidence even though the Fix template itself was unchanged.
+
+The first separately authorized exact-current-tree Fix request was semantically correct, structurally valid, read-only, and workspace-safe, but its frozen evaluator Prompt both required `.evaluation/previous-findings.md` and generically prohibited `evaluation` reads. That self-contradictory control is retained as `Cannot Score` and is not promoted or discarded.
+
+A fresh replacement workspace corrected only the control-plane read boundary by allowing the explicitly required `.evaluation/previous-findings.md` file. The separately authorized request passed: `F-001` and `F-002` retained Blocking, `F-003` retained Risk, all three were `Resolved`, New Regression was none, and the recommendation was `可以关闭`. The run made 10 Read, 2 Grep, and 1 Glob calls with zero Shell, MCP, failure, retry, write, or outside-workspace calls. Git status, the 31-file workspace tree, and Candidate 16 Skill tree remained unchanged. Sanitized evidence is recorded in [`v0.5.0-current-tree-fix-acceptance-result.json`](../evaluation/runtime-windows/v0.5.0-current-tree-fix-acceptance-result.json).
 
 ## Stop Rules
 
@@ -89,4 +97,4 @@ The affected Candidate 13-16 preparer and record tests pass `6/6`, and the compl
 
 ## Next Gate
 
-Prepare the Candidate 16 application and evaluation changes for a scoped commit. Do not create a commit, push, tag, release, send private source, or clean temporary data without the corresponding later authorization.
+Complete v0.5.0 release-candidate metadata and deterministic validation. A release-candidate commit, push, tag, GitHub Release, post-release smoke run, or temporary-data cleanup requires its corresponding later authorization.

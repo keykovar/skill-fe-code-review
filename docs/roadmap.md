@@ -85,6 +85,12 @@ Candidate 16 added one central Blocking proof pass and constrained `Severe Regre
 
 The scoped pre-commit review found one evaluation-only Risk: rerunning Candidate 15 against the current public source could relabel Candidate 16's Skill tree as Candidate 15, while macOS `/var` test workspaces could canonicalize to `/private/var` and drift the embedded Quick collector evidence. The bounded fix restores Candidate 15's frozen tree before preparation and normalizes both logical and real workspace paths. Candidate 16's Skill tree and runtime acceptance remain unchanged; the complete `34/34` files and `196/196` tests pass after the fix.
 
+## v0.5.0 Release Candidate
+
+The Candidate 16 application and its evaluation evidence are committed and pushed. The first exact-current-tree Fix release request produced correct closure and remained read-only, but its frozen evaluator Prompt simultaneously required `.evaluation/previous-findings.md` and prohibited `evaluation` reads, so it is retained as `Cannot Score` rather than promoted. A fresh replacement workspace used a self-consistent single-file exception and passed: all three previous Findings retained their severities and became `Resolved`, New Regression was none, the recommendation was `可以关闭`, all tools were workspace-relative and read-only, and Git plus complete workspace hashes remained unchanged.
+
+The current 12-file distributable tree `148cf6ebae8c5cba674f5fe0fe9f1399f405287b5057d815867662faa1721480` now has exact-current-tree Cursor source-free, Quick, Deep, and Fix acceptance. Stable installation remains pinned to v0.4.0 until the release is published. Codex and Claude Code remain `Cannot Verify` for v0.5.0 unless separately authorized current-tree runtime evidence is completed. See [v0.5.0 Candidate Results](evaluation-results/v0.5.0-candidate.md).
+
 ## v0.3.0 Real-project Evaluation Baseline
 
 Before accepting any post-v0.2.2 behavior candidate, run the documented real-project matrix across React, Vue, TypeScript, JavaScript, Hybrid/WebView, no-clear-issue, and actual Fix Review chains. Measure required-finding recall, finding precision, severity accuracy, recommendation consistency, output-contract compliance, read-only safety, scope/oracle access, and Fix Review closure without changing the current Skill contract.

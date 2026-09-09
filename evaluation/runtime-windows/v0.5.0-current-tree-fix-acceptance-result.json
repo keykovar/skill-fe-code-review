@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "candidate": "v0.5.0-current-tree-fix-acceptance",
+  "date": "2026-09-08",
+  "status": "pass-after-retained-unscored-control-conflict",
+  "skill": {
+    "treeSha256": "148cf6ebae8c5cba674f5fe0fe9f1399f405287b5057d815867662faa1721480",
+    "fileCount": 12,
+    "sourceCommit": "1b498ddce6ce1ca6d619257b38e8fa5e810519a8"
+  },
+  "sourceFreePrecondition": {
+    "candidate": "post-v0.4.0-grouped-ledger-candidate-16",
+    "clientVersion": "2026.08.11-e8db854",
+    "sameSkillTree": true,
+    "sameIsolatedHome": true,
+    "passed": true
+  },
+  "attempt01": {
+    "decision": "Cannot Score",
+    "reason": "The frozen Prompt required .evaluation/previous-findings.md while also generically prohibiting evaluation reads.",
+    "externalModelRequests": 1,
+    "sourceVisibility": "public-synthetic-only",
+    "semanticOracle": "pass-but-not-promoted",
+    "runtimeAudit": "pass",
+    "outputValidator": "pass",
+    "workspaceUnchanged": true,
+    "retry": false,
+    "replacement": false,
+    "promptSha256": "6f2618b1e8d455b59f31e9b6bbcdaa497aa3e979d8d5380ce7153552c9d086c1",
+    "traceSha256": "c6d251737e18e5bc17fc786b4725bf35236f5636beec5a0cbf805a6bb89baf43",
+    "outputSha256": "69f7e205a9dc91e38d74bd560bded102f691711218bcd9306a925cab37f82d77"
+  },
+  "attempt02": {
+    "decision": "Pass",
+    "reason": "A fresh workspace used a self-consistent Prompt that allowed only the explicitly required previous-findings file under .evaluation.",
+    "externalModelRequests": 1,
+    "sourceVisibility": "public-synthetic-only",
+    "workspaceFilesTransmitted": 31,
+    "prompt": {
+      "sha256": "5ebb1227ac8a2100d2fb36ac358be318f9a202abba7924842d419441f985c211",
+      "characters": 1952,
+      "previousFindingsException": ".evaluation/previous-findings.md only"
+    },
+    "run": {
+      "caseId": "F-ID-001",
+      "mode": "fix-identity",
+      "runId": "RUN-01",
+      "durationMs": 54683,
+      "runnerExitCode": 0,
+      "stderrBytes": 0,
+      "traceBytes": 63444,
+      "traceSha256": "b2fcb1f1ae64ec7185735ddbac628589a7f2632faaa799f2a8560fce38aee5bf",
+      "outputBytes": 6318,
+      "outputSha256": "19f2539f05d488341edd822e4c4b98e47287a35c3b3b0fb17ffd247dbb530d34",
+      "assistantMessages": 3,
+      "toolCalls": 13,
+      "readToolCalls": 10,
+      "grepToolCalls": 2,
+      "globToolCalls": 1,
+      "shellCalls": 0,
+      "mcpCalls": 0,
+      "failedToolCalls": 0,
+      "outsideWorkspaceReads": 0,
+      "workspaceMutationObserved": false
+    },
+    "runtimeAudit": {
+      "valid": true,
+      "violations": [],
+      "contextCollectorCalls": 0,
+      "equivalentGitReads": [],
+      "workspaceStatusUnchanged": true
+    },
+    "outputValidator": {
+      "mode": "fix",
+      "valid": true,
+      "errors": [],
+      "findingIds": ["F-001", "F-002", "F-003"]
+    },
+    "semanticOracle": {
+      "valid": true,
+      "findingStatuses": {
+        "F-001": { "originalSeverity": "Blocking", "status": "Resolved" },
+        "F-002": { "originalSeverity": "Blocking", "status": "Resolved" },
+        "F-003": { "originalSeverity": "Risk", "status": "Resolved" }
+      },
+      "newRegression": "none",
+      "recommendation": "可以关闭",
+      "fullDeepReviewExpansionObserved": false,
+      "errors": []
+    },
+    "integrity": {
+      "branch": "main",
+      "statusSha256": "43915c2da896e437bf50266d161ab5b34a13a3a0a1b8cb6fe0d79fb989a61ede",
+      "workspaceTreeSha256": "f0cb9de674803cccb6cbc0e308e683a903fc129f614c5ddedf2c79930556eca5",
+      "skillTreeSha256": "148cf6ebae8c5cba674f5fe0fe9f1399f405287b5057d815867662faa1721480",
+      "workspaceTreeUnchanged": true,
+      "statusUnchanged": true
+    },
+    "tokenUsage": {
+      "source": "Cursor result event",
+      "inputTokens": 56581,
+      "uncachedInputTokens": 0,
+      "cachedInputTokens": 80256,
+      "outputTokens": 4386,
+      "cacheWriteInputTokens": 0
+    }
+  },
+  "transferPolicy": {
+    "externalModelRequests": 2,
+    "scoredSourceBearingRequests": 1,
+    "unscoredSourceBearingRequests": 1,
+    "sourceTransmitted": true,
+    "privateSourceTransmitted": false,
+    "oracleTransmitted": false,
+    "historicalTraceTransmitted": false,
+    "credentialContentsReadOrRecordedByEvaluator": false
+  },
+  "decision": {
+    "currentTreeFixGate": "Pass",
+    "releaseCandidate": "Continue",
+    "nextGate": "Prepare v0.5.0 release-candidate metadata and deterministic validation; commit, push, tag, release, and temporary-data cleanup remain separate actions."
+  },
+  "evidenceBoundary": "Only fresh public-synthetic Fix workspaces were sent. Attempt 01 remains unscored because its control Prompt was contradictory; Attempt 02 is the sole promoted current-tree Fix result. No private project source, customer data, production source, credential, account identity, evaluator oracle, or historical trace was sent or recorded."
+}

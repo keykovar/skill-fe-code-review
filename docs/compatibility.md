@@ -35,6 +35,20 @@ Runtime output can vary by model and client version. Re-run the smoke protocol a
 - Upgrading a client across a major version.
 - Publishing a new minor or major release.
 
+## v0.5.0 Release Candidate Evidence
+
+Candidate under test: `v0.5.0`. Stable installation and evidence remain pinned to `v0.4.0` until the release is published.
+
+v0.5.0 groups changed-condition evidence by Finding, requires complete transitions and dispositions, rejects merge keys on single-ID groups, and requires a demonstrated canonical Blocking outcome before final severity assignment. The visible review modes, section names, and recommendation vocabulary remain backward compatible.
+
+| Client | Structural evidence | Candidate runtime evidence | Status |
+| --- | --- | --- | --- |
+| Cursor Agent CLI `2026.08.11-e8db854` | Current 12-file Skill tree, validators, repository tests, Prompt hashes, and workspace integrity pass | Exact-current-tree source-free, Quick, Deep, and Fix gates pass; the promoted Fix run closed all three previous Findings, reported no New Regression, used only workspace-relative read tools, and left the workspace unchanged | Runtime verified |
+| Codex | Shared Skill and adapter contracts pass repository validation | No v0.5.0 current-tree runtime run has been executed | Cannot Verify |
+| Claude Code | Shared Skill and adapter contracts pass repository validation | Not executed because valid runtime credentials are unavailable | Cannot Verify |
+
+The first current-tree Fix request remains `Cannot Score` because its evaluator Prompt simultaneously required and generically prohibited the previous-Finding read. Its correct output is not promoted or discarded. A fresh replacement window corrected only that control-plane contradiction and passed every declared gate. See [v0.5.0 Candidate Results](evaluation-results/v0.5.0-candidate.md) and the [Candidate 16 Evaluation Plan](post-v0.4.0-grouped-ledger-candidate-16-evaluation-plan.md).
+
 ## Stable v0.4.0 Evidence
 
 Release contract: `v0.4.0`. Stable installation now pins the immutable `v0.4.0` tag; tag creation and GitHub Release publication remain separately authorized operations.
@@ -106,6 +120,9 @@ The shared core contract defines the following fallback for Codex, Claude Code, 
 
 ## Known Limitations
 
+- Codex and Claude Code v0.5.0 runtime behavior remains `Cannot Verify`; the release candidate currently has exact-current-tree runtime acceptance only for Cursor.
+- The v0.5.0 acceptance chain uses public synthetic fixtures and does not establish general model precision or verify private repositories, browser/WebView behavior, backend behavior, deployment, monitoring, or production systems.
+- One current-tree Fix request is retained as `Cannot Score` because its evaluator Prompt was self-contradictory; only the separately frozen replacement result is promoted.
 - Cursor and Claude Code v0.4.0 runtime behavior remains `Cannot Verify`. Cursor's post-release Quick output passed its semantic and structural oracle, but the run failed mandatory collector and workspace-isolation trace gates; Claude Code was not executed.
 - The v0.4.0 runtime window uses public synthetic fixtures. It does not establish general model precision or verify private repositories, browser/WebView behavior, backend behavior, deployment, monitoring, or production systems.
 - Candidate 08's `7 / 7` includes one deterministic tooling-only trace replay; the original raw `6 / 7` and both false-positive violations remain recorded.
