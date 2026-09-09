@@ -1,6 +1,6 @@
 # Post-v0.4.0 Grouped Ledger Candidate 16 Evaluation Plan
 
-Status: Candidate 16 applied, committed, and pushed; scoped current-tree Fix release gate passed after one retained unscored control conflict; v0.5.0 release preparation pending
+Status: Candidate 16 applied, committed, pushed, tagged, and released as v0.5.0; post-release installation smoke passed
 
 Date: 2026-09-08
 
@@ -78,7 +78,7 @@ The scoped review found one evaluation-only Risk and no Candidate 16 Skill-behav
 
 The bounded fix reuses the Candidate 16 inverse transform after copying Candidate 15's source and replaces the dynamic tree assertion with the frozen Candidate 15 tree and Prompt hashes. During verification, the Quick Prompt also exposed a macOS path-canonicalization edge: a logical `/var/folders/...` workspace can be returned by the collector as `/private/var/folders/...`, leaving `/private<workspace>` after partial replacement. The shared preparer now normalizes both the logical and real workspace paths before embedding collector evidence.
 
-The affected Candidate 13-16 preparer and record tests pass `6/6`, and the complete suite passes `34/34` files and `196/196` tests. Candidate 16's public, installed, and accepted Skill tree remains unchanged. No external model request or source transmission occurred during the review and fix. The Skill application was later committed as `1b498dd` and its retained evaluation evidence as `26ab753`; both commits were pushed to `origin/main`. No tag, release, or temporary-data cleanup has occurred.
+The affected Candidate 13-16 preparer and record tests pass `6/6`, and the complete suite passes `34/34` files and `196/196` tests. Candidate 16's public, installed, and accepted Skill tree remains unchanged. No external model request or source transmission occurred during the review and fix. The Skill application was later committed as `1b498dd` and its retained evaluation evidence as `26ab753`; both commits were pushed to `origin/main`. The release-candidate metadata was committed as `0b236c4`, pushed, tagged as `v0.5.0`, and published. Temporary-data cleanup remains pending.
 
 ## Current-tree Fix Release Gate
 
@@ -97,4 +97,4 @@ A fresh replacement workspace corrected only the control-plane read boundary by 
 
 ## Next Gate
 
-Complete v0.5.0 release-candidate metadata and deterministic validation. A release-candidate commit, push, tag, GitHub Release, post-release smoke run, or temporary-data cleanup requires its corresponding later authorization.
+The v0.5.0 release and clean-tag installation smoke are complete. The next work is post-release client coverage or a separately scoped v0.5.1 change; temporary-data cleanup still requires explicit authorization.

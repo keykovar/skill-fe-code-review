@@ -31,6 +31,20 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 - Required retained grouped-ledger evaluator children to use concrete `[file:line]` locations, added a deterministic rejection case for arbitrary bracket labels, and kept the stricter parser disconnected from the stable public review-output validator.
 - Reconciled Candidate 01/02/03 probe, plan, replay, prototype, rollback, and separately authorized temporary-artifact cleanup evidence, and corrected the Candidate 02 source-free probe documentation link.
 
+## [0.5.0] - 2026-09-09
+
+### Added
+
+- Completed the exact-current-tree Fix release gate after retaining one semantically correct but unscored run whose evaluator Prompt contradicted its required previous-Finding read. A fresh replacement workspace used a self-consistent, single-file exception and passed closure, output, trace, path-safety, read-only, and integrity gates without private-source transfer.
+
+### Changed
+
+- Applied Candidate 16's per-finding Blocking proof pass and constrained `Severe Regression` to demonstrated critical-path or broad supported-environment loss, preventing local parameter, caller, contract, or test regressions from being promoted to Blocking without a canonical Blocking outcome.
+
+### Fixed
+
+- Added a reproducible Fix release-acceptance preparer whose read boundary permits only the explicitly required `.evaluation/previous-findings.md` file instead of combining that requirement with a generic `evaluation` prohibition.
+
 ## [0.4.0] - 2026-08-25
 
 ### Added
@@ -155,7 +169,8 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 - Chinese output templates and example outputs.
 - Vitest contract tests, skill validation, and GitHub Actions CI.
 
-[Unreleased]: https://github.com/keykovar/skill-fe-code-review/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/keykovar/skill-fe-code-review/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.2...v0.3.0
 [0.2.2]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.1...v0.2.2

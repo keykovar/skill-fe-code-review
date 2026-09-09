@@ -179,5 +179,5 @@
   "stage1Result": "evaluation/runtime-windows/post-v0.4.0-grouped-ledger-candidate-16-stage-1-result.json",
   "stage2Result": "evaluation/runtime-windows/post-v0.4.0-grouped-ledger-candidate-16-stage-2-result.json",
   "currentTreeFixAcceptanceResult": "evaluation/runtime-windows/v0.5.0-current-tree-fix-acceptance-result.json",
-  "nextGate": "Complete v0.5.0 release-candidate metadata and deterministic validation. Committing, pushing, tagging, releasing, sending private source, or cleaning temporary data requires separate authorization."
+  "nextGate": "v0.5.0 is published and clean-tag installation smoke passed. Next work requires a separately scoped post-release client run or v0.5.1 change; temporary-data cleanup remains separately authorized."
 }

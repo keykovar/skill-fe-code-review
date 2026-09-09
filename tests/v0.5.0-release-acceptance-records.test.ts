@@ -71,7 +71,7 @@ describe('v0.5.0 release acceptance records', () => {
       'F-002': { originalSeverity: 'Blocking', status: 'Resolved' },
       'F-003': { originalSeverity: 'Risk', status: 'Resolved' },
     });
-    expect(resultsDocument).toContain('Status: release candidate');
+    expect(resultsDocument).toContain('Status: published stable release');
     expect(resultsDocument).toContain('retained as `Cannot Score`');
     expect(resultsDocument).toContain('Exact-current-tree source-free, Quick, Deep, and Fix gates pass');
     expect(packageJson.scripts['evaluation:prepare-v0.5.0-release-acceptance']).toBe(

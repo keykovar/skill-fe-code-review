@@ -40,10 +40,10 @@ tests/                       Vitest 结构和契约检查
 
 ## 安装稳定版本
 
-当前稳定版本为 `v0.4.0`。需要可复现安装时，应固定 Release tag，不要直接安装 `main`。
+当前稳定版本为 `v0.5.0`。需要可复现安装时，应固定 Release tag，不要直接安装 `main`。
 
 ```bash
-git clone --depth 1 --branch v0.4.0 \
+git clone --depth 1 --branch v0.5.0 \
   https://github.com/keykovar/skill-fe-code-review.git
 cd skill-fe-code-review
 ```
@@ -111,15 +111,15 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 ## 兼容性
 
-### 稳定版 v0.4.0
+### 稳定版 v0.5.0
 
-| 客户端 | v0.4.0 验证证据 | 状态 |
+| 客户端 | v0.5.0 验证证据 | 状态 |
 | --- | --- | --- |
-| Codex CLI 0.146.0 | Candidate 08 的 Quick、Deep、Fix 和无问题七次冻结窗口在一次仅工具保存 trace 重放后达到 `7 / 7`；原始 `6 / 7` 仍保留 | 运行时已验证 |
-| Cursor | Agent CLI 2026.08.11-e8db854 全新 tag 的 Ask 模式 Quick 输出通过完整 `3 / 3` 语义与输出 oracle，但必需 collector 执行和工作区隔离 trace 门禁失败 | `Cannot Verify：无法验证` |
+| Cursor Agent CLI 2026.08.11-e8db854 | 当前树的 source-free、Quick、Deep 和 Fix 验收门禁全部通过 | 运行时已验证 |
+| Codex | 结构与适配器契约通过；尚未执行 v0.5.0 当前树运行时请求 | `Cannot Verify：无法验证` |
 | Claude Code | 结构与适配器契约通过；当前无可用运行时凭据 | `Cannot Verify：无法验证` |
 
-Cursor 与 Claude Code 的 v0.4.0 运行时验证仍为 `Cannot Verify：无法验证`，不会被描述为运行通过。Cursor 唯一一次全新 tag Quick 运行发现并独立编号了全部三个预置问题，但 Ask 模式拒绝必需 collector，并读取了 fixture 外的客户端会话数据。Codex 的状态来自 Candidate 08 精确候选验收窗口，并将原始 trace auditor 失败与仅工具重放结果分开保留。详细证据和限制见[兼容性说明](docs/compatibility.md)、[v0.4.0 评测计划](docs/v0.4.0-finding-identity-evaluation-plan.md)、[v0.4.0 候选结果](docs/evaluation-results/v0.4.0-candidate.md)与 [v0.4.0 发布后冒烟结果](docs/evaluation-results/v0.4.0-post-release.md)；历史 v0.3.0 证据仍保留在 [v0.3.0 评测结果](docs/evaluation-results/v0.3.0.md)和 [v0.3.0 发布后冒烟结果](docs/evaluation-results/v0.3.0-post-release.md)。
+v0.5.0 运行时证据使用公开合成 fixture，仅验证了 Cursor；不代表通用模型准确率，也不代表私有仓库、浏览器、WebView、Native Bridge、后端、部署、监控或生产环境已验证。详细证据和限制见[兼容性说明](docs/compatibility.md)与 [v0.5.0 评测结果](docs/evaluation-results/v0.5.0-candidate.md)；v0.4.0 和 v0.3.0 历史证据仍保留在兼容性与评测文档中。
 
 ## 使用方式
 

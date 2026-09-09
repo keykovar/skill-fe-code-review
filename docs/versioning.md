@@ -55,9 +55,8 @@ Before `1.0.0`, minor releases may still evolve the contract. Breaking behavior 
 
 ## Current Version
 
-- Stable: `v0.4.0`
-- Previous stable: `v0.3.0`
-- Release candidate: `v0.5.0`
-- v0.5.0 status: exact-current-tree Cursor source-free, Quick, Deep, and Fix gates pass; one self-contradictory Fix control Prompt remains retained as `Cannot Score`, the corrected replacement result is promoted, stable installation remains on v0.4.0, and no v0.5.0 tag or Release exists
-- v0.4.0 status: published stable release; Candidate 08 passed `7 / 7` after a tooling-only preserved-trace replay, with the raw `6 / 7` auditor result retained
+- Stable: `v0.5.0`
+- Previous stable: `v0.4.0`
+- v0.5.0 status: published stable release; exact-current-tree Cursor source-free, Quick, Deep, and Fix gates pass, and clean-tag installation smoke passes; Codex and Claude Code remain `Cannot Verify`
+- v0.4.0 status: historical stable release; Candidate 08 passed `7 / 7` after a tooling-only preserved-trace replay, with the raw `6 / 7` auditor result retained
 - v0.3.0 status: historical exact-candidate Quick, Deep, and prospective Fix acceptance passed; its post-release limitations remain recorded

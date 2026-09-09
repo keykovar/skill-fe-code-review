@@ -40,10 +40,10 @@ tests/                       Vitest structure and contract checks
 
 ## Install a Stable Release
 
-The current stable release is `v0.4.0`. Pin the tag instead of installing from `main` when reproducibility matters.
+The current stable release is `v0.5.0`. Pin the tag instead of installing from `main` when reproducibility matters.
 
 ```bash
-git clone --depth 1 --branch v0.4.0 \
+git clone --depth 1 --branch v0.5.0 \
   https://github.com/keykovar/skill-fe-code-review.git
 cd skill-fe-code-review
 ```
@@ -111,15 +111,15 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 ## Compatibility
 
-### Stable v0.4.0
+### Stable v0.5.0
 
-| Client | v0.4.0 evidence | Status |
+| Client | v0.5.0 evidence | Status |
 | --- | --- | --- |
-| Codex CLI 0.146.0 | Candidate 08 passed the frozen seven-run Quick, Deep, Fix, and no-finding window at `7 / 7` after one tooling-only preserved-trace replay; raw `6 / 7` remains recorded | Runtime verified |
-| Cursor | Agent CLI 2026.08.11-e8db854 fresh-tag Ask-mode Quick output passed the complete `3 / 3` semantic and output oracle, but mandatory collector execution and workspace-isolation trace gates failed | `Cannot Verify` |
-| Claude Code | Structural and adapter contracts pass; runtime credentials unavailable | `Cannot Verify` |
+| Cursor Agent CLI 2026.08.11-e8db854 | Exact-current-tree source-free, Quick, Deep, and Fix acceptance gates pass | Runtime verified |
+| Codex | Structural and adapter contracts pass; no v0.5.0 current-tree runtime request has been executed | `Cannot Verify` |
+| Claude Code | Structural and adapter contracts pass; valid runtime credentials unavailable | `Cannot Verify` |
 
-Cursor and Claude Code v0.4.0 runtime verification remain `Cannot Verify`; neither is reported as a runtime pass. Cursor's single fresh-tag Quick run found and independently numbered all three seeded issues, but Ask mode denied the required collector and read client session data outside the fixture. The Codex status comes from the exact Candidate 08 acceptance window and preserves the raw trace-auditor failure separately from its tooling-only replay. See [Compatibility](docs/compatibility.md), [v0.4.0 Evaluation Plan](docs/v0.4.0-finding-identity-evaluation-plan.md), [v0.4.0 Candidate Results](docs/evaluation-results/v0.4.0-candidate.md), and [v0.4.0 Post-release Smoke Results](docs/evaluation-results/v0.4.0-post-release.md) for evidence and limitations. Historical v0.3.0 evidence remains available in [v0.3.0 Evaluation Results](docs/evaluation-results/v0.3.0.md) and [v0.3.0 Post-release Smoke Results](docs/evaluation-results/v0.3.0-post-release.md).
+The v0.5.0 runtime evidence uses public synthetic fixtures and verifies Cursor only; it does not establish general model precision or verify private repositories, browsers, WebViews, Native bridges, backend behavior, deployment, monitoring, or production systems. See [Compatibility](docs/compatibility.md) and [v0.5.0 Candidate Results](docs/evaluation-results/v0.5.0-candidate.md) for evidence and limitations. Historical v0.4.0 and v0.3.0 evidence remains available in the compatibility and evaluation documents.
 
 ## Usage
 
