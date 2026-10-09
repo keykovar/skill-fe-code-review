@@ -1,16 +1,18 @@
 # Compatibility
 
-Target release: **v0.6.0, publication pending**. The prepared installation commands target v0.6.0 and require its published tag; the currently published stable evidence remains v0.5.0.
+Published stable release: **v0.6.0**, released on 2026-10-09. Installation commands target its immutable tag. Publication does not expand the bounded client evidence below.
 
-Stable evidence verified: 2026-09-09
-Stable evidence baseline: [`v0.5.0`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.5.0)
+Stable evidence verified: 2026-10-09
+Stable evidence baseline: [`v0.6.0`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.6.0)
 
-## v0.6.0 Evidence (Publication Pending)
+## Stable v0.6.0 Evidence
 
-The current development Skill uses the accepted integration-12 bytes. The three selected public synthetic Desktop mode trials establish bounded candidate behavior. On 2026-10-09, final-package explicit-path O-09 Fix smokes pass independently on [Codex Desktop](evaluation-results/v0.6.0-codex-final-package-smoke.md) (`0.162.0-alpha.2`, `gpt-6-astra / xhigh`, 18 reads) and [Cursor CLI](evaluation-results/v0.6.0-cursor-final-package-smoke.md) (`2026.08.11-e8db854`, Auto / Plan, 19 native ranges). Each passes material integrity, report structure/fields and ten semantic gates. This supports those exact Fix cases, not automatic discovery, all-mode client acceptance or general review accuracy. Claude Code remains Not Verified; no older version's result is promoted. `runtimeReady=false`.
+The published Skill uses the accepted integration-12 bytes. The three selected public synthetic Desktop mode trials establish bounded candidate behavior. On 2026-10-09, final-package explicit-path O-09 Fix smokes pass independently on [Codex Desktop](evaluation-results/v0.6.0-codex-final-package-smoke.md) (`0.162.0-alpha.2`, `gpt-6-astra / xhigh`, 18 reads) and [Cursor CLI](evaluation-results/v0.6.0-cursor-final-package-smoke.md) (`2026.08.11-e8db854`, Auto / Plan, 19 native ranges). Each passes material integrity, report structure/fields and ten semantic gates. This supports those exact Fix cases, not automatic discovery, all-mode client acceptance or general review accuracy. Claude Code remains Not Verified; no older version's result is promoted. `runtimeReady=false`.
 
-The Node validator keeps its default contract and offers an explicit v0.6.0 profile; local API/CLI and package tests are maintainer evidence only. Ordinary Markdown Skill use still needs no Node, Vitest or PyYAML. The separate stable evidence below remains for v0.5.0 and is not promoted to v0.6.0.
+The Node validator keeps its default contract and offers an explicit v0.6.0 profile; local API/CLI and package tests are maintainer evidence only. Ordinary Markdown Skill use still needs no Node, Vitest or PyYAML. The historical evidence below remains for v0.5.0 and is not promoted to v0.6.0.
 v0.6.0 `skills/fe-code-review/SKILL.md` SHA-256: `dcb65ecf8b4a8497e874326b4fd75e9ccb9854b66c1c2720643bb200276829fe`.
+
+[Post-release installation](evaluation-results/v0.6.0-post-release.md) adds fresh GitHub-tag retrieval, 45 downloaded/zero reused Node packages, a 1,239-test pass, and structural parity/validator checks for isolated Codex, Cursor and Claude Code paths. Python/PyYAML were reused. No client/model was invoked; the runtime statuses above are unchanged.
 
 ## Evidence Levels
 
@@ -43,9 +45,9 @@ Runtime output can vary by model and client version. Re-run the smoke protocol a
 - Upgrading a client across a major version.
 - Publishing a new minor or major release.
 
-## Stable v0.5.0 Evidence
+## Historical v0.5.0 Evidence
 
-Release contract: `v0.5.0`. Stable installation pins the immutable `v0.5.0` tag.
+Release contract: `v0.5.0`. This section retains the previous stable release's evidence and immutable `v0.5.0` installation baseline.
 
 v0.5.0 groups changed-condition evidence by Finding, requires complete transitions and dispositions, rejects merge keys on single-ID groups, and requires a demonstrated canonical Blocking outcome before final severity assignment. The visible review modes, section names, and recommendation vocabulary remain backward compatible.
 
@@ -61,7 +63,7 @@ Independent Node dependency installation passed on 2026-09-09 in a new local tag
 
 ## Historical v0.4.0 Evidence
 
-Release contract: `v0.4.0`. This section retains historical evidence for the previous stable release.
+Release contract: `v0.4.0`. This section retains historical evidence for that release.
 
 v0.4.0 adds independent Findings with sequential IDs that remain stable through one Initial Review to Fix Review chain. Candidate 08 completed the frozen seven-run public-synthetic window at `7 / 7` after a tooling-only replay of one saved Fix trace. The original raw result remains `6 / 7`; no model output was retried or replaced.
 
@@ -109,7 +111,7 @@ v0.2.1 adds evaluation infrastructure and does not change the shared Skill tree 
 
 See [v0.2.1 Evaluation Results](evaluation-results/v0.2.1.md) for the exact fixture, oracle, variance, token, and evidence boundaries.
 
-## Stable v0.2.0 Evidence
+## Historical v0.2.0 Evidence
 
 v0.2.0 changes the core Skill contract. Stable v0.1.1 runtime results remain historical evidence for that release, but they do not verify v0.2.0.
 
@@ -130,9 +132,11 @@ The shared core contract defines the following fallback for Codex, Claude Code, 
 
 ## Known Limitations
 
-- Codex and Claude Code v0.5.0 runtime behavior remains `Cannot Verify`; stable runtime acceptance is verified only for Cursor.
+Current v0.6.0 limits are stated in [Stable v0.6.0 Evidence](#stable-v060-evidence). The version-specific items below retain their historical release boundaries; they do not redefine the current release's client status.
+
+- Codex and Claude Code v0.5.0 runtime behavior remains `Cannot Verify`; that release's runtime acceptance is verified only for Cursor.
 - The v0.5.0 runtime acceptance chain uses public synthetic fixtures. Post-release checks were deterministic only. Neither establishes general model precision or verifies private repositories, browser/WebView behavior, backend behavior, deployment, monitoring, or production systems.
-- One current-tree Fix request is retained as `Cannot Score` because its evaluator Prompt was self-contradictory; only the separately frozen replacement result is promoted.
+- One v0.5.0 current-tree Fix request is retained as `Cannot Score` because its evaluator Prompt was self-contradictory; only the separately frozen replacement result is promoted.
 - Cursor and Claude Code v0.4.0 runtime behavior remains `Cannot Verify`. Cursor's post-release Quick output passed its semantic and structural oracle, but the run failed mandatory collector and workspace-isolation trace gates; Claude Code was not executed.
 - The v0.4.0 runtime window uses public synthetic fixtures. It does not establish general model precision or verify private repositories, browser/WebView behavior, backend behavior, deployment, monitoring, or production systems.
 - Candidate 08's `7 / 7` includes one deterministic tooling-only trace replay; the original raw `6 / 7` and both false-positive violations remain recorded.
@@ -141,7 +145,7 @@ The shared core contract defines the following fallback for Codex, Claude Code, 
 - The v0.3.0 browser evidence covers one isolated public JavaScript path and does not verify WebView, Native, backend, deployment, or production behavior.
 - External Provider retention remains unverified, and token or elapsed observations are client/model measurements rather than Skill-only benchmarks.
 - Claude Code v0.2.2 runtime behavior is not claimed because valid credentials are unavailable.
-- Codex v0.2.2 post-release runtime evidence covers the Quick fixture; current Deep and Fix classification evidence comes from Cursor.
+- Codex v0.2.2 post-release runtime evidence covers the Quick fixture; that release's Deep and Fix classification evidence comes from Cursor.
 - The repeated Codex Quick run passed the complete oracle, but the first run's classification variance remains recorded rather than discarded.
 - Codex loaded user-level Memory and plugin context, so its reported token values are not a Skill-only cost benchmark and the run is not a clean fixture-isolation benchmark.
 - Cursor trace auditing detects explicit tool and shell requests; it is not an operating-system sandbox, so before/after Git state and relevant file hashes remain required evidence.
@@ -150,4 +154,4 @@ The shared core contract defines the following fallback for Codex, Claude Code, 
 - No v0.2.2 result claims browser runtime evidence; the release fixtures have no browser-observable product path.
 - The paired minimal-design oracle is a manual synthetic-fixture dataset. It verifies the recorded decisions and forbidden outcomes, not model quality in every repository.
 
-See [v0.4.0 Candidate Results](evaluation-results/v0.4.0-candidate.md), the [v0.4.0 Evaluation Plan](v0.4.0-finding-identity-evaluation-plan.md), and [v0.4.0 Post-release Smoke Results](evaluation-results/v0.4.0-post-release.md) for current release evidence, [v0.3.0 Evaluation Results](evaluation-results/v0.3.0.md) and [v0.3.0 Post-release Smoke Results](evaluation-results/v0.3.0-post-release.md) for the previous stable release, and [v0.1.0 Evaluation Results](evaluation-results/v0.1.0.md) for the original runtime cases and metrics.
+See [Stable v0.6.0 Evidence](#stable-v060-evidence) and [v0.6.0 Post-release Installation](evaluation-results/v0.6.0-post-release.md) for the current release. Historical records remain in [v0.5.0 Candidate Results](evaluation-results/v0.5.0-candidate.md), [v0.4.0 Candidate Results](evaluation-results/v0.4.0-candidate.md), the [v0.4.0 Evaluation Plan](v0.4.0-finding-identity-evaluation-plan.md), [v0.4.0 Post-release Smoke Results](evaluation-results/v0.4.0-post-release.md), [v0.3.0 Evaluation Results](evaluation-results/v0.3.0.md), [v0.3.0 Post-release Smoke Results](evaluation-results/v0.3.0-post-release.md), and [v0.1.0 Evaluation Results](evaluation-results/v0.1.0.md).

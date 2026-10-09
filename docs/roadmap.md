@@ -4,7 +4,13 @@ The roadmap is evidence-driven. Items move into a release only when real review 
 
 ## Current Next Steps
 
-Stable release: `v0.5.0`. The earlier candidate sections below retain their chronological decisions and historical pending gates; they are not the current task queue. Frozen Prompts, hashes, results, and `No-Go` decisions must not be rewritten as later successes.
+Stable release: `v0.6.0`, [published as Latest on 2026-10-09](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.6.0). [Fresh public-tag installation](evaluation-results/v0.6.0-post-release.md) passes with 45 downloaded and zero reused Node packages, 1,239/1,239 tests in 60 files, three isolated 12-file Skill copies and both validators passing. This closes the tag-download and deterministic installation checks; it does not add client runtime, automatic-discovery, general-accuracy, token/latency or isolation claims. Claude Code remains Not Verified, `runtimeReady=false`, and SSE is deferred.
+
+Publication-state documentation is now synchronized locally. Review and deliver these documentation changes under the existing release policy. Further client/model work requires a concrete uncovered case; do not repeat accepted cases solely because the release is published. Temporary Cursor credential cleanup remains a separately authorized task.
+
+## Preparation And Candidate History
+
+The sections below retain their chronological decisions and historical pending gates; they are not the current task queue. Frozen Prompts, hashes, results, and `No-Go` decisions must not be rewritten as later successes.
 
 Current publication preparation, 2026-10-09: **[v0.6.0 publication metadata is prepared](v0.6.0-release-preparation.md#publication-metadata)**. Package version, planned changelog date, immutable comparison target and bilingual installation commands now agree on v0.6.0. All entry documents explicitly mark publication as pending; currently published stable remains v0.5.0. The compatibility header now identifies the accepted Skill's actual SHA-256, guarded by the existing repository test. All 27 affected tests in three files, document links and whitespace checks pass; accepted runtime/example bytes remain unchanged. Release notes are ready. Before tagging, reconcile the actual release date; after confirmed publication, update pending/stable labels and check a fresh immutable-tag installation. No Skill/validator behavior, historical evidence, credentials or Git history is changed by this preparation; runtimeReady=false and SSE deferred remain unchanged.
 

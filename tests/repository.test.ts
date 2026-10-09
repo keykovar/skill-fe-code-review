@@ -139,7 +139,7 @@ describe('repository release support', () => {
     expect(validator).not.toContain('writeFile');
   });
 
-  test('separates prepared v0.6.0 installation from published v0.5.0 evidence', () => {
+  test('separates published v0.6.0 installation from historical v0.5.0 evidence', () => {
     const packageJson = JSON.parse(readText('package.json')) as { version: string };
     const readme = readText('README.md');
     const chineseReadme = readText('README.zh-CN.md');
@@ -148,25 +148,29 @@ describe('repository release support', () => {
     expect(packageJson.version).toBe('0.6.0');
     expect(readme).toContain('README.zh-CN.md');
     expect(readme).toContain('--branch v0.6.0');
-    expect(readme).toContain('Publication status: **pending**');
-    expect(readme).toContain('only after that tag is published');
+    expect(readme).toContain('Publication status: **published**');
+    expect(readme).toContain('published immutable `v0.6.0` tag');
+    expect(readme).not.toContain('Publication Pending');
     expect(readme).toContain('Runtime verified');
-    expect(readme).toContain('### Stable v0.5.0');
+    expect(readme).toContain('### Stable v0.6.0');
+    expect(readme).toContain('### Historical v0.5.0');
     expect(readme).toContain('part of stable `v0.2.0`');
     expect(chineseReadme).toContain('## 安装 v0.6.0');
     expect(chineseReadme).toContain('--branch v0.6.0');
-    expect(chineseReadme).toContain('发布状态：**尚未发布**');
-    expect(chineseReadme).toContain('仅在对应 tag 发布后可执行');
+    expect(chineseReadme).toContain('发布状态：**已发布**');
+    expect(chineseReadme).toContain('已发布、不可变的 `v0.6.0` tag');
+    expect(chineseReadme).not.toContain('尚未发布');
     expect(chineseReadme).toContain('Cannot Verify：无法验证');
-    expect(chineseReadme).toContain('### 稳定版 v0.5.0');
+    expect(chineseReadme).toContain('### 稳定版 v0.6.0');
+    expect(chineseReadme).toContain('### 历史版本 v0.5.0');
     expect(chineseReadme).toContain('属于稳定版 `v0.2.0`');
     expect(compatibility).toContain('Structural verified');
-    expect(compatibility).toContain('Stable evidence baseline: [`v0.5.0`]');
-    expect(compatibility).toContain('## Stable v0.5.0 Evidence');
+    expect(compatibility).toContain('Stable evidence baseline: [`v0.6.0`]');
+    expect(compatibility).toContain('## Historical v0.5.0 Evidence');
     expect(compatibility).toContain('## Historical v0.4.0 Evidence');
     expect(compatibility).toContain('## Historical v0.3.0 Evidence');
     expect(compatibility).toContain('a66e26e60e27f643f35b402c6660038c7070e759');
-    const targetEvidence = markdownSection(compatibility, '## v0.6.0 Evidence (Publication Pending)');
+    const targetEvidence = markdownSection(compatibility, '## Stable v0.6.0 Evidence');
     const skillSha256 = createHash('sha256').update(readText('skills/fe-code-review/SKILL.md')).digest('hex');
     expect(targetEvidence).toContain(`SHA-256: \`${skillSha256}\``);
   });
@@ -177,7 +181,7 @@ describe('repository release support', () => {
     const roadmap = readText('docs/roadmap.md');
     const results = readText('docs/evaluation-results/v0.2.0.md');
     const historical = markdownSection(compatibility, '## Historical v0.1.1 Evidence');
-    const candidate = markdownSection(compatibility, '## Stable v0.5.0 Evidence');
+    const candidate = markdownSection(compatibility, '## Historical v0.5.0 Evidence');
     const stable = markdownSection(compatibility, '## Historical v0.4.0 Evidence');
     const historicalV030 = markdownSection(compatibility, '## Historical v0.3.0 Evidence');
     const historicalV022 = markdownSection(compatibility, '## Historical v0.2.2 Evidence');
@@ -197,7 +201,7 @@ describe('repository release support', () => {
       historicalV022,
       'Cursor Agent CLI 2026.08.04-aaa8809',
     );
-    const readmeStable = markdownSection(readme, '### Stable v0.5.0');
+    const readmeStable = markdownSection(readme, '### Historical v0.5.0');
     const readmeCursorRow = markdownTableRow(
       readmeStable,
       'Cursor Agent CLI 2026.08.11-e8db854',
@@ -384,7 +388,7 @@ describe('repository release support', () => {
     expect(changelog).toContain('## [0.1.0] - 2026-07-23');
     expect(changelog).toContain('compare/v0.6.0...HEAD');
     expect(changelog).toContain('## [0.6.0] - ');
-    expect(changelog).toContain('Publication pending.');
+    expect(changelog).toContain('Published as [v0.6.0]');
     expect(changelog).toContain('[0.6.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.5.0...v0.6.0');
     expect(changelog).toContain('## [0.5.0] - 2026-09-09');
     expect(changelog).toContain('[0.5.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.4.0...v0.5.0');
@@ -400,9 +404,9 @@ describe('repository release support', () => {
     expect(versioning).toContain('Major');
     expect(versioning).toContain('Release tags are immutable');
     expect(versioning).toContain('Cannot Verify');
-    expect(versioning).toContain('Stable: `v0.5.0`');
-    expect(versioning).toContain('Target release: `v0.6.0` (publication pending)');
-    expect(versioning).toContain('Previous stable: `v0.4.0`');
+    expect(versioning).toContain('Stable: `v0.6.0`');
+    expect(versioning).toContain('published as Latest on 2026-10-09');
+    expect(versioning).toContain('Previous stable: `v0.5.0`');
     expect(versioning).not.toContain('Release candidate: `v0.4.0`');
   });
 

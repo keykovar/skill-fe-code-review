@@ -40,9 +40,11 @@ tests/                       Vitest 结构和契约检查
 
 ## 安装 v0.6.0
 
-发布状态：**尚未发布**。当前已发布的稳定 tag 仍为 [`v0.5.0`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.5.0)。
+发布状态：**已发布**，发布日期为 2026-10-09。当前稳定版为 [`v0.6.0`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.6.0)。
 
-下面的命令已固定为不可变的 `v0.6.0` tag，仅在对应 tag 发布后可执行。本次版本新增 Origin 与 Reproduction 字段，选定的 Codex、Cursor 最终包 Fix 冒烟已通过。范围和证据限制见 [Release 说明](docs/v0.6.0-release-notes.md)与[发布准备](docs/v0.6.0-release-preparation.md)。需要可复现安装时应使用 tag，不要直接安装 `main`。
+下面的命令已固定为已发布、不可变的 `v0.6.0` tag。本次版本新增 Origin 与 Reproduction 字段，选定的 Codex、Cursor 最终包 Fix 冒烟已通过。范围和证据限制见 [Release 说明](docs/v0.6.0-release-notes.md)与[发布准备](docs/v0.6.0-release-preparation.md)。需要可复现安装时应使用 tag，不要直接安装 `main`。
+
+[发布后安装检查](docs/evaluation-results/v0.6.0-post-release.md)已通过：从公开 tag 全新检出并独立下载 Node 依赖，三个客户端路径的安装副本通过结构验证。本轮未新增实际 AI 审查验收。
 
 ```bash
 git clone --depth 1 --branch v0.6.0 \
@@ -113,11 +115,11 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 ## 兼容性
 
-### v0.6.0（待发布）
+### 稳定版 v0.6.0
 
 已接受的 integration-12 候选在 Codex Desktop 上完成了选定的公开合成 Quick、Deep、Fix 评测；最终包另在 Codex Desktop（`0.162.0-alpha.2`，`gpt-6-astra / xhigh`）和 Cursor CLI（`2026.08.11-e8db854`，Auto / Plan）各通过一次显式路径 O-09 Fix 冒烟。两次冒烟均通过材料完整性、输出结构与字段、十项语义门禁。这些证据仅覆盖记录中的场景，不代表自动发现、所有客户端的所有模式、总体准确率或生产行为。Claude Code 仍为 Not Verified；独立隔离/运行时评测工具仍为 `runtimeReady=false`，SSE 延期。保留的失败和证据边界见[兼容性说明](docs/compatibility.md)。
 
-### 稳定版 v0.5.0
+### 历史版本 v0.5.0
 
 | 客户端 | v0.5.0 验证证据 | 状态 |
 | --- | --- | --- |

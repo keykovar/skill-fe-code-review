@@ -6,11 +6,14 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 
 ## [Unreleased]
 
-No changes recorded beyond the prepared v0.6.0 release below.
+### Documentation
+
+- Synchronize published v0.6.0 status across bilingual installation notes, compatibility and release documentation; preserve the immutable tag and historical acceptance records.
+- Record [fresh public-tag installation checks](docs/evaluation-results/v0.6.0-post-release.md): 45 Node packages downloaded with zero reused, 1,239 tagged tests passed, three isolated Skill copies and both validators passed. Python/PyYAML were reused; no additional client/model runtime acceptance is claimed.
 
 ## [0.6.0] - 2026-10-09
 
-Publication pending. This is the prepared release entry and planned date, not a completed tag or GitHub Release. Confirm the actual release date before publication. The v0.6.0 comparison links become available after the tag is published.
+Published as [v0.6.0](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.6.0) on 2026-10-09. The immutable tag retains its preparation-time pending notices; this documentation update records the confirmed publication.
 
 ### Changed
 
@@ -20,7 +23,7 @@ Publication pending. This is the prepared release entry and planned date, not a 
 - Preserve historical grouped/integration builders and their exact inputs in a bounded baseline; compatibility entries route to the frozen builders. Repair stdin API imports and retain symlink-aware CLI behavior.
 - Repair the historical O-09 test fixture's dependence on later-edited extension text by using the exact original request document, retaining both frozen request hashes and all rejection checks. This corrects a pre-existing offline test failure without repeating the consumed provider request.
 - Record the accepted integration-12 public synthetic Quick/Deep/Fix trials and the two final-package explicit-path O-09 Fix smokes on Codex Desktop and Cursor CLI. Each final-package case passes material integrity, structure/fields and ten semantic gates; no automatic-discovery, all-mode cross-client, general-accuracy or production claim is made. Claude Code remains Not Verified; runtimeReady=false and deferred SSE are unchanged.
-- Align package metadata, the dated changelog entry and prepared installation commands with 0.6.0, explicitly marking publication as pending. The currently published stable tag remains v0.5.0. See [release preparation](docs/v0.6.0-release-preparation.md) and [Release notes](docs/v0.6.0-release-notes.md) for scope and limits. Exclude local evaluation artifacts through the shared Git ignore rules and keep historical version assertions tied to their frozen baseline.
+- Align package metadata, the dated changelog entry and installation commands with 0.6.0. The tagged preparation snapshot explicitly marked publication as pending and identified v0.5.0 as stable at that time. See [release preparation](docs/v0.6.0-release-preparation.md) and [Release notes](docs/v0.6.0-release-notes.md) for scope and limits. Exclude local evaluation artifacts through the shared Git ignore rules and keep historical version assertions tied to their frozen baseline.
 
 ### Maintenance
 

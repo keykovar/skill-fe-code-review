@@ -40,9 +40,11 @@ tests/                       Vitest structure and contract checks
 
 ## Install v0.6.0
 
-Publication status: **pending**. The currently published stable tag remains [`v0.5.0`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.5.0).
+Publication status: **published** on 2026-10-09. The current stable release is [`v0.6.0`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.6.0).
 
-The commands below target the immutable `v0.6.0` tag and become usable only after that tag is published. The prepared release adds Origin and Reproduction fields, with the selected final-package Codex and Cursor Fix smokes completed. See the [release notes](docs/v0.6.0-release-notes.md) and [release preparation](docs/v0.6.0-release-preparation.md) for scope and evidence limits. Use a tag instead of `main` for reproducible installation.
+The commands below target the published immutable `v0.6.0` tag. This release adds Origin and Reproduction fields, with the selected final-package Codex and Cursor Fix smokes completed. See the [release notes](docs/v0.6.0-release-notes.md) and [release preparation](docs/v0.6.0-release-preparation.md) for scope and evidence limits. Use a tag instead of `main` for reproducible installation.
+
+[Post-release installation checks](docs/evaluation-results/v0.6.0-post-release.md) passed on a fresh public-tag checkout with independently downloaded Node dependencies. Client-path copies passed structural validation; no additional live review is claimed.
 
 ```bash
 git clone --depth 1 --branch v0.6.0 \
@@ -113,11 +115,11 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 ## Compatibility
 
-### v0.6.0 (Publication Pending)
+### Stable v0.6.0
 
 The accepted integration-12 candidate completed selected public synthetic Quick, Deep and Fix trials on Codex Desktop. The final package also passed one explicit-path O-09 Fix smoke on each of Codex Desktop (`0.162.0-alpha.2`, `gpt-6-astra / xhigh`) and Cursor CLI (`2026.08.11-e8db854`, Auto / Plan). Each final-package smoke passed material integrity, output structure/fields and ten semantic gates. These results cover the recorded cases; they do not establish automatic discovery, every mode on every client, general accuracy or production behavior. Claude Code remains Not Verified. The separate isolation/runtime harness remains `runtimeReady=false`, and SSE is deferred. See [Compatibility](docs/compatibility.md) for the retained failures and evidence boundaries.
 
-### Stable v0.5.0
+### Historical v0.5.0
 
 | Client | v0.5.0 evidence | Status |
 | --- | --- | --- |
