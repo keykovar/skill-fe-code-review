@@ -1,0 +1,298 @@
+---
+name: fe-code-review
+description: Review frontend or hybrid app code changes. Use when the user asks to review a current diff, uncommitted or staged changes, a commit, branch range, PR, risky feature, release change, naming, file placement, simplification, regression risk, frontend-specific risk, or fixes made after a previous review. Default to read-only review. Use Quick Review for normal changes, Deep Review for large or risky changes, and Fix Review to verify previous findings and detect regressions introduced by their fixes. Detect React, Vue, TypeScript, JavaScript, and Hybrid/WebView projects and load only the relevant references.
+---
+
+# FE Code Review
+
+## Default Rules
+
+- Match the user's language. If the user writes Chinese, respond in Simplified Chinese.
+- Translate section headings, status labels, and recommendations to the user's language. Keep stable English labels when useful, for example `Blocking：必须修改`.
+- For Chinese requests, use the Chinese template for the selected mode. Do not use English-only section headings such as `Overall Conclusion`, `Review Scope`, `Test Gaps`, or `Final Recommendation`.
+- Default to read-only review.
+- Do not modify files, format files, commit, push, reset, install packages, change branches, or run destructive commands unless the user explicitly asks.
+- A request to review, evaluate review quality, or output a review report authorizes chat output only. Do not create or update report, plan, todo, Markdown, or source files unless the user explicitly asks for that file artifact or for code changes. Client modes named Agent, Build, Write, or similar do not override this boundary.
+- Base findings on actual code, diffs, call paths, data flow, package versions, and runtime contracts.
+- Do not infer semantics from names alone.
+- Do not present static inspection as runtime verification.
+- Do not report vague issues. Explain the trigger condition, impact, root cause, suggested fix, and verification method.
+- If no clear issue is found, say so directly and list residual risks or unverified areas.
+
+## Scope Discovery
+
+Inspect the requested scope. If the user does not specify one, review all uncommitted changes. Collect the inventory once.
+
+When the requested scope is all uncommitted changes, `scripts/collect-review-context.mjs` is available inside the authorized Skill/workspace boundary, and Node.js is available, run it instead of issuing separate Git inventory commands:
+
+```bash
+node <skill-directory>/scripts/collect-review-context.mjs --workspace "$PWD"
+```
+
+The script is read-only and returns the repository root, `HEAD`, status, unstaged stat and patch, staged patch, untracked files, `git diff --check`, and CodeGraph presence. It always collects the complete uncommitted working tree. Do not run it for staged-only, commit, merge commit, branch, PR, range, or path-scoped reviews because that would read changes outside the requested scope. Use the matching bounded Git commands for those scopes. For an all-uncommitted review, reuse the collector output and do not rerun equivalent commands. If the script cannot be executed within the authorized boundary, collect the same evidence manually in one read-only batch when the client supports it:
+
+```bash
+git status --short
+git diff --stat
+git diff --find-renames
+git diff --cached --find-renames
+git ls-files --others --exclude-standard
+```
+
+Establish and report the comparison baseline before reviewing:
+
+- Uncommitted changes: `HEAD` versus the working tree, including staged, unstaged, and relevant untracked files.
+- Staged changes: `HEAD` versus the index.
+- Commit: its parent versus the commit.
+- Branch or PR: merge base versus target head, unless the user specifies another range.
+- Merge commit: first parent versus the merge commit, unless the user specifies another parent or baseline.
+
+If package or config files changed, inspect dependency and build impact. Always summarize the requested scope, comparison baseline, modified files, staged files, unstaged files, untracked files, and validation commands that ran or were skipped.
+
+For Fix Review, also identify the previous review report or findings and the fix diff. Keep the original feature range separate from the later fix range.
+
+If `.codegraph/` exists at the repository root and CodeGraph is available, use it before broad grep/find to understand symbols, call paths, and blast radius.
+
+Use evidence in this order:
+
+1. Repository source, diffs, call paths, tests, configuration, lockfiles, and project documentation.
+2. Installed dependency types and source for the resolved local version.
+3. Official documentation through a channel whose tool contract permits code review, only when version-sensitive framework or library behavior still cannot be established locally.
+
+The current official Context7 MCP tool contract excludes code review. Do not use Context7 while performing this skill, directly or indirectly. This includes asking a subagent, delegate, proxy, wrapper, or another tool or session to call it on the review's behalf. Do not bypass the restriction by reframing, decomposing, sanitizing, or relabeling review work as a documentation question. If a conclusion depends on external semantics and no permitted, authoritative source is available, mark it `Cannot Verify` and identify the missing evidence.
+
+When using any external documentation service, send only the public library, version, API, or sanitized behavior question needed for verification. Never send private source code, diffs, repository paths, internal API data, credentials, tokens, user data, or proprietary identifiers.
+
+## Conditional Browser Runtime Evidence
+
+Use Playwright or another available browser automation tool only when all of these conditions hold:
+
+- The changed behavior is browser-observable and runtime evidence can materially confirm or refute a finding, such as routing, forms, async UI state, storage or cookie behavior, hydration, focus, scrolling, responsive overflow, or request ordering.
+- A concrete entry point exists, such as a local route, URL, interaction, or test harness, and the expected observable result is explicit from the requirement, baseline behavior, or an existing test contract.
+- A suitable local or isolated test environment is already runnable without installing dependencies, changing project configuration, or writing generated artifacts into the repository.
+- The initial state is controlled and repeatable, or can be reconstructed before each run without relying on production data or a real account.
+- The path is isolated and can be exercised without production access, real payments, real user data, destructive actions, or irreversible external side effects.
+
+Keep browser verification read-only with respect to the repository, production systems, and real accounts. Isolated local browser state may change when required by the scenario, but reset it when practical and do not treat that state change as product data verification.
+
+Record the environment and URL type, entry point, browser and viewport, initial state and how it is reproduced, expected result, actions, observed result, and relevant console or network summary. Mask credentials, tokens, personal data, request bodies, and sensitive response content. If runtime evidence is required but the gate is not satisfied, use `Cannot Verify` and state the unavailable environment, state, expectation, or capability.
+
+Browser automation proves only the exercised path in the recorded environment. A passing browser check does not prove behavior in every browser or viewport and does not replace real WebView, Native bridge, device, backend, deployment, monitoring, or production verification.
+
+## Mode Selection
+
+- Use Quick Review by default for daily changes, small PRs, bug fixes, and local refactors.
+- Use Deep Review for payment, auth, routing/navigation, WebView bridge, RTC/audio/video, SSR/hydration, i18n, global state/store, cache/persistence, build/deploy config, dependency upgrades, shared modules, performance-sensitive code, release branches, cross-module behavior, or large refactors.
+- Use Fix Review when the user asks to re-review fixes, verify previous findings, check whether review comments were resolved, or detect regressions introduced by the fixes.
+
+Load exactly one mode reference before reviewing:
+
+- Quick Review: `references/quick-review.md`
+- Deep Review: `references/deep-review.md`
+- Fix Review: `references/fix-review.md`
+
+For Fix Review, use the previous findings from the current conversation when available. Otherwise require the user to provide the prior review report, issue list, or a readable path to it. Do not invent previous findings or claim that an issue is resolved without a usable baseline.
+
+## Technology Detection
+
+Inspect project files and load only matching references:
+
+- React: load `references/react.md` for React, React DOM, Next.js, Remix, JSX/TSX, or hooks.
+- Vue: load `references/vue.md` for Vue, Nuxt, Pinia, `.vue` files, or Composition API.
+- TypeScript: load `references/typescript.md` for TypeScript projects or changed TypeScript contracts.
+- JavaScript: load `references/javascript.md` for JavaScript projects or runtime-shape-heavy code.
+- Hybrid/WebView: load `references/hybrid-webview.md` for bridges, native contracts, WebView, app shell, storage, keyboard, safe area, audio, or video.
+- Release risk: load `references/release-risk.md` for Deep Review, release branches, feature flags, rollout, monitoring, rollback, or high-risk flows.
+
+## Quick/Fix Evidence Discipline
+
+Apply these required execution rules to Quick Review and Fix Review. They reduce repeated exploration without reducing required coverage:
+
+- Use one bounded read-only round trip per evidence group when the client supports batching: selected Skill/reference files; initial context collector or its manual fallback; changed and baseline source plus direct-consumer searches; and remaining applicable validation. Split a group only to prevent an unmanageably large result or when the first result exposes a new unresolved contract. Do not concatenate unrelated large files merely to lower the command count.
+- Freeze and reuse the initial Git inventory. In a read-only review, do not repeat status, name-status, stat, staged diff, untracked-file, or unchanged diff queries at the end. A host evaluator, not the reviewing model, performs any independent post-run integrity comparison.
+- Read each selected instruction, diff, baseline file, and overlapping source range once. Prefer one line-numbered read that covers the needed range. Before any repeated read or search, identify the specific unresolved evidence question; skip the command when existing output already answers it.
+- After the changed files and direct affected paths are known, do not run broad `rg` searches from `.` or an unfiltered `rg --files`/repository file inventory. Scope searches to the changed owner, named symbols, and directly affected paths; expand only when a concrete match exposes another consumer or contract.
+- Detect technology from changed file types, imports, and at most one relevant manifest read. Inspect package, lock, build, or TypeScript configuration in more depth only when it changed or when a finding depends on its resolved version or compiler/build contract. Do not probe absent config or lockfiles merely to complete a generic checklist.
+- Search once for directly relevant tests using paths that are known to exist or one bounded filename-glob query. If that search establishes no applicable test, record the gap; do not retry guessed test-directory names or alternate repository-wide patterns without new evidence.
+- Combine independent expression or deterministic checks that exercise the same behavior contract into one validation round trip. Do not rerun the diff solely to prepare the final explanation.
+- When the user or evaluator explicitly declares that a synthetic `HEAD` represents the original problem baseline, verify the current `HEAD` and fix diff, then use that declared baseline. Record unavailable original commit objects as an evidence limit instead of probing each object when closure does not depend on them.
+- Continue beyond these groups whenever evidence conflicts, a changed condition remains unclassified, a directly affected contract is unresolved, or a finding still lacks its trigger and impact. These are completeness rules, not a hard command or token ceiling.
+- Stop exploring when the requested baseline and diff are established, every changed-condition ledger entry in scope is accounted for, each reported finding has sufficient evidence, required validation is completed or explicitly bounded, and the selected output contract can be filled consistently. Do not broaden searches merely to increase subjective confidence.
+
+## Before/After Behavior Analysis
+
+Perform this analysis in every mode. Compare behavior, not only changed lines:
+
+1. Identify the behavior before the change and the intended behavior after it.
+2. Detect removed, weakened, or unintentionally preserved behavior.
+3. Check missing branches, guards, fallbacks, cleanup, cancellation, retries, and error handling.
+4. Before prioritizing findings, build a compact internal changed-condition ledger for every condition, guard, fallback, default, and early return that was added, changed, moved, split, or retained inside a modified decision block in the requested diff. A textually unchanged guard remains in scope when its surrounding control flow, return behavior, or state writes changed. Compare which runtime values take each branch before and after; do not output the ledger by default.
+5. In that ledger, distinguish absence (`null` or `undefined`) from valid falsy values such as `0`, `false`, or an empty string. For state writes behind those branches, trace transitions from a prior truthy or non-empty value into each valid falsy value through directly affected consumers; do not inspect only the current value in isolation.
+6. Account for every ledger entry before finalizing: classify it as behavior-preserving, an evidence gap, or a finding. Use behavior-preserving only after verifying that the preserved behavior itself remains correct for the visible runtime contract and state transitions. If a modified decision block retains a material defect, report it and identify it as a retained defect rather than a regression introduced by the diff. Do not omit an affected changed condition merely because another finding has higher severity.
+7. Trace affected callers, consumers, events, API contracts, storage, cache, and runtime data shapes.
+8. Confirm behavior outside the requested change remains invariant where required.
+9. Inspect deleted or moved code and relevant untracked files; do not review only added lines.
+
+Report material behavior differences as Blocking or Risk findings. In Quick Review, keep the output compact and record the baseline and relevant behavior delta under scope, findings, or evidence. In Deep Review, record before, after, preserved constraints, and missing or removed behavior in the change map. In Fix Review, compare both the original issue behavior and the fix behavior, then run a focused regression scan around affected call paths.
+
+If the baseline cannot be read, state that before/after behavior could not be verified. Do not present a current-code-only inspection as a completed comparison.
+
+## Review Priorities
+
+Review in this order:
+
+1. Correctness and real bugs.
+2. Online or production risk.
+3. Regression risk and behavior loss.
+4. Test gaps.
+5. Code design and simplification.
+6. Naming and readability.
+7. File placement and module boundaries.
+8. Style only when it hides risk or harms maintainability.
+
+Only report design, naming, readability, and file placement issues when they create real maintenance cost, confusion, coupling, or future bug risk.
+
+## Minimal Sufficient Design
+
+Evaluate Quick and Deep Review changes for the smallest justified complexity surface that satisfies current requirements, preserves behavior and invariants, and fits existing repository patterns. Minimal does not mean the fewest lines of code.
+
+- Flag speculative abstractions, extension points, layers, configuration, states, branches, fallbacks, parameters, or compatibility paths only when no requirement, caller, runtime contract, recovery need, observability need, or test evidence justifies them.
+- Treat duplication as an extraction candidate only when it represents the same business rule or contract, has the same reason to change, and creates meaningful drift risk. Do not extract solely because code looks similar.
+- Prefer an existing repository capability when it provides the required semantics without increasing coupling or obscuring data flow.
+- Check actual producers, consumers, baseline behavior, and runtime inputs before calling a case, fallback, state, or defensive path unnecessary.
+- Do not recommend simplification that weakens correctness, cleanup, compatibility, recovery, observability, or rollback safety.
+- Do not claim global optimality. Judge only the inspected scope. Classify the minimum sufficient safe repair, not the breadth, number, or severity of findings. Use `Keep` when the current design is justified. Use `Cannot Verify` when evidence is insufficient or the selected mode is too narrow to support the decision.
+- Use `Simplify` when the safe repair preserves existing module and ownership boundaries while removing local complexity or restoring one established owner and baseline data flow. Consolidating actions within an existing store or owner, replacing an index with a stable ID, deriving rather than duplicating state, serializing or deduplicating requests, and snapshotting mutable data inside the current flow are `Simplify`, even when they fix several cross-module or high-severity findings.
+- Use `Extract` for a proven shared rule that needs one owner.
+- Use `Redesign` in Deep Review only when the minimum safe repair must replace, move, or materially reshape an ownership or data-flow boundary. Before choosing it, identify the existing boundary that cannot remain and explain why a local repair cannot preserve it safely. Cross-module impact, payment or other business criticality, multiple findings, or creation of one coordinating action inside the existing owner do not prove `Redesign`. If the proposed repair keeps the existing modules and authoritative owner, use `Simplify`.
+- In Quick Review, inspect the diff, its immediate owner, and directly affected callers. Report only clear, local, evidence-backed unnecessary complexity; do not perform a repository-wide abstraction audit solely for this section. If that bounded scope cannot establish whether complexity is justified, use `Cannot Verify` and state the missing evidence.
+- In Deep Review, inspect affected callers and consumers, existing repository capabilities, abstraction ownership, and runtime contracts. Compare the current design with a simpler viable alternative when one exists, and explain the correctness, stability, coupling, and maintenance tradeoff.
+
+Report each actionable design issue once in the applicable `Blocking`, `Risk`, or `Improve` finding section. Every `Simplify`, `Extract`, or `Redesign` decision must cite at least one such finding by ID. In `Design / Simplify`, add only the decision context, required invariants, and tradeoffs; do not duplicate the full finding.
+
+Design severity follows demonstrated impact. Local maintainability cost without demonstrated behavior risk is `Improve`; use `Risk` or `Blocking` only when evidence shows corresponding behavior, regression, or delivery risk.
+
+## Finding Requirements
+
+Finalize findings with this sequence:
+
+1. During discovery, use short semantic keys, never `F-NNN` IDs.
+2. Give each candidate issue one atomic pass/fail acceptance sentence. Before merging candidates, test both counterfactuals: can the minimum safe repair for A pass while B still fails, and vice versa? If either can, split them. A shared function, diff hunk, patch, test, output, or broad contract label is not merge evidence. Merge only when one indivisible repair necessarily makes every acceptance sentence pass.
+3. Finalize severity, then perform a Blocking proof pass before sorting: for every Blocking finding, name one canonical outcome from `Severity Rules` and cite evidence that the outcome occurs or is unavoidable. If the evidence establishes only a changed parameter, direct-caller mismatch, local contract regression, or local test failure, classify the finding as Risk unless separate evidence demonstrates a canonical Blocking outcome. Then sort by severity (`Blocking`, `Risk`, `Improve`) and first changed source location.
+4. Assign chain-local IDs (`F-001`, `F-002`, ...) only after sorting.
+5. Backfill final IDs into the visible ledger and cross-section references. Group ledger entries by final ID: repeated IDs require the same non-empty `Merge key` / `合并依据` on every entry; single IDs require none. Reconcile every actionable statement outside severity sections: reference a final ID or remove it.
+6. Scan rendered Finding headers in body order. If they are not exactly `F-001` through `F-NNN`, renumber every header and reference before responding. Emit no placeholder ID; Fix Review preserves supplied IDs.
+
+Render Quick/Deep Finding headers as `- [F-NNN] [file:line] title`; the location may be a Markdown link, never backtick-only. Begin `Blocking outcome` / `阻断结果` with its canonical English outcome name, followed by optional evidence after ` - `.
+
+Render every Changed-Condition Coverage entry as exactly one physical Markdown list item with this shape (plain location shown; the linked variant is specified below): `- [file:line] <condition>: <before> -> <after>; Disposition: <one final disposition>`. Keep the location, condition, `before -> after`, and final `Disposition` on that same line. The disposition must be exactly one `[F-NNN]`, `Behavior Preserving`, or `Cannot Verify`; repeated Finding IDs also end with the same non-empty `Merge key`. Do not use a colon-only status such as `condition: unchanged` or `condition: old, new`, and do not split a coverage entry into nested bullets or child lines. Before sending the final response, inspect every physical Coverage line for one location, one transition arrow, and one valid disposition; rewrite any failing line before responding.
+
+The initial `[file:line]` may remain plain or be a Markdown link to that same source file and line. Use a positive one-based line number in both the visible label and destination. Relative locations are resolved against the independently established review source root; absolute locations must remain inside that root. Use canonical local POSIX paths, without `.` or `..` segments. If a destination contains spaces, enclose it in angle brackets. Use plain locations when this supported subset cannot represent the target. URLs, URI schemes, encoded paths, query/fragment syntax, link titles, Windows paths and paths containing brackets or parentheses are outside this supported subset.
+
+Example: `- [src/session.ts:9](/review/src/session.ts:9) token source: current token -> cached token; Disposition: [F-001]`, with `/review` as the independently established source root. For a path with spaces, use `[src/My File.ts:9](</review/src/My File.ts:9>)`.
+
+Establish the review source root from the requested workspace or supplied source packet, never from a generated report link. A matching link is presentation only, not source evidence. Use a plain location if the root is unavailable; do not read extra files just to render a link. Fix Review still has no Coverage ledger.
+
+Every Quick or Deep finding must include:
+
+- Finding ID.
+- Severity: Blocking, Risk, or Improve.
+- File path and line number when possible.
+- Trigger condition.
+- Impact.
+- Root cause or reasoning.
+- Suggested fix.
+- Verification method for Blocking and Risk findings.
+- Demonstrated Blocking outcome for Blocking findings; a local test failure alone is insufficient.
+- Confidence when evidence is incomplete.
+
+For Quick and Deep Review, `Cannot Verify` is an evidence disposition, not a severity, and missing evidence alone does not create a finding. Record an evidence-only gap under scope, `Test Gaps`, or `Evidence`. If static evidence supports an actionable finding, keep its demonstrated Blocking, Risk, or Improve severity and mark only the unverified runtime or external-semantics portion `Cannot Verify`. This does not change `Cannot Verify` as a `Design / Simplify` decision or as a Fix Review closure status.
+
+If multiple fixes are possible, recommend one and explain the tradeoff briefly.
+
+Treat untracked files as submit-blocking when they are imported, referenced, or required by tracked or staged changes. Do not recommend `can submit` until the referenced untracked file is included in the submit scope or the reference is removed, because clean checkout, CI, or another developer's environment can fail.
+
+## Origin And Reproduction
+
+
+Keep the selected mode template, finding IDs, severity, read-only boundary, recommendation matrix, changed-condition coverage grammar, and Fix closure statuses unchanged. Add exactly two nested fields to every reported Finding or Fix Issue Verification item, one Origin and one Reproduction:
+
+```md
+- 问题来源 / Origin：New / Amplified / Retained / Unknown - evidence relative to the declared comparison baseline.
+- 复现观测 / Reproduction：Observed / Not Run / Cannot Verify / Not Applicable - evidence and limits.
+```
+
+Use the same state in English or Chinese labels, with substantive evidence after it. Do not add fields to coverage-ledger lines or no-finding sections.
+
+### Origin
+
+Compare against the frozen requested baseline. Use `New` only when the defect is absent in that baseline and introduced by the change; `Amplified` when an existing defect gains concrete reachable exposure; `Retained` when the same material defect remains in the affected scope; and `Unknown` when the baseline or causal comparison is unavailable. Changed line age, relocation, a new test, or a newly observed error is not enough to claim New.
+
+For Fix Review, preserve the previous Finding's original origin relative to the original review baseline. Evaluate New Regression origin relative to the fix baseline, allowing only New or Amplified. Do not fabricate IDs or origin history for legacy prose reports. Missing original attribution means Unknown; assess closure separately against the supplied acceptance criteria, not against the certainty of that attribution.
+
+### Reproduction
+
+Use `Observed` only with one valid `n/N` count per explicitly labeled observation group, where `0 <= n <= N`, `N > 0`, both are safe integers, the unit and environment are stated, and every trial is completed. Exclude setup failures and interrupted attempts from the denominator and report them as limitations. `Not Run`, `Cannot Verify`, and `Not Applicable` must not include counts.
+
+Keep Reproduction on one nested bullet and one line. A single group may use `State - evidence`. Multiple groups must use `[unique-label] State - evidence | [other-label] State - evidence`: put a distinct evidence-backed label in brackets, repeat the state in every group, and separate groups with literal ` | `. Do not use prose headings or semicolons as group separators, or place multiple counts under one shared state.
+
+Choose one of these format templates. Replace labels, count placeholders and evidence descriptions with supported data; the templates are not observations:
+
+```text
+  - Reproduction: Observed - n/N failures; environment, revision, completed-trial unit and evidence record.
+  - Reproduction: [group-a] Observed - a/A failures; group-specific environment, revision, unit and record. | [group-b] Observed - b/B failures; group-specific environment, revision, unit and record.
+  - Reproduction: [group-a] Observed - a/A failures; group-specific environment, revision, unit and record. | [group-b] Cannot Verify - required equivalent environment is unavailable; identify the missing evidence.
+```
+
+Use `Not Run` when no usable execution observation exists, `Cannot Verify` when required runtime evidence cannot be completed or matched, and `Not Applicable` for maintenance-only issues with no meaningful trial count. Keep pre-fix observations and post-fix verification separate. Do not run extra checks just to fill a count; existing authorization and mode budgets remain controlling. A zero-failure sample alone does not establish closure.
+
+Never call a sample ratio a production probability. Keep revisions, browsers, inputs, reset state, and concurrency schedules in separate groups. A restrictive but evidenced trigger remains reportable even when its sample count is low or zero; contradictory evidence must narrow or withdraw the causal claim.
+
+### Final Check
+
+For Quick/Deep Blocking findings, copy the supported English outcome name exactly from `Severity Rules` into `Blocking outcome` / `阻断结果`, before ` - <evidence>`; do not paraphrase, translate, change capitalization or decorate the name. Compare each rendered outcome with that list and its causal evidence before sending; if no listed outcome is supported, reconsider severity using the severity rules instead of choosing a label just to pass formatting.
+
+For Fix Review, fill all five conclusion tallies with non-negative integers: Resolved, Partially Resolved, Unresolved, Cannot Verify, and New Regression. Use `0` for an empty category; IDs or words such as `none` do not replace a count. Derive the four closure totals from the previous findings and count new regressions separately, then reconcile them with the final recommendation.
+
+Before responding, verify field count, state, evidence, count grammar, group delimiters, baseline wording, Fix status consistency, existing output contract, and the distinction between structural parsing and semantic adjudication. Name missing evidence using the relevant field's state above; do not automatically turn Unknown origin or Not Run reproduction into a Cannot Verify closure. Do not invent a trial or expand the selected review mode.
+
+Finish at the final recommendation. Remove accidental trailing fragments unrelated to the report while preserving legitimate evidence, identifiers, code and bilingual labels. This is a check of the drafted response, not permission to run tools or add another review pass.
+
+## Recommendation Consistency
+
+Choose the recommendation after findings and required verification limits are known. Treat the conclusion and final recommendation as one decision contract:
+
+- Quick Review: use `可以提交` only when no unresolved Blocking finding exists and no Risk finding or required verification is treated as a pre-submit condition. Any Blocking finding requires at least `修改后提交`; use `不建议提交` when bounded fixes are insufficient, the approach is unsafe, or critical evidence is unavailable. An Improve-only review remains `可以提交` unless the user declared a stricter quality gate before the review; describe those improvements as optional and explicitly non-blocking, never as work that should or must happen before submission.
+- Deep Review: apply the same rule with `可以进入下一步`, `修改后可以进入下一步`, and `暂不建议进入下一步`. An Improve-only review does not block the next step unless the user declared a stricter gate.
+- If a Risk finding exists, state whether it is a pre-submit or pre-next-step condition. If it is accepted instead, state the residual risk and why proceeding is still justified.
+- The final recommendation must restate the same decision and the same prerequisites as the conclusion. Do not introduce a new `before submit`, `before merge`, or `before next step` condition only in the final section. If the final evidence requires a stricter decision, update the conclusion to match.
+- Fix Review: use `可以关闭` only when every previous finding is Resolved and no material New Regression exists; use `修改后再次回审` when any finding is Partially Resolved or Unresolved, or a material new regression exists; use `暂时无法确认` when closure depends on a Cannot Verify result.
+
+## Fix Review Rules
+
+Evaluate every previous finding with exactly one status:
+
+- `Resolved：已解决`
+- `Partially Resolved：部分解决`
+- `Unresolved：未解决`
+- `Cannot Verify：无法验证`
+
+For each previous finding, preserve its original severity and explain the current evidence, remaining risk, and verification result. Report newly introduced defects separately as `New Regression：新增回归`, using Blocking, Risk, or Improve severity.
+
+Do not re-audit the whole feature by default. Inspect the fix diff and the affected callers, consumers, contracts, tests, and runtime paths needed to verify closure and detect regressions. Keep the Fix Review template and focused verification budget. If the fix changes architecture or reveals broader risk, inspect only the affected architecture needed to verify the previous findings and detect fix regressions; do not silently switch to or blend in Deep Review. Recommend a separate Deep Review with an explicit scope, and run it only as a separately selected mode.
+
+Use `Recommendation Consistency` as the single authority for the closure recommendation. Do not add, weaken, or redefine closure criteria in Fix Review rules.
+
+## Severity Rules
+
+Use Blocking only when evidence supports one canonical outcome: `Runtime Error`, `White Screen`, `Infinite Loop`, `Broken Main Flow`, `Payment Failure`, `Login/Auth Failure`, `Data Corruption`, `Build Failure`, `Serious Compatibility Issue`, or `Severe Regression`.
+
+`Severe Regression` means a demonstrated loss of an established critical path or broad supported-environment behavior whose impact is equivalent to another Blocking outcome. It is not a synonym for any regression and cannot be established solely by a changed parameter, direct-caller mismatch, local contract regression, or failing local test.
+
+Use `Referenced Untracked File` when a changed tracked file imports or references an untracked file outside the submit scope.
+
+Use Risk when an issue may cause edge-case bugs, race conditions, state inconsistency, cache inconsistency, poor error handling, performance degradation, or a local contract regression without evidence of a Blocking outcome, including demonstrated cross-module coupling or drift that creates behavior, regression, or delivery risk.
+
+Also use Risk when evidence shows analytics or telemetry will attribute a real production event to the wrong product, user action, state, or outcome. Do not reduce demonstrated business or diagnostic misattribution to Improve merely because the visible UI still works.
+
+Use Improve for local maintainability cost without demonstrated behavior risk, readability, minor duplication, local simplification, better naming, better type expression, better folder placement, or non-blocking cleanup.

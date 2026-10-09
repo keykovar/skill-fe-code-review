@@ -12,7 +12,7 @@ Do not start Playwright or other browser automation by default. When the conditi
 
 Apply the Quick/Fix evidence discipline in `SKILL.md`. After the initial inventory, inspect the diff, its immediate owner, and only the callers, consumers, contracts, or tests needed to classify changed conditions and findings. Expand beyond that bounded path only when concrete evidence exposes a wider affected contract; do not perform broad file inventories or repeat searches as a substitute for an unresolved hypothesis.
 
-Apply the `Finding Requirements` finalization sequence before rendering. Keep discovery keys and acceptance sentences internal; expose the ledger only after final IDs are backfilled. Render every independently assessable changed condition, return-value contract, or observable behavior as exactly `- [file:line] <condition>: <before> -> <after>; Disposition: <one final disposition>` on one physical line. Use exactly one `[F-NNN]`, `Behavior Preserving`, or `Cannot Verify`; repeated Finding IDs also require the same non-empty `Merge key` on every occurrence. Never emit a colon-only status, omit either side of the arrow, put disposition on another line, use nested bullets, or summarize independent changes. Before responding, inspect each physical Coverage line and rewrite any line that fails this grammar. Complete the repeated-ID ledger check in `SKILL.md` before responding.
+Apply the `Finding Requirements` finalization sequence before rendering. Keep discovery keys and acceptance sentences internal; expose the ledger only after final IDs are backfilled. Render every independently assessable changed condition, return-value contract, or observable behavior as exactly `- [file:line] <condition>: <before> -> <after>; Disposition: <one final disposition>` on one physical line. The initial location may also be a matching local Markdown link under the Coverage location rules in `SKILL.md`; the rest of the grammar is unchanged. Use exactly one `[F-NNN]`, `Behavior Preserving`, or `Cannot Verify`; repeated Finding IDs also require the same non-empty `Merge key` on every occurrence. Never emit a colon-only status, omit either side of the arrow, put disposition on another line, use nested bullets, or summarize independent changes. Before responding, inspect each physical Coverage line and rewrite any line that fails this grammar. Complete the repeated-ID ledger check in `SKILL.md` before responding.
 
 In Quick Review, `Cannot Verify` describes evidence status, not finding severity. Missing runtime or external evidence alone is not a finding. When local static evidence supports a finding, keep its demonstrated Blocking, Risk, or Improve severity and mark only the unverified evidence portion `Cannot Verify`. This does not change the `Design / Simplify` decision vocabulary.
 
@@ -44,6 +44,8 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 
 - [file:line] 条件：修改前 -> 修改后；结论：[F-001] / Behavior Preserving：行为保持 / Cannot Verify：无法验证；合并依据：<仅重复 ID 时填写同一简短键>
 
+位置可使用与源文件及行号一致的 Markdown 链接；适用条件见 `SKILL.md`。
+
 合法示例：`- [src/session.ts:9] token source: getSession() -> cachedToken; Disposition: [F-001]`
 非法示例：`- [src/session.ts:9] token source: cachedToken; Disposition: Behavior Preserving`（缺少 `before -> after`）
 非法示例：`- [src/session.ts:9] token source: getSession() -> cachedToken; Disposition: [F-001]; Merge key: stale-session-owner`（单次 ID 不填写 `Merge key`）
@@ -51,6 +53,8 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 ## Blocking：必须修改
 
 - [F-001] [file:line] 问题标题
+  - 问题来源 / Origin：New / Amplified / Retained / Unknown - <相对声明基线的证据>
+  - 复现观测 / Reproduction：Observed / Not Run / Cannot Verify / Not Applicable - <观测证据与限制>
   - 触发场景：
   - 影响：
   - 阻断结果：<Severity Rules 中的稳定英文结果名> - <证据>
@@ -61,6 +65,8 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 ## Risk：建议修改
 
 - [F-001] [file:line] 问题标题
+  - 问题来源 / Origin：New / Amplified / Retained / Unknown - <相对声明基线的证据>
+  - 复现观测 / Reproduction：Observed / Not Run / Cannot Verify / Not Applicable - <观测证据与限制>
   - 触发场景：
   - 影响：
   - 根因：
@@ -70,6 +76,8 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 ## Improve：可优化
 
 - [F-001] [file:line] 问题标题
+  - 问题来源 / Origin：New / Amplified / Retained / Unknown - <相对声明基线的证据>
+  - 复现观测 / Reproduction：Observed / Not Run / Cannot Verify / Not Applicable - <观测证据与限制>
   - 触发场景：
   - 影响：
   - 根因：
@@ -119,3 +127,5 @@ Use every top-level section exactly once. Write `无明确问题。` or `No clea
 ## English Output Template
 
 Mirror the Chinese structure with these headings: `Overall Conclusion`, `Review Scope`, `Changed-Condition Coverage`, `Blocking`, `Risk`, `Improve`, `Design / Simplify`, `Naming / Readability`, `File Placement / Module Boundary`, `Test Gaps`, `Evidence`, and `Final Recommendation`. Prefix every finding with its chain-local `F-NNN` ID. Include the comparison baseline and before/after behavior evidence. Begin each Blocking outcome with its stable English name. In `Design / Simplify`, use a compact `Keep`, `Simplify`, `Extract`, or `Cannot Verify` decision and preserve required behavior or invariants. Under `Evidence`, distinguish permitted official documentation verification, browser runtime evidence, and unverified areas.
+
+Apply the shared `Origin And Reproduction` rules in `SKILL.md` to every finding, including Improve and Fix New Regression entries. In English use nested `Origin` and `Reproduction` fields with the same states and evidence. Do not add these fields to empty finding sections or Coverage entries.

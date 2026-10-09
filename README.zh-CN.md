@@ -38,12 +38,14 @@ examples/                    指令与输出示例
 tests/                       Vitest 结构和契约检查
 ```
 
-## 安装稳定版本
+## 安装 v0.6.0
 
-当前稳定版本为 `v0.5.0`。需要可复现安装时，应固定 Release tag，不要直接安装 `main`。
+发布状态：**尚未发布**。当前已发布的稳定 tag 仍为 [`v0.5.0`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.5.0)。
+
+下面的命令已固定为不可变的 `v0.6.0` tag，仅在对应 tag 发布后可执行。本次版本新增 Origin 与 Reproduction 字段，选定的 Codex、Cursor 最终包 Fix 冒烟已通过。范围和证据限制见 [Release 说明](docs/v0.6.0-release-notes.md)与[发布准备](docs/v0.6.0-release-preparation.md)。需要可复现安装时应使用 tag，不要直接安装 `main`。
 
 ```bash
-git clone --depth 1 --branch v0.5.0 \
+git clone --depth 1 --branch v0.6.0 \
   https://github.com/keykovar/skill-fe-code-review.git
 cd skill-fe-code-review
 ```
@@ -110,6 +112,10 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 ```
 
 ## 兼容性
+
+### v0.6.0（待发布）
+
+已接受的 integration-12 候选在 Codex Desktop 上完成了选定的公开合成 Quick、Deep、Fix 评测；最终包另在 Codex Desktop（`0.162.0-alpha.2`，`gpt-6-astra / xhigh`）和 Cursor CLI（`2026.08.11-e8db854`，Auto / Plan）各通过一次显式路径 O-09 Fix 冒烟。两次冒烟均通过材料完整性、输出结构与字段、十项语义门禁。这些证据仅覆盖记录中的场景，不代表自动发现、所有客户端的所有模式、总体准确率或生产行为。Claude Code 仍为 Not Verified；独立隔离/运行时评测工具仍为 `runtimeReady=false`，SSE 延期。保留的失败和证据边界见[兼容性说明](docs/compatibility.md)。
 
 ### 稳定版 v0.5.0
 
@@ -202,6 +208,18 @@ Playwright 或等价浏览器工具只提供可选运行时证据，不是 Skill
 
 完整输出示例：
 
+v0.6.0 为每条 Finding 和 Fix 问题验证项增加两个字段：`Origin` 区分本次引入（New）、本次放大（Amplified）、历史遗留（Retained）和无法确定（Unknown）；`Reproduction` 区分已观测（Observed）、未执行（Not Run）、无法验证（Cannot Verify）和不适用（Not Applicable）。已观测的 `n/N` 表示有证据的已完成失败次数/试验次数，不是生产复现概率；修复前后、不同环境的观测分别保留。
+
+这不会增加审核模式，也不要求为填写计数额外执行测试。来源不明或没有运行证据不自动等于 Fix 无法关闭；无问题段落和 Coverage 条目不增加这两个字段。正式稳定版仍为 v0.5.0；v0.6.0 候选的两次选定最终包 Fix 冒烟已通过，具体边界见上方兼容性说明。
+
+| 模式 | 中文示例 | 英文示例 |
+| --- | --- | --- |
+| Quick | [Quick 中文](examples/outputs/quick.zh-CN.md) | [Quick](examples/outputs/quick.en.md) |
+| Deep | [Deep 中文](examples/outputs/deep.zh-CN.md) | [Deep](examples/outputs/deep.en.md) |
+| Fix | [Fix 中文](examples/outputs/fix.zh-CN.md) | [Fix](examples/outputs/fix.en.md) |
+
+以下四个既有示例继续使用默认校验规则：
+
 - [Quick Review 英文示例](examples/outputs/quick-review.md)
 - [Quick Review 中文示例](examples/outputs/quick-review.zh-CN.md)
 - [Deep Review 示例](examples/outputs/deep-review.md)
@@ -215,7 +233,7 @@ Playwright 或等价浏览器工具只提供可选运行时证据，不是 Skill
 python3 /path/to/skill-creator/scripts/quick_validate.py skills/fe-code-review
 ```
 
-验证器需要安装 `PyYAML` 的 Python 环境。
+验证器需要安装 `PyYAML` 的 Python 环境，这是维护者检查。普通 Markdown Skill 使用只需兼容的 AI 客户端和可读取的审查材料，不要求安装 Node.js、Vitest 或 PyYAML。读取仓库 diff 需要 Git；仅在使用可选上下文收集器或输出校验器时需要 Node.js。
 
 运行仓库测试：
 
@@ -234,8 +252,17 @@ node "scripts/validate-review-output.mjs" --mode quick "examples/outputs/quick-r
 
 CLI 返回 JSON；退出码 `0` 表示结构检查通过，`1` 表示报告被拒绝，`2` 表示参数或读取错误。`validate-review-output-strict.mjs` 是内部模块，不是第二个 CLI。示例仅用于说明格式，不是实际运行证据；校验字段和语义边界见[输出校验边界](docs/evaluation.md#output-validator-boundaries)。
 
+默认 API/CLI 保持 v0.5.0 的返回结构。六个新示例需显式选择 v0.6.0 profile：
+
+```bash
+node "scripts/validate-review-output.mjs" --mode quick --profile v0.6.0 --source-root /review "examples/outputs/quick.zh-CN.md"
+```
+
+API 第三个参数为 `{ profile: 'v0.6.0', sourceRoot: '/review' }`。链接形式的 Coverage 使用独立确定的真实源码根目录，普通位置不需要该参数。校验只覆盖结构与字段语法，并保留原始默认结果；`reportAcceptance` 始终为 `Not Evaluated`。问题真实性、来源判断、严重级别、关闭条件和建议一致性仍需要证据审查。普通 Skill 使用不需要安装这些维护工具。
+
 ## 项目文档
 
+- [v0.6.0 发布准备](docs/v0.6.0-release-preparation.md)
 - [更新日志](CHANGELOG.md)
 - [兼容性说明](docs/compatibility.md)
 - [评测协议](docs/evaluation.md)

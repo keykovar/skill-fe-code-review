@@ -38,12 +38,14 @@ examples/                    Prompt and output examples
 tests/                       Vitest structure and contract checks
 ```
 
-## Install a Stable Release
+## Install v0.6.0
 
-The current stable release is `v0.5.0`. Pin the tag instead of installing from `main` when reproducibility matters.
+Publication status: **pending**. The currently published stable tag remains [`v0.5.0`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.5.0).
+
+The commands below target the immutable `v0.6.0` tag and become usable only after that tag is published. The prepared release adds Origin and Reproduction fields, with the selected final-package Codex and Cursor Fix smokes completed. See the [release notes](docs/v0.6.0-release-notes.md) and [release preparation](docs/v0.6.0-release-preparation.md) for scope and evidence limits. Use a tag instead of `main` for reproducible installation.
 
 ```bash
-git clone --depth 1 --branch v0.5.0 \
+git clone --depth 1 --branch v0.6.0 \
   https://github.com/keykovar/skill-fe-code-review.git
 cd skill-fe-code-review
 ```
@@ -110,6 +112,10 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 ```
 
 ## Compatibility
+
+### v0.6.0 (Publication Pending)
+
+The accepted integration-12 candidate completed selected public synthetic Quick, Deep and Fix trials on Codex Desktop. The final package also passed one explicit-path O-09 Fix smoke on each of Codex Desktop (`0.162.0-alpha.2`, `gpt-6-astra / xhigh`) and Cursor CLI (`2026.08.11-e8db854`, Auto / Plan). Each final-package smoke passed material integrity, output structure/fields and ten semantic gates. These results cover the recorded cases; they do not establish automatic discovery, every mode on every client, general accuracy or production behavior. Claude Code remains Not Verified. The separate isolation/runtime harness remains `runtimeReady=false`, and SSE is deferred. See [Compatibility](docs/compatibility.md) for the retained failures and evidence boundaries.
 
 ### Stable v0.5.0
 
@@ -188,6 +194,18 @@ Fix Review preserves the original severity and assigns exactly one status to eve
 
 If a fix changes architecture or exposes broader risk, complete it with the Fix Review template and budget, then recommend a separate Deep Review. Do not merge the two modes into one report.
 
+### Origin And Reproduction (v0.6.0)
+
+Every reported Finding or Fix verification item includes two fields. `Origin` distinguishes `New`, `Amplified`, `Retained`, and `Unknown` against the declared baseline. `Reproduction` uses `Observed`, `Not Run`, `Cannot Verify`, or `Not Applicable`. An observed `n/N` is completed failures/trials with its environment and evidence; it is not a production probability. Separate pre/post-fix or environment groups stay separate. Missing origin or execution evidence does not automatically make Fix closure `Cannot Verify`.
+
+These fields do not require extra executions or a new review mode. Existing severity, read-only and mode budgets remain controlling. No fields are added to empty finding sections or Coverage entries.
+
+| Mode | English example | Chinese example |
+| --- | --- | --- |
+| Quick | [Quick](examples/outputs/quick.en.md) | [Quick 中文](examples/outputs/quick.zh-CN.md) |
+| Deep | [Deep](examples/outputs/deep.en.md) | [Deep 中文](examples/outputs/deep.zh-CN.md) |
+| Fix | [Fix](examples/outputs/fix.en.md) | [Fix 中文](examples/outputs/fix.zh-CN.md) |
+
 ### Documentation and Browser Evidence
 
 Repository source, call paths, lockfiles, installed dependency source or types, configuration, and project documentation remain the primary evidence. When a finding depends on version-sensitive framework or library semantics and local evidence is insufficient, the review may query official documentation through a channel whose tool contract permits code review. The official Context7 MCP tool contract excludes code review, so Context7 must not be used directly or indirectly during a review, including through delegation, a subagent, a proxy, or a reframed request intended to bypass that restriction. If no permitted documentation channel is available, report the external claim as `Cannot Verify` instead of guessing. Never send private source, API payloads, internal paths, credentials, or user data to an external documentation service.
@@ -215,7 +233,7 @@ Validate the skill shape:
 python3 /path/to/skill-creator/scripts/quick_validate.py skills/fe-code-review
 ```
 
-The validator requires a Python environment with `PyYAML` available.
+The validator requires a Python environment with `PyYAML` available. This is a maintainer check. Ordinary Markdown Skill use needs a compatible AI client and access to the review material; Node.js, Vitest and PyYAML are not required. Git is needed for repository diffs, and Node.js is needed only if the optional context collector or output validator is used.
 
 Run repository checks:
 
@@ -234,8 +252,17 @@ node "scripts/validate-review-output.mjs" --mode quick "examples/outputs/quick-r
 
 The CLI returns JSON and exit code `0` for a structural pass, `1` for a rejected report, or `2` for an invocation/read error. `validate-review-output-strict.mjs` is an internal module, not a second CLI. Output examples are illustrative, not retained runtime evidence. See [Output Validator Boundaries](docs/evaluation.md#output-validator-boundaries) for the checked fields and unverified semantics.
 
+The default API/CLI retains the v0.5.0 result. Select the v0.6.0 profile explicitly for the six new examples:
+
+```bash
+node "scripts/validate-review-output.mjs" --mode quick --profile v0.6.0 --source-root /review "examples/outputs/quick.en.md"
+```
+
+The API accepts `validateReviewOutput(markdown, mode, { profile: 'v0.6.0', sourceRoot: '/review' })`. Supply the actual independently established source root for linked Coverage; plain locations need no source root. This profile validates structure/field grammar and preserves the raw legacy result; `reportAcceptance` remains `Not Evaluated`. It does not establish defect truth, attribution, severity, closure or recommendation consistency. The four earlier examples and their default commands remain supported.
+
 ## Project Documents
 
+- [v0.6.0 Release Preparation](docs/v0.6.0-release-preparation.md)
 - [Changelog](CHANGELOG.md)
 - [Compatibility](docs/compatibility.md)
 - [Evaluation Protocol](docs/evaluation.md)

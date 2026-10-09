@@ -36,7 +36,7 @@ describe('Candidate 14 offline preparer', () => {
       path.join(root, 'candidate'),
       fakeCursor,
       resolveExecutable('git'),
-      path.join(process.cwd(), 'skills', 'fe-code-review'),
+      path.join(process.cwd(), 'evaluation/baselines/pre-v0.6.0/skills/fe-code-review'),
     );
 
     expect(result).toMatchObject({

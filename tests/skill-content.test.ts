@@ -245,7 +245,9 @@ describe('skill content', () => {
     expect(recommendationRules).toContain('Any Blocking finding requires at least `修改后提交`');
     expect(recommendationRules).toContain('An Improve-only review remains `可以提交`');
     expect(recommendationRules).toContain('state whether it is a pre-submit or pre-next-step condition');
-    expect(recommendationRules).toContain('Do not introduce a new `before submit`');
+    expect(recommendationRules).toContain('Render that same prerequisite set explicitly in both the conclusion and final recommendation');
+    expect(recommendationRules).toContain('compare the two rendered sets in both directions');
+    expect(recommendationRules).toContain('Do not add a new gate merely to fill the template');
     expect(recommendationRules).toContain('use `可以关闭` only when every previous finding is Resolved');
     const fixRecommendationCases = [
       ['可以关闭', 'every previous finding is Resolved'],

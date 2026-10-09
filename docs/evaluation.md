@@ -26,7 +26,19 @@ The CLI is read-only and returns JSON with `valid`, `errors`, `findingIds`, and 
 - Quick/Deep checks cover ledger presence, one-line `before -> after` transitions, dispositions, recognized Finding locations and sequential IDs, repeated-ID merge keys, and canonical Blocking-outcome labels. In the stable v0.5.0 grammar, grouping means flat entries reconciled by the same Finding ID and merge key, not the retained nested-group prototype.
 - Fix checks cover one Issue Verification section, nonempty unique prior IDs, exactly one supported status per prior ID, and absence of the Quick/Deep ledger. They do not establish that a prior issue is actually resolved or that all supplied issues were included.
 - This is a partial structural validator, not a complete Markdown, template, or semantic validator. A pass cannot prove recall, severity correctness, valid merge reasoning, factual evidence, recommendation consistency, New Regression accuracy, or read-only model execution. These still require the applicable semantic oracle and trace/integrity checks.
-- `tests/output-examples.test.ts` runs all four public examples through the real CLI and API and rejects targeted malformed variants. Historical prototypes and fixtures retain their original labels and require their matching replay runner; a file named `valid.md` is not automatically valid under the current contract.
+- `tests/output-examples.test.ts` runs the four legacy examples with the default API/CLI and six bilingual candidate examples with the explicit v0.6.0 profile, and rejects targeted malformed variants. Historical prototypes and fixtures retain their original labels and require their matching replay runner; a file named `valid.md` is not automatically valid under the current contract.
+
+### Explicit v0.6.0 Profile (Unreleased)
+
+```bash
+node "scripts/validate-review-output.mjs" --mode quick --profile v0.6.0 --source-root /review "examples/outputs/quick.en.md"
+```
+
+`validateReviewOutput(markdown, mode)` still returns the unchanged legacy JSON. Its optional third argument selects `{ profile: 'v0.6.0', sourceRoot: '/review' }`; unsupported options fail. The source root must be independently established for linked Coverage, never inferred from report links. Plain locations need no source root. Validation is lexical and does not read the reviewed source tree.
+
+The selected result adds Origin/Reproduction fields and explicitly separated observation groups, checked local Coverage links, item-owned legacy Fix statuses and standalone empty-marker handling. `raw` retains the original legacy result. `valid` and `metadataValid` mean structural/field validity, while `semanticStatus` and `reportAcceptance` remain `Not Evaluated`. Counts are observations, not production probabilities; parsing does not establish causal attribution, observation provenance, severity, closure, totals or recommendation meaning. Evaluator oracles are not accepted by the public API.
+
+The old `scripts/review-output-profile.mjs` is a compatibility entry forwarding to the single public implementation. Historical grouped and integration builders use the byte-pinned [pre-v0.6.0 baseline](../evaluation/baselines/pre-v0.6.0/README.md); their original inputs, scripts and expected output hashes remain frozen. This keeps historical reproduction independent of the promoted Skill. Do not install the historical baseline as a Skill. Exact client/package acceptance is separate from these local tests.
 
 ## Scope
 

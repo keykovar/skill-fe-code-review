@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "window": "v0.5.0-codex-runtime-acceptance",
+  "preparedDate": "2026-09-09",
+  "status": "offline-workspaces-prepared-runtime-client-pending",
+  "authorization": {
+    "workspacePreparation": true,
+    "syntheticGitCommits": true,
+    "sourceFreeProbe": false,
+    "sourceBearing": false,
+    "mainRepositoryCommit": false
+  },
+  "sourcePolicy": {
+    "visibility": "public-synthetic-only",
+    "externalModelInvocations": 0,
+    "sourceTransmitted": false,
+    "privateSourceTransmitted": false,
+    "credentialContentsReadOrRecorded": false
+  },
+  "planSha256": "b45a4e86970b00c0bf04059d4114f95e5fa4c27f96cbc2214f6e413db093dd93",
+  "skillTreeSha256": "148cf6ebae8c5cba674f5fe0fe9f1399f405287b5057d815867662faa1721480",
+  "localEvidenceDirectoryName": "fe-review-v050-codex-workspaces-J09pEV",
+  "localManifestSha256": "72ab32fa6583b61c34a90bb90762eab6908913ae8a5fb99772d217bad07d03d5",
+  "localManifestPathWithinDirectory": "control/manifest.json",
+  "preparerSha256": "9047a99c2cb23ee7b493e1f0bdc2bf137632186ec550649ccd2956acab2da375",
+  "snapshotHelperSha256": "db9a38e6415ed4a0e402778a182b5143fa57759afd049d1327a0e3249cc2c1c1",
+  "nodeVersion": "v24.4.1",
+  "gitVersion": "2.55.0",
+  "fixedGitDate": "2026-09-09T00:00:00Z",
+  "syntheticCommitCount": 10,
+  "isolation": {
+    "cleanPreparationEnvironment": true,
+    "personalGitConfigLoaded": false,
+    "gitHooksEnabled": false,
+    "gitSigningEnabled": false,
+    "credentialVariablesInherited": false,
+    "remoteConfigured": false,
+    "oraclesAndPromptsOutsideWorkspaces": true,
+    "fixOnlyPreviousReportException": ".evaluation/previous-findings.md",
+    "runtimeClientConfigurationCreated": false
+  },
+  "runs": [
+    {
+      "sequence": 1, "caseId": "Q-ID-002", "runId": "RUN-01", "mode": "quick",
+      "head": "15b21664f88d3da20d50c70567eec4e2f997baba",
+      "workspaceFileCount": 31,
+      "contentTreeSha256": "8e4c3008a00fb3585ed1176991c4ab49ded52534ae1a984d7fb38c3d9bd17faf",
+      "promptSha256": "7bdf1eb23247f18e0b2afecf2d3a846b1070ce0e9e4c971ecea5cfc6944425d6",
+      "syntheticCommitCount": 1, "expectedTestExitCode": 1, "actualTestExitCode": 1,
+      "assertionEvidence": "Both account IDs yield profile; timeout is 30000 instead of 5000.",
+      "runtimeResult": "Not Run"
+    },
+    {
+      "sequence": 2, "caseId": "D-ID-001", "runId": "RUN-01", "mode": "deep",
+      "head": "d06ba7cf63f0ce483cfc208d7d8007b1675ef178",
+      "workspaceFileCount": 31,
+      "contentTreeSha256": "5df1a960cf6224945ca5f7bbcae100b24fe366b38855cba2fd7c83e7c4462fb0",
+      "promptSha256": "815ce4a43970d2292df617547dee8d8add5c1939bb49d95037322c992c8ee24e",
+      "syntheticCommitCount": 2, "expectedTestExitCode": 1, "actualTestExitCode": 1,
+      "assertionEvidence": "Authorization retains the synthetic Bearer token after logout instead of null.",
+      "runtimeResult": "Not Run"
+    },
+    {
+      "sequence": 3, "caseId": "Q-ID-001", "runId": "RUN-01", "mode": "quick",
+      "head": "ea7b0e40a87812219b37d0be5b55d5b4e9c0a48e",
+      "workspaceFileCount": 30,
+      "contentTreeSha256": "c3a42de4c741bd453e4ae67c7aebda7f27e3951f560983d86cc4c32ecd24c2f9",
+      "promptSha256": "7bdf1eb23247f18e0b2afecf2d3a846b1070ce0e9e4c971ecea5cfc6944425d6",
+      "syntheticCommitCount": 1, "expectedTestExitCode": 1, "actualTestExitCode": 1,
+      "assertionEvidence": "URL path has three separators where the contract expects one.",
+      "runtimeResult": "Not Run"
+    },
+    {
+      "sequence": 4, "caseId": "Q-ID-001", "runId": "RUN-02", "mode": "quick",
+      "head": "ea7b0e40a87812219b37d0be5b55d5b4e9c0a48e",
+      "workspaceFileCount": 30,
+      "contentTreeSha256": "c3a42de4c741bd453e4ae67c7aebda7f27e3951f560983d86cc4c32ecd24c2f9",
+      "promptSha256": "7bdf1eb23247f18e0b2afecf2d3a846b1070ce0e9e4c971ecea5cfc6944425d6",
+      "syntheticCommitCount": 1, "expectedTestExitCode": 1, "actualTestExitCode": 1,
+      "assertionEvidence": "Same seeded URL-normalization assertion failure as RUN-01.",
+      "runtimeResult": "Not Run"
+    },
+    {
+      "sequence": 5, "caseId": "F-ID-001", "runId": "RUN-01", "mode": "fix",
+      "head": "013269deb20e6640d7769e7d931295b3fe700b10",
+      "workspaceFileCount": 31,
+      "contentTreeSha256": "f0cb9de674803cccb6cbc0e308e683a903fc129f614c5ddedf2c79930556eca5",
+      "promptSha256": "828047a72646c711373201d7bc2ba440a3af16d694a7a20bee29d9b5b5c1086b",
+      "syntheticCommitCount": 2, "expectedTestExitCode": 0, "actualTestExitCode": 0,
+      "assertionEvidence": "Existing URL-normalization test passes; full Fix closure still requires semantic review.",
+      "runtimeResult": "Not Run"
+    },
+    {
+      "sequence": 6, "caseId": "F-ID-001", "runId": "RUN-02", "mode": "fix",
+      "head": "013269deb20e6640d7769e7d931295b3fe700b10",
+      "workspaceFileCount": 31,
+      "contentTreeSha256": "f0cb9de674803cccb6cbc0e308e683a903fc129f614c5ddedf2c79930556eca5",
+      "promptSha256": "828047a72646c711373201d7bc2ba440a3af16d694a7a20bee29d9b5b5c1086b",
+      "syntheticCommitCount": 2, "expectedTestExitCode": 0, "actualTestExitCode": 0,
+      "assertionEvidence": "Same existing URL-normalization test passes as RUN-01.",
+      "runtimeResult": "Not Run"
+    },
+    {
+      "sequence": 7, "caseId": "K-ID-001", "runId": "RUN-01", "mode": "quick",
+      "head": "94a9cc95e87514eb755fe90e0d542a1df77c0c72",
+      "workspaceFileCount": 28,
+      "contentTreeSha256": "b465cd4bfd3373d2f65341586c52b2ee4d100909507c20db59cfba2d1f1079e6",
+      "promptSha256": "7bdf1eb23247f18e0b2afecf2d3a846b1070ce0e9e4c971ecea5cfc6944425d6",
+      "syntheticCommitCount": 1, "expectedTestExitCode": 0, "actualTestExitCode": 0,
+      "assertionEvidence": "All three label-formatting assertions pass.",
+      "runtimeResult": "Not Run"
+    }
+  ],
+  "verification": {
+    "preparedWorkspaces": "7/7",
+    "expectedTestResults": "7/7",
+    "unchangedCompleteWorkspaceAndGitState": "7/7",
+    "exactSkillCopies": "14/14",
+    "workspaceFileAllowlist": "7/7",
+    "repeatInputPairs": "2/2",
+    "repeatFields": ["head", "status", "contentTree", "promptSha256", "skillTreeSha256", "testExit"],
+    "rawGitIndexStatBytesComparedAcrossDirectories": false,
+    "modelContextCollectorsExecuted": 0,
+    "sourceFreeProbesExecuted": 0,
+    "sourceBearingReviewsExecuted": 0
+  },
+  "runtimeFreezeComplete": false,
+  "codexV050Status": "Cannot Verify",
+  "nextGate": "confirm-provider-endpoint-model-reasoning-and-authentication-method-without-secret-values"
+}

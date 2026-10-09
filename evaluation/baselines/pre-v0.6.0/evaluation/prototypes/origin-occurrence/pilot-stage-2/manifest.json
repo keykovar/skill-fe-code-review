@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "status": "offline-inputs-prepared",
+  "scope": "Stage 2 supplied-snapshot raw inputs only; instruction assembly and runtime acceptance remain pending",
+  "runtimeReady": false,
+  "sourceTransferAuthorized": false,
+  "modelInvocations": 0,
+  "sourcePolicy": "public-synthetic-only",
+  "packets": [
+    {
+      "order": 3,
+      "caseId": "O-10",
+      "directory": "inputs/review-c",
+      "mode": "fix",
+      "oracleReference": "../cases.json#O-10",
+      "files": [
+        { "path": "before/profile.mjs", "sha256": "4ce72c3076f8b6d66d7280e196879363a03c646decfdc29de3a91707125be272" },
+        { "path": "context.md", "sha256": "0140ea5094bdfebd10568f2c0c5997a05eca4cf45d0257e4ebe7ac82780ee31d" },
+        { "path": "current/profile.mjs", "sha256": "72983cde302612f355e3067ce15001e872552c4b7c94df896f4c7992bd4161ff" },
+        { "path": "previous-findings.md", "sha256": "dcfa802180b451a8808f6869e26e42d7888c9eaf0795a06bf5689bcbe31105dc" }
+      ]
+    },
+    {
+      "order": 4,
+      "caseId": "O-08",
+      "directory": "inputs/review-d",
+      "mode": "quick",
+      "oracleReference": "../cases.json#O-08",
+      "files": [
+        { "path": "before/responses.mjs", "sha256": "4c8fd3bf816b38153e22bcbff35b54ff472f541f2bec957620acb8b7a4baa556" },
+        { "path": "context.md", "sha256": "29cf7989c437020cca4385725100932c5a5dfd1874c9186836f717b1aeee4f25" },
+        { "path": "current/responses.mjs", "sha256": "9bacc44dcdd203cc101f08f9b297d4ee7674123d4f61fc8583ae7c886506b946" },
+        { "path": "observations.json", "sha256": "aa09cd1071b211124f828d2a9707b8d3c118404cc7e1aeac623efa4927e04eae" }
+      ]
+    },
+    {
+      "order": 5,
+      "caseId": "O-05",
+      "directory": "inputs/review-e",
+      "mode": "deep",
+      "oracleReference": "../cases.json#O-05",
+      "files": [
+        { "path": "before/session.mjs", "sha256": "049e5e0f11aced06d4f0f50baf7cb5fa55e88afdf4c1eebcd9753b18b4fa47d1" },
+        { "path": "context.md", "sha256": "d844fd24a1b70148ed0bad37e8994176be2cb4c07212a56fbd2aad423d28ed10" },
+        { "path": "current/session.mjs", "sha256": "bd16eed25e91b1bc319c87d62d690798fd6494abedf57a7f3b24a00b8b94d6a6" },
+        { "path": "flow.mjs", "sha256": "4c3c1b92bf12aeca7a4189593b95a430613842d16f883b17317e14b21cd879e0" }
+      ]
+    },
+    {
+      "order": 6,
+      "caseId": "O-13",
+      "directory": "inputs/review-f",
+      "mode": "quick",
+      "oracleReference": "../cases.json#O-13",
+      "files": [
+        { "path": "before/profile.mjs", "sha256": "6775d8466535bbdd9b76b62dd15105b52df2f37fdd854801d22634295d64538c" },
+        { "path": "context.md", "sha256": "5aef82b562ddc34baabaccfb2d47202eff4160b31e8ffb426d87b6ba392aad6e" },
+        { "path": "current/format.mjs", "sha256": "2c7201fed0d63421776382a54d46c1118f7e95b2553b968c147f2777e3c8e22a" },
+        { "path": "current/profile.mjs", "sha256": "393775b3e6fc05b0d7f61fde610c9746613d24d643b4c162327665870515332d" }
+      ]
+    }
+  ]
+}

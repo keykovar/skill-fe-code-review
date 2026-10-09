@@ -129,7 +129,7 @@ Perform this analysis in every mode. Compare behavior, not only changed lines:
 4. Before prioritizing findings, build a compact internal changed-condition ledger for every condition, guard, fallback, default, and early return that was added, changed, moved, split, or retained inside a modified decision block in the requested diff. A textually unchanged guard remains in scope when its surrounding control flow, return behavior, or state writes changed. Compare which runtime values take each branch before and after; do not output the ledger by default.
 5. In that ledger, distinguish absence (`null` or `undefined`) from valid falsy values such as `0`, `false`, or an empty string. For state writes behind those branches, trace transitions from a prior truthy or non-empty value into each valid falsy value through directly affected consumers; do not inspect only the current value in isolation.
 6. Account for every ledger entry before finalizing: classify it as behavior-preserving, an evidence gap, or a finding. Use behavior-preserving only after verifying that the preserved behavior itself remains correct for the visible runtime contract and state transitions. If a modified decision block retains a material defect, report it and identify it as a retained defect rather than a regression introduced by the diff. Do not omit an affected changed condition merely because another finding has higher severity.
-7. Trace affected callers, consumers, events, API contracts, storage, cache, and runtime data shapes.
+7. Trace affected callers, consumers, events, API contracts, storage, cache, and runtime data shapes. For interacting conditions in the affected path, establish the supported combinations from the visible contract, then compare each combination's before/after observable outcome and direct caller return or state propagation, including outcomes that should remain unchanged. Group combinations only when the same evidence proves the same outcome for every named member; a data-source comparison or future test plan is not an outcome comparison. Mark unavailable evidence explicitly. Stay within the selected mode: no unrelated condition cross-product, extra runtime execution, fixed Coverage row count, or Coverage ledger in Fix Review.
 8. Confirm behavior outside the requested change remains invariant where required.
 9. Inspect deleted or moved code and relevant untracked files; do not review only added lines.
 
@@ -183,9 +183,17 @@ Finalize findings with this sequence:
 5. Backfill final IDs into the visible ledger and cross-section references. Group ledger entries by final ID: repeated IDs require the same non-empty `Merge key` / `合并依据` on every entry; single IDs require none. Reconcile every actionable statement outside severity sections: reference a final ID or remove it.
 6. Scan rendered Finding headers in body order. If they are not exactly `F-001` through `F-NNN`, renumber every header and reference before responding. Emit no placeholder ID; Fix Review preserves supplied IDs.
 
+An empty severity section contains only `无明确问题。` or `No clear issue.`, either plain text or one top-level Markdown bullet. Do not combine that marker with a finding, metadata, another marker or explanatory content. This marker cannot replace a previous finding in Fix Issue Verification.
+
 Render Quick/Deep Finding headers as `- [F-NNN] [file:line] title`; the location may be a Markdown link, never backtick-only. Begin `Blocking outcome` / `阻断结果` with its canonical English outcome name, followed by optional evidence after ` - `.
 
-Render every Changed-Condition Coverage entry as exactly one physical Markdown list item with this exact shape: `- [file:line] <condition>: <before> -> <after>; Disposition: <one final disposition>`. Keep the location, condition, `before -> after`, and final `Disposition` on that same line. The disposition must be exactly one `[F-NNN]`, `Behavior Preserving`, or `Cannot Verify`; repeated Finding IDs also end with the same non-empty `Merge key`. Do not use a colon-only status such as `condition: unchanged` or `condition: old, new`, and do not split a coverage entry into nested bullets or child lines. Before sending the final response, inspect every physical Coverage line for one location, one transition arrow, and one valid disposition; rewrite any failing line before responding.
+Render every Changed-Condition Coverage entry as exactly one physical Markdown list item with this shape (plain location shown; the linked variant is specified below): `- [file:line] <condition>: <before> -> <after>; Disposition: <one final disposition>`. Keep the location, condition, `before -> after`, and final `Disposition` on that same line. The disposition must be exactly one `[F-NNN]`, `Behavior Preserving`, or `Cannot Verify`; repeated Finding IDs also end with the same non-empty `Merge key`. Do not use a colon-only status such as `condition: unchanged` or `condition: old, new`, and do not split a coverage entry into nested bullets or child lines. Before sending the final response, inspect every physical Coverage line for one location, one transition arrow, and one valid disposition; rewrite any failing line before responding.
+
+The initial `[file:line]` may remain plain or be a Markdown link to that same source file and line. Use a positive one-based line number in both the visible label and destination. Relative locations are resolved against the independently established review source root; absolute locations must remain inside that root. Use canonical local POSIX paths, without `.` or `..` segments. If a destination contains spaces, enclose it in angle brackets. Use plain locations when this supported subset cannot represent the target. URLs, URI schemes, encoded paths, query/fragment syntax, link titles, Windows paths and paths containing brackets or parentheses are outside this supported subset.
+
+Example: `- [src/session.ts:9](/review/src/session.ts:9) token source: current token -> cached token; Disposition: [F-001]`, with `/review` as the independently established source root. For a path with spaces, use `[src/My File.ts:9](</review/src/My File.ts:9>)`.
+
+Establish the review source root from the requested workspace or supplied source packet, never from a generated report link. A matching link is presentation only, not source evidence. Use a plain location if the root is unavailable; do not read extra files just to render a link. Fix Review still has no Coverage ledger.
 
 Every Quick or Deep finding must include:
 
@@ -206,6 +214,52 @@ If multiple fixes are possible, recommend one and explain the tradeoff briefly.
 
 Treat untracked files as submit-blocking when they are imported, referenced, or required by tracked or staged changes. Do not recommend `can submit` until the referenced untracked file is included in the submit scope or the reference is removed, because clean checkout, CI, or another developer's environment can fail.
 
+## Origin And Reproduction
+
+
+Keep the selected mode template, finding IDs, severity, read-only boundary, recommendation matrix, changed-condition coverage grammar, and Fix closure statuses unchanged. Add exactly two nested fields to every reported Finding or Fix Issue Verification item, one Origin and one Reproduction:
+
+```md
+- 问题来源 / Origin：New / Amplified / Retained / Unknown - evidence relative to the declared comparison baseline.
+- 复现观测 / Reproduction：Observed / Not Run / Cannot Verify / Not Applicable - evidence and limits.
+```
+
+Use the same state in English or Chinese labels, with substantive evidence after it. Do not add fields to coverage-ledger lines or no-finding sections.
+
+### Origin
+
+Compare against the frozen requested baseline. Use `New` only when the defect is absent in that baseline and introduced by the change; `Amplified` when an existing defect gains concrete reachable exposure; `Retained` when the same material defect remains in the affected scope; and `Unknown` when the baseline or causal comparison is unavailable. Changed line age, relocation, a new test, or a newly observed error is not enough to claim New.
+
+For Fix Review, preserve the previous Finding's original origin relative to the original review baseline. Evaluate New Regression origin relative to the fix baseline, allowing only New or Amplified. Do not fabricate IDs or origin history for legacy prose reports. Missing original attribution means Unknown; assess closure separately against the supplied acceptance criteria, not against the certainty of that attribution.
+
+### Reproduction
+
+Use `Observed` only with one valid `n/N` count per explicitly labeled observation group, where `0 <= n <= N`, `N > 0`, both are safe integers, the unit and environment are stated, and every trial is completed. Exclude setup failures and interrupted attempts from the denominator and report them as limitations. `Not Run`, `Cannot Verify`, and `Not Applicable` must not include counts.
+
+Keep Reproduction on one nested bullet and one line. A single group may use `State - evidence`. Multiple groups must use `[unique-label] State - evidence | [other-label] State - evidence`: put a distinct evidence-backed label in brackets, repeat the state in every group, and separate groups with literal ` | `. Do not use prose headings or semicolons as group separators, or place multiple counts under one shared state.
+
+Choose one of these format templates. Replace labels, count placeholders and evidence descriptions with supported data; the templates are not observations:
+
+```text
+  - Reproduction: Observed - n/N failures; environment, revision, completed-trial unit and evidence record.
+  - Reproduction: [group-a] Observed - a/A failures; group-specific environment, revision, unit and record. | [group-b] Observed - b/B failures; group-specific environment, revision, unit and record.
+  - Reproduction: [group-a] Observed - a/A failures; group-specific environment, revision, unit and record. | [group-b] Cannot Verify - required equivalent environment is unavailable; identify the missing evidence.
+```
+
+Use `Not Run` when no usable execution observation exists, `Cannot Verify` when required runtime evidence cannot be completed or matched, and `Not Applicable` for maintenance-only issues with no meaningful trial count. Keep pre-fix observations and post-fix verification separate. Do not run extra checks just to fill a count; existing authorization and mode budgets remain controlling. A zero-failure sample alone does not establish closure.
+
+Never call a sample ratio a production probability. Keep revisions, browsers, inputs, reset state, and concurrency schedules in separate groups. A restrictive but evidenced trigger remains reportable even when its sample count is low or zero; contradictory evidence must narrow or withdraw the causal claim.
+
+### Final Check
+
+For Quick/Deep Blocking findings, copy the supported English outcome name exactly from `Severity Rules` into `Blocking outcome` / `阻断结果`, before ` - <evidence>`; do not paraphrase, translate, change capitalization or decorate the name. Compare each rendered outcome with that list and its causal evidence before sending; if no listed outcome is supported, reconsider severity using the severity rules instead of choosing a label just to pass formatting.
+
+For Fix Review, fill all five conclusion tallies with non-negative integers: Resolved, Partially Resolved, Unresolved, Cannot Verify, and New Regression. Use `0` for an empty category; IDs or words such as `none` do not replace a count. Derive the four closure totals from the previous findings and count new regressions separately, then reconcile them with the final recommendation.
+
+Before responding, verify field count, state, evidence, count grammar, group delimiters, baseline wording, Fix status consistency, existing output contract, and the distinction between structural parsing and semantic adjudication. Name missing evidence using the relevant field's state above; do not automatically turn Unknown origin or Not Run reproduction into a Cannot Verify closure. Do not invent a trial or expand the selected review mode.
+
+Finish at the final recommendation. Remove accidental trailing fragments unrelated to the report while preserving legitimate evidence, identifiers, code and bilingual labels. This is a check of the drafted response, not permission to run tools or add another review pass.
+
 ## Recommendation Consistency
 
 Choose the recommendation after findings and required verification limits are known. Treat the conclusion and final recommendation as one decision contract:
@@ -213,7 +267,7 @@ Choose the recommendation after findings and required verification limits are kn
 - Quick Review: use `可以提交` only when no unresolved Blocking finding exists and no Risk finding or required verification is treated as a pre-submit condition. Any Blocking finding requires at least `修改后提交`; use `不建议提交` when bounded fixes are insufficient, the approach is unsafe, or critical evidence is unavailable. An Improve-only review remains `可以提交` unless the user declared a stricter quality gate before the review; describe those improvements as optional and explicitly non-blocking, never as work that should or must happen before submission.
 - Deep Review: apply the same rule with `可以进入下一步`, `修改后可以进入下一步`, and `暂不建议进入下一步`. An Improve-only review does not block the next step unless the user declared a stricter gate.
 - If a Risk finding exists, state whether it is a pre-submit or pre-next-step condition. If it is accepted instead, state the residual risk and why proceeding is still justified.
-- The final recommendation must restate the same decision and the same prerequisites as the conclusion. Do not introduce a new `before submit`, `before merge`, or `before next step` condition only in the final section. If the final evidence requires a stricter decision, update the conclusion to match.
+- Before writing the conclusion, form one internal decision record: the selected recommendation and the exact required repair/verification prerequisites, each tied to its finding or evidence gap. Render that same prerequisite set explicitly in both the conclusion and final recommendation (or state that there is none). Keep optional follow-ups outside that set. Before sending, compare the two rendered sets in both directions; a matching decision label or the phrase "same prerequisites" is not enough. If either section adds, drops or changes a condition, reconcile both against the evidence. Do not add a new gate merely to fill the template or treat every Not Run item as mandatory.
 - Fix Review: use `可以关闭` only when every previous finding is Resolved and no material New Regression exists; use `修改后再次回审` when any finding is Partially Resolved or Unresolved, or a material new regression exists; use `暂时无法确认` when closure depends on a Cannot Verify result.
 
 ## Fix Review Rules

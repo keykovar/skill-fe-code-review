@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "status": "offline-inputs-prepared",
+  "scope": "supplied-snapshot Fix Review inputs only",
+  "runtimeReady": false,
+  "sourceTransferAuthorized": false,
+  "modelInvocations": 0,
+  "sourcePolicy": "public-synthetic-only",
+  "instructionAssembly": "offline recipe: scripts/assemble-origin-occurrence-pilot.mjs plus fix-review-prompt.md; generates separate packets and evaluator-only hashes outside the repository; runtime isolation and transfer remain pending",
+  "packets": [
+    {
+      "order": 1,
+      "caseId": "O-09",
+      "directory": "inputs/review-a",
+      "mode": "fix",
+      "oracleReference": "../cases.json#O-09",
+      "files": [
+        { "path": "before/profile.mjs", "sha256": "fb65851ac0caa162d511fbb1e169171bfb4f5e69d8b73083f016aa36a0a951e5" },
+        { "path": "context.md", "sha256": "aa69bedadd862c27b82625f263ab8e9d2be17deb83b640f35080ed40b56c2fa3" },
+        { "path": "current/profile.mjs", "sha256": "634da20fa8211d9ad073d5d73872f415b163f7cb38b51c94e1f836f0e6e988a1" },
+        { "path": "observations.json", "sha256": "03d9d6917a27e239003d57129610460419f55968f6dea1a33589f3c68d2daab2" },
+        { "path": "original/profile.mjs", "sha256": "634da20fa8211d9ad073d5d73872f415b163f7cb38b51c94e1f836f0e6e988a1" },
+        { "path": "previous-findings.md", "sha256": "5adbab92b865e455f82269651e82ecdc7c608d056ebb8545652b24bd40917576" }
+      ]
+    },
+    {
+      "order": 2,
+      "caseId": "O-11",
+      "directory": "inputs/review-b",
+      "mode": "fix",
+      "oracleReference": "../cases.json#O-11",
+      "files": [
+        { "path": "before/profile.mjs", "sha256": "fb65851ac0caa162d511fbb1e169171bfb4f5e69d8b73083f016aa36a0a951e5" },
+        { "path": "context.md", "sha256": "c18bf9fcb542ecd93771bc582c1b7d75383ce32144eeaf49f84395f1e6cbd99d" },
+        { "path": "current/profile.mjs", "sha256": "634da20fa8211d9ad073d5d73872f415b163f7cb38b51c94e1f836f0e6e988a1" },
+        { "path": "previous-findings.md", "sha256": "a3ccecdb46b4b990f50b1ac489dfccb079e2bafae099573d9a418ff31298bc1f" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "revision": "coverage-links-09",
+  "status": "offline-candidate-only",
+  "modelInvocations": 0,
+  "instructionFile": "evaluation/prototypes/origin-occurrence/coverage-links-09.md",
+  "evaluatorModule": "scripts/adjudicate-origin-occurrence-coverage-links.mjs",
+  "selection": "Call evaluateLinkedOriginOccurrenceReport explicitly with a trusted sourceRoot; default evaluators and CLI behavior are unchanged.",
+  "scope": "Quick/Deep Coverage location-link presentation only. No oracle, severity, source, Fix scope or report acceptance changes.",
+  "frozenFiles": [
+    {
+      "path": "scripts/validate-review-output.mjs",
+      "bytes": 12022,
+      "sha256": "1c6c8dea35bed929c74c437737cf3d0229568c0f07f144ab5a82735ea65972ae"
+    },
+    {
+      "path": "scripts/validate-review-output-strict.mjs",
+      "bytes": 2797,
+      "sha256": "74b3260a928eaa9a54648f59b128344088b17613a22d9b1770e6d2f29bb49b0c"
+    },
+    {
+      "path": "scripts/validate-origin-occurrence-candidate.mjs",
+      "bytes": 10641,
+      "sha256": "9cc98a5522bf92ca184a3b43d52068a1f7ae2a6d38331568e773f29857f02d18"
+    },
+    {
+      "path": "scripts/adjudicate-origin-occurrence-candidate.mjs",
+      "bytes": 5701,
+      "sha256": "ed444d4b655438a2578df11c7a7d0dbfe3ce630237ffc2bd4091f77fc130dc9b"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/fe-code-review-origin-candidate/SKILL.md",
+      "bytes": 6036,
+      "sha256": "fdfec8a9e9ab74d2b420c508d67e8699d192deab301bc10fe3dd4cdc5ddd5e1a"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/cases.json",
+      "bytes": 12684,
+      "sha256": "ab4749b4f698b893d27f72aa648c6fe3026eaf6d2bf29bc5c4fe3ccafcdd5bc2"
+    },
+    {
+      "path": "skills/fe-code-review/SKILL.md",
+      "bytes": 28253,
+      "sha256": "9f2af4fca11954225d307e4d53125f5f2dad4a7ef54979754ff6165d433a93fb"
+    },
+    {
+      "path": "package.json",
+      "bytes": 2728,
+      "sha256": "e0d46f983e954f875bdc131a62e21b4ada197374e870f9275b37f2ba1321a1d8"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "bytes": 23756,
+      "sha256": "4424546d2638cf723d93a838d6999218b20af65d2ceedbbb61ab506c6aa6e728"
+    }
+  ],
+  "contract": {
+    "allowed": "Plain locations or matching Markdown location links to the same positive source line inside the explicit POSIX source root. Destinations with spaces use angle brackets.",
+    "unsupported": "URLs, URI/Windows paths, encoded paths, query/fragment syntax, dot/traversal segments, link titles, bracket/parenthesis paths or invalid line numbers; reject without guessing.",
+    "unchanged": "One physical entry, one before/after arrow, one final Disposition, final Finding ID validity and repeated-ID Merge keys. All original metadata and report validators run.",
+    "preservation": "Return raw default result and explicit compatibility result separately. Normalize only accepted Coverage location destinations in memory; retain the original report."
+  },
+  "history": "Delivery 08 remains No-Go. Any later diagnostic with this profile must be named separately and cannot update its frozen result.",
+  "limitations": [
+    "Lexical path agreement does not prove a file exists, exclude symlink escape, or verify source evidence.",
+    "This is parser/field compatibility only, not complete report acceptance or improved model behavior.",
+    "Future reviewer packets must explicitly include the candidate addendum and freeze a revised evaluator; no external task is authorized here."
+  ]
+}

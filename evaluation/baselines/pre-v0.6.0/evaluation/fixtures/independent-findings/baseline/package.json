@@ -1,0 +1,8 @@
+{
+  "name": "independent-findings-fixture",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/contracts.test.mjs"
+  }
+}

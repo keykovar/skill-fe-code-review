@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "revision": "legacy-fix-10",
+  "status": "offline-candidate-evaluator-repair",
+  "modelInvocations": 0,
+  "entry": {
+    "module": "scripts/validate-origin-occurrence-legacy-fix.mjs",
+    "export": "validateOriginOccurrenceLegacyFix"
+  },
+  "selection": "Explicit API only. Use result.candidate with the existing field adjudicator; result.raw retains the pinned old candidate result. Existing CLIs and link/group wrappers do not select this revision automatically.",
+  "scope": "I-01 legacy Fix structural compatibility only. Quick, Deep and numbered-only Fix results pass through unchanged.",
+  "invariants": [
+    "Preserve raw report/results and all historical inputs/oracles.",
+    "Never create IDs for legacy previous issues.",
+    "Exactly one supported status belongs to each previous issue; document-wide totals are insufficient.",
+    "Retain every unrelated raw structural error.",
+    "Preserve metadata rules and reject malformed regression IDs/origins.",
+    "No model call, source execution, file rewrite or installed-Skill change."
+  ],
+  "frozenFiles": [
+    {
+      "path": "package.json",
+      "sha256": "e0d46f983e954f875bdc131a62e21b4ada197374e870f9275b37f2ba1321a1d8"
+    },
+    {
+      "path": "skills/fe-code-review/SKILL.md",
+      "sha256": "9f2af4fca11954225d307e4d53125f5f2dad4a7ef54979754ff6165d433a93fb"
+    },
+    {
+      "path": "skills/fe-code-review/references/quick-review.md",
+      "sha256": "84cc3a181d0e88a113ede7666e53b4cc9ef1c6f0de508d37b9337d8d7a86f390"
+    },
+    {
+      "path": "skills/fe-code-review/references/deep-review.md",
+      "sha256": "6955d13931f29be134221817db9409d64a01c5688307a419cdbbcdcb8a5097b2"
+    },
+    {
+      "path": "skills/fe-code-review/references/fix-review.md",
+      "sha256": "8380289a00f3c2f1a1ea740bc824b1a53813d6839b3957cae3c54c0e27757d33"
+    },
+    {
+      "path": "scripts/validate-review-output.mjs",
+      "sha256": "1c6c8dea35bed929c74c437737cf3d0229568c0f07f144ab5a82735ea65972ae"
+    },
+    {
+      "path": "scripts/validate-review-output-strict.mjs",
+      "sha256": "74b3260a928eaa9a54648f59b128344088b17613a22d9b1770e6d2f29bb49b0c"
+    },
+    {
+      "path": "scripts/validate-origin-occurrence-candidate.mjs",
+      "sha256": "9cc98a5522bf92ca184a3b43d52068a1f7ae2a6d38331568e773f29857f02d18"
+    },
+    {
+      "path": "scripts/adjudicate-origin-occurrence-candidate.mjs",
+      "sha256": "ed444d4b655438a2578df11c7a7d0dbfe3ce630237ffc2bd4091f77fc130dc9b"
+    },
+    {
+      "path": "scripts/adjudicate-origin-occurrence-coverage-links.mjs",
+      "sha256": "b87d5e9e047a889f6cacf462b4dd9d1b86a1f95adc0fdedbbc7ea95b8fd35b87"
+    },
+    {
+      "path": "scripts/adjudicate-origin-occurrence-groups.mjs",
+      "sha256": "a27949e0e56dfcb915b2afd58d26e94a15ec635a9a274a09e21a254f921d3212"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/fe-code-review-origin-candidate/SKILL.md",
+      "sha256": "fdfec8a9e9ab74d2b420c508d67e8699d192deab301bc10fe3dd4cdc5ddd5e1a"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/coverage-links-09.md",
+      "sha256": "144daa0c47122e71eb8fd2228760952184ffc398a4e021a6d24f322c9250f186"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/cases.json",
+      "sha256": "ab4749b4f698b893d27f72aa648c6fe3026eaf6d2bf29bc5c4fe3ccafcdd5bc2"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/grouping-04.json",
+      "sha256": "d9b3083688daf2557702aedb4bed45aec76867e0c7e5c29d9216bd5b1ea31bb4"
+    }
+  ],
+  "limitations": [
+    "Structure and field presence are not causal, severity, provenance, closure or recommendation acceptance.",
+    "The validation-only shadow removes independently checked legacy items and preserves numbered items. Missing-ID emptiness is allowed only after scoped checks.",
+    "Integration with the final Skill and composed location/group evaluation remains pending."
+  ]
+}

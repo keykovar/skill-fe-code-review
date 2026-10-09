@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "status": "offline-prototype-only",
+  "examples": {
+    "quick.en.md": {
+      "mode": "quick",
+      "caseId": "O-01",
+      "oracle": {
+        "origins": ["New"],
+        "states": [["Not Run"]],
+        "counts": []
+      }
+    },
+    "quick.zh-CN.md": {
+      "mode": "quick",
+      "caseId": "O-01",
+      "oracle": {
+        "origins": ["New"],
+        "states": [["Not Run"]],
+        "counts": []
+      }
+    },
+    "deep.en.md": {
+      "mode": "deep",
+      "caseId": "O-05",
+      "oracle": {
+        "origins": ["New"],
+        "states": [["Not Run"]],
+        "counts": []
+      }
+    },
+    "deep.zh-CN.md": {
+      "mode": "deep",
+      "caseId": "O-05",
+      "oracle": {
+        "origins": ["New"],
+        "states": [["Not Run"]],
+        "counts": []
+      }
+    },
+    "fix.en.md": {
+      "mode": "fix",
+      "caseId": "example-fix-combined",
+      "oracle": {
+        "origins": ["New", "Amplified"],
+        "states": [["Observed", "Observed"], ["Not Run"]],
+        "counts": [[1, 1], [0, 1]]
+      }
+    },
+    "fix.zh-CN.md": {
+      "mode": "fix",
+      "caseId": "example-fix-combined",
+      "oracle": {
+        "origins": ["New", "Amplified"],
+        "states": [["Observed", "Observed"], ["Not Run"]],
+        "counts": [[1, 1], [0, 1]]
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "provenance": "Authored public synthetic records; completed attempts independently replayed during offline fixture preparation, not model-run commands or production telemetry. The setup failure is authored harness history, not a source execution.",
+  "environment": "local Node; isolated synthetic response order",
+  "unit": "one completed two-response scenario",
+  "failureDefinition": "final revision is older than 2",
+  "records": [
+    {
+      "trial": "current-1",
+      "snapshot": "current/responses.mjs",
+      "function": "applyResponses",
+      "args": [[2, 1]],
+      "completed": true,
+      "actual": 1,
+      "outcome": "failure"
+    },
+    {
+      "trial": "current-2",
+      "snapshot": "current/responses.mjs",
+      "completed": false,
+      "reason": "initial state unavailable"
+    },
+    {
+      "trial": "current-3",
+      "snapshot": "current/responses.mjs",
+      "function": "applyResponses",
+      "args": [[1, 2]],
+      "completed": true,
+      "actual": 2,
+      "outcome": "success"
+    }
+  ]
+}

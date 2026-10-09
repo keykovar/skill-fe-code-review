@@ -23,11 +23,11 @@ Apply the Fix Review recommendation matrix in `SKILL.md`. The conclusion counts,
 
 回审建议：可以关闭 / 修改后再次回审 / 暂时无法确认
 
-- 已解决：
-- 部分解决：
-- 未解决：
-- 无法验证：
-- 新增回归：
+- 已解决：<非负整数，空类别填 0>
+- 部分解决：<非负整数，空类别填 0>
+- 未解决：<非负整数，空类别填 0>
+- 无法验证：<非负整数，空类别填 0>
+- 新增回归：<非负整数，空类别填 0>
 
 ## 回审范围
 
@@ -47,6 +47,8 @@ Apply the Fix Review recommendation matrix in `SKILL.md`. The conclusion counts,
 ## Issue Verification：问题验证
 
 - [F-001] [原 finding / file:line] 问题标题
+  - 问题来源 / Origin：New / Amplified / Retained / Unknown - <相对声明基线的证据>
+  - 复现观测 / Reproduction：Observed / Not Run / Cannot Verify / Not Applicable - <观测证据与限制>
   - 原严重级别：Blocking / Risk / Improve
   - 当前状态：Resolved：已解决 / Partially Resolved：部分解决 / Unresolved：未解决 / Cannot Verify：无法验证
   - 修复前行为：
@@ -60,6 +62,8 @@ Apply the Fix Review recommendation matrix in `SKILL.md`. The conclusion counts,
 ### Blocking：必须修改
 
 - [F-004] [file:line] 问题标题
+  - 问题来源 / Origin：New / Amplified / Retained / Unknown - <相对声明基线的证据>
+  - 复现观测 / Reproduction：Observed / Not Run / Cannot Verify / Not Applicable - <观测证据与限制>
   - 触发场景：
   - 影响：
   - 根因：
@@ -69,6 +73,8 @@ Apply the Fix Review recommendation matrix in `SKILL.md`. The conclusion counts,
 ### Risk：建议修改
 
 - [F-004] [file:line] 问题标题
+  - 问题来源 / Origin：New / Amplified / Retained / Unknown - <相对声明基线的证据>
+  - 复现观测 / Reproduction：Observed / Not Run / Cannot Verify / Not Applicable - <观测证据与限制>
   - 触发场景：
   - 影响：
   - 根因：
@@ -78,6 +84,8 @@ Apply the Fix Review recommendation matrix in `SKILL.md`. The conclusion counts,
 ### Improve：可优化
 
 - [F-004] [file:line] 问题标题
+  - 问题来源 / Origin：New / Amplified / Retained / Unknown - <相对声明基线的证据>
+  - 复现观测 / Reproduction：Observed / Not Run / Cannot Verify / Not Applicable - <观测证据与限制>
   - 优化建议：
 
 ## Behavior Delta：行为差异
@@ -112,3 +120,5 @@ Apply the Fix Review recommendation matrix in `SKILL.md`. The conclusion counts,
 ## English Output Template
 
 Mirror the Chinese structure with these headings: `Review Conclusion`, `Review Scope`, `Issue Verification`, `New Regression`, `Behavior Delta`, `Test Gaps`, `Evidence`, and `Final Recommendation`. `Review Scope` must include the requested scope, modified, staged, unstaged, and untracked files, and executed and skipped validation. Preserve supplied IDs and original severities, and use exactly one closure status per previous finding. Assign the next unused ID to each New Regression. Under `Evidence`, distinguish permitted official documentation verification, browser runtime evidence, and unverified areas.
+
+Apply the shared `Origin And Reproduction` rules in `SKILL.md` to every finding, including Improve and Fix New Regression entries. In English use nested `Origin` and `Reproduction` fields with the same states and evidence. Do not add these fields to empty finding sections or Coverage entries.

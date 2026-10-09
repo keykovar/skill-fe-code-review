@@ -1,0 +1,12 @@
+{
+  "purpose": "Exact historical O-09 request test input; not current Skill instructions or a new runtime result",
+  "sourceRequest": "Historical v0.6.0-api-o09-01/request.json, documented in docs/v0.6.0-o09-api-review.md",
+  "sourceRequestSha256": "652c5a8fe3c0990699b8c4b9e3dda2bc792e84bd920b9dacc7e65a3a33e8a19f",
+  "documentPath": "instructions/fe-code-review-origin-candidate/SKILL.md",
+  "fixture": "o09-frozen-origin-extension.md",
+  "sha256": "e348c205a6a02d3402ef4a14db3067745b4db341b5e544631a52f0734ebb6790",
+  "bytes": 3765,
+  "dataClass": "public authored Skill instructions",
+  "transformations": [],
+  "providerRequests": 0
+}

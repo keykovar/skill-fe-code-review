@@ -49,12 +49,13 @@ Before `1.0.0`, minor releases may still evolve the contract. Breaking behavior 
 3. Run `pnpm install --frozen-lockfile` and `pnpm test`.
 4. Run both the repository-local validator and the official skill validator.
 5. Execute applicable smoke cases on every client claimed as runtime verified, and run the complete Quick, Deep, and Fix acceptance protocol on at least one primary client.
-6. For the final release commit, add the release date, change candidate comparison links to the immutable tag, and update stable install references to the new version.
+6. For the final release commit, prepare the release date, change candidate comparison links to the immutable tag, and update install references to the new version. Until publication is confirmed, mark the date and tag-based instructions as pending and identify the currently published stable release. If publication occurs on another day, reconcile the date before tagging. Remove pending notices and update the published-stable status only after publication is confirmed.
 7. Review the final diff and commit only after explicit confirmation.
 8. Create an annotated tag, push the commit and tag, then publish the GitHub Release as separately confirmed actions.
 
 ## Current Version
 
+- Target release: `v0.6.0` (publication pending), planned date `2026-10-09`; package metadata, changelog and prepared installation commands agree on this version. Commands require the published v0.6.0 tag; see [release preparation](v0.6.0-release-preparation.md). The accepted integration-12 Quick/Deep/Fix trials and selected final-package Codex/Cursor Fix smokes cover their documented synthetic cases only; Claude Code remains Not Verified. The separate runtime harness remains `runtimeReady=false`, and SSE is deferred.
 - Stable: `v0.5.0`
 - Previous stable: `v0.4.0`
 - v0.5.0 status: published stable release; exact-current-tree Cursor source-free, Quick, Deep, and Fix gates pass; independent Node dependency installation passed in a new local tag clone on 2026-09-09, with the tag's tests and both Skill validators passing. The earlier blocked installation/dependency-reuse check is retained, PyYAML was reused, and no new client runtime acceptance was added; Codex and Claude Code remain `Cannot Verify`. See [installation evidence and limits](evaluation-results/v0.5.0-candidate.md#independent-node-dependency-installation).

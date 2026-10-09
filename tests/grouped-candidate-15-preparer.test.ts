@@ -32,7 +32,7 @@ describe('Candidate 15 offline preparer', () => {
       `#!${process.execPath}\nif (process.argv[2] === '--version') process.stdout.write('fake-cursor-15\\n');\n`,
     );
     fs.chmodSync(fakeCursor, 0o755);
-    const skillSource = path.join(process.cwd(), 'skills', 'fe-code-review');
+    const skillSource = path.join(process.cwd(), 'evaluation/baselines/pre-v0.6.0/skills/fe-code-review');
     const originalSkillTree = hashCursorEvaluationTreeV5(skillSource);
     const result = prepareCandidate15(
       path.join(root, 'candidate'),

@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "revision": "grouping-04",
+  "status": "offline-oracle-correction-only",
+  "modelInvocations": 0,
+  "baseMatrixSha256": "ab4749b4f698b893d27f72aa648c6fe3026eaf6d2bf29bc5c4fe3ccafcdd5bc2",
+  "candidateSkillSha256": "06df8af9035d31d94491c29543fbe9260b2d3a0b2e156ea3488eec18671caa7a",
+  "scope": "Evaluator-only corrections to O-06 and O-08. All other cases keep their frozen oracles. No old result is reclassified and no new model run is authorized.",
+  "groupingContract": {
+    "separateBy": ["revision", "environment", "input", "resetState", "schedule", "phase", "unit", "failureDefinition"],
+    "counting": "Within one compatible group, count each completed trial once under the same trial unit and failure definition. Exclude setup failures and interrupted attempts; preserve them as limitations.",
+    "identity": "Use source records to identify groups, not equal ratios, labels, output order or a pooled total. Repeated identical trials in the same group may be combined. Keep zero-failure groups.",
+    "assessment": "A reviewer report may rename, reorder or subdivide groups. The evaluator must explicitly map every report group exactly once to an expected group from its evidence. Combine only Observed subgroups with the same conditions, unit and failure definition. Never split a pooled count back into unlike groups. The field comparator cannot verify the truth of that mapping or full-report acceptance."
+  },
+  "cases": {
+    "O-06": {
+      "mode": "quick",
+      "sourceObservationGroup": "mixed-current",
+      "oracle": {
+        "origins": ["New"],
+        "states": [["Observed", "Observed"]],
+        "counts": [[2, 2], [0, 1]],
+        "groupKeys": [["order-2-1", "order-1-2"]],
+        "recommendation": "fix-before-submit"
+      },
+      "groups": [
+        { "key": "order-2-1", "order": [2, 1], "trialIndexes": [0, 2] },
+        { "key": "order-1-2", "order": [1, 2], "trialIndexes": [1] }
+      ],
+      "invalidTrialIndexes": []
+    },
+    "O-08": {
+      "mode": "quick",
+      "sourceObservationGroup": "setup-failure",
+      "oracle": {
+        "origins": ["New"],
+        "states": [["Observed", "Observed"]],
+        "counts": [[1, 1], [0, 1]],
+        "groupKeys": [["order-2-1", "order-1-2"]],
+        "invalidAttempts": 1,
+        "recommendation": "fix-before-submit"
+      },
+      "groups": [
+        { "key": "order-2-1", "order": [2, 1], "trialIndexes": [0] },
+        { "key": "order-1-2", "order": [1, 2], "trialIndexes": [2] }
+      ],
+      "invalidTrialIndexes": [1]
+    }
+  },
+  "unchangedControls": ["O-07", "O-09", "O-11", "O-13"],
+  "limitations": [
+    "This profile stays outside reviewer input packets; it contains expected answers.",
+    "The default --case CLI still uses cases.json. Select this revision explicitly through the grouped evaluator API; do not replace historical defaults.",
+    "Observation ratios are not production probabilities. Group alignment does not verify provenance, severity, Fix closure or final recommendations."
+  ]
+}

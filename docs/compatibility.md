@@ -1,8 +1,16 @@
 # Compatibility
 
+Target release: **v0.6.0, publication pending**. The prepared installation commands target v0.6.0 and require its published tag; the currently published stable evidence remains v0.5.0.
+
 Stable evidence verified: 2026-09-09
 Stable evidence baseline: [`v0.5.0`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.5.0)
-Release Skill SHA-256: `148cf6ebae8c5cba674f5fe0fe9f1399f405287b5057d815867662faa1721480`
+
+## v0.6.0 Evidence (Publication Pending)
+
+The current development Skill uses the accepted integration-12 bytes. The three selected public synthetic Desktop mode trials establish bounded candidate behavior. On 2026-10-09, final-package explicit-path O-09 Fix smokes pass independently on [Codex Desktop](evaluation-results/v0.6.0-codex-final-package-smoke.md) (`0.162.0-alpha.2`, `gpt-6-astra / xhigh`, 18 reads) and [Cursor CLI](evaluation-results/v0.6.0-cursor-final-package-smoke.md) (`2026.08.11-e8db854`, Auto / Plan, 19 native ranges). Each passes material integrity, report structure/fields and ten semantic gates. This supports those exact Fix cases, not automatic discovery, all-mode client acceptance or general review accuracy. Claude Code remains Not Verified; no older version's result is promoted. `runtimeReady=false`.
+
+The Node validator keeps its default contract and offers an explicit v0.6.0 profile; local API/CLI and package tests are maintainer evidence only. Ordinary Markdown Skill use still needs no Node, Vitest or PyYAML. The separate stable evidence below remains for v0.5.0 and is not promoted to v0.6.0.
+v0.6.0 `skills/fe-code-review/SKILL.md` SHA-256: `dcb65ecf8b4a8497e874326b4fd75e9ccb9854b66c1c2720643bb200276829fe`.
 
 ## Evidence Levels
 

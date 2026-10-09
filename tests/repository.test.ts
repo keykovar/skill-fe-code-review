@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { describe, expect, test } from 'vitest';
 
 import { exists, readText } from './test-utils';
@@ -131,25 +132,31 @@ describe('repository release support', () => {
     expect(packageJson.scripts['evaluation:review-output']).toBe(
       'node scripts/validate-review-output.mjs',
     );
-    expect(validator).toContain('coverage-ledger-section-count');
-    expect(validator).toContain('blocking-outcome-unsupported');
+    expect(validator).toContain("from './legacy/validate-review-output.mjs'");
+    const legacyValidator = readText('scripts/legacy/validate-review-output.mjs');
+    expect(legacyValidator).toContain('coverage-ledger-section-count');
+    expect(legacyValidator).toContain('blocking-outcome-unsupported');
     expect(validator).not.toContain('writeFile');
   });
 
-  test('documents the v0.5.0 stable bilingual installation evidence', () => {
+  test('separates prepared v0.6.0 installation from published v0.5.0 evidence', () => {
     const packageJson = JSON.parse(readText('package.json')) as { version: string };
     const readme = readText('README.md');
     const chineseReadme = readText('README.zh-CN.md');
     const compatibility = readText('docs/compatibility.md');
 
-    expect(packageJson.version).toBe('0.5.0');
+    expect(packageJson.version).toBe('0.6.0');
     expect(readme).toContain('README.zh-CN.md');
-    expect(readme).toContain('--branch v0.5.0');
+    expect(readme).toContain('--branch v0.6.0');
+    expect(readme).toContain('Publication status: **pending**');
+    expect(readme).toContain('only after that tag is published');
     expect(readme).toContain('Runtime verified');
     expect(readme).toContain('### Stable v0.5.0');
     expect(readme).toContain('part of stable `v0.2.0`');
-    expect(chineseReadme).toContain('安装稳定版本');
-    expect(chineseReadme).toContain('--branch v0.5.0');
+    expect(chineseReadme).toContain('## 安装 v0.6.0');
+    expect(chineseReadme).toContain('--branch v0.6.0');
+    expect(chineseReadme).toContain('发布状态：**尚未发布**');
+    expect(chineseReadme).toContain('仅在对应 tag 发布后可执行');
     expect(chineseReadme).toContain('Cannot Verify：无法验证');
     expect(chineseReadme).toContain('### 稳定版 v0.5.0');
     expect(chineseReadme).toContain('属于稳定版 `v0.2.0`');
@@ -159,6 +166,9 @@ describe('repository release support', () => {
     expect(compatibility).toContain('## Historical v0.4.0 Evidence');
     expect(compatibility).toContain('## Historical v0.3.0 Evidence');
     expect(compatibility).toContain('a66e26e60e27f643f35b402c6660038c7070e759');
+    const targetEvidence = markdownSection(compatibility, '## v0.6.0 Evidence (Publication Pending)');
+    const skillSha256 = createHash('sha256').update(readText('skills/fe-code-review/SKILL.md')).digest('hex');
+    expect(targetEvidence).toContain(`SHA-256: \`${skillSha256}\``);
   });
 
   test('associates compatibility evidence with the correct client and release contract', () => {
@@ -372,7 +382,10 @@ describe('repository release support', () => {
     expect(changelog).toContain('## [0.2.0] - 2026-07-31');
     expect(changelog).toContain('## [0.1.1] - 2026-07-23');
     expect(changelog).toContain('## [0.1.0] - 2026-07-23');
-    expect(changelog).toContain('compare/v0.5.0...HEAD');
+    expect(changelog).toContain('compare/v0.6.0...HEAD');
+    expect(changelog).toContain('## [0.6.0] - ');
+    expect(changelog).toContain('Publication pending.');
+    expect(changelog).toContain('[0.6.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.5.0...v0.6.0');
     expect(changelog).toContain('## [0.5.0] - 2026-09-09');
     expect(changelog).toContain('[0.5.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.4.0...v0.5.0');
     expect(changelog).toContain('Completed Candidate 08 at `7 / 7`');
@@ -388,6 +401,7 @@ describe('repository release support', () => {
     expect(versioning).toContain('Release tags are immutable');
     expect(versioning).toContain('Cannot Verify');
     expect(versioning).toContain('Stable: `v0.5.0`');
+    expect(versioning).toContain('Target release: `v0.6.0` (publication pending)');
     expect(versioning).toContain('Previous stable: `v0.4.0`');
     expect(versioning).not.toContain('Release candidate: `v0.4.0`');
   });

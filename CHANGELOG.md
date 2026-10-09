@@ -6,6 +6,22 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 
 ## [Unreleased]
 
+No changes recorded beyond the prepared v0.6.0 release below.
+
+## [0.6.0] - 2026-10-09
+
+Publication pending. This is the prepared release entry and planned date, not a completed tag or GitHub Release. Confirm the actual release date before publication. The v0.6.0 comparison links become available after the tag is published.
+
+### Changed
+
+- Add evidence-backed Origin and Reproduction fields to every finding and Fix verification item, preserving baseline attribution, separately labeled completed observations, mode scope and the read-only boundary. Sample counts are not production probabilities.
+- Integrate checked local Coverage links, explicit supported before/after outcomes, standalone empty markers, numeric Fix tallies and consistent conclusion/final prerequisites using the accepted integration-12 Skill bytes.
+- Add the opt-in v0.6.0 report profile and six bilingual authored examples while retaining default API/CLI JSON and the four earlier examples. Structural checks do not establish semantic review acceptance.
+- Preserve historical grouped/integration builders and their exact inputs in a bounded baseline; compatibility entries route to the frozen builders. Repair stdin API imports and retain symlink-aware CLI behavior.
+- Repair the historical O-09 test fixture's dependence on later-edited extension text by using the exact original request document, retaining both frozen request hashes and all rejection checks. This corrects a pre-existing offline test failure without repeating the consumed provider request.
+- Record the accepted integration-12 public synthetic Quick/Deep/Fix trials and the two final-package explicit-path O-09 Fix smokes on Codex Desktop and Cursor CLI. Each final-package case passes material integrity, structure/fields and ten semantic gates; no automatic-discovery, all-mode cross-client, general-accuracy or production claim is made. Claude Code remains Not Verified; runtimeReady=false and deferred SSE are unchanged.
+- Align package metadata, the dated changelog entry and prepared installation commands with 0.6.0, explicitly marking publication as pending. The currently published stable tag remains v0.5.0. See [release preparation](docs/v0.6.0-release-preparation.md) and [Release notes](docs/v0.6.0-release-notes.md) for scope and limits. Exclude local evaluation artifacts through the shared Git ignore rules and keep historical version assertions tied to their frozen baseline.
+
 ### Maintenance
 
 - Aligned all four public output examples with the existing Finding-ID, changed-condition coverage, Blocking-outcome, and Fix closure contracts; labeled their illustrative evidence and added actual CLI/API regression checks.
@@ -178,7 +194,8 @@ The candidate notes below retain historical experiment states, not outstanding m
 - Chinese output templates and example outputs.
 - Vitest contract tests, skill validation, and GitHub Actions CI.
 
-[Unreleased]: https://github.com/keykovar/skill-fe-code-review/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/keykovar/skill-fe-code-review/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.2.2...v0.3.0

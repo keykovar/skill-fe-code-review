@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "window": "v0.5.0-codex-runtime-acceptance",
+  "plannedDate": "2026-09-09",
+  "status": "design-ready-runtime-preparation-pending",
+  "authorization": {
+    "offlinePlanOnly": true,
+    "workspacePreparation": false,
+    "syntheticGitCommits": false,
+    "authenticationSetup": false,
+    "sourceFreeProbe": false,
+    "stage1SourceBearing": false,
+    "stage2SourceBearing": false
+  },
+  "execution": {
+    "preparedWorkspaces": [],
+    "externalModelInvocations": 0,
+    "sourceTransmitted": false,
+    "credentialContentsReadOrRecorded": false,
+    "results": []
+  },
+  "baseline": {
+    "release": "v0.5.0",
+    "releaseCommit": "0b236c45d0f469f784f1ea77b1a94e79de5e8059",
+    "skillPath": "skills/fe-code-review",
+    "skillFileCount": 12,
+    "skillTreeSha256": "148cf6ebae8c5cba674f5fe0fe9f1399f405287b5057d815867662faa1721480",
+    "skillCopyExcludedDirectories": [".plugin-eval"],
+    "treeHashAlgorithm": "sha256 of sorted POSIX relative-path + NUL + file-bytes + NUL for each regular file; reject symlinks; exclude .git",
+    "toolingCommit": "ada89b47a226a234cd90b6a6d83e8e5dde228790",
+    "toolingHashes": {
+      "scripts/prepare-evaluation-fixture.mjs": "7424dc5b86a04a2a9e541241695c343dd6eede071c273bba12f69c4709df3b58",
+      "scripts/audit-runtime-trace.mjs": "db701d66786321997d94f25b79904c0c180e681ec963a1e37963ce1c6cfba21f",
+      "scripts/validate-review-output.mjs": "1c6c8dea35bed929c74c437737cf3d0229568c0f07f144ab5a82735ea65972ae",
+      "scripts/validate-review-output-strict.mjs": "74b3260a928eaa9a54648f59b128344088b17613a22d9b1770e6d2f29bb49b0c",
+      "adapters/cursor/rules/fe-code-review.mdc": "f53777a997ce9ab7394782f4fd77c7b808072166fced45fbf0a4a85a515be0ff"
+    },
+    "oracleHashes": {
+      "evaluation/fixtures/url-regression/case.json": "b5b6c3a1a1ef67e3dd9fc2fff69110ea91fd140fc4d56f719e477d3bd4c282bc",
+      "evaluation/fixtures/independent-findings/case.json": "8ea9848d1f52aa92037b92332375aa64626da0d2aa2e499b737e524ac2d0c227",
+      "evaluation/fixtures/deep-session-ownership/case.json": "5604aaa4326f857f396f38bc79fb3ebfe71858c201feb44de6a14e6417d338d3",
+      "evaluation/fixtures/no-clear-issue/case.json": "a48fbb40fa6901fc2beba5edceda7ad4cce4f70a5fb866f76f690885fbcac6cb",
+      "evaluation/fixtures/url-regression/previous-findings.identity.md": "5d6a6261edbafc659b569bc25b8aba68d076ee1905b900290cbce9d8a098eb06"
+    }
+  },
+  "client": {
+    "name": "Codex CLI",
+    "locallyObservedVersion": "0.146.0",
+    "observedDate": "2026-09-09",
+    "runtimeVersion": null,
+    "executableRealpath": null,
+    "executableSha256": null,
+    "provider": null,
+    "endpoint": null,
+    "model": null,
+    "reasoningEffort": null,
+    "authenticationMethod": null,
+    "effectiveConfigSha256": null,
+    "entrypoint": "codex exec",
+    "requiredFlags": ["--strict-config", "--ignore-user-config", "--ignore-rules", "--ephemeral", "--sandbox", "read-only", "--json"],
+    "sourceFreeOnlyFlags": ["--skip-git-repo-check"],
+    "disabledCapabilities": ["mcp", "plugins", "apps", "hooks", "memories", "web-search", "multi-agent"],
+    "promptTransport": "stdin-bytes-with-shell-false",
+    "outputFormat": "markdown",
+    "outputSchema": null,
+    "resumeAllowed": false,
+    "fallbackProviderAllowed": false,
+    "requestRetries": 0,
+    "streamRetries": 0,
+    "sourceFreeTimeoutSeconds": 120,
+    "reviewTimeoutSeconds": { "quick": 900, "deep": 1800, "fix": 900 }
+  },
+  "transferPolicy": {
+    "visibility": "public-synthetic-only",
+    "allowedData": ["selected-fixture-source-and-tests", "synthetic-git-history-and-diff", "exact-v0.5.0-skill", "frozen-review-prompt", "read-only-tool-results", "fix-previous-findings-only"],
+    "forbiddenData": ["private-project-source", "personal-config", "credential-values", "semantic-oracles", "expected-outputs", "historical-results", "sibling-workspaces", "evaluator-code-and-plans"],
+    "modelSkillPath": ".agents/skills/fe-code-review/SKILL.md",
+    "forbiddenWorkspacePaths": [".evaluation", ".cursor", "evaluation", "docs/evaluation-results", "examples/outputs"],
+    "fixOnlyReadException": ".evaluation/previous-findings.md",
+    "authenticationProtocolSeparateFromReviewPayload": true,
+    "privateSourceAllowed": false
+  },
+  "isolation": {
+    "freshHomeAndCodexHome": true,
+    "copyPersonalConfigOrCredentials": false,
+    "cleanEnvironmentAllowlist": true,
+    "separateEphemeralSessionPerRun": true,
+    "oracleAndEvidenceOutsideModelWorkspace": true,
+    "fullWorkspaceAndGitStateBeforeAfter": true,
+    "fixtureTestsRunWithoutAuthSecrets": true,
+    "readOnlySandboxIsNotReadScopeIsolation": true,
+    "traceAuditIsNotOsSandbox": true,
+    "automaticReportRepair": false
+  },
+  "preparationGates": [
+    "separate-workspace-and-synthetic-git-commit-authorization",
+    "resolve-provider-endpoint-model-reasoning-and-auth-without-reading-secrets",
+    "freeze-client-binary-effective-config-and-feature-controls",
+    "offline-runner-positive-negative-tests-with-no-live-provider",
+    "prove-secret-exclusion-from-tool-and-fixture-test-environments-using-nonsecret-canaries",
+    "freeze-allowlisted-workspace-files-git-objects-and-skill-tree",
+    "verify-deterministic-fixture-results-and-repeat-pair-equivalence",
+    "freeze-exact-prompt-bytes-runner-hash-and-evaluator-hashes-outside-workspaces",
+    "inspect-effective-context-and-stop-on-unknown-inherited-instructions-or-config",
+    "confirm-destination-and-exact-transfer-scope-before-each-authorized-stage"
+  ],
+  "sourceFreeProbe": {
+    "prompt": "Return exactly CLIENT_ISOLATION_OK and nothing else. Do not use tools.",
+    "expectedResponse": "CLIENT_ISOLATION_OK",
+    "maximumInvocations": 1,
+    "expectedToolCalls": 0,
+    "expectedMcpCalls": 0,
+    "expectedCompletedTurns": 1,
+    "expectedFinalMessages": 1,
+    "expectedExitCode": 0,
+    "sourceIncluded": false,
+    "skillIncluded": false,
+    "provesReviewQuality": false,
+    "authorizesSourceBearing": false
+  },
+  "promptPolicy": {
+    "basePromptSource": "oracle mode.prompt copied verbatim without any other oracle fields",
+    "commonSuffix": "先读取当前工作区 .agents/skills/fe-code-review/SKILL.md，并按所选模式加载所需 reference。仅审查当前工作区授权范围，只读，结果只在对话中输出，不写报告。不得读取工作区外路径、.cursor、evaluation、docs/evaluation-results、examples/outputs 或 .evaluation；Fix Review 唯一例外为 .evaluation/previous-findings.md。不要访问其他工作区、预期答案或评测记录，不调用 MCP、外部网络或其他 agent。命令无法启动、权限拒绝、超时、输出不完整或范围冲突时停止，说明 Cannot Verify，不尝试绕过。正常的搜索无匹配、差异检查非零结果和已完成的测试断言失败属于审查证据，不等于工具不可用。",
+    "answersOrSeverityOverridesInPrompt": false,
+    "samePromptBytesForRepeatPairs": true,
+    "shellInterpolationAllowed": false
+  },
+  "runs": [
+    { "sequence": 1, "stage": 1, "caseId": "Q-ID-002", "runId": "RUN-01", "mode": "quick", "fixtureMode": "quick-independent", "oracle": "evaluation/fixtures/independent-findings/case.json", "scope": "all-uncommitted", "contextCollectorCalls": 1, "expectedTestExitCode": 1 },
+    { "sequence": 2, "stage": 1, "caseId": "D-ID-001", "runId": "RUN-01", "mode": "deep", "fixtureMode": "deep-identity", "oracle": "evaluation/fixtures/deep-session-ownership/case.json", "scope": "main...HEAD", "contextCollectorCalls": 0, "expectedTestExitCode": 1 },
+    { "sequence": 3, "stage": 2, "caseId": "Q-ID-001", "runId": "RUN-01", "mode": "quick", "fixtureMode": "quick-identity", "oracle": "evaluation/fixtures/url-regression/case.json", "scope": "all-uncommitted", "contextCollectorCalls": 1, "expectedTestExitCode": 1 },
+    { "sequence": 4, "stage": 2, "caseId": "Q-ID-001", "runId": "RUN-02", "mode": "quick", "fixtureMode": "quick-identity", "oracle": "evaluation/fixtures/url-regression/case.json", "scope": "all-uncommitted", "contextCollectorCalls": 1, "expectedTestExitCode": 1 },
+    { "sequence": 5, "stage": 2, "caseId": "F-ID-001", "runId": "RUN-01", "mode": "fix", "fixtureMode": "fix-identity", "oracle": "evaluation/fixtures/url-regression/case.json", "scope": "all-uncommitted-fix-and-direct-regressions", "contextCollectorCalls": 1, "expectedTestExitCode": 0 },
+    { "sequence": 6, "stage": 2, "caseId": "F-ID-001", "runId": "RUN-02", "mode": "fix", "fixtureMode": "fix-identity", "oracle": "evaluation/fixtures/url-regression/case.json", "scope": "all-uncommitted-fix-and-direct-regressions", "contextCollectorCalls": 1, "expectedTestExitCode": 0 },
+    { "sequence": 7, "stage": 2, "caseId": "K-ID-001", "runId": "RUN-01", "mode": "quick", "fixtureMode": "quick-keep", "oracle": "evaluation/fixtures/no-clear-issue/case.json", "scope": "all-uncommitted", "contextCollectorCalls": 1, "expectedTestExitCode": 0 }
+  ],
+  "semanticOverlay": {
+    "caseId": "D-ID-001",
+    "findingKey": "stale-profile-token-after-logout",
+    "requiredSeverity": "Blocking",
+    "requiredCanonicalOutcome": "Login/Auth Failure",
+    "rationale": "Preserve Candidate 16 severity counter-regression acceptance; the original oracle still permits Blocking or Risk and is not rewritten.",
+    "source": "docs/post-v0.4.0-grouped-ledger-candidate-16-evaluation-plan.md",
+    "sentToModel": false
+  },
+  "acceptance": {
+    "requiredRuns": 7,
+    "requiredPasses": 7,
+    "requiredFindingRecall": 1,
+    "findingPrecision": 1,
+    "severityAccuracy": 1,
+    "fixClosureAccuracy": 1,
+    "outputContractPassRate": 1,
+    "readOnlyAndScopePassRate": 1,
+    "repeatCaseIds": ["Q-ID-001", "F-ID-001"],
+    "extraFindings": "independent-source-evidence-adjudication-not-automatic-false-positive",
+    "zeroDenominatorMetrics": "N/A-not-100-percent",
+    "semanticEvaluationRequiredAfterStructuralValidation": true,
+    "noFindingCaseRequiresZeroActionableFindings": true,
+    "runtimeBoundaryMustBeStated": true,
+    "costAndTimeAreObservationOnly": true
+  },
+  "stopPolicy": {
+    "firstFailureStopsRemainingRuns": true,
+    "retryInPlaceAllowed": false,
+    "replacementInSameWindowAllowed": false,
+    "modeOrProviderSwitchAllowed": false,
+    "changingSkillPromptsOrOraclesMidWindowAllowed": false,
+    "retainRawFailures": true,
+    "toolingReplay": "separately-authorized-offline-replay-retaining-raw-result-no-new-model-request",
+    "statuses": ["Pass", "No-Go", "Cannot Verify", "Cannot Score", "Not Run"]
+  },
+  "evidencePerRun": [
+    "plan-and-runtime-freeze-hashes",
+    "authorization-recipient-and-transfer-scope",
+    "client-model-config-runner-and-prompt-hashes",
+    "before-after-workspace-git-status-head-refs-index-and-object-inventory",
+    "deterministic-test-command-exit-code-and-output",
+    "raw-jsonl-stderr-exit-code-final-markdown-and-hashes",
+    "trace-audit-and-exact-final-message-correlation",
+    "output-validator-json-and-semantic-finding-mapping",
+    "recall-precision-severity-closure-contract-and-repeat-results",
+    "elapsed-input-cached-input-output-tokens-or-unavailable",
+    "decision-limitations-and-unexecuted-runs"
+  ],
+  "clientStatus": {
+    "codexV050": "Cannot Verify",
+    "cursor": "existing-scoped-acceptance-unchanged",
+    "claudeCode": "Cannot Verify"
+  }
+}

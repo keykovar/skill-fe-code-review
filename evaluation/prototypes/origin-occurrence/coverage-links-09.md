@@ -1,0 +1,13 @@
+# Coverage Location Links Candidate
+
+This optional candidate profile applies only when explicitly included with the existing stable Skill, selected mode reference and outcome-05 Origin/Reproduction extension. It is not installed or released. It changes only Quick/Deep Coverage location presentation; all other review requirements and authorization boundaries stay unchanged.
+
+When explicitly selected, this profile overrides only the stable requirement for a plain Coverage location. The initial `[file:line]` may remain plain or be a Markdown link to that same source file and line. Use a positive one-based line number in both the visible label and destination. Relative locations are resolved against the supplied source-packet root; absolute locations must remain inside that root. Use canonical local POSIX paths, without `.` or `..` segments. If a destination contains spaces, enclose it in angle brackets. Use plain locations when this candidate subset cannot represent the target. URLs, URI schemes, encoded paths, query/fragment syntax, link titles, Windows paths and paths containing brackets or parentheses are outside this candidate subset.
+
+Example: `- [src/session.ts:9](/review/src/session.ts:9) token source: current token -> cached token; Disposition: [F-001]`, with `/review` as the declared source root. For a path with spaces, use `[src/My File.ts:9](</review/src/My File.ts:9>)`.
+
+Keep each Coverage entry on one physical line with exactly one `before -> after` transition and one final `Disposition`. Keep the original repeated-ID Merge key rules. Links do not replace source evidence or permit a different file/line. Do not add findings, alter severity, infer observations or production probability, expand Fix Review, or read extra files to satisfy this presentation rule. Fix Review still has no Coverage ledger.
+
+The evaluator selects `evaluateLinkedOriginOccurrenceReport` explicitly and supplies the source root separately; never derive that root from report text. It validates each Coverage location pair, removes only accepted destination syntax in memory, and applies the unchanged structure/Origin/Reproduction checks. It preserves the raw report and raw default result alongside the candidate compatibility result. It performs no file reads, source execution or network requests. Lexical matching does not prove filesystem identity, correct source line evidence or full-report acceptance.
+
+This profile contains no case-specific expected findings. It does not authorize a new model run, source transfer, report rewrite or retroactive acceptance of an earlier failed run. Future input/evaluator preparation must explicitly select this profile and account for its added instruction bytes before execution.

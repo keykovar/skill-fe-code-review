@@ -6,7 +6,7 @@ import path from 'node:path';
 import { afterEach, describe, expect, test } from 'vitest';
 
 import { restoreV040SkillSnapshot } from '../scripts/build-grouped-ledger-candidate.mjs';
-import { exists, readText, rootDir } from './test-utils';
+import { exists, readText, readHistoricalText, rootDir } from './test-utils';
 
 type FixtureMode =
   | 'quick'
@@ -351,13 +351,13 @@ describe('reproducible evaluation fixtures', () => {
       );
     };
     const restored = restoreV040SkillSnapshot({
-      deep: readText('skills/fe-code-review/references/deep-review.md'),
-      quick: readText('skills/fe-code-review/references/quick-review.md'),
-      skill: readText('skills/fe-code-review/SKILL.md'),
+      deep: readHistoricalText('skills/fe-code-review/references/deep-review.md'),
+      quick: readHistoricalText('skills/fe-code-review/references/quick-review.md'),
+      skill: readHistoricalText('skills/fe-code-review/SKILL.md'),
     });
     const baseline = {
       deep: restored.deep,
-      fix: readText('skills/fe-code-review/references/fix-review.md'),
+      fix: readHistoricalText('skills/fe-code-review/references/fix-review.md'),
       quick: restored.quick,
       skill: restored.skill,
     };

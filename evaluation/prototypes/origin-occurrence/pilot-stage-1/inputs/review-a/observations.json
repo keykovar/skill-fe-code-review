@@ -1,0 +1,26 @@
+{
+  "provenance": "Authored public synthetic records; independently replayed during offline fixture preparation, not model-run commands or production telemetry.",
+  "environment": "local Node synthetic URL call",
+  "unit": "one completed profileUrl call using the named snapshot",
+  "failureDefinition": "returned URL differs from the canonical URL in the supplied contract",
+  "records": [
+    {
+      "trial": "before-1",
+      "snapshot": "before/profile.mjs",
+      "function": "profileUrl",
+      "args": ["https://api.example.test/"],
+      "completed": true,
+      "actual": "https://api.example.test///profile",
+      "outcome": "failure"
+    },
+    {
+      "trial": "current-1",
+      "snapshot": "current/profile.mjs",
+      "function": "profileUrl",
+      "args": ["https://api.example.test/"],
+      "completed": true,
+      "actual": "https://api.example.test/profile",
+      "outcome": "success"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "status": "offline-prototype-only",
+  "visibility": "public-synthetic",
+  "modelInvocations": 0,
+  "fixtureScope": "Hand-authored field/output fixtures and deterministic source contracts; not AI reviews or full runtime workspaces.",
+  "sourceFile": "source-cases.mjs",
+  "observationGroups": {
+    "mixed-current": { "environment": "local Node; isolated synthetic response order", "revision": "unguarded-current", "unit": "one completed two-response scenario", "failure": "final revision is older than 2", "trials": [
+      { "completed": true, "order": [2, 1], "outcome": "failure" },
+      { "completed": true, "order": [1, 2], "outcome": "success" },
+      { "completed": true, "order": [2, 1], "outcome": "failure" }
+    ] },
+    "zero-current": { "environment": "local Node; isolated synthetic response order", "revision": "unguarded-current", "unit": "one completed two-response scenario", "failure": "final revision is older than 2", "trials": [
+      { "completed": true, "order": [1, 2], "outcome": "success" },
+      { "completed": true, "order": [1, 2], "outcome": "success" },
+      { "completed": true, "order": [1, 2], "outcome": "success" }
+    ] },
+    "setup-failure": { "environment": "local Node; isolated synthetic response order", "revision": "unguarded-current", "unit": "one completed two-response scenario", "failure": "final revision is older than 2", "trials": [
+      { "completed": true, "order": [2, 1], "outcome": "failure" },
+      { "completed": false, "reason": "initial state unavailable" },
+      { "completed": true, "order": [1, 2], "outcome": "success" }
+    ] }
+  },
+  "cases": [
+    {
+      "id": "O-01", "mode": "quick", "scenario": "removed-normalization",
+      "input": { "baseline": "normalizedUrl", "current": "brokenUrl", "args": ["https://api.example.test/", "/profile"], "expected": "https://api.example.test/profile" },
+      "findings": [{ "id": "F-001", "kind": "finding", "severity": "Risk", "origin": "New - initial baseline normalizedUrl removes separators; current brokenUrl retains both.", "reproduction": "Not Run - report input supplies static source only; no runtime observation is attributed to the reviewer." }],
+      "oracle": { "origins": ["New"], "states": [["Not Run"]], "recommendation": "fix-before-submit" }
+    },
+    {
+      "id": "O-02", "mode": "quick", "scenario": "retained-in-modified-block",
+      "input": { "baseline": "retainedUrlBefore", "current": "retainedUrlAfter", "args": ["https://api.example.test/", "/profile"], "expected": "https://api.example.test/profile" },
+      "findings": [{ "id": "F-001", "kind": "finding", "severity": "Risk", "origin": "Retained - initial baseline and current enabled branch both call brokenUrl inside the modified decision block.", "reproduction": "Not Run - source evidence only; historical origin does not make this affected defect out of scope." }],
+      "oracle": { "origins": ["Retained"], "states": [["Not Run"]], "recommendation": "fix-before-submit" }
+    },
+    {
+      "id": "O-03", "mode": "deep", "scenario": "expanded-cache-exposure",
+      "input": { "baseline": "previousAccounts", "current": "expandedAccounts", "owner": "sharedCacheKey", "contract": "distinct supported accounts must not share a profile cache entry" },
+      "findings": [{ "id": "F-001", "kind": "finding", "severity": "Risk", "origin": "Amplified - initial baseline already aliases alpha and beta; current supported callers additionally expose gamma to the same defective cache owner.", "reproduction": "Not Run - expanded reachable account set is source evidence, not a measured production frequency increase." }],
+      "oracle": { "origins": ["Amplified"], "states": [["Not Run"]], "recommendation": "fix-before-next-step" }
+    },
+    {
+      "id": "O-04", "mode": "quick", "scenario": "missing-baseline",
+      "input": { "baseline": null, "current": "brokenUrl", "args": ["https://api.example.test/", "/profile"], "expected": "https://api.example.test/profile" },
+      "findings": [{ "id": "F-001", "kind": "finding", "severity": "Risk", "origin": "Unknown - the original comparison is unavailable; the current URL contract is independently specified.", "reproduction": "Not Run - static source supports the current defect but cannot establish introduction history." }],
+      "oracle": { "origins": ["Unknown"], "states": [["Not Run"]], "recommendation": "fix-before-submit" }
+    },
+    {
+      "id": "O-05", "mode": "deep", "scenario": "restrictive-auth-failure",
+      "input": { "source": "authenticationFlow", "baseline": { "resume": true, "cached": false }, "current": { "resume": true, "cached": true }, "control": { "resume": false, "cached": true }, "expected": 200, "blockingOutcome": "Login/Auth Failure" },
+      "findings": [{ "id": "F-001", "kind": "finding", "severity": "Blocking", "origin": "New - initial resume reads the current account token; the changed resume path reuses the previous account token and the synthetic auth endpoint rejects it.", "reproduction": "Not Run - the narrow supported resume condition and auth contract are supplied as source; no production frequency is claimed." }],
+      "oracle": { "origins": ["New"], "states": [["Not Run"]], "recommendation": "fix-before-next-step", "blockingOutcome": "Login/Auth Failure" }
+    },
+    {
+      "id": "O-06", "mode": "quick", "scenario": "observed-mixed-schedules",
+      "input": { "baseline": "applyResponsesWithGuard", "current": "applyResponses", "observations": "mixed-current" },
+      "findings": [{ "id": "F-001", "kind": "finding", "severity": "Risk", "origin": "New - initial response handling retained the newest revision; the current path assigns every response.", "reproduction": "Observed - 2/3 completed synthetic scenarios failed; group mixed-current records the Node environment, current revision, unit and individual schedules." }],
+      "oracle": { "origins": ["New"], "states": [["Observed"]], "counts": [[2, 3]], "recommendation": "fix-before-submit" }
+    },
+    {
+      "id": "O-07", "mode": "quick", "scenario": "non-refuting-zero-sample",
+      "input": { "baseline": "applyResponsesWithGuard", "current": "applyResponses", "observations": "zero-current", "reachableCounterSchedule": [2, 1], "refutingVariantCurrent": "applyResponsesWithGuard" },
+      "findings": [{ "id": "F-001", "kind": "finding", "severity": "Risk", "origin": "New - initial handling guarded revision order; current code does not, and the supported reverse completion remains reachable.", "reproduction": "Observed - 0/3 completed scenarios in zero-current failed; this sample uses normal completion order and does not refute the reverse-order path." }],
+      "oracle": { "origins": ["New"], "states": [["Observed"]], "counts": [[0, 3]], "recommendation": "fix-before-submit", "refutingVariantRequires": "withdraw-the-unsupported-claim" }
+    },
+    {
+      "id": "O-08", "mode": "quick", "scenario": "invalid-attempt-excluded",
+      "input": { "baseline": "applyResponsesWithGuard", "current": "applyResponses", "observations": "setup-failure" },
+      "findings": [{ "id": "F-001", "kind": "finding", "severity": "Risk", "origin": "New - current response assignment removed the initial revision guard.", "reproduction": "Observed - 1/2 valid completed scenarios failed in setup-failure; one additional setup attempt was invalid and excluded, not counted as success." }],
+      "oracle": { "origins": ["New"], "states": [["Observed"]], "counts": [[1, 2]], "invalidAttempts": 1, "recommendation": "fix-before-submit" }
+    },
+    {
+      "id": "O-09", "mode": "fix", "scenario": "preserve-original-origin",
+      "input": { "initialBaseline": "normalizedUrl", "problemBaseline": "brokenUrl", "fixed": "normalizedUrl", "args": ["https://api.example.test/", "/profile"], "expected": "https://api.example.test/profile", "previous": { "id": "F-001", "origin": "New", "severity": "Risk" }, "observations": [
+        { "phase": "pre-fix", "environment": "local Node synthetic URL call", "revision": "brokenUrl", "completed": true, "actual": "https://api.example.test///profile", "outcome": "failure" },
+        { "phase": "post-fix", "environment": "local Node synthetic URL call", "revision": "normalizedUrl", "completed": true, "actual": "https://api.example.test/profile", "outcome": "success" }
+      ] },
+      "findings": [{ "id": "F-001", "kind": "previous", "severity": "Risk", "status": "Resolved", "origin": "New - preserve supported attribution relative to the original normalizedUrl baseline; brokenUrl is the separate repair baseline.", "reproduction": "[pre-fix] Observed - 1/1 local Node URL scenario failed against brokenUrl; evidence O-09 input. | [post-fix] Observed - 0/1 equivalent scenario failed against normalizedUrl; the restored normalization also satisfies the stated closure criterion." }],
+      "oracle": { "origins": ["New"], "states": [["Observed", "Observed"]], "counts": [[1, 1], [0, 1]], "closure": "Resolved", "recommendation": "can-close" }
+    },
+    {
+      "id": "O-10", "mode": "fix", "scenario": "fix-amplifies-existing-defect",
+      "input": { "previous": { "id": "F-001", "severity": "Risk" }, "problemBaseline": "brokenUrl", "fixed": "normalizedUrl", "cacheBaseline": "previousAccounts", "cacheCurrent": "expandedAccounts", "owner": "sharedCacheKey" },
+      "findings": [
+        { "id": "F-001", "kind": "previous", "severity": "Risk", "status": "Resolved", "origin": "Unknown - the original URL introduction baseline is absent; the broken repair baseline and normalization acceptance criterion remain usable.", "reproduction": "Not Run - current static normalization satisfies the supplied source-only acceptance criterion; no execution counts are attributed to the reviewer." },
+        { "id": "F-002", "kind": "regression", "severity": "Risk", "origin": "Amplified - relative to the fix baseline, the repair adds gamma to the already colliding alpha/beta cache owner on its direct call path.", "reproduction": "Not Run - current and repair-baseline source establish expanded exposure, not measured occurrence." }
+      ],
+      "oracle": { "origins": ["Unknown", "Amplified"], "states": [["Not Run"], ["Not Run"]], "closure": "Resolved", "recommendation": "review-again" }
+    },
+    {
+      "id": "O-11", "mode": "fix", "scenario": "legacy-origin-absent",
+      "input": { "initialBaseline": null, "problemBaseline": "brokenUrl", "fixed": "normalizedUrl", "args": ["https://api.example.test/", "/profile"], "expected": "https://api.example.test/profile", "previous": { "id": "F-001", "origin": null, "severity": "Risk", "legacyNoIdVariant": true } },
+      "findings": [{ "id": "F-001", "kind": "previous", "severity": "Risk", "status": "Resolved", "origin": "Unknown - the legacy report has no origin evidence and the original change baseline is absent; this does not erase the known repair acceptance criterion.", "reproduction": "Not Run - source-only closure uses the known broken baseline and restored normalization; origin uncertainty is separate from closure." }],
+      "oracle": { "origins": ["Unknown"], "states": [["Not Run"]], "closure": "Resolved", "recommendation": "can-close" }
+    },
+    {
+      "id": "O-12", "mode": "quick", "scenario": "maintenance-only-duplication",
+      "input": { "owner": "profileLabel", "copy": "copiedProfileLabel", "values": [" Ada ", "", "   "], "contract": "both functions own the same profile-label rule and must change together" },
+      "findings": [{ "id": "F-001", "kind": "finding", "severity": "Improve", "origin": "New - the initial shared profile label owner now has a second identical rule owner with the same documented reason to change.", "reproduction": "Not Applicable - this is duplicated maintenance ownership, not a demonstrated runtime failure or a required runtime check." }],
+      "oracle": { "origins": ["New"], "states": [["Not Applicable"]], "recommendation": "can-submit" }
+    },
+    {
+      "id": "O-13", "mode": "quick", "scenario": "correct-relocation",
+      "input": { "baseline": "profileLabel", "current": "relocatedLabel", "values": [" Ada ", "", "   "] },
+      "findings": [],
+      "oracle": { "origins": [], "states": [], "design": "Keep", "recommendation": "can-submit" }
+    },
+    {
+      "id": "O-14", "mode": "quick", "scenario": "invalid-metadata",
+      "input": { "baseCase": "O-06", "invalidCounts": ["3/2", "0/0", "-1/3", "−1/3", "+1/3", "1/-3", "1.5/3", "1/3.5", "9007199254740992/9007199254740992"], "unsupportedPercentages": ["1%", "１％", "百分之一"] },
+      "findings": [],
+      "oracle": { "positiveReuse": "O-06", "mutationsMustFail": true, "unbackedSemanticsCanStillPassGrammar": true }
+    }
+  ]
+}

@@ -2,12 +2,17 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 export const rootDir = process.cwd();
+export const historicalRootDir = path.join(rootDir, 'evaluation/baselines/pre-v0.6.0');
 export const skillDir = path.join(rootDir, 'skills', 'fe-code-review');
 export const skillPath = path.join(skillDir, 'SKILL.md');
 export const skillMd = fs.readFileSync(skillPath, 'utf8');
 
 export function readText(relativePath: string): string {
   return fs.readFileSync(path.join(rootDir, relativePath), 'utf8');
+}
+
+export function readHistoricalText(relativePath: string): string {
+  return fs.readFileSync(path.join(historicalRootDir, relativePath), 'utf8');
 }
 
 export function exists(relativePath: string): boolean {

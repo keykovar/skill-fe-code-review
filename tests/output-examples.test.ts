@@ -12,12 +12,32 @@ const examples = [
   { file: 'deep-review.md', mode: 'deep', ids: ['F-001'], entries: 3 },
   { file: 'fix-review.zh-CN.md', mode: 'fix', ids: ['F-001', 'F-002'], entries: 0 },
 ] as const;
+const profileExamples = ['quick', 'deep', 'fix'].flatMap((mode) =>
+  ['en', 'zh-CN'].map((language) => ({ file: `${mode}.${language}.md`, mode })));
 
 describe('public output examples', () => {
   test('covers every published output example', () => {
     expect(fs.readdirSync(path.join(rootDir, 'examples/outputs')).sort()).toEqual(
-      examples.map(({ file }) => file).sort(),
+      [...examples, ...profileExamples].map(({ file }) => file).sort(),
     );
+  });
+
+  test.each(profileExamples)('$file passes the explicit v0.6.0 API and CLI without rewriting the report', ({ file, mode }) => {
+    const relativePath = `examples/outputs/${file}`;
+    const markdown = readText(relativePath);
+    const selected = validateReviewOutput(markdown, mode, { profile: 'v0.6.0', sourceRoot: '/review' });
+    const cli = spawnSync(process.execPath, [
+      path.join(rootDir, 'scripts/validate-review-output.mjs'), '--mode', mode,
+      '--profile', 'v0.6.0', '--source-root', '/review', path.join(rootDir, relativePath),
+    ], { encoding: 'utf8' });
+    expect(cli.status, cli.stderr).toBe(0);
+    expect(JSON.parse(cli.stdout)).toEqual(selected);
+    expect(selected).toMatchObject({ valid: true, reportAcceptance: 'Not Evaluated' });
+    expect(selected.raw).toEqual(validateReviewOutput(markdown, mode));
+    expect(readText(relativePath)).toBe(markdown);
+    const missingField = markdown.replace(/^  - (?:Origin|问题来源 \/ Origin)[:：].*\n/mu, '');
+    expect(missingField).not.toBe(markdown);
+    expect(validateReviewOutput(missingField, mode, { profile: 'v0.6.0', sourceRoot: '/review' }).valid).toBe(false);
   });
 
   test.each(examples)('$file passes the actual read-only CLI and API', (example) => {
