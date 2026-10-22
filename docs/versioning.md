@@ -38,7 +38,7 @@ Before `1.0.0`, minor releases may still evolve the contract. Breaking behavior 
 - Release tags are immutable. Never move or reuse a published tag.
 - The `package.json` version, changelog entry, Git tag, and GitHub Release must match.
 - Stable installation documentation must pin an immutable tag.
-- Compatibility claims must state whether evidence is structural or runtime.
+- Compatibility claims must distinguish structural checks, explicit-packet reviews and installed-workflow runtime evidence.
 - A client without executable credentials must be marked `Cannot Verify`, not passed.
 - Model-based evaluation results must record scope and limitations; Vitest must not be presented as proof of AI review quality.
 
@@ -55,9 +55,11 @@ Before `1.0.0`, minor releases may still evolve the contract. Breaking behavior 
 
 ## Current Version
 
+- Candidate: `v0.6.1` (unpublished)
+- v0.6.1 status: publication metadata is prepared for the three-file format clarification, with planned release date **2026-10-22**, immutable comparison links and bilingual v0.6.1 install commands explicitly marked pending. Reconcile the date before tagging if publication occurs on another day. [Candidate compatibility](compatibility.md#candidate-v061-evidence) records exact-candidate Codex public synthetic Quick/Deep/Fix cases as `Packet review verified`; installed-path loading, automatic discovery and new Cursor/Claude runtime acceptance are not claimed. Published stable v0.6.0 install commands remain available. The local dependency-installation and delivery-review gates pass; actual tag/Release publication is unconfirmed. See [release preparation](v0.6.1-release-preparation.md#publication-metadata).
 - Stable: `v0.6.0`
 - Previous stable: `v0.5.0`
-- v0.6.0 status: [published as Latest on 2026-10-09](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.6.0), with immutable tag `v0.6.0` targeting `f2dc57a4a983dd682055662b5ee75ebb28d464da`. Package metadata, changelog and installation commands agree on this version. The accepted integration-12 Quick/Deep/Fix trials and selected final-package Codex/Cursor Fix smokes cover their documented synthetic cases only; Claude Code remains Not Verified. The separate runtime harness remains `runtimeReady=false`, and SSE is deferred. The tag retains its preparation-time pending text; publication-state corrections belong to later documentation commits, not a moved tag.
+- v0.6.0 status: [published as Latest on 2026-10-09](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.6.0), with immutable tag `v0.6.0` targeting `f2dc57a4a983dd682055662b5ee75ebb28d464da`. The tagged package metadata, dated changelog and current stable installation commands identify this version; current checkout metadata identifies the separate v0.6.1 candidate. The accepted integration-12 Quick/Deep/Fix trials and selected final-package Codex/Cursor Fix smokes cover their documented synthetic cases only; Claude Code remains Not Verified. The separate runtime harness remains `runtimeReady=false`, and SSE is deferred. The tag retains its preparation-time pending text; publication-state corrections belong to later documentation commits, not a moved tag.
 - v0.5.0 status: historical stable release; exact-current-tree Cursor source-free, Quick, Deep, and Fix gates pass; independent Node dependency installation passed in a new local tag clone on 2026-09-09, with the tag's tests and both Skill validators passing. The earlier blocked installation/dependency-reuse check is retained, PyYAML was reused, and no new client runtime acceptance was added; Codex and Claude Code remain `Cannot Verify`. See [installation evidence and limits](evaluation-results/v0.5.0-candidate.md#independent-node-dependency-installation).
 - v0.4.0 status: historical stable release; Candidate 08 passed `7 / 7` after a tooling-only preserved-trace replay, with the raw `6 / 7` auditor result retained
 - v0.3.0 status: historical exact-candidate Quick, Deep, and prospective Fix acceptance passed; its post-release limitations remain recorded

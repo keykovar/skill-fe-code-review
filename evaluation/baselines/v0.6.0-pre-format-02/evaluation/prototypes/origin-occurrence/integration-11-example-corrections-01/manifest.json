@@ -1,0 +1,82 @@
+{
+  "revision": "integration-11-example-corrections-01",
+  "parent": "evaluation/prototypes/origin-occurrence/integration-11/manifest.json",
+  "parentSha256": "92b39debd80c23b44f4db119e6070cf79d3c0fae35f826079ac7842b706019f1",
+  "scope": "Four conclusion paragraphs only; Skill, validators, fields, oracles and original examples remain frozen.",
+  "examples": [
+    {
+      "name": "quick.en.md",
+      "path": "evaluation/prototypes/origin-occurrence/integration-11-example-corrections-01/quick.en.md",
+      "sourceSha256": "a6240a83f46c7a2a7330cdb3758b79b193f16ff2823f4b5c6bfaea0a18931d79",
+      "sha256": "d2d89f7315c7ec0733501e68869bbd78b9839da1ec38fc290d2b5f9d49240130",
+      "byteDelta": 105,
+      "corrected": true,
+      "originalConclusionPrerequisites": "Incomplete: final recommendation named tests that the conclusion did not explicitly name.",
+      "fieldAdjudication": "Pass",
+      "manualAssessment": "Pass as an authored illustration: complete selected-mode sections, finding identity, origin baseline, reproduction states/groups, severity and design references, and consistent summary/final decision. Fix totals are 1/0/0/0/1 with separate pre/post groups and a separately counted Amplified regression.",
+      "limitation": "No accompanying source/runtime is inferred for these authored examples; this check assesses internal explanation/format, not real defect truth."
+    },
+    {
+      "name": "quick.zh-CN.md",
+      "path": "evaluation/prototypes/origin-occurrence/integration-11-example-corrections-01/quick.zh-CN.md",
+      "sourceSha256": "c69b7e70a56c83853de158ffa09fb32021c5d75e9e7be15f3565d4374db3c1fb",
+      "sha256": "f308145dcd1b3d1bd2bf9a85faf5aaddd58ede94c4939707c8aaf8de96d5416b",
+      "byteDelta": 74,
+      "corrected": true,
+      "originalConclusionPrerequisites": "Incomplete: final recommendation named tests that the conclusion did not explicitly name.",
+      "fieldAdjudication": "Pass",
+      "manualAssessment": "Pass as an authored illustration: complete selected-mode sections, finding identity, origin baseline, reproduction states/groups, severity and design references, and consistent summary/final decision. Fix totals are 1/0/0/0/1 with separate pre/post groups and a separately counted Amplified regression.",
+      "limitation": "No accompanying source/runtime is inferred for these authored examples; this check assesses internal explanation/format, not real defect truth."
+    },
+    {
+      "name": "deep.en.md",
+      "path": "evaluation/prototypes/origin-occurrence/integration-11-example-corrections-01/deep.en.md",
+      "sourceSha256": "55a01395d8663a538dfa7e5e031f5c08d111d9744fe2074af0d147f02eb44b73",
+      "sha256": "4cee09359de986303e9b4f9064fb98bb27356bac3103010c9b5ef94f7f2b5401",
+      "byteDelta": 165,
+      "corrected": true,
+      "originalConclusionPrerequisites": "Incomplete: final recommendation named tests that the conclusion did not explicitly name.",
+      "fieldAdjudication": "Pass",
+      "manualAssessment": "Pass as an authored illustration: complete selected-mode sections, finding identity, origin baseline, reproduction states/groups, severity and design references, and consistent summary/final decision. Fix totals are 1/0/0/0/1 with separate pre/post groups and a separately counted Amplified regression.",
+      "limitation": "No accompanying source/runtime is inferred for these authored examples; this check assesses internal explanation/format, not real defect truth."
+    },
+    {
+      "name": "deep.zh-CN.md",
+      "path": "evaluation/prototypes/origin-occurrence/integration-11-example-corrections-01/deep.zh-CN.md",
+      "sourceSha256": "95d918698d345bef96ec2a47495139291347455aac67fcc9abe9033e4c484f6d",
+      "sha256": "53d4bce92eed5cade87c07dd7e81bed5d287bf5dfbfa51de40b542aa4d084f6f",
+      "byteDelta": 150,
+      "corrected": true,
+      "originalConclusionPrerequisites": "Incomplete: final recommendation named tests that the conclusion did not explicitly name.",
+      "fieldAdjudication": "Pass",
+      "manualAssessment": "Pass as an authored illustration: complete selected-mode sections, finding identity, origin baseline, reproduction states/groups, severity and design references, and consistent summary/final decision. Fix totals are 1/0/0/0/1 with separate pre/post groups and a separately counted Amplified regression.",
+      "limitation": "No accompanying source/runtime is inferred for these authored examples; this check assesses internal explanation/format, not real defect truth."
+    },
+    {
+      "name": "fix.en.md",
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/examples/fix.en.md",
+      "sourceSha256": "c191f7aa1874f2c857fbd1e07cdaebe45d86be72819c326ff4a86faf0a51ba59",
+      "sha256": "c191f7aa1874f2c857fbd1e07cdaebe45d86be72819c326ff4a86faf0a51ba59",
+      "byteDelta": 0,
+      "corrected": false,
+      "originalConclusionPrerequisites": "Consistent",
+      "fieldAdjudication": "Pass",
+      "manualAssessment": "Pass as an authored illustration: complete selected-mode sections, finding identity, origin baseline, reproduction states/groups, severity and design references, and consistent summary/final decision. Fix totals are 1/0/0/0/1 with separate pre/post groups and a separately counted Amplified regression.",
+      "limitation": "No accompanying source/runtime is inferred for these authored examples; this check assesses internal explanation/format, not real defect truth."
+    },
+    {
+      "name": "fix.zh-CN.md",
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/examples/fix.zh-CN.md",
+      "sourceSha256": "586228fee2275fee381bb074b5d505bb435b8247fe02e7e7ee60754662a905d1",
+      "sha256": "586228fee2275fee381bb074b5d505bb435b8247fe02e7e7ee60754662a905d1",
+      "byteDelta": 0,
+      "corrected": false,
+      "originalConclusionPrerequisites": "Consistent",
+      "fieldAdjudication": "Pass",
+      "manualAssessment": "Pass as an authored illustration: complete selected-mode sections, finding identity, origin baseline, reproduction states/groups, severity and design references, and consistent summary/final decision. Fix totals are 1/0/0/0/1 with separate pre/post groups and a separately counted Amplified regression.",
+      "limitation": "No accompanying source/runtime is inferred for these authored examples; this check assesses internal explanation/format, not real defect truth."
+    }
+  ],
+  "runtimeReady": false,
+  "modelInvocations": 0
+}

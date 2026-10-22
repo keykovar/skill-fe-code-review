@@ -1,0 +1,376 @@
+{
+  "revision": "integration-12",
+  "parent": "evaluation/prototypes/origin-occurrence/integration-11/manifest.json",
+  "status": "offline-candidate-only",
+  "runtimeReady": false,
+  "modelInvocations": 0,
+  "skillDirectory": "skill/fe-code-review",
+  "entry": {
+    "module": "scripts/validate-origin-occurrence-empty-sections.mjs",
+    "export": "validateOriginOccurrenceEmptySections"
+  },
+  "exampleSelection": "evaluation/prototypes/origin-occurrence/integration-11-example-corrections-01/manifest.json",
+  "inputs": [
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/manifest.json",
+      "sha256": "92b39debd80c23b44f4db119e6070cf79d3c0fae35f826079ac7842b706019f1"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/cases.json",
+      "sha256": "ab4749b4f698b893d27f72aa648c6fe3026eaf6d2bf29bc5c4fe3ccafcdd5bc2"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/coverage-links-09.md",
+      "sha256": "144daa0c47122e71eb8fd2228760952184ffc398a4e021a6d24f322c9250f186"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/examples/deep.en.md",
+      "sha256": "55f19022696da9a5c661b87e5901849bf074e99b15a34fa9fc9f7ff2dfe62ba1"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/examples/deep.zh-CN.md",
+      "sha256": "becaaeb58b5bd639c664fe208570c79ed2731da2b73b9482604c9145d92b7488"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/examples/fix.en.md",
+      "sha256": "c27ae39b0f03aad6f8e1b6837c94feab285797e4c31f81c9683bcc6be289f6c6"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/examples/fix.zh-CN.md",
+      "sha256": "1283d4cdf651a8f4e8e07ea859fce230fff4bb3c22f5d74e9f8c2b14b92487d0"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/examples/oracles.json",
+      "sha256": "3ac921f19a4926b1f4e3240427142aae0f8f1859309c739adbf9404fded3c0b8"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/examples/quick.en.md",
+      "sha256": "bec6eb066c45ab16677790a3ecdeef88f06a0e7d0b95daa8053304fab47fec91"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/examples/quick.zh-CN.md",
+      "sha256": "d34cc1030a304dfccb0cf0310ff0fa70a8bb58d6ab6fbfddf6293fb1531600c3"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/fe-code-review-origin-candidate/SKILL.md",
+      "sha256": "fdfec8a9e9ab74d2b420c508d67e8699d192deab301bc10fe3dd4cdc5ddd5e1a"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/grouping-04.json",
+      "sha256": "d9b3083688daf2557702aedb4bed45aec76867e0c7e5c29d9216bd5b1ea31bb4"
+    },
+    {
+      "path": "package.json",
+      "sha256": "e0d46f983e954f875bdc131a62e21b4ada197374e870f9275b37f2ba1321a1d8"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "4424546d2638cf723d93a838d6999218b20af65d2ceedbbb61ab506c6aa6e728"
+    },
+    {
+      "path": "scripts/adjudicate-origin-occurrence-candidate.mjs",
+      "sha256": "ed444d4b655438a2578df11c7a7d0dbfe3ce630237ffc2bd4091f77fc130dc9b"
+    },
+    {
+      "path": "scripts/adjudicate-origin-occurrence-coverage-links.mjs",
+      "sha256": "b87d5e9e047a889f6cacf462b4dd9d1b86a1f95adc0fdedbbc7ea95b8fd35b87"
+    },
+    {
+      "path": "scripts/adjudicate-origin-occurrence-groups.mjs",
+      "sha256": "a27949e0e56dfcb915b2afd58d26e94a15ec635a9a274a09e21a254f921d3212"
+    },
+    {
+      "path": "scripts/adjudicate-origin-occurrence-integrated.mjs",
+      "sha256": "cf4cf4d919c91a4411dcea09831b7f3c379d73685b106de2f9fe0bab2564eb0b"
+    },
+    {
+      "path": "scripts/build-origin-occurrence-integrated.mjs",
+      "sha256": "f796252534863791ffae9c832fc8482b7f23d00dd31d34285fc96e022d05ec32"
+    },
+    {
+      "path": "scripts/validate-origin-occurrence-candidate.mjs",
+      "sha256": "9cc98a5522bf92ca184a3b43d52068a1f7ae2a6d38331568e773f29857f02d18"
+    },
+    {
+      "path": "scripts/validate-origin-occurrence-integrated.mjs",
+      "sha256": "a7cc91e0518d2e7e191e0639d9bbab5247796bd6b57c68e770a41b898951c7d3"
+    },
+    {
+      "path": "scripts/validate-origin-occurrence-legacy-fix.mjs",
+      "sha256": "396b7d8b008753f5f96e929137256afa885e06482e1ccb7b4177b673be316501"
+    },
+    {
+      "path": "scripts/validate-review-output-strict.mjs",
+      "sha256": "74b3260a928eaa9a54648f59b128344088b17613a22d9b1770e6d2f29bb49b0c"
+    },
+    {
+      "path": "scripts/validate-review-output.mjs",
+      "sha256": "1c6c8dea35bed929c74c437737cf3d0229568c0f07f144ab5a82735ea65972ae"
+    },
+    {
+      "path": "skills/fe-code-review/agents/openai.yaml",
+      "sha256": "258d0ebaf510ab7f6ec7370894c12ab46f8efca97875b7289ce85bc141994b8a"
+    },
+    {
+      "path": "skills/fe-code-review/references/deep-review.md",
+      "sha256": "6955d13931f29be134221817db9409d64a01c5688307a419cdbbcdcb8a5097b2"
+    },
+    {
+      "path": "skills/fe-code-review/references/fix-review.md",
+      "sha256": "8380289a00f3c2f1a1ea740bc824b1a53813d6839b3957cae3c54c0e27757d33"
+    },
+    {
+      "path": "skills/fe-code-review/references/hybrid-webview.md",
+      "sha256": "0d9a2091e8e2d6740b43b4a29ab5a61302c70a8c3443fb896300ae8939c7b4c7"
+    },
+    {
+      "path": "skills/fe-code-review/references/javascript.md",
+      "sha256": "96796e91da3db65967e5716747fa7bdd26073005701ce3b8a37f9763dd0fb36c"
+    },
+    {
+      "path": "skills/fe-code-review/references/quick-review.md",
+      "sha256": "84cc3a181d0e88a113ede7666e53b4cc9ef1c6f0de508d37b9337d8d7a86f390"
+    },
+    {
+      "path": "skills/fe-code-review/references/react.md",
+      "sha256": "6240f94d7cedbd6015c8217b1072b4aef140ee109850e5f6609ade51ef7865e8"
+    },
+    {
+      "path": "skills/fe-code-review/references/release-risk.md",
+      "sha256": "a1a72efe1ba789242e1c941b0b3f31cd073a9b4ef9015ad35e3e85fe7f868a54"
+    },
+    {
+      "path": "skills/fe-code-review/references/typescript.md",
+      "sha256": "e2fe25dea472e696e8e3f4a61b934e4fb2675b2cbce0594878f7e8e3d29ee505"
+    },
+    {
+      "path": "skills/fe-code-review/references/vue.md",
+      "sha256": "d9c49701d48639e3e29ba128288337e82ba7c568d20dfb886a05783e4a500bf7"
+    },
+    {
+      "path": "skills/fe-code-review/scripts/collect-review-context.mjs",
+      "sha256": "969d3903b7aefc8beb5a75005a0f0e4bc33f90b5b22ad787751d2397566923ef"
+    },
+    {
+      "path": "skills/fe-code-review/SKILL.md",
+      "sha256": "9f2af4fca11954225d307e4d53125f5f2dad4a7ef54979754ff6165d433a93fb"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/skill/fe-code-review/SKILL.md",
+      "sha256": "3b0c6e0e5ae66a29d0b6fc4ec9212ba4bfd1fd5f89665351821419b86da0c0ea"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/skill/fe-code-review/agents/openai.yaml",
+      "sha256": "258d0ebaf510ab7f6ec7370894c12ab46f8efca97875b7289ce85bc141994b8a"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/skill/fe-code-review/references/deep-review.md",
+      "sha256": "0ca93eb34dfc1291c9c6b6d08dad47be87385ea4e3fc88a230c50eab07752b4f"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/skill/fe-code-review/references/fix-review.md",
+      "sha256": "84f514ee98edfd0fdce31f0fd9f70e00e0a986d540faf29f44e2c1360f87dbab"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/skill/fe-code-review/references/hybrid-webview.md",
+      "sha256": "0d9a2091e8e2d6740b43b4a29ab5a61302c70a8c3443fb896300ae8939c7b4c7"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/skill/fe-code-review/references/javascript.md",
+      "sha256": "96796e91da3db65967e5716747fa7bdd26073005701ce3b8a37f9763dd0fb36c"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/skill/fe-code-review/references/quick-review.md",
+      "sha256": "c1bf40a956c05ea7e225c54207f156fcbf4a5b5ffd81320cc08bd52aebb6147e"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/skill/fe-code-review/references/react.md",
+      "sha256": "6240f94d7cedbd6015c8217b1072b4aef140ee109850e5f6609ade51ef7865e8"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/skill/fe-code-review/references/release-risk.md",
+      "sha256": "a1a72efe1ba789242e1c941b0b3f31cd073a9b4ef9015ad35e3e85fe7f868a54"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/skill/fe-code-review/references/typescript.md",
+      "sha256": "e2fe25dea472e696e8e3f4a61b934e4fb2675b2cbce0594878f7e8e3d29ee505"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/skill/fe-code-review/references/vue.md",
+      "sha256": "d9c49701d48639e3e29ba128288337e82ba7c568d20dfb886a05783e4a500bf7"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/skill/fe-code-review/scripts/collect-review-context.mjs",
+      "sha256": "969d3903b7aefc8beb5a75005a0f0e4bc33f90b5b22ad787751d2397566923ef"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/examples/quick.en.md",
+      "sha256": "a6240a83f46c7a2a7330cdb3758b79b193f16ff2823f4b5c6bfaea0a18931d79"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/examples/quick.zh-CN.md",
+      "sha256": "c69b7e70a56c83853de158ffa09fb32021c5d75e9e7be15f3565d4374db3c1fb"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/examples/deep.en.md",
+      "sha256": "55a01395d8663a538dfa7e5e031f5c08d111d9744fe2074af0d147f02eb44b73"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/examples/deep.zh-CN.md",
+      "sha256": "95d918698d345bef96ec2a47495139291347455aac67fcc9abe9033e4c484f6d"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/examples/fix.en.md",
+      "sha256": "c191f7aa1874f2c857fbd1e07cdaebe45d86be72819c326ff4a86faf0a51ba59"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/examples/fix.zh-CN.md",
+      "sha256": "586228fee2275fee381bb074b5d505bb435b8247fe02e7e7ee60754662a905d1"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/examples/oracles.json",
+      "sha256": "3ac921f19a4926b1f4e3240427142aae0f8f1859309c739adbf9404fded3c0b8"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11-example-corrections-01/manifest.json",
+      "sha256": "253bd115cdeed5f6dfb7374d889bc14bed67500c0fac0423b4c49dac5a7c4712"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11-example-corrections-01/quick.en.md",
+      "sha256": "d2d89f7315c7ec0733501e68869bbd78b9839da1ec38fc290d2b5f9d49240130"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11-example-corrections-01/quick.zh-CN.md",
+      "sha256": "f308145dcd1b3d1bd2bf9a85faf5aaddd58ede94c4939707c8aaf8de96d5416b"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11-example-corrections-01/deep.en.md",
+      "sha256": "4cee09359de986303e9b4f9064fb98bb27356bac3103010c9b5ef94f7f2b5401"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11-example-corrections-01/deep.zh-CN.md",
+      "sha256": "53d4bce92eed5cade87c07dd7e81bed5d287bf5dfbfa51de40b542aa4d084f6f"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/examples/fix.en.md",
+      "sha256": "c191f7aa1874f2c857fbd1e07cdaebe45d86be72819c326ff4a86faf0a51ba59"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-11/examples/fix.zh-CN.md",
+      "sha256": "586228fee2275fee381bb074b5d505bb435b8247fe02e7e7ee60754662a905d1"
+    },
+    {
+      "path": "evaluation/prototypes/origin-occurrence/integration-12-finalization-cases.md",
+      "sha256": "f50a13119092da6cec46513f92b8f2c13208572691830d3ba1edfd20aaa17a63"
+    },
+    {
+      "path": "scripts/build-origin-occurrence-finalization.mjs",
+      "sha256": "a2bce30f3a6d8292eea50ae659af9f9a120408de8eb3720f3f869b09b558fd39"
+    },
+    {
+      "path": "scripts/validate-origin-occurrence-empty-sections.mjs",
+      "sha256": "a03b15b6fea00430af900f975c5a71c5fc5db4653b817dcf67a29d1fe823ef2e"
+    },
+    {
+      "path": "tests/origin-occurrence-finalization.test.ts",
+      "sha256": "95e8e76ac362697b88066a4e41a572d3d29a266cc33f90f4c5425e32b59abc7b"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "skill/fe-code-review/SKILL.md",
+      "sha256": "dcb65ecf8b4a8497e874326b4fd75e9ccb9854b66c1c2720643bb200276829fe",
+      "bytes": 36355,
+      "beforeSha256": "3b0c6e0e5ae66a29d0b6fc4ec9212ba4bfd1fd5f89665351821419b86da0c0ea",
+      "byteDelta": 1321
+    },
+    {
+      "path": "skill/fe-code-review/agents/openai.yaml",
+      "sha256": "258d0ebaf510ab7f6ec7370894c12ab46f8efca97875b7289ce85bc141994b8a",
+      "bytes": 222,
+      "beforeSha256": "258d0ebaf510ab7f6ec7370894c12ab46f8efca97875b7289ce85bc141994b8a",
+      "byteDelta": 0
+    },
+    {
+      "path": "skill/fe-code-review/references/deep-review.md",
+      "sha256": "ec4fec02ae4391bbee93067fb2c98b946d40a1a0ea26412369b95df891a942b9",
+      "bytes": 10235,
+      "beforeSha256": "0ca93eb34dfc1291c9c6b6d08dad47be87385ea4e3fc88a230c50eab07752b4f",
+      "byteDelta": 538
+    },
+    {
+      "path": "skill/fe-code-review/references/fix-review.md",
+      "sha256": "84f514ee98edfd0fdce31f0fd9f70e00e0a986d540faf29f44e2c1360f87dbab",
+      "bytes": 6439,
+      "beforeSha256": "84f514ee98edfd0fdce31f0fd9f70e00e0a986d540faf29f44e2c1360f87dbab",
+      "byteDelta": 0
+    },
+    {
+      "path": "skill/fe-code-review/references/hybrid-webview.md",
+      "sha256": "0d9a2091e8e2d6740b43b4a29ab5a61302c70a8c3443fb896300ae8939c7b4c7",
+      "bytes": 1604,
+      "beforeSha256": "0d9a2091e8e2d6740b43b4a29ab5a61302c70a8c3443fb896300ae8939c7b4c7",
+      "byteDelta": 0
+    },
+    {
+      "path": "skill/fe-code-review/references/javascript.md",
+      "sha256": "96796e91da3db65967e5716747fa7bdd26073005701ce3b8a37f9763dd0fb36c",
+      "bytes": 1234,
+      "beforeSha256": "96796e91da3db65967e5716747fa7bdd26073005701ce3b8a37f9763dd0fb36c",
+      "byteDelta": 0
+    },
+    {
+      "path": "skill/fe-code-review/references/quick-review.md",
+      "sha256": "c1bf40a956c05ea7e225c54207f156fcbf4a5b5ffd81320cc08bd52aebb6147e",
+      "bytes": 8252,
+      "beforeSha256": "c1bf40a956c05ea7e225c54207f156fcbf4a5b5ffd81320cc08bd52aebb6147e",
+      "byteDelta": 0
+    },
+    {
+      "path": "skill/fe-code-review/references/react.md",
+      "sha256": "6240f94d7cedbd6015c8217b1072b4aef140ee109850e5f6609ade51ef7865e8",
+      "bytes": 1692,
+      "beforeSha256": "6240f94d7cedbd6015c8217b1072b4aef140ee109850e5f6609ade51ef7865e8",
+      "byteDelta": 0
+    },
+    {
+      "path": "skill/fe-code-review/references/release-risk.md",
+      "sha256": "a1a72efe1ba789242e1c941b0b3f31cd073a9b4ef9015ad35e3e85fe7f868a54",
+      "bytes": 2096,
+      "beforeSha256": "a1a72efe1ba789242e1c941b0b3f31cd073a9b4ef9015ad35e3e85fe7f868a54",
+      "byteDelta": 0
+    },
+    {
+      "path": "skill/fe-code-review/references/typescript.md",
+      "sha256": "e2fe25dea472e696e8e3f4a61b934e4fb2675b2cbce0594878f7e8e3d29ee505",
+      "bytes": 1367,
+      "beforeSha256": "e2fe25dea472e696e8e3f4a61b934e4fb2675b2cbce0594878f7e8e3d29ee505",
+      "byteDelta": 0
+    },
+    {
+      "path": "skill/fe-code-review/references/vue.md",
+      "sha256": "d9c49701d48639e3e29ba128288337e82ba7c568d20dfb886a05783e4a500bf7",
+      "bytes": 1387,
+      "beforeSha256": "d9c49701d48639e3e29ba128288337e82ba7c568d20dfb886a05783e4a500bf7",
+      "byteDelta": 0
+    },
+    {
+      "path": "skill/fe-code-review/scripts/collect-review-context.mjs",
+      "sha256": "969d3903b7aefc8beb5a75005a0f0e4bc33f90b5b22ad787751d2397566923ef",
+      "bytes": 2877,
+      "beforeSha256": "969d3903b7aefc8beb5a75005a0f0e4bc33f90b5b22ad787751d2397566923ef",
+      "byteDelta": 0
+    }
+  ],
+  "changes": [
+    "Strict standalone empty-severity markers",
+    "Supported affected combinations and caller outcomes",
+    "One explicit repair/verification prerequisite set in conclusion and ending"
+  ],
+  "limitations": [
+    "Offline checks and authored examples are not model behavior evidence.",
+    "The integration-11 O-05 report remains No-Go for two independent semantic failures.",
+    "Public-profile promotion must consolidate candidate implementations; historical entries stay frozen.",
+    "Stable/installed Skill, public CLI, package version, original reports and oracles are unchanged."
+  ]
+}

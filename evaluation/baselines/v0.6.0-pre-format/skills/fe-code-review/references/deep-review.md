@@ -1,0 +1,168 @@
+# Deep Review
+
+Load this file for large features, risky refactors, release review, cross-module changes, dependency upgrades, or business-critical flows.
+
+Review requirement alignment, change map, before/after behavior, functional correctness, regression risk, framework lifecycle, runtime contracts, API/storage/cache compatibility, performance, browser/WebView compatibility, architecture, naming, file placement, tests, observability, rollout, and rollback.
+
+For `Design / Simplify`, assess the requirements, baseline behavior, affected callers and consumers, existing repository capabilities, abstraction ownership, and runtime contracts. Distinguish semantic duplication from merely similar syntax. Verify whether cases, fallbacks, states, flags, parameters, and extension points have real producers, consumers, recovery needs, or compatibility requirements.
+
+When a simpler viable alternative exists, compare it with the current design and state the correctness, stability, coupling, and maintenance tradeoff. Use `Keep`, `Simplify`, `Extract`, `Redesign`, or `Cannot Verify`; do not manufacture an issue when the current implementation is already the minimal sufficient design.
+
+Apply the `Minimal Sufficient Design` decision test in `SKILL.md` to the proposed repair, not to the apparent breadth of the defects. When the repair keeps the existing modules and authoritative owner and only consolidates behavior inside that owner, classify it as `Simplify`, not `Redesign`.
+
+Every `Simplify`, `Extract`, or `Redesign` decision must cite an actionable issue reported once under its applicable severity section. Do not repeat the full finding in `Design / Simplify`.
+
+When the conditional browser evidence gate in `SKILL.md` is satisfied and browser-observable behavior is material to the review, verify the primary user path and at most one additional high-risk path supported by code, diff, requirement, incident, or test evidence. Do not invent an edge case merely to fill the second path. Record any required WebView, Native, device, backend, deployment, or production validation separately as unverified.
+
+In Deep Review, `Cannot Verify` describes evidence status, not finding severity. Missing runtime or external evidence alone is not a finding. When local static evidence supports a finding, keep its demonstrated Blocking, Risk, or Improve severity and mark only the unverified evidence portion `Cannot Verify`. This does not change the `Design / Simplify` decision vocabulary.
+
+Apply the `Finding Requirements` finalization sequence before rendering. Keep discovery keys and acceptance sentences internal; expose the ledger only after final IDs are backfilled. Render every independently assessable changed condition, return-value contract, or observable behavior as exactly `- [file:line] <condition>: <before> -> <after>; Disposition: <one final disposition>` on one physical line. The initial location may also be a matching local Markdown link under the Coverage location rules in `SKILL.md`; the rest of the grammar is unchanged. Use exactly one `[F-NNN]`, `Behavior Preserving`, or `Cannot Verify`; repeated Finding IDs also require the same non-empty `Merge key` on every occurrence. Never emit a colon-only status, omit either side of the arrow, put disposition on another line, use nested bullets, or summarize independent changes. Before responding, inspect each physical Coverage line and rewrite any line that fails this grammar. Complete the repeated-ID ledger check in `SKILL.md` before responding. Use the shared supported-combination check to put explicit before/after outcomes, including preserved outcomes and caller propagation, in Change Map or Coverage. Reference them across sections rather than repeating the same analysis; planned tests do not establish those comparisons.
+
+Apply the recommendation matrix in `SKILL.md` after classifying findings. Use `修改后可以进入下一步` when bounded fixes within the current design address all findings; reserve `暂不建议进入下一步` for an unsafe approach, insufficient bounded fixes, or unavailable critical evidence. An Improve-only review uses `可以进入下一步` and describes improvements as optional and non-blocking. If a Risk is accepted rather than made a gate, state the residual risk and why proceeding is justified.
+
+Use every top-level section exactly once. In `Design / Simplify`, use `Keep` when inspected evidence supports the current implementation and no design issue is found; use `Cannot Verify` when evidence is insufficient. In other sections, write `无明确问题。` or `No clear issue.` when no clear issue exists. Do not omit the change map, requirement gaps, design, naming, file placement, release risk, evidence, or final recommendation.
+
+## Chinese Output Template
+
+```md
+## 总体结论
+
+合并 / 提交建议：可以进入下一步 / 修改后可以进入下一步 / 暂不建议进入下一步
+风险等级：低 / 中 / 高
+进入下一步的前置条件：<同一组必要修复与验证条件；没有则写无；最终建议须逐项一致>
+
+主要原因：
+
+1. ...
+2. ...
+3. ...
+
+## 变更理解
+
+- 请求范围：
+- 涉及模块：
+- 变更类型：
+- 影响范围：
+- 用户路径：
+- 已修改：
+- 已暂存：
+- 未暂存：
+- 未跟踪：
+- 已执行验证：
+- 跳过的验证：
+
+## Change Map：变更地图
+
+- 比较基线：
+- 修改前行为：
+- 修改后行为：
+- 保持不变的约束：
+- 缺失 / 移除行为：
+- 入口与核心调用链：
+- 共享模块影响：
+- 配置 / 依赖影响：
+
+## Changed-Condition Coverage：变更条件覆盖
+
+- [file:line] 条件：修改前 -> 修改后；结论：[F-001] / Behavior Preserving：行为保持 / Cannot Verify：无法验证；合并依据：<仅重复 ID 时填写同一简短键>
+
+位置可使用与源文件及行号一致的 Markdown 链接；适用条件见 `SKILL.md`。
+
+合法示例：`- [src/session.ts:9] token source: getSession() -> cachedToken; Disposition: [F-001]`
+合法示例（无法确认）：`- [src/runtime.ts:8] deployed owner: frozen source -> unavailable; Disposition: Cannot Verify`
+非法示例：`- [src/session.ts:9] token source: cachedToken; Disposition: Behavior Preserving`（缺少 `before -> after`）
+非法示例：`- [src/session.ts:9] token source: getSession() -> cachedToken; Disposition: [F-001]; Merge key: stale-session-owner`（单次 ID 不填写 `Merge key`）
+
+## Findings：问题列表
+
+### Blocking：必须修改
+
+- [F-001] [file:line] 问题标题
+  - 问题来源 / Origin：New / Amplified / Retained / Unknown - <相对声明基线的证据>
+  - 复现观测 / Reproduction：Observed / Not Run / Cannot Verify / Not Applicable - <观测证据与限制>
+  - 触发场景：
+  - 影响：
+  - 阻断结果：<Severity Rules 中的稳定英文结果名> - <证据>
+  - 根因：
+  - 建议方案：
+  - 验证方式：
+
+### Risk：建议修改
+
+- [F-001] [file:line] 问题标题
+  - 问题来源 / Origin：New / Amplified / Retained / Unknown - <相对声明基线的证据>
+  - 复现观测 / Reproduction：Observed / Not Run / Cannot Verify / Not Applicable - <观测证据与限制>
+  - 触发场景：
+  - 影响：
+  - 根因：
+  - 建议方案：
+  - 验证方式：
+
+### Improve：可优化
+
+- [F-001] [file:line] 问题标题
+  - 问题来源 / Origin：New / Amplified / Retained / Unknown - <相对声明基线的证据>
+  - 复现观测 / Reproduction：Observed / Not Run / Cannot Verify / Not Applicable - <观测证据与限制>
+  - 触发场景：
+  - 影响：
+  - 根因：
+  - 建议方案：
+
+## Requirement Gaps：需求缺口
+
+- ...
+
+## Design / Simplify：设计与简化
+
+- 结论：Keep / Simplify / Extract / Redesign / Cannot Verify
+- 关联问题：[F-001] Blocking / Risk / Improve [file:line] / 无
+- 当前需求与必须保持的行为：
+- 已有能力复用：
+- 过度设计 / 冗余流程：
+- 语义重复与漂移风险：
+- 不必要的 case / fallback / state / parameter：
+- 更简单可行方案：
+- 稳定性与维护性取舍：
+- 证据与未验证假设：
+
+## Naming / Readability：命名与可读性
+
+- ...
+
+## File Placement / Module Boundary：文件存放与模块边界
+
+- ...
+
+## Test Gaps：测试缺口
+
+- 单测：
+- 集成测试：
+- 手测路径：
+- 日志 / 埋点：
+
+## Release Risks：上线风险
+
+- 灰度：
+- 回滚：
+- 兼容性：
+- 监控：
+
+## Evidence：证据
+
+- 本地代码：
+- 调用链：
+- package/version：
+- 官方文档核验：
+- 浏览器运行证据：
+- 未验证：
+
+## 最终建议
+
+复述同一下一步建议及其前置条件，不得在此新增更严格的门槛；仅有 Improve 时明确说明优化不影响进入下一步。
+```
+
+## English Output Template
+
+Mirror the Chinese structure with these headings: `Overall Conclusion`, `Change Understanding`, `Change Map`, `Changed-Condition Coverage`, `Findings`, `Requirement Gaps`, `Design / Simplify`, `Naming / Readability`, `File Placement / Module Boundary`, `Test Gaps`, `Release Risks`, `Evidence`, and `Final Recommendation`. Prefix every finding with its chain-local `F-NNN` ID. `Change Understanding` must include the requested scope, modified, staged, unstaged, and untracked files, and executed and skipped validation. The change map must include the baseline, before behavior, after behavior, preserved invariants, and missing or removed behavior. State the same explicit next-step prerequisites in Overall Conclusion and Final Recommendation; use none when no prerequisite exists. Begin each Blocking outcome with its stable English name. `Design / Simplify` must include a minimal-sufficient-design decision, existing capability reuse, semantic duplication, unjustified complexity, a simpler viable alternative when one exists, tradeoffs, evidence, and unverified assumptions. Under `Evidence`, distinguish permitted official documentation verification, browser runtime evidence, and unverified areas.
+
+Apply the shared `Origin And Reproduction` rules in `SKILL.md` to every finding, including Improve and Fix New Regression entries. In English use nested `Origin` and `Reproduction` fields with the same states and evidence. Do not add these fields to empty finding sections or Coverage entries.

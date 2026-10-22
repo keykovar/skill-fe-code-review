@@ -1,0 +1,62 @@
+{
+  "kind": "public-synthetic-evaluator-only",
+  "context": {
+    "scopeKey": "fixture-01:all-uncommitted",
+    "baseline": "fixture-head-01",
+    "enumerationComplete": true
+  },
+  "status": "MM src/session.ts\u0000 M src/generated-api.ts\u0000?? assets/status.png\u0000",
+  "positive": {
+    "mode": "quick",
+    "scopeKey": "fixture-01:all-uncommitted",
+    "baseline": "fixture-head-01",
+    "summary": {
+      "inventory": "Complete",
+      "knownFiles": 3,
+      "totalFiles": 3,
+      "counts": { "Reviewed": 0, "Partial": 1, "Deferred": 1, "Cannot Verify": 1 },
+      "fullyReviewed": false
+    },
+    "entries": [
+      {
+        "path": "src/session.ts",
+        "state": "Partial",
+        "reviewedLayers": ["staged"],
+        "evidence": "Index owner change examined against the declared baseline.",
+        "remaining": "Unstaged fallback and its direct consumer remain unreviewed."
+      },
+      {
+        "path": "src/generated-api.ts",
+        "state": "Deferred",
+        "reviewedLayers": [],
+        "remaining": "Generated API producer and compatibility impact remain unreviewed."
+      },
+      {
+        "path": "assets/status.png",
+        "state": "Cannot Verify",
+        "reviewedLayers": [],
+        "remaining": "Required visual comparison of the binary is unavailable."
+      }
+    ]
+  },
+  "negative": {
+    "mode": "quick",
+    "scopeKey": "fixture-01:all-uncommitted",
+    "baseline": "fixture-head-01",
+    "summary": {
+      "inventory": "Complete",
+      "knownFiles": 1,
+      "totalFiles": 1,
+      "counts": { "Reviewed": 1, "Partial": 0, "Deferred": 0, "Cannot Verify": 0 },
+      "fullyReviewed": true
+    },
+    "entries": [
+      {
+        "path": "src/session.ts",
+        "state": "Reviewed",
+        "reviewedLayers": ["staged", "unstaged"],
+        "evidence": "Claimed review of the session file only."
+      }
+    ]
+  }
+}

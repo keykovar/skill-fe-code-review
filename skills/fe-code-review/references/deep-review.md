@@ -22,6 +22,15 @@ Apply the recommendation matrix in `SKILL.md` after classifying findings. Use `�
 
 Use every top-level section exactly once. In `Design / Simplify`, use `Keep` when inspected evidence supports the current implementation and no design issue is found; use `Cannot Verify` when evidence is insufficient. In other sections, write `无明确问题。` or `No clear issue.` when no clear issue exists. Do not omit the change map, requirement gaps, design, naming, file placement, release risk, evidence, or final recommendation.
 
+以下为格式说明，不属于报告正文。覆盖章节只能包含条目及空行；变量定义、引言和静态证据说明放入既有 Evidence 章节。Disposition 只选一个最终值；重复 ID 的每次出现都按核心规则追加同一个 Merge key，单次 ID 不追加。
+
+位置可使用与源文件及行号一致的 Markdown 链接；适用条件见 `SKILL.md`。
+
+合法示例：`- [src/session.ts:9] token source: getSession() -> cachedToken; Disposition: [F-001]`
+合法示例（无法确认）：`- [src/runtime.ts:8] deployed owner: frozen source -> unavailable; Disposition: Cannot Verify`
+非法示例：`- [src/session.ts:9] token source: cachedToken; Disposition: Behavior Preserving`（缺少 `before -> after`）
+非法示例：`- [src/session.ts:9] token source: getSession() -> cachedToken; Disposition: [F-001]; Merge key: stale-session-owner`（单次 ID 不填写 `Merge key`）
+
 ## Chinese Output Template
 
 ```md
@@ -64,14 +73,7 @@ Use every top-level section exactly once. In `Design / Simplify`, use `Keep` whe
 
 ## Changed-Condition Coverage：变更条件覆盖
 
-- [file:line] 条件：修改前 -> 修改后；结论：[F-001] / Behavior Preserving：行为保持 / Cannot Verify：无法验证；合并依据：<仅重复 ID 时填写同一简短键>
-
-位置可使用与源文件及行号一致的 Markdown 链接；适用条件见 `SKILL.md`。
-
-合法示例：`- [src/session.ts:9] token source: getSession() -> cachedToken; Disposition: [F-001]`
-合法示例（无法确认）：`- [src/runtime.ts:8] deployed owner: frozen source -> unavailable; Disposition: Cannot Verify`
-非法示例：`- [src/session.ts:9] token source: cachedToken; Disposition: Behavior Preserving`（缺少 `before -> after`）
-非法示例：`- [src/session.ts:9] token source: getSession() -> cachedToken; Disposition: [F-001]; Merge key: stale-session-owner`（单次 ID 不填写 `Merge key`）
+- [file:line] 条件: 修改前 -> 修改后; Disposition: <单个最终 Finding ID 或 Behavior Preserving 或 Cannot Verify>
 
 ## Findings：问题列表
 

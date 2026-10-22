@@ -392,8 +392,8 @@ describe('skill content', () => {
       expect(mode).toContain('- 关联问题：[F-001] Blocking / Risk / Improve [file:line] / 无');
       expect(mode).toContain('chain-local `F-NNN` ID');
       expect(mode).toContain('## Changed-Condition Coverage：变更条件覆盖');
-      expect(mode).toContain('Behavior Preserving：行为保持');
-      expect(mode).toContain('Cannot Verify：无法验证');
+      expect(mode).toContain('`Behavior Preserving`');
+      expect(mode).toContain('`Cannot Verify`');
       expect(mode).toContain('- 阻断结果：');
       expect(mode).toContain('return-value contract, or observable behavior');
       expect(mode).toContain('Never emit a colon-only status');

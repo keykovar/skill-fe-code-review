@@ -1,0 +1,73 @@
+{
+  "kind": "evaluator-only-public-synthetic-oracle",
+  "caseId": "LF-D-002",
+  "neverDeliverToReviewer": true,
+  "candidateManifestSha256": "61460297bc2bb429e046ae8bcfe0dc5b762a8171d80a4e5c3dcaa31a2c6e4298",
+  "expectedFindings": [
+    {
+      "key": "timeout-parameter-discarded",
+      "id": "F-001",
+      "path": "src/options.mjs",
+      "line": 2,
+      "severity": "Risk",
+      "origin": "New",
+      "reproduction": "Not Run",
+      "acceptance": "requestOptions must propagate its explicit timeoutMs argument to the sole returned timeoutMs field.",
+      "requiredOutcomes": ["profile: 1500 -> 30000", "activity: 8000 -> 30000"],
+      "preservedOutcome": "explicit 30000 -> 30000",
+      "minimumRepair": "Restore the existing return field to the timeoutMs parameter; no additional state or per-caller override.",
+      "repeatedIdRule": "The two supplied consumer outcomes trace to the same discarded parameter and the same returned property. A single parameter-restoration repair fixes both; use the same nonempty Merge key for repeated F-001 entries. Any arbitrary nonempty key is allowed when its meaning is sound.",
+      "forbiddenMerge": "Do not merge with page-size-parameter-discarded."
+    },
+    {
+      "key": "page-size-parameter-discarded",
+      "id": "F-002",
+      "path": "src/options.mjs",
+      "line": 6,
+      "severity": "Risk",
+      "origin": "New",
+      "reproduction": "Not Run",
+      "acceptance": "pageOptions must propagate its explicit pageSize argument to the returned limit field.",
+      "requiredOutcomes": ["inbox: 20 -> 50"],
+      "preservedOutcome": "explicit 50 -> 50",
+      "minimumRepair": "Restore limit: pageSize in the existing helper.",
+      "forbiddenMerge": "The timeout-only repair leaves limit at 50; the limit-only repair leaves both timeout consumers at 30000."
+    }
+  ],
+  "expectedIndependentFindingCount": 2,
+  "unsupportedFindings": 0,
+  "blockingPolicy": "Risk only: local argument/consumer mismatch is proven; no canonical Blocking outcome, real timeout, backend result or page failure is delivered.",
+  "design": "Simplify: restore parameter propagation in existing helpers; no new abstraction, module or fallback is needed.",
+  "recommendation": "修改后可以进入下一步",
+  "requiredPrerequisites": [
+    "Restore timeout parameter propagation for profile and activity.",
+    "Restore inbox page-size propagation.",
+    "Verify supported values and direct-consumer outputs for both repaired contracts."
+  ],
+  "coverage": {
+    "beforeAfterRequired": true,
+    "strictListOnly": true,
+    "explanationsInEvidence": true,
+    "fixedRowCount": null,
+    "grouping": "Do not demand a fixed row count. Group supported inputs only when each before/after outcome and consumer propagation stays explicit. A grouped single F-001 row is not a semantic failure, but does not exercise the repeated-ID runtime subgate; record that subgate as Not Exercised rather than invent another defect or force a retry."
+  },
+  "manualGates": [
+    "Two independent root causes, no unsupported finding and no incorrect severity.",
+    "Both changed return contracts and all three direct consumers compared before and after.",
+    "Allowed unchanged input outcomes retained; no unsupported input cross-product.",
+    "Repeated IDs have one supported atomic repair and matching nonempty keys; independent repairs stay separate.",
+    "Origin uses declared before/after snapshots; all findings retain Not Run with no fabricated probability.",
+    "Design reuses existing helpers and scope stays within the public packet.",
+    "Conclusion and final prerequisites agree semantically; optional checks do not become new gates.",
+    "Actual delivery and raw report remain untouched; structure does not prove semantic acceptance."
+  ],
+  "runtime": {
+    "authorized": false,
+    "status": "Not Run",
+    "maxAttempts": 1,
+    "elapsedCeilingMs": 900000,
+    "automaticCancellation": false,
+    "costAcceptance": "Not Evaluated; no paired control is planned by this fixture.",
+    "promotion": "Not authorized."
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "window": "file-coverage-comparison-01",
+  "preparedDate": "2026-10-12",
+  "status": "Offline preparation only; execution not authorized",
+  "stableVersion": "v0.6.0",
+  "candidateManifestSha256": "e110031cb99085bd250a8d6a0f369c8f66047442f123f5321b63d40f626d94af",
+  "clientProposal": {"client": "Codex Desktop", "model": "gpt-6-astra", "reasoningEffort": "xhigh", "provider": "Current user-configured provider; recheck actual route before dispatch without exposing credentials", "freshIndependentSessionPerRun": true},
+  "scope": "Explicit-path Skill invocation over immutable public synthetic source packets. No Git collector execution, automatic-discovery or live-repository completeness claim.",
+  "executionAuthorized": false,
+  "runtimeReady": false,
+  "maxSourceBearingRuns": 6,
+  "maxAttemptsPerRun": 1,
+  "runs": [
+    {"id": "01-quick-stable", "caseId": "FC-Q-001", "mode": "quick", "variant": "stable", "stage": 1},
+    {"id": "02-quick-candidate", "caseId": "FC-Q-001", "mode": "quick", "variant": "candidate", "stage": 1},
+    {"id": "03-deep-candidate", "caseId": "FC-D-001", "mode": "deep", "variant": "candidate", "stage": 2},
+    {"id": "04-deep-stable", "caseId": "FC-D-001", "mode": "deep", "variant": "stable", "stage": 2},
+    {"id": "05-fix-stable", "caseId": "FC-F-001", "mode": "fix", "variant": "stable", "stage": 3},
+    {"id": "06-fix-candidate", "caseId": "FC-F-001", "mode": "fix", "variant": "candidate", "stage": 3}
+  ],
+  "readPolicy": "Deliver only each run's manifest-listed files plus its bootstrap. Load core and exactly one mode reference, JavaScript, and release-risk for Deep. No oracle/plan/history/other-run files. Read-only file tools or bounded cat/sed reads only; no source execution, shell evaluation, Git, collector, browser, network, credentials or repository-wide search. No writes.",
+  "stopPolicy": "Assess each unedited result before the next run. A quality failure stops later stages; finish a pair only when its first run remains valid. Tool-boundary breach, source drift, unavailable complete delivery, or model/provider mismatch stops immediately. Retain failures; no automatic retry, replacement, follow-up or report correction. Investigate offline before a new separately frozen window.",
+  "qualityGates": [
+    "All oracle-required findings/closures/evidence gaps covered; zero unsupported findings, incorrect severity or invented observations.",
+    "Chinese mode sections, Origin/Reproduction, Finding IDs and changed-condition rules pass the unchanged v0.6.0 profile.",
+    "Candidate Quick/Deep compact file grammar passes against independently adjudicated accounting; correct denominator, layers, gaps and scope.",
+    "Both Fix reports preserve issue identity, counts, focused scope and no file/condition ledger.",
+    "Conclusion and final recommendation use the same evidence-backed decision and prerequisites; no critical-gap unconditional approval.",
+    "Complete material delivery, unchanged before/after pins and zero outside-scope/tool/write violations. Read traces alone do not prove semantic coverage."
+  ],
+  "costBudget": {
+    "purpose": "Conservative pilot gates, not a claim of statistical improvement or an accepted price increase.",
+    "hardElapsedSecondsPerRun": {"quick": 600, "deep": 900, "fix": 600},
+    "maxCandidateToStableRatioPerPair": {"totalReportedInputPlusOutputTokens": 1, "elapsedMilliseconds": 1, "toolCalls": 1},
+    "maxCandidateToStableRatioAllPairs": {"totalReportedInputPlusOutputTokens": 1, "elapsedMilliseconds": 1},
+    "duplicateSourceReadsWithoutNewQuestion": 0,
+    "fileCoverageOutputBudget": "One summary line plus one line per incomplete file, plus one inventory-gap line only if enumeration is incomplete. Fix adds zero lines.",
+    "telemetry": "Record input/output/reasoning/cached tokens as separately reported, total elapsed time, tool/read calls, duplicate reads, report UTF-8 bytes, delivered bytes and unavoidable instruction delta. Do not double-count reasoning included in output or substitute byte estimates for tokens. Use identical provider/model/settings and cache accounting for a pair.",
+    "missingOrIncomparableTelemetry": "Unknown; hold cost acceptance and promotion, do not rerun solely to select a lower cost. Byte/read counts cannot prove token or monetary savings.",
+    "monetaryClaims": "None unless provider prices and cache billing are known and comparable; token ceilings are a pilot proxy, not monetary cost proof.",
+    "failure": "Hold the next stage and promotion. Record the exceeded gate and inspect offline; do not relax thresholds after seeing the results."
+  }
+}

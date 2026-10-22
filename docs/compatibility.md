@@ -5,6 +5,20 @@ Published stable release: **v0.6.0**, released on 2026-10-09. Installation comma
 Stable evidence verified: 2026-10-09
 Stable evidence baseline: [`v0.6.0`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.6.0)
 
+## Candidate v0.6.1 Evidence
+
+Candidate metadata: **0.6.1, unpublished**; planned release date **2026-10-22**. The v0.6.1 installation commands and tag comparison links are prepared but pending publication; currently available stable installation stays at v0.6.0. Only the core and Quick/Deep references clarify the existing Coverage format. The other nine installed files are unchanged. Candidate `skills/fe-code-review/SKILL.md` SHA-256: `a6a48d9cc162611e7969279f638733749facddb09766de41c40dc6abd741ccf7`.
+
+| Client | Candidate evidence | Status |
+| --- | --- | --- |
+| Codex Desktop | Exact-candidate public synthetic [Quick](evaluation-results/ledger-format-quick-runtime.md), [missing-target Deep](evaluation-results/ledger-format-deep-read-call-runtime.md), [nonempty-findings Deep](evaluation-results/ledger-format-deep-findings-runtime.md) and [O-09 Fix](evaluation-results/v0.6.1-codex-fix-runtime.md) pass their recorded delivery, output and semantic gates using `gpt-6-astra / xhigh`. | Packet review verified |
+| Cursor | Shared Skill/adapter structure is checked locally; no v0.6.1 client runtime run. | Cannot Verify |
+| Claude Code | Shared Skill/adapter structure is checked locally; no v0.6.1 client runtime run. | Cannot Verify |
+
+Quick and missing-target Deep retain their original `0.162.0-alpha.17.2` sessions; nonempty-findings Deep and the new Fix run use `0.163.0-alpha.10.2`. The earlier Quick/Deep results are reused by exact candidate-byte identity, not counted as fresh runs. All four cases are Chinese explicit-packet reviews: they do not establish installed-path loading, automatic discovery, English output, all-client acceptance, general accuracy, production behavior or cost improvement. Client metadata does not attest an upstream model's identity.
+
+The original metadata checks reused dependencies. A subsequent [independent Node installation](v0.6.1-release-preparation.md#independent-dependency-installation-and-delivery-review) passes in a fresh local candidate copy with 45 downloaded/zero reused packages, 1,699 tests and both Skill shape validators. The earlier incomplete installation is retained; Python/PyYAML were reused. This is not a public-tag download or new client runtime evidence. See [candidate preparation](v0.6.1-release-preparation.md) for the delivery manifest and remaining gates. File Coverage remains experimental outside the installed Skill; the separate harness retains `runtimeReady=false`.
+
 ## Stable v0.6.0 Evidence
 
 The published Skill uses the accepted integration-12 bytes. The three selected public synthetic Desktop mode trials establish bounded candidate behavior. On 2026-10-09, final-package explicit-path O-09 Fix smokes pass independently on [Codex Desktop](evaluation-results/v0.6.0-codex-final-package-smoke.md) (`0.162.0-alpha.2`, `gpt-6-astra / xhigh`, 18 reads) and [Cursor CLI](evaluation-results/v0.6.0-cursor-final-package-smoke.md) (`2026.08.11-e8db854`, Auto / Plan, 19 native ranges). Each passes material integrity, report structure/fields and ten semantic gates. This supports those exact Fix cases, not automatic discovery, all-mode client acceptance or general review accuracy. Claude Code remains Not Verified; no older version's result is promoted. `runtimeReady=false`.
@@ -17,6 +31,7 @@ v0.6.0 `skills/fe-code-review/SKILL.md` SHA-256: `dcb65ecf8b4a8497e874326b4fd75e
 ## Evidence Levels
 
 - `Runtime verified`: the client loaded the installed skill and completed a review against an inspected diff.
+- `Packet review verified`: the client reviewed explicitly delivered Skill instructions and source materials, with the recorded output and trace accepted. This does not establish installed-path loading or automatic discovery.
 - `Structural verified`: install paths, required files, frontmatter, and adapter contracts passed deterministic validation.
 - `Cannot Verify`: required runtime evidence was unavailable or non-equivalent. This is an evidence state, not a severity, and is not equivalent to a pass or a failure.
 
@@ -132,7 +147,7 @@ The shared core contract defines the following fallback for Codex, Claude Code, 
 
 ## Known Limitations
 
-Current v0.6.0 limits are stated in [Stable v0.6.0 Evidence](#stable-v060-evidence). The version-specific items below retain their historical release boundaries; they do not redefine the current release's client status.
+Candidate v0.6.1 limits are stated in [Candidate v0.6.1 Evidence](#candidate-v061-evidence); published v0.6.0 limits remain in [Stable v0.6.0 Evidence](#stable-v060-evidence). The version-specific items below retain their historical release boundaries; they do not redefine either version's client status.
 
 - Codex and Claude Code v0.5.0 runtime behavior remains `Cannot Verify`; that release's runtime acceptance is verified only for Cursor.
 - The v0.5.0 runtime acceptance chain uses public synthetic fixtures. Post-release checks were deterministic only. Neither establishes general model precision or verifies private repositories, browser/WebView behavior, backend behavior, deployment, monitoring, or production systems.

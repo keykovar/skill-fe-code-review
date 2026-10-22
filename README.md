@@ -8,6 +8,8 @@ English | [简体中文](README.zh-CN.md)
 
 Reusable frontend and hybrid app code review skill for Codex, Claude Code, and Cursor.
 
+Current checkout: **v0.6.1 candidate, unpublished**. The planned release date is **2026-10-22**; publication is pending. The candidate clarifies the existing Quick/Deep Coverage format. The published stable release remains **v0.6.0**; its available installation command and the prepared v0.6.1 command are separated below. See the [candidate release notes](docs/v0.6.1-release-notes.md) for changes and verification limits.
+
 The complete workflow lives in one open-standard skill:
 
 ```text
@@ -37,6 +39,19 @@ docs/                        Compatibility, evaluation, versioning, and roadmap
 examples/                    Prompt and output examples
 tests/                       Vitest structure and contract checks
 ```
+
+## Install v0.6.1 (Publication Pending)
+
+Publication status: **pending**. Planned release date: **2026-10-22**. The following command is prepared for the immutable `v0.6.1` tag and becomes usable only after its publication. For installation now, use the [published v0.6.0 instructions](#install-v060). If publication occurs on another day, the release date must be reconciled before tagging.
+
+```bash
+# Run only after v0.6.1 is published.
+git clone --depth 1 --branch v0.6.1 \
+  https://github.com/keykovar/skill-fe-code-review.git
+cd skill-fe-code-review
+```
+
+After checking out either version, use the client-specific copy steps below. The [v0.6.1 release notes](docs/v0.6.1-release-notes.md) describe the format fix and bounded verification evidence; these instructions do not establish a fresh-tag installation pass.
 
 ## Install v0.6.0
 
@@ -114,6 +129,10 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 ```
 
 ## Compatibility
+
+### Candidate v0.6.1
+
+Codex Desktop has `Packet review verified` evidence for one Quick, two distinct Deep cases and one current-candidate Fix case using the exact candidate instructions and public synthetic materials. This does not verify installed-path loading or automatic discovery. Cursor and Claude Code remain `Cannot Verify` for this candidate; their earlier results retain their original versions. See [candidate compatibility](docs/compatibility.md#candidate-v061-evidence) for reports and limits.
 
 ### Stable v0.6.0
 

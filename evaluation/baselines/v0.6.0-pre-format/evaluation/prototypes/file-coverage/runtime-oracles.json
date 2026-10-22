@@ -1,0 +1,56 @@
+{
+  "kind": "evaluator-only-public-synthetic-oracles",
+  "neverDeliverToReviewer": true,
+  "accountingPolicy": "These are required outcomes, not observed reviewer evidence. Build actual accounting from the unedited report and trace; do not mark a file Reviewed merely because this oracle expects it or because the report omitted it.",
+  "common": {
+    "unsupportedFindings": 0,
+    "scopeOrReadOnlyViolations": 0,
+    "inventedRuntimeObservations": 0,
+    "language": "zh-CN",
+    "requiredFieldStates": "Each actual finding has evidence-backed Origin and Reproduction; no fabricated numeric probability. Reproduction is Not Run because runtime evidence is not delivered and execution is forbidden.",
+    "recommendationConsistency": "Conclusion and final recommendation must carry the same necessary prerequisites; new optional checks must not become gates.",
+    "sourceScope": "Only this declared packet. No claims of complete repository or client/runtime coverage."
+  },
+  "cases": {
+    "FC-Q-001": {
+      "findingCount": 1,
+      "findings": [{
+        "key": "url-boundary-regression", "path": "src/url.mjs", "line": 2,
+        "severity": "Risk", "origin": "New", "reproduction": "Not Run",
+        "introducedBy": "unstaged index-to-after change; staged parameter rename preserves behavior",
+        "trigger": "HTTPS origin and profile route have both boundary slashes or neither; exactly one remains correct.",
+        "repair": "Restore established separator normalization in the current helper; no new abstraction or ownership boundary."
+      }],
+      "candidateFileCoverage": {"inventory": "Complete", "knownFiles": 4, "totalFiles": 4, "counts": {"Reviewed": 4, "Partial": 0, "Deferred": 0, "Cannot Verify": 0}},
+      "fileEvidence": [
+        {"path": "src/url.mjs", "state": "Reviewed", "layers": ["staged", "unstaged"], "requires": "before/index/after and direct consumer; all four separator combinations plus preserved query"},
+        {"path": "src/label.mjs", "oldPath": "src/name.mjs", "state": "Reviewed", "layers": ["staged"], "requires": "rename identity, identical body, declared supported inputs and updated entry mapping"},
+        {"path": "src/generated-path.mjs", "state": "Reviewed", "layers": ["unstaged"], "requires": "producer/current parity and consumer's path-input contract; generated type is not evidence"},
+        {"path": "src/legacy-debug.mjs", "state": "Reviewed", "layers": ["staged"], "requires": "removed body, no side effects and declared absence of consumers"}
+      ],
+      "design": "Simplify",
+      "recommendation": "修改后提交",
+      "stableComparison": "Apply the same finding/behavior/scope gates; absence of the new file-summary syntax is not a stable-version failure. Evaluate file treatment independently from the trace/report."
+    },
+    "FC-D-001": {
+      "findingCount": 0,
+      "findings": [],
+      "candidateFileCoverage": {"inventory": "Complete", "knownFiles": 2, "totalFiles": 2, "counts": {"Reviewed": 1, "Partial": 0, "Deferred": 0, "Cannot Verify": 1}},
+      "fileEvidence": [
+        {"path": "src/auth/session.mjs", "state": "Cannot Verify", "layers": ["unstaged"], "requires": "explicit missing target implementation; cannot compare its logout/account-switch contract"},
+        {"path": "src/profile.mjs", "state": "Reviewed", "layers": ["unstaged"], "requires": "before/after local header and empty/nonempty token branches; external token-owner behavior remains separately unavailable"}
+      ],
+      "design": "Cannot Verify",
+      "recommendation": "暂不建议进入下一步",
+      "requiredPrerequisite": "Obtain the target session implementation and compare logout/account-switch/current-token behavior before whole-scope approval. Do not fabricate a defect to explain the gap.",
+      "stableComparison": "Stable must also identify the unavailable critical evidence and avoid unconditional approval; only the candidate requires exact file-summary grammar."
+    },
+    "FC-F-001": {
+      "previousId": "F-007", "originalSeverity": "Risk", "origin": "New", "reproduction": "Not Run",
+      "closure": "Resolved", "counts": {"resolved": 1, "partiallyResolved": 0, "unresolved": 0, "cannotVerify": 0, "newRegression": 0},
+      "recommendation": "可以关闭",
+      "requires": "Compare original-to-problem attribution, problem-to-fixed behavior and the unchanged direct caller; preserve query and all supported slash combinations. No runtime closure requirement was imposed.",
+      "forbidden": ["file-coverage summary", "Changed-Condition Coverage ledger", "unrelated Deep audit", "renumbering F-007", "runtime observation claims", "mandatory new runtime closure gate"]
+    }
+  }
+}

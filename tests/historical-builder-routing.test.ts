@@ -6,6 +6,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { afterAll, describe, expect, test } from 'vitest';
 import { readText, readHistoricalText, rootDir } from './test-utils';
+import { preFormatRoot } from '../scripts/pre-format-baseline.mjs';
 
 const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'fe-historical-routing-'));
 afterAll(() => fs.rmSync(temporary, { recursive: true, force: true }));
@@ -13,11 +14,11 @@ const builders = ['build-grouped-ledger-candidate.mjs', 'build-origin-occurrence
 const hash = (value: string) => createHash('sha256').update(value).digest('hex');
 
 describe('frozen historical builder routing', () => {
-  test('retains every baseline byte and every accepted promoted Skill byte independently', () => {
+  test('retains pre-v0.6.0 inputs and accepted v0.6.0 Skill bytes independently', () => {
     const historical = JSON.parse(readText('evaluation/baselines/pre-v0.6.0/manifest.json'));
     for (const pin of historical.files) expect(hash(readHistoricalText(pin.path)), pin.path).toBe(pin.sha256);
     const candidate = JSON.parse(readText('evaluation/prototypes/origin-occurrence/integration-12/manifest.json'));
-    for (const pin of candidate.outputs) expect(hash(readText(pin.path.replace(/^skill\//u, 'skills/'))), pin.path).toBe(pin.sha256);
+    for (const pin of candidate.outputs) expect(hash(fs.readFileSync(path.join(preFormatRoot, pin.path.replace(/^skill\//u, 'skills/')), 'utf8')), pin.path).toBe(pin.sha256);
     expect(readHistoricalText('skills/fe-code-review/SKILL.md')).not.toBe(readText('skills/fe-code-review/SKILL.md'));
   });
 

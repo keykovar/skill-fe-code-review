@@ -1,0 +1,22 @@
+{
+  "kind": "public-synthetic-comparison-packet",
+  "id": "LF-D-002",
+  "mode": "deep",
+  "scope": "Only the declared public packet; not its host repository.",
+  "comparison": {"baseline": "LF-D-002:before", "target": "LF-D-002:after"},
+  "inventory": {
+    "complete": true,
+    "issues": [],
+    "files": [{"path": "src/options.mjs", "status": " M", "layers": ["unstaged"]}]
+  },
+  "snapshots": [{
+    "path": "src/options.mjs",
+    "before": "before/src/options.mjs",
+    "index": "before/src/options.mjs",
+    "after": "after/src/options.mjs"
+  }],
+  "support": [{"path": "src/loaders.mjs", "source": "support/src/loaders.mjs", "changed": false}],
+  "context": "context.md",
+  "executionEvidence": "Not supplied. Static review only; evaluator tests are not reviewer observations.",
+  "layerMeaning": "Synthetic baseline/index/target labels, not a live Git status."
+}

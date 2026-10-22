@@ -8,6 +8,8 @@
 
 适用于 Codex、Claude Code 和 Cursor 的可复用前端及 Hybrid 应用代码审查 Skill。
 
+当前工作树为 **v0.6.1 候选版，尚未发布**，计划发布日期为 **2026-10-22**。候选版明确了已有 Quick/Deep Coverage 的输出格式；公开稳定版仍为 **v0.6.0**，下方分别提供当前可用的稳定版命令和待发布的 v0.6.1 命令。变更和验证范围见[候选版发布说明](docs/v0.6.1-release-notes.md)。
+
 完整工作流集中在一个开放格式 Skill 中：
 
 ```text
@@ -37,6 +39,19 @@ docs/                        兼容性、评测、版本规则与路线图
 examples/                    指令与输出示例
 tests/                       Vitest 结构和契约检查
 ```
+
+## 安装 v0.6.1（待发布）
+
+发布状态：**待发布**。计划发布日期：**2026-10-22**。下方命令已准备为不可变的 `v0.6.1` tag，**仅在发布完成后可用**。现在安装请使用下方[已发布的 v0.6.0 命令](#安装-v060)。如果实际发布跨日，需在创建 tag 前同步发布日期。
+
+```bash
+# 仅在 v0.6.1 发布完成后执行。
+git clone --depth 1 --branch v0.6.1 \
+  https://github.com/keykovar/skill-fe-code-review.git
+cd skill-fe-code-review
+```
+
+选择一个版本检出后，使用下方各客户端的复制步骤。[v0.6.1 发布说明](docs/v0.6.1-release-notes.md)记录格式修正与验证范围；这些准备好的命令不代表已经通过公开 tag 安装验收。
 
 ## 安装 v0.6.0
 
@@ -114,6 +129,10 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 ```
 
 ## 兼容性
+
+### 候选版 v0.6.1
+
+Codex Desktop 已通过精确候选指令与公开合成材料下的一次 Quick、两个不同 Deep 场景和一次当前候选 Fix 验收，标记为 `Packet review verified：材料包审核已验证`。这不证明安装路径加载或自动发现。Cursor、Claude Code 对本候选仍为 `Cannot Verify：无法验证`，旧版结果保留原版本归属。报告和限制见[候选版兼容性](docs/compatibility.md#candidate-v061-evidence)。
 
 ### 稳定版 v0.6.0
 
@@ -212,7 +231,7 @@ Playwright 或等价浏览器工具只提供可选运行时证据，不是 Skill
 
 v0.6.0 为每条 Finding 和 Fix 问题验证项增加两个字段：`Origin` 区分本次引入（New）、本次放大（Amplified）、历史遗留（Retained）和无法确定（Unknown）；`Reproduction` 区分已观测（Observed）、未执行（Not Run）、无法验证（Cannot Verify）和不适用（Not Applicable）。已观测的 `n/N` 表示有证据的已完成失败次数/试验次数，不是生产复现概率；修复前后、不同环境的观测分别保留。
 
-这不会增加审核模式，也不要求为填写计数额外执行测试。来源不明或没有运行证据不自动等于 Fix 无法关闭；无问题段落和 Coverage 条目不增加这两个字段。正式稳定版仍为 v0.5.0；v0.6.0 候选的两次选定最终包 Fix 冒烟已通过，具体边界见上方兼容性说明。
+这不会增加审核模式，也不要求为填写计数额外执行测试。来源不明或没有运行证据不自动等于 Fix 无法关闭；无问题段落和 Coverage 条目不增加这两个字段。正式稳定版为 v0.6.0，其两次选定最终包 Fix 冒烟已通过；v0.6.1 候选的证据单独列出，具体边界见上方兼容性说明。
 
 | 模式 | 中文示例 | 英文示例 |
 | --- | --- | --- |

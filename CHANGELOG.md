@@ -6,6 +6,23 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 
 ## [Unreleased]
 
+The v0.6.1 tag-based comparison links below are prepared for publication and are not yet available.
+
+## [0.6.1] - 2026-10-22
+
+**Publication pending.** This is the planned release date, not a publication claim; reconcile it before tagging if publication occurs on another day. The published stable release remains v0.6.0. Bilingual v0.6.1 installation commands and immutable comparison links are prepared and explicitly pending.
+
+### Fixed
+
+- Clarify the existing Quick/Deep Changed-Condition Coverage format: render only ledger items and blank lines, place explanations in Evidence, and choose one final Disposition value. Explicitly keep Fix Review outside this ledger. This changes three Skill files without adding fields, review modes or File Coverage.
+
+### Maintenance
+
+- Preserve the original v0.6.0 inputs in immutable pre-format archives and route seventeen historical suites to their exact baseline. Keep current Skill/output checks on the live tree and published compatibility assertions tied to the original release bytes.
+- Prepare [v0.6.1 metadata and release notes](docs/v0.6.1-release-notes.md), [bounded delivery scope](docs/v0.6.1-release-preparation.md) and version-specific compatibility wording. Package metadata is 0.6.1; the candidate is not published. Stable v0.6.0 installation remains available alongside the pending v0.6.1 commands. Accepted synthetic Quick/Deep evidence is reused with its original limits.
+- Record one [current-candidate O-09 Codex Fix acceptance](docs/evaluation-results/v0.6.1-codex-fix-runtime.md): exact four-read delivery, unchanged materials, output/field checks and ten semantic gates pass. Preserve the unedited report and local receipt-parser corrections; no model retry, new cross-client, discovery, installed-workflow or general-accuracy claim.
+- Verify the complete 876-file local candidate with independently downloaded Node dependencies: 45 fetched, zero reused, 1,699 tests and both Skill validators pass. Retain the earlier incomplete installation and tooling errors. Python/PyYAML were reused; no public-tag download or additional model acceptance is claimed.
+
 ### Documentation
 
 - Synchronize published v0.6.0 status across bilingual installation notes, compatibility and release documentation; preserve the immutable tag and historical acceptance records.
@@ -197,7 +214,8 @@ The candidate notes below retain historical experiment states, not outstanding m
 - Chinese output templates and example outputs.
 - Vitest contract tests, skill validation, and GitHub Actions CI.
 
-[Unreleased]: https://github.com/keykovar/skill-fe-code-review/compare/v0.6.0...HEAD
+[Unreleased]: https://github.com/keykovar/skill-fe-code-review/compare/v0.6.1...HEAD
+[0.6.1]: https://github.com/keykovar/skill-fe-code-review/compare/v0.6.0...v0.6.1
 [0.6.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.5.0...v0.6.0
 [0.5.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/keykovar/skill-fe-code-review/compare/v0.3.0...v0.4.0
