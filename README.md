@@ -8,7 +8,7 @@ English | [简体中文](README.zh-CN.md)
 
 Reusable frontend and hybrid app code review skill for Codex, Claude Code, and Cursor.
 
-Current checkout: **v0.6.1 candidate, unpublished**. The planned release date is **2026-10-22**; publication is pending. The candidate clarifies the existing Quick/Deep Coverage format. The published stable release remains **v0.6.0**; its available installation command and the prepared v0.6.1 command are separated below. See the [candidate release notes](docs/v0.6.1-release-notes.md) for changes and verification limits.
+Current stable release: **v0.6.1**, [published on 2026-10-22](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.6.1) and labeled Latest. This patch clarifies the existing Quick/Deep Coverage format. See the [release notes](docs/v0.6.1-release-notes.md) for changes and verification limits. Fresh public-tag installation checks pass; these deterministic checks do not extend client runtime evidence.
 
 The complete workflow lives in one open-standard skill:
 
@@ -40,22 +40,21 @@ examples/                    Prompt and output examples
 tests/                       Vitest structure and contract checks
 ```
 
-## Install v0.6.1 (Publication Pending)
+## Install v0.6.1
 
-Publication status: **pending**. Planned release date: **2026-10-22**. The following command is prepared for the immutable `v0.6.1` tag and becomes usable only after its publication. For installation now, use the [published v0.6.0 instructions](#install-v060). If publication occurs on another day, the release date must be reconciled before tagging.
+Publication status: **published** on **2026-10-22**. Install the immutable `v0.6.1` tag targeting commit `2fe073cd32aa900f873288fbf5b76e63fb91f593`. Pending notices inside the tag preserve the preparation-time state; the [Release](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.6.1) records its confirmed publication. The tag is unchanged.
 
 ```bash
-# Run only after v0.6.1 is published.
 git clone --depth 1 --branch v0.6.1 \
   https://github.com/keykovar/skill-fe-code-review.git
 cd skill-fe-code-review
 ```
 
-After checking out either version, use the client-specific copy steps below. The [v0.6.1 release notes](docs/v0.6.1-release-notes.md) describe the format fix and bounded verification evidence; these instructions do not establish a fresh-tag installation pass.
+After checkout, use the [client-specific copy steps](#client-setup) below. [Post-release acceptance](docs/evaluation-results/v0.6.1-post-release.md) records the fresh tag download, independent dependency installation, 1,699 passing tests and three isolated Skill copies; it does not establish live client acceptance.
 
 ## Install v0.6.0
 
-Publication status: **published** on 2026-10-09. The current stable release is [`v0.6.0`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.6.0).
+Publication status: **published** on 2026-10-09. [`v0.6.0`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.6.0) is the previous stable release; retain this version only when its older contract is required.
 
 The commands below target the published immutable `v0.6.0` tag. This release adds Origin and Reproduction fields, with the selected final-package Codex and Cursor Fix smokes completed. See the [release notes](docs/v0.6.0-release-notes.md) and [release preparation](docs/v0.6.0-release-preparation.md) for scope and evidence limits. Use a tag instead of `main` for reproducible installation.
 
@@ -66,6 +65,10 @@ git clone --depth 1 --branch v0.6.0 \
   https://github.com/keykovar/skill-fe-code-review.git
 cd skill-fe-code-review
 ```
+
+## Client Setup
+
+Use these copy steps for the version checked out above.
 
 ### Codex
 
@@ -130,11 +133,11 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 ## Compatibility
 
-### Candidate v0.6.1
+### Stable v0.6.1
 
-Codex Desktop has `Packet review verified` evidence for one Quick, two distinct Deep cases and one current-candidate Fix case using the exact candidate instructions and public synthetic materials. This does not verify installed-path loading or automatic discovery. Cursor and Claude Code remain `Cannot Verify` for this candidate; their earlier results retain their original versions. See [candidate compatibility](docs/compatibility.md#candidate-v061-evidence) for reports and limits.
+Codex Desktop has `Packet review verified` evidence for one Quick, two distinct Deep cases and one Fix case using the exact released instructions and public synthetic materials. This does not verify installed-path loading or automatic discovery. Cursor and Claude Code remain `Cannot Verify` for v0.6.1; their earlier results retain their original versions. See [v0.6.1 compatibility](docs/compatibility.md#stable-v061-evidence) for reports and limits.
 
-### Stable v0.6.0
+### Historical v0.6.0
 
 The accepted integration-12 candidate completed selected public synthetic Quick, Deep and Fix trials on Codex Desktop. The final package also passed one explicit-path O-09 Fix smoke on each of Codex Desktop (`0.162.0-alpha.2`, `gpt-6-astra / xhigh`) and Cursor CLI (`2026.08.11-e8db854`, Auto / Plan). Each final-package smoke passed material integrity, output structure/fields and ten semantic gates. These results cover the recorded cases; they do not establish automatic discovery, every mode on every client, general accuracy or production behavior. Claude Code remains Not Verified. The separate isolation/runtime harness remains `runtimeReady=false`, and SSE is deferred. See [Compatibility](docs/compatibility.md) for the retained failures and evidence boundaries.
 

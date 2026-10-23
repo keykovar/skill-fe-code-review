@@ -8,7 +8,7 @@
 
 适用于 Codex、Claude Code 和 Cursor 的可复用前端及 Hybrid 应用代码审查 Skill。
 
-当前工作树为 **v0.6.1 候选版，尚未发布**，计划发布日期为 **2026-10-22**。候选版明确了已有 Quick/Deep Coverage 的输出格式；公开稳定版仍为 **v0.6.0**，下方分别提供当前可用的稳定版命令和待发布的 v0.6.1 命令。变更和验证范围见[候选版发布说明](docs/v0.6.1-release-notes.md)。
+当前稳定版为 **v0.6.1**，已于 **2026-10-22** [发布并标记为 Latest](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.6.1)。本次补丁明确了已有 Quick/Deep Coverage 的输出格式。变更和验证范围见[发布说明](docs/v0.6.1-release-notes.md)。公开 tag 全新安装检查已通过；这些确定性检查不增加客户端运行时证据。
 
 完整工作流集中在一个开放格式 Skill 中：
 
@@ -40,22 +40,21 @@ examples/                    指令与输出示例
 tests/                       Vitest 结构和契约检查
 ```
 
-## 安装 v0.6.1（待发布）
+## 安装 v0.6.1
 
-发布状态：**待发布**。计划发布日期：**2026-10-22**。下方命令已准备为不可变的 `v0.6.1` tag，**仅在发布完成后可用**。现在安装请使用下方[已发布的 v0.6.0 命令](#安装-v060)。如果实际发布跨日，需在创建 tag 前同步发布日期。
+发布状态：**已发布**，发布日期为 **2026-10-22**。下方命令固定到不可变的 `v0.6.1` tag，目标提交为 `2fe073cd32aa900f873288fbf5b76e63fb91f593`。tag 内的待发布文字保留打包时状态，实际发布结果见 [Release](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.6.1)；tag 保持不变。
 
 ```bash
-# 仅在 v0.6.1 发布完成后执行。
 git clone --depth 1 --branch v0.6.1 \
   https://github.com/keykovar/skill-fe-code-review.git
 cd skill-fe-code-review
 ```
 
-选择一个版本检出后，使用下方各客户端的复制步骤。[v0.6.1 发布说明](docs/v0.6.1-release-notes.md)记录格式修正与验证范围；这些准备好的命令不代表已经通过公开 tag 安装验收。
+检出后使用下方[客户端安装步骤](#客户端安装步骤)。[发布后验收记录](docs/evaluation-results/v0.6.1-post-release.md)记录全新 tag 下载、独立依赖安装、1,699 项测试通过和三套隔离 Skill 副本检查；这些结果不代表客户端实时验收。
 
 ## 安装 v0.6.0
 
-发布状态：**已发布**，发布日期为 2026-10-09。当前稳定版为 [`v0.6.0`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.6.0)。
+发布状态：**已发布**，发布日期为 2026-10-09。[`v0.6.0`](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.6.0) 为上一稳定版，仅在需要旧版本契约时使用。
 
 下面的命令已固定为已发布、不可变的 `v0.6.0` tag。本次版本新增 Origin 与 Reproduction 字段，选定的 Codex、Cursor 最终包 Fix 冒烟已通过。范围和证据限制见 [Release 说明](docs/v0.6.0-release-notes.md)与[发布准备](docs/v0.6.0-release-preparation.md)。需要可复现安装时应使用 tag，不要直接安装 `main`。
 
@@ -66,6 +65,10 @@ git clone --depth 1 --branch v0.6.0 \
   https://github.com/keykovar/skill-fe-code-review.git
 cd skill-fe-code-review
 ```
+
+## 客户端安装步骤
+
+以下步骤适用于上方检出的版本。
 
 ### Codex
 
@@ -130,11 +133,11 @@ cp "adapters/cursor/rules/fe-code-review.mdc" ".cursor/rules/fe-code-review.mdc"
 
 ## 兼容性
 
-### 候选版 v0.6.1
+### 稳定版 v0.6.1
 
-Codex Desktop 已通过精确候选指令与公开合成材料下的一次 Quick、两个不同 Deep 场景和一次当前候选 Fix 验收，标记为 `Packet review verified：材料包审核已验证`。这不证明安装路径加载或自动发现。Cursor、Claude Code 对本候选仍为 `Cannot Verify：无法验证`，旧版结果保留原版本归属。报告和限制见[候选版兼容性](docs/compatibility.md#candidate-v061-evidence)。
+Codex Desktop 已通过精确发布指令与公开合成材料下的一次 Quick、两个不同 Deep 场景和一次 Fix 验收，标记为 `Packet review verified：材料包审核已验证`。这不证明安装路径加载或自动发现。Cursor、Claude Code 对 v0.6.1 仍为 `Cannot Verify：无法验证`，旧版结果保留原版本归属。报告和限制见[v0.6.1 兼容性](docs/compatibility.md#stable-v061-evidence)。
 
-### 稳定版 v0.6.0
+### 历史版本 v0.6.0
 
 已接受的 integration-12 候选在 Codex Desktop 上完成了选定的公开合成 Quick、Deep、Fix 评测；最终包另在 Codex Desktop（`0.162.0-alpha.2`，`gpt-6-astra / xhigh`）和 Cursor CLI（`2026.08.11-e8db854`，Auto / Plan）各通过一次显式路径 O-09 Fix 冒烟。两次冒烟均通过材料完整性、输出结构与字段、十项语义门禁。这些证据仅覆盖记录中的场景，不代表自动发现、所有客户端的所有模式、总体准确率或生产行为。Claude Code 仍为 Not Verified；独立隔离/运行时评测工具仍为 `runtimeReady=false`，SSE 延期。保留的失败和证据边界见[兼容性说明](docs/compatibility.md)。
 

@@ -6,11 +6,11 @@ The project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). 
 
 ## [Unreleased]
 
-The v0.6.1 tag-based comparison links below are prepared for publication and are not yet available.
+No unreleased product changes.
 
 ## [0.6.1] - 2026-10-22
 
-**Publication pending.** This is the planned release date, not a publication claim; reconcile it before tagging if publication occurs on another day. The published stable release remains v0.6.0. Bilingual v0.6.1 installation commands and immutable comparison links are prepared and explicitly pending.
+Published as [v0.6.1](https://github.com/keykovar/skill-fe-code-review/releases/tag/v0.6.1) on 2026-10-22 and labeled Latest, targeting `2fe073cd32aa900f873288fbf5b76e63fb91f593`. The immutable tag retains preparation-time pending notices. [Fresh public-tag installation acceptance](docs/evaluation-results/v0.6.1-post-release.md) passes with 45 downloaded/zero reused Node packages, 1,699 tests, three matching Skill copies and six validator passes; no new client runtime evidence is claimed.
 
 ### Fixed
 
@@ -19,7 +19,7 @@ The v0.6.1 tag-based comparison links below are prepared for publication and are
 ### Maintenance
 
 - Preserve the original v0.6.0 inputs in immutable pre-format archives and route seventeen historical suites to their exact baseline. Keep current Skill/output checks on the live tree and published compatibility assertions tied to the original release bytes.
-- Prepare [v0.6.1 metadata and release notes](docs/v0.6.1-release-notes.md), [bounded delivery scope](docs/v0.6.1-release-preparation.md) and version-specific compatibility wording. Package metadata is 0.6.1; the candidate is not published. Stable v0.6.0 installation remains available alongside the pending v0.6.1 commands. Accepted synthetic Quick/Deep evidence is reused with its original limits.
+- Prepare [v0.6.1 metadata and release notes](docs/v0.6.1-release-notes.md), [bounded delivery scope](docs/v0.6.1-release-preparation.md) and version-specific compatibility wording. Package metadata is 0.6.1; the tagged snapshot retains its pre-publication status. Current stable installation is pinned to v0.6.1, with v0.6.0 retained as the previous release. Accepted synthetic Quick/Deep evidence is reused with its original limits.
 - Record one [current-candidate O-09 Codex Fix acceptance](docs/evaluation-results/v0.6.1-codex-fix-runtime.md): exact four-read delivery, unchanged materials, output/field checks and ten semantic gates pass. Preserve the unedited report and local receipt-parser corrections; no model retry, new cross-client, discovery, installed-workflow or general-accuracy claim.
 - Verify the complete 876-file local candidate with independently downloaded Node dependencies: 45 fetched, zero reused, 1,699 tests and both Skill validators pass. Retain the earlier incomplete installation and tooling errors. Python/PyYAML were reused; no public-tag download or additional model acceptance is claimed.
 
